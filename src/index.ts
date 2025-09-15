@@ -18,7 +18,7 @@ export function runCodemod(codemodOptions: CodemodOptions): void {
 
   console.log(`✅ Found ${packages.size} package(s) with hbs`);
 
-  const entities = findEntities();
+  const entities = findEntities(options);
   console.log('✅ Found entities');
 
   console.log(entities);

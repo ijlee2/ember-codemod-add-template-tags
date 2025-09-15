@@ -1,5 +1,11 @@
-import type { AllEntities, Dependencies, EntityType } from '../types/index.js';
+import type {
+  AllEntities,
+  Dependencies,
+  EntityType,
+  Options,
+} from '../types/index.js';
 import {
+  analyzeInternalDependencies,
   emberDependencies,
   ENTITY_TYPES,
 } from '../utils/find-entities/index.js';
@@ -14,7 +20,7 @@ function merge(dependencies: Dependencies, allEntities: AllEntities): void {
   }
 }
 
-export function findEntities(): AllEntities {
+export function findEntities(options: Options): AllEntities {
   const entities: AllEntities = {
     components: new Map(),
     helpers: new Map(),
@@ -22,7 +28,10 @@ export function findEntities(): AllEntities {
     services: new Map(),
   };
 
+  const internalDependencies = analyzeInternalDependencies(options);
+
   merge(emberDependencies, entities);
+  merge(internalDependencies, entities);
 
   ENTITY_TYPES.forEach((entityType) => {
     entities[entityType] = new Map(Array.from(entities[entityType]).sort());
