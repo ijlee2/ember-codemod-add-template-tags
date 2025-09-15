@@ -24,11 +24,20 @@ export function runCodemod(codemodOptions: CodemodOptions): void {
   const entities = findEntities(options);
   console.log('✅ Found entities');
 
-  updateComponents(packages, entities);
-  console.log('✅ Updated components');
+  if (options.convert.components) {
+    updateComponents(packages, entities);
+    console.log('✅ Updated components');
+  }
 
-  updateRoutes(packages, entities);
-  console.log('✅ Updated routes');
+  if (options.convert.routes) {
+    updateRoutes(packages, entities);
+    console.log('✅ Updated routes');
+  }
+
+  if (options.convert.tests) {
+    updateTests(packages, entities);
+    console.log('✅ Updated tests');
+  }
 
   updateTests(packages, entities);
   console.log('✅ Updated tests');

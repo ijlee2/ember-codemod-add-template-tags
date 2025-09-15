@@ -1,7 +1,23 @@
-import type { FilesToConvert } from '../../types/index.js';
+import type { FilesToConvert, Options } from '../../types/index.js';
 
-export function ignorePackage(filesWithHBS: FilesToConvert): boolean {
+export function ignorePackage(
+  filesWithHBS: FilesToConvert,
+  options: Options,
+): boolean {
   const { components, routes, tests } = filesWithHBS;
+  let consider = false;
 
-  return components.length === 0 && routes.length === 0 && tests.length === 0;
+  if (options.convert.components && components.length > 0) {
+    consider = true;
+  }
+
+  if (options.convert.routes && routes.length > 0) {
+    consider = true;
+  }
+
+  if (options.convert.tests && tests.length > 0) {
+    consider = true;
+  }
+
+  return !consider;
 }
