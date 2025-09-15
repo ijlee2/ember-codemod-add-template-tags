@@ -5,6 +5,7 @@ import type {
   Options,
 } from '../types/index.js';
 import {
+  analyzeExternalDependencies,
   analyzeInternalDependencies,
   emberDependencies,
   ENTITY_TYPES,
@@ -28,9 +29,11 @@ export function findEntities(options: Options): AllEntities {
     services: new Map(),
   };
 
+  const externalDependencies = analyzeExternalDependencies(options);
   const internalDependencies = analyzeInternalDependencies(options);
 
   merge(emberDependencies, entities);
+  merge(externalDependencies, entities);
   merge(internalDependencies, entities);
 
   ENTITY_TYPES.forEach((entityType) => {
