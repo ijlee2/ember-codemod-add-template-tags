@@ -12,7 +12,7 @@ type ComponentImportPath = keyof typeof componentMap;
 
 type ComponentType = (typeof componentMap)[ComponentImportPath];
 
-type Data = {
+export type Data = {
   baseComponentName: string | undefined;
   componentName: string | undefined;
   componentType: ComponentType | undefined;

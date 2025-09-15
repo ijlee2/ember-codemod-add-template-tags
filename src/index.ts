@@ -2,6 +2,7 @@ import {
   createOptions,
   findEntities,
   findPackagesWithHBS,
+  updateComponents,
 } from './steps/index.js';
 import type { CodemodOptions } from './types/index.js';
 
@@ -21,5 +22,8 @@ export function runCodemod(codemodOptions: CodemodOptions): void {
   const entities = findEntities(options);
   console.log('✅ Found entities');
 
-  console.log(entities);
+  updateComponents(packages, entities);
+  console.log('✅ Updated components');
+
+  console.log();
 }
