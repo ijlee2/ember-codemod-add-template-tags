@@ -47,6 +47,8 @@ type Packages = Map<
   {
     filesWithHBS: FilesToConvert;
     filesWithTemplateTag: FilesToConvert;
+    hasEmberRouteTemplate: boolean;
+    isEmberSourceRecent: boolean;
     packageRoot: string;
     packageType: Exclude<PackageType, 'node'>;
   }
