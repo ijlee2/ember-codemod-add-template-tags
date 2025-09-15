@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.3.0
+
+### Minor Changes
+
+- [#6](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/6) Supported incremental migration ([@ijlee2](https://github.com/ijlee2))
+- [#5](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/5) Created updateTests() ([@ijlee2](https://github.com/ijlee2))
+
 ## 0.2.0
 
 ### Minor Changes
