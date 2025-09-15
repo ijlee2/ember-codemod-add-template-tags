@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.0
+
+### Minor Changes
+
+- [#4](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/4) Created updateRoutes() ([@ijlee2](https://github.com/ijlee2))
+
 ## 0.1.0
 
 ### Minor Changes
