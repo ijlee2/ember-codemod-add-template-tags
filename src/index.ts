@@ -1,9 +1,10 @@
-import { createOptions } from './steps/index.js';
+import { createOptions, findPackagesWithHBS } from './steps/index.js';
 import type { CodemodOptions } from './types/index.js';
 
 export function runCodemod(codemodOptions: CodemodOptions): void {
   const options = createOptions(codemodOptions);
+  const packages = findPackagesWithHBS(options);
 
-  // TODO: Replace with actual steps
-  console.log(options);
+  console.log(`✅ Found ${packages.size} package(s) with hbs`);
+  console.log();
 }
