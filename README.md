@@ -9,7 +9,17 @@ _Codemod to add `<template>` tags_
 
 ### Arguments
 
-[PROVIDE REQUIRED AND OPTIONAL ARGUMENTS.]
+<details>
+
+<summary>Optional: Specify the component structure</summary>
+
+By default, an Octane project has the flat component structure. Pass `--component-structure` to indicate otherwise.
+
+```sh
+npx ember-codemod-add-component-signatures --component-structure nested
+```
+
+</details>
 
 <details>
 

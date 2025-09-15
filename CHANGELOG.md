@@ -1,1 +1,9 @@
 # Changelog
+
+## 0.1.0
+
+### Minor Changes
+
+- [#3](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/3) Created updateComponents() ([@ijlee2](https://github.com/ijlee2))
+- [#2](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/2) Created findEntities() ([@ijlee2](https://github.com/ijlee2))
+- [#1](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/1) Created findPackagesWithHBS() ([@ijlee2](https://github.com/ijlee2))
