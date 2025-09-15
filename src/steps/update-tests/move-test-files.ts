@@ -8,7 +8,12 @@ import { insertTemplateTag } from '../../utils/update-tests/index.js';
 
 export function moveTestFiles(packages: Packages): void {
   for (const [, packageData] of packages) {
-    const { filesWithHBS, filesWithTemplateTag, packageRoot } = packageData;
+    const {
+      filesWithHBS,
+      filesWithTemplateTag,
+      isEmberSourceRecent,
+      packageRoot,
+    } = packageData;
 
     filesWithHBS.tests.forEach((filePath) => {
       const oldFile = readFileSync(join(packageRoot, filePath), 'utf8');
@@ -16,6 +21,7 @@ export function moveTestFiles(packages: Packages): void {
 
       const testFile = insertTemplateTag(oldFile, {
         isTypeScript,
+        useLexicalThis: isEmberSourceRecent,
       });
 
       const newFilePath = isTypeScript
