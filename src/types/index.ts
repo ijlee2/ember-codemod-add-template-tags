@@ -2,11 +2,17 @@ import type { PackageType } from '@codemod-utils/package-json';
 
 type CodemodOptions = {
   componentStructure: 'flat' | 'nested';
+  convert: Set<'components' | 'routes' | 'tests'>;
   projectRoot: string;
 };
 
 type Options = {
   componentStructure: 'flat' | 'nested';
+  convert: {
+    components: boolean;
+    routes: boolean;
+    tests: boolean;
+  };
   projectRoot: string;
 };
 

@@ -17,14 +17,22 @@ const argv = yargs(hideBin(process.argv))
     describe: 'Component structure (how your components are colocated)',
     type: 'string',
   })
+  .option('convert', {
+    choices: ['components', 'routes', 'tests'] as const,
+    describe: 'Which files to convert',
+    type: 'array',
+  })
   .option('root', {
     describe: 'Where to run the codemod',
     type: 'string',
   })
   .parseSync();
 
+const DEFAULT_FOR_CONVERT = ['components', 'routes', 'tests'] as const;
+
 const codemodOptions: CodemodOptions = {
   componentStructure: argv['component-structure'] ?? 'flat',
+  convert: new Set(argv['convert'] ?? DEFAULT_FOR_CONVERT),
   projectRoot: argv['root'] ?? process.cwd(),
 };
 
