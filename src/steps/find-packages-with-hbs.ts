@@ -3,6 +3,7 @@ import { getPackageType, readPackageJson } from '@codemod-utils/package-json';
 
 import type { Options, Packages, PackageType } from '../types/index.js';
 import {
+  analyzeDependencies,
   findFilesWithHBS,
   ignorePackage,
 } from './find-packages-with-hbs/index.js';
@@ -38,6 +39,9 @@ export function findPackagesWithHBS(options: Options): Packages {
       return;
     }
 
+    const { hasEmberRouteTemplate, isEmberSourceRecent } =
+      analyzeDependencies(packageJson);
+
     packages.set(packageName, {
       filesWithHBS,
       filesWithTemplateTag: {
@@ -45,6 +49,8 @@ export function findPackagesWithHBS(options: Options): Packages {
         routes: [],
         tests: [],
       },
+      hasEmberRouteTemplate,
+      isEmberSourceRecent,
       packageRoot,
       packageType: packageType as Exclude<PackageType, 'node'>,
     });
