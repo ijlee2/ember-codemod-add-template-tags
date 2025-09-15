@@ -10,6 +10,30 @@ type Options = {
   projectRoot: string;
 };
 
+type AllEntities = Record<EntityType, Entities>;
+
+type Dependencies = Map<
+  PackageName,
+  {
+    entities: AllEntities;
+    packageRoot: string;
+    packageType: PackageType;
+  }
+>;
+
+type Entities = Map<EntityName, EntityData>;
+
+type EntityData = {
+  filePath: string;
+  isDefaultExport: boolean;
+  isTypeScript: boolean;
+  packageName: PackageName;
+};
+
+type EntityName = string;
+
+type EntityType = 'components' | 'helpers' | 'modifiers' | 'services';
+
 type FilesToConvert = {
   components: string[];
   routes: string[];
@@ -29,7 +53,13 @@ type Packages = Map<
 >;
 
 export type {
+  AllEntities,
   CodemodOptions,
+  Dependencies,
+  Entities,
+  EntityData,
+  EntityName,
+  EntityType,
   FilesToConvert,
   Options,
   PackageName,
