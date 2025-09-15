@@ -2,6 +2,7 @@ import { getPackageRoots } from '@codemod-utils/files';
 import { getPackageType, readPackageJson } from '@codemod-utils/package-json';
 
 import type { Options, Packages, PackageType } from '../types/index.js';
+import { findFilesWithHBS } from './find-packages-with-hbs/index.js';
 
 const supportedPackageTypes = new Set<PackageType>([
   'v1-addon',
@@ -28,12 +29,10 @@ export function findPackagesWithHBS(options: Options): Packages {
       return;
     }
 
+    const filesWithHBS = findFilesWithHBS({ packageRoot, packageType });
+
     packages.set(packageName, {
-      filesWithHBS: {
-        components: [],
-        routes: [],
-        tests: [],
-      },
+      filesWithHBS,
       filesWithTemplateTag: {
         components: [],
         routes: [],
