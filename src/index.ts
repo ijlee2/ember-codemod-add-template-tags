@@ -4,6 +4,7 @@ import {
   findPackagesWithHBS,
   updateComponents,
   updateRoutes,
+  updateTests,
 } from './steps/index.js';
 import type { CodemodOptions } from './types/index.js';
 
@@ -28,6 +29,9 @@ export function runCodemod(codemodOptions: CodemodOptions): void {
 
   updateRoutes(packages, entities);
   console.log('✅ Updated routes');
+
+  updateTests(packages, entities);
+  console.log('✅ Updated tests');
 
   console.log();
 }
