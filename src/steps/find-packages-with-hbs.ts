@@ -35,7 +35,7 @@ export function findPackagesWithHBS(options: Options): Packages {
 
     const filesWithHBS = findFilesWithHBS({ packageRoot, packageType });
 
-    if (ignorePackage(filesWithHBS)) {
+    if (ignorePackage(filesWithHBS, options)) {
       return;
     }
 

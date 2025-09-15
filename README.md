@@ -23,6 +23,22 @@ npx ember-codemod-add-component-signatures --component-structure nested
 
 <details>
 
+<summary>Optional: Incrementally migrate</summary>
+
+By default, the codemod updates components, routes, and tests. Pass `--convert` to update a subset of these.
+
+```sh
+# 1. Components and tests only
+npx ember-codemod-add-component-signatures --convert components tests
+
+# 2. Routes only (e.g. after installing `ember-route-template` or updating `ember-source` to 6.3 or higher)
+npx ember-codemod-add-component-signatures --convert routes
+```
+
+</details>
+
+<details>
+
 <summary>Optional: Specify the project root</summary>
 
 Pass `--root` to run the codemod somewhere else (i.e. not in the current directory).
