@@ -1,4 +1,8 @@
-import { createOptions, findPackagesWithHBS } from './steps/index.js';
+import {
+  createOptions,
+  findEntities,
+  findPackagesWithHBS,
+} from './steps/index.js';
 import type { CodemodOptions } from './types/index.js';
 
 export function runCodemod(codemodOptions: CodemodOptions): void {
@@ -13,5 +17,9 @@ export function runCodemod(codemodOptions: CodemodOptions): void {
   }
 
   console.log(`✅ Found ${packages.size} package(s) with hbs`);
-  console.log();
+
+  const entities = findEntities();
+  console.log('✅ Found entities');
+
+  console.log(entities);
 }
