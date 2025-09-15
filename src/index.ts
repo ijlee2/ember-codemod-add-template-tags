@@ -3,6 +3,7 @@ import {
   findEntities,
   findPackagesWithHBS,
   updateComponents,
+  updateRoutes,
 } from './steps/index.js';
 import type { CodemodOptions } from './types/index.js';
 
@@ -24,6 +25,9 @@ export function runCodemod(codemodOptions: CodemodOptions): void {
 
   updateComponents(packages, entities);
   console.log('✅ Updated components');
+
+  updateRoutes(packages, entities);
+  console.log('✅ Updated routes');
 
   console.log();
 }
