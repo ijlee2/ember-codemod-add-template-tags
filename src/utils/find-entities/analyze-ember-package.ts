@@ -31,8 +31,6 @@ export function analyzeEmberPackage({
     components: new Map(),
     helpers: new Map(),
     modifiers: new Map(),
-    services: new Map(),
-    utilities: new Map(),
   };
 
   if (source === undefined) {

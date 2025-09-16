@@ -2,17 +2,9 @@ export const ENTITY_SOURCE_FOLDERS = {
   components: 'components',
   helpers: 'helpers',
   modifiers: 'modifiers',
-  services: 'services',
-  utilities: 'utils',
 } as const;
 
-export const ENTITY_TYPES = [
-  'components',
-  'helpers',
-  'modifiers',
-  'services',
-  'utilities',
-] as const;
+export const ENTITY_TYPES = ['components', 'helpers', 'modifiers'] as const;
 
 export const SOURCE_FOR_EXTERNAL_PACKAGES = {
   node: undefined,

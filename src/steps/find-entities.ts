@@ -26,8 +26,6 @@ export function findEntities(options: Options): AllEntities {
     components: new Map(),
     helpers: new Map(),
     modifiers: new Map(),
-    services: new Map(),
-    utilities: new Map(),
   };
 
   const externalDependencies = analyzeExternalDependencies(options);
