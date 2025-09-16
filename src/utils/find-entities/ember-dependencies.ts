@@ -10,7 +10,9 @@ export const emberDependencies: Dependencies = new Map([
             'input',
             {
               filePath: '.',
+              filePathAlias: '.',
               isDefaultExport: true,
+              isTemplateTag: false,
               isTypeScript: true,
               packageName: '@ember/component',
             },
@@ -19,7 +21,9 @@ export const emberDependencies: Dependencies = new Map([
             'link-to',
             {
               filePath: '.',
+              filePathAlias: '.',
               isDefaultExport: true,
+              isTemplateTag: false,
               isTypeScript: true,
               packageName: '@ember/routing',
             },
@@ -28,7 +32,9 @@ export const emberDependencies: Dependencies = new Map([
             'textarea',
             {
               filePath: '.',
+              filePathAlias: '.',
               isDefaultExport: true,
+              isTemplateTag: false,
               isTypeScript: true,
               packageName: '@ember/component',
             },
@@ -39,7 +45,9 @@ export const emberDependencies: Dependencies = new Map([
             'array',
             {
               filePath: '.',
+              filePathAlias: '.',
               isDefaultExport: false,
+              isTemplateTag: false,
               isTypeScript: true,
               packageName: '@ember/helper',
             },
@@ -48,7 +56,9 @@ export const emberDependencies: Dependencies = new Map([
             'concat',
             {
               filePath: '.',
+              filePathAlias: '.',
               isDefaultExport: false,
+              isTemplateTag: false,
               isTypeScript: true,
               packageName: '@ember/helper',
             },
@@ -57,7 +67,9 @@ export const emberDependencies: Dependencies = new Map([
             'fn',
             {
               filePath: '.',
+              filePathAlias: '.',
               isDefaultExport: false,
+              isTemplateTag: false,
               isTypeScript: true,
               packageName: '@ember/helper',
             },
@@ -66,7 +78,9 @@ export const emberDependencies: Dependencies = new Map([
             'get',
             {
               filePath: '.',
+              filePathAlias: '.',
               isDefaultExport: false,
+              isTemplateTag: false,
               isTypeScript: true,
               packageName: '@ember/helper',
             },
@@ -75,7 +89,9 @@ export const emberDependencies: Dependencies = new Map([
             'hash',
             {
               filePath: '.',
+              filePathAlias: '.',
               isDefaultExport: false,
+              isTemplateTag: false,
               isTypeScript: true,
               packageName: '@ember/helper',
             },
@@ -84,7 +100,9 @@ export const emberDependencies: Dependencies = new Map([
             'htmlSafe',
             {
               filePath: '.',
+              filePathAlias: '.',
               isDefaultExport: false,
+              isTemplateTag: false,
               isTypeScript: true,
               packageName: '@ember/template',
             },
@@ -93,7 +111,9 @@ export const emberDependencies: Dependencies = new Map([
             'unique-id',
             {
               filePath: '.',
+              filePathAlias: '.',
               isDefaultExport: false,
+              isTemplateTag: false,
               isTypeScript: true,
               packageName: '@ember/helper',
             },
@@ -104,7 +124,9 @@ export const emberDependencies: Dependencies = new Map([
             'on',
             {
               filePath: '.',
+              filePathAlias: '.',
               isDefaultExport: false,
+              isTemplateTag: false,
               isTypeScript: true,
               packageName: '@ember/modifier',
             },

@@ -33,7 +33,9 @@ type Entities = Map<EntityName, EntityData>;
 
 type EntityData = {
   filePath: string;
+  filePathAlias: string;
   isDefaultExport: boolean;
+  isTemplateTag: boolean;
   isTypeScript: boolean;
   packageName: PackageName;
 };

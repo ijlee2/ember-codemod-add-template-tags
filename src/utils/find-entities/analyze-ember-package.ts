@@ -69,10 +69,27 @@ export function analyzeEmberPackage({
         );
       }
 
+      const isTemplateTag = ext === '.gjs' || ext === '.gts';
+      const isTypeScript = ext === '.gts' || ext === '.ts';
+
+      if (entityType === 'components' && entities[entityType].has(entityName)) {
+        const entityData = entities[entityType].get(entityName)!;
+
+        entities[entityType].set(entityName, {
+          ...entityData,
+          isTemplateTag: entityData.isTemplateTag || isTemplateTag,
+          isTypeScript: entityData.isTypeScript || isTypeScript,
+        });
+
+        return;
+      }
+
       entities[entityType].set(entityName, {
-        filePath: relative(source, filePathWithoutExtension),
+        filePath,
+        filePathAlias: relative(source, filePathWithoutExtension),
         isDefaultExport: true,
-        isTypeScript: ext === '.gts' || ext === '.ts',
+        isTemplateTag,
+        isTypeScript,
         packageName,
       });
     });

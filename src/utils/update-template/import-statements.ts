@@ -14,9 +14,9 @@ export class ImportStatements {
   }
 
   add(importName: string, entityData: EntityData): void {
-    const { filePath, isDefaultExport, packageName } = entityData;
+    const { filePathAlias, isDefaultExport, packageName } = entityData;
 
-    const importPath = join(packageName, filePath);
+    const importPath = join(packageName, filePathAlias);
     const isDefaultImport = isDefaultExport;
 
     if (this.imports.has(importPath)) {
