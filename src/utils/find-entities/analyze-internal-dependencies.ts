@@ -13,11 +13,15 @@ export function analyzeInternalDependencies(options: Options): Dependencies {
     const packageJson = readPackageJson({ projectRoot: packageRoot });
     const packageName = packageJson['name'];
 
-    if (!packageName) {
+    if (!packageName || dependencies.has(packageName)) {
       return;
     }
 
     const packageType = getPackageType(packageJson);
+
+    if (packageType !== 'v1-addon' && packageType !== 'v2-addon') {
+      return;
+    }
 
     const entities = analyzeEmberPackage({
       componentStructure: options.componentStructure,

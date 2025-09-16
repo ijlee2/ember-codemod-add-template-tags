@@ -1,3 +1,11 @@
+export const ENTITY_SOURCE_FOLDERS = {
+  components: 'components',
+  helpers: 'helpers',
+  modifiers: 'modifiers',
+} as const;
+
+export const ENTITY_TYPES = ['components', 'helpers', 'modifiers'] as const;
+
 export const SOURCE_FOR_EXTERNAL_PACKAGES = {
   node: undefined,
   'v1-addon': 'addon',

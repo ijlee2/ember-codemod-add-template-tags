@@ -3,11 +3,9 @@ import { join } from 'node:path';
 import { findFiles, parseFilePath } from '@codemod-utils/files';
 import { getPackageType, readPackageJson } from '@codemod-utils/package-json';
 
-import type { Dependencies, Options, PackageType } from '../../types/index.js';
+import type { Dependencies, Options } from '../../types/index.js';
 import { analyzeEmberPackage } from './analyze-ember-package.js';
 import { ignoreEmberPackage } from './ignore-ember-package.js';
-
-const supportedPackageTypes = new Set<PackageType>(['v1-addon', 'v2-addon']);
 
 function getExternalPackageRoots(options: Options): string[] {
   const { projectRoot } = options;
@@ -33,13 +31,13 @@ export function analyzeExternalDependencies(options: Options): Dependencies {
     const packageJson = readPackageJson({ projectRoot: packageRoot });
     const packageName = packageJson['name'];
 
-    if (!packageName) {
+    if (!packageName || dependencies.has(packageName)) {
       return;
     }
 
     const packageType = getPackageType(packageJson);
 
-    if (!supportedPackageTypes.has(packageType)) {
+    if (packageType !== 'v1-addon' && packageType !== 'v2-addon') {
       return;
     }
 
