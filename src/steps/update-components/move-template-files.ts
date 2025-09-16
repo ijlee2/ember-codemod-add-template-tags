@@ -28,11 +28,20 @@ export function moveTemplateFiles(packages: Packages): void {
       const classFilePathGjs = templateFilePath.replace(/\.hbs$/, '.gjs');
       const classFilePathGts = templateFilePath.replace(/\.hbs$/, '.gts');
 
-      const classFilePath = classFilePathSet.has(classFilePathGjs)
-        ? classFilePathGjs
-        : classFilePathGts;
+      let classFile: string;
+      let classFilePath: string;
 
-      let classFile = readFileSync(join(packageRoot, classFilePath), 'utf8');
+      if (classFilePathSet.has(classFilePathGjs)) {
+        classFile = readFileSync(join(packageRoot, classFilePathGjs), 'utf8');
+        classFilePath = classFilePathGjs;
+      } else if (classFilePathSet.has(classFilePathGts)) {
+        classFile = readFileSync(join(packageRoot, classFilePathGts), 'utf8');
+        classFilePath = classFilePathGts;
+      } else {
+        classFile = '<template></template>\n';
+        classFilePath = classFilePathGjs;
+      }
+
       const templateTags = findTemplateTags(classFile) as [TemplateTag];
 
       const templateFile = readFileSync(

@@ -51,36 +51,32 @@ export function analyzeEmberPackage({
     filePaths.forEach((filePath) => {
       const { dir, ext, name } = parseFilePath(filePath);
 
-      const filePathWithoutExtension = join(dir, name);
-      let entityName = relative(
-        join(source, entityType),
-        filePathWithoutExtension,
-      );
-
-      if (entityType === 'components' && componentStructure === 'nested') {
-        entityName = entityName.replace(/\/index$/, '');
-      }
-
-      const isTemplateTag = ext === '.gjs' || ext === '.gts';
       const isTypeScript = ext === '.gts' || ext === '.ts';
 
-      if (entityType === 'components' && entities[entityType].has(entityName)) {
-        const entityData = entities[entityType].get(entityName)!;
+      let entityName = relative(join(source, entityFolder), join(dir, name));
 
-        entities[entityType].set(entityName, {
-          ...entityData,
-          isTemplateTag: entityData.isTemplateTag || isTemplateTag,
-          isTypeScript: entityData.isTypeScript || isTypeScript,
-        });
+      if (entityType === 'components') {
+        if (componentStructure === 'nested') {
+          entityName = entityName.replace(/\/index$/, '');
+        }
 
-        return;
+        // A component may consist of 2 files
+        if (entities[entityType].has(entityName)) {
+          const entityData = entities[entityType].get(entityName)!;
+
+          entities[entityType].set(entityName, {
+            ...entityData,
+            isTypeScript: entityData.isTypeScript || isTypeScript,
+          });
+
+          return;
+        }
       }
 
       entities[entityType].set(entityName, {
         filePath,
-        filePathAlias: relative(source, filePathWithoutExtension),
+        filePathAlias: relative(source, join(dir, name)),
         isDefaultExport: true,
-        isTemplateTag,
         isTypeScript,
         packageName,
       });

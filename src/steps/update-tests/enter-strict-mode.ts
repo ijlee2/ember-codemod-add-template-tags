@@ -4,7 +4,7 @@ import { join } from 'node:path';
 import { updateJavaScript } from '@codemod-utils/ast-template-tag';
 import { doubleColonize } from '@codemod-utils/ember';
 
-import type { AllEntities, Entities, Packages } from '../../types/index.js';
+import type { AllEntities, Packages } from '../../types/index.js';
 import {
   removeHbsImport,
   updateTemplateTagFile,
@@ -14,10 +14,10 @@ export function enterStrictMode(
   packages: Packages,
   entities: AllEntities,
 ): void {
-  const componentsDoubleColonized: Entities = new Map();
+  const componentsDoubleColonized = new Set<string>();
 
-  for (const [entityName, entity] of entities.components) {
-    componentsDoubleColonized.set(doubleColonize(entityName), entity);
+  for (const [entityName] of entities.components) {
+    componentsDoubleColonized.add(doubleColonize(entityName));
   }
 
   for (const [, packageData] of packages) {

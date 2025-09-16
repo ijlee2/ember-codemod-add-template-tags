@@ -4,20 +4,18 @@ export function ignorePackage(
   filesWithHBS: FilesToConvert,
   options: Options,
 ): boolean {
-  const { convert } = options;
-
   const { components, routes, tests } = filesWithHBS;
   let consider = false;
 
-  if (convert.components && components.length > 0) {
+  if (options.convert.components && components.length > 0) {
     consider = true;
   }
 
-  if (convert.routes && routes.length > 0) {
+  if (options.convert.routes && routes.length > 0) {
     consider = true;
   }
 
-  if (convert.tests && tests.length > 0) {
+  if (options.convert.tests && tests.length > 0) {
     consider = true;
   }
 
