@@ -61,7 +61,6 @@ export function analyzeEmberPackage({
         entityName = entityName.replace(/\/index$/, '');
       }
 
-      const isTemplateTag = ext === '.gjs' || ext === '.gts';
       const isTypeScript = ext === '.gts' || ext === '.ts';
 
       if (entityType === 'components' && entities[entityType].has(entityName)) {
@@ -69,7 +68,6 @@ export function analyzeEmberPackage({
 
         entities[entityType].set(entityName, {
           ...entityData,
-          isTemplateTag: entityData.isTemplateTag || isTemplateTag,
           isTypeScript: entityData.isTypeScript || isTypeScript,
         });
 
@@ -80,7 +78,6 @@ export function analyzeEmberPackage({
         filePath,
         filePathAlias: relative(source, filePathWithoutExtension),
         isDefaultExport: true,
-        isTemplateTag,
         isTypeScript,
         packageName,
       });

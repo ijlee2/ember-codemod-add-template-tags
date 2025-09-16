@@ -9,8 +9,8 @@ type Imports = Map<ImportPath, Map<ImportName, { isDefaultImport: boolean }>>;
 export class ImportStatements {
   declare imports: Imports;
 
-  constructor(imports?: Imports) {
-    this.imports = imports ?? (new Map() as Imports);
+  constructor() {
+    this.imports = new Map();
   }
 
   add(importName: string, entityData: EntityData): void {

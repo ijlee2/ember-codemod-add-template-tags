@@ -35,7 +35,6 @@ type EntityData = {
   filePath: string;
   filePathAlias: string;
   isDefaultExport: boolean;
-  isTemplateTag: boolean;
   isTypeScript: boolean;
   packageName: PackageName;
 };
