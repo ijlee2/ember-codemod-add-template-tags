@@ -111,6 +111,7 @@ export const emberDependencies: Dependencies = new Map([
           ],
         ]),
         services: new Map(),
+        utilities: new Map(),
       },
       packageRoot: '',
       packageType: 'v2-addon',

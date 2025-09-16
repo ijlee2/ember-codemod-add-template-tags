@@ -4,10 +4,11 @@ import { findFiles, parseFilePath } from '@codemod-utils/files';
 
 import type { AllEntities, Options, PackageType } from '../../types/index.js';
 import {
+  ENTITY_SOURCE_FOLDERS,
+  ENTITY_TYPES,
   SOURCE_FOR_EXTERNAL_PACKAGES,
   SOURCE_FOR_INTERNAL_PACKAGES,
 } from '../ember.js';
-import { ENTITY_TYPES } from './entity-types.js';
 
 export function analyzeEmberPackage({
   componentStructure,
@@ -31,6 +32,7 @@ export function analyzeEmberPackage({
     helpers: new Map(),
     modifiers: new Map(),
     services: new Map(),
+    utilities: new Map(),
   };
 
   if (source === undefined) {
@@ -38,8 +40,10 @@ export function analyzeEmberPackage({
   }
 
   ENTITY_TYPES.forEach((entityType) => {
+    const entityFolder = ENTITY_SOURCE_FOLDERS[entityType];
+
     const filePaths = findFiles(
-      `${source}/${entityType}/**/*.{gjs,gts,hbs,js,ts}`,
+      `${source}/${entityFolder}/**/*.{gjs,gts,hbs,js,ts}`,
       {
         ignoreList: ['**/*.d.ts'],
         projectRoot: packageRoot,

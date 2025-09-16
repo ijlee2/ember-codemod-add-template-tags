@@ -1,5 +1,7 @@
 import type { PackageType } from '@codemod-utils/package-json';
 
+import type { ENTITY_TYPES } from '../utils/ember.js';
+
 type CodemodOptions = {
   componentStructure: 'flat' | 'nested';
   convert: Set<'components' | 'routes' | 'tests'>;
@@ -38,7 +40,7 @@ type EntityData = {
 
 type EntityName = string;
 
-type EntityType = 'components' | 'helpers' | 'modifiers' | 'services';
+type EntityType = (typeof ENTITY_TYPES)[number];
 
 type FilesToConvert = {
   components: string[];

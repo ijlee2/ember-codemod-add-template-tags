@@ -4,11 +4,11 @@ import type {
   EntityType,
   Options,
 } from '../types/index.js';
+import { ENTITY_TYPES } from '../utils/ember.js';
 import {
   analyzeExternalDependencies,
   analyzeInternalDependencies,
   emberDependencies,
-  ENTITY_TYPES,
 } from '../utils/find-entities/index.js';
 
 function merge(dependencies: Dependencies, allEntities: AllEntities): void {
@@ -27,6 +27,7 @@ export function findEntities(options: Options): AllEntities {
     helpers: new Map(),
     modifiers: new Map(),
     services: new Map(),
+    utilities: new Map(),
   };
 
   const externalDependencies = analyzeExternalDependencies(options);
