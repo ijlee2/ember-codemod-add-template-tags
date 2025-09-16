@@ -1,19 +1,12 @@
 import { getPackageRoots } from '@codemod-utils/files';
 import { getPackageType, readPackageJson } from '@codemod-utils/package-json';
 
-import type { Options, Packages, PackageType } from '../types/index.js';
+import type { Options, Packages } from '../types/index.js';
 import {
   analyzeDependencies,
   findFilesWithHBS,
   ignorePackage,
 } from './find-packages-with-hbs/index.js';
-
-const supportedPackageTypes = new Set<PackageType>([
-  'v1-addon',
-  'v1-app',
-  'v2-addon',
-  'v2-app',
-]);
 
 export function findPackagesWithHBS(options: Options): Packages {
   const packageRoots = getPackageRoots(options);
@@ -29,7 +22,7 @@ export function findPackagesWithHBS(options: Options): Packages {
 
     const packageType = getPackageType(packageJson);
 
-    if (!supportedPackageTypes.has(packageType)) {
+    if (packageType === 'node') {
       return;
     }
 
@@ -52,7 +45,7 @@ export function findPackagesWithHBS(options: Options): Packages {
       hasEmberRouteTemplate,
       isEmberSourceRecent,
       packageRoot,
-      packageType: packageType as Exclude<PackageType, 'node'>,
+      packageType,
     });
   });
 

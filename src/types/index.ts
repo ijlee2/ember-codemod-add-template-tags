@@ -1,4 +1,4 @@
-import type { PackageType } from '@codemod-utils/package-json';
+import type { PackageType as _PackageType } from '@codemod-utils/package-json';
 
 import type { ENTITY_TYPES } from '../utils/ember.js';
 
@@ -52,6 +52,8 @@ type FilesToConvert = {
 
 type PackageName = string;
 
+type PackageType = Exclude<_PackageType, 'node'>;
+
 type Packages = Map<
   PackageName,
   {
@@ -60,7 +62,7 @@ type Packages = Map<
     hasEmberRouteTemplate: boolean;
     isEmberSourceRecent: boolean;
     packageRoot: string;
-    packageType: Exclude<PackageType, 'node'>;
+    packageType: PackageType;
   }
 >;
 
