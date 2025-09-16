@@ -61,14 +61,6 @@ export function analyzeEmberPackage({
         entityName = entityName.replace(/\/index$/, '');
       }
 
-      const data = entities[entityType].get(entityName);
-
-      if (data && packageName !== data.packageName) {
-        console.warn(
-          `The entity \`${entityName}\` is defined in multiple packages (e.g. ${packageName}, ${data.packageName}).`,
-        );
-      }
-
       const isTemplateTag = ext === '.gjs' || ext === '.gts';
       const isTypeScript = ext === '.gts' || ext === '.ts';
 

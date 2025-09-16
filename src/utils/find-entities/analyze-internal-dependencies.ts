@@ -13,7 +13,7 @@ export function analyzeInternalDependencies(options: Options): Dependencies {
     const packageJson = readPackageJson({ projectRoot: packageRoot });
     const packageName = packageJson['name'];
 
-    if (!packageName) {
+    if (!packageName || dependencies.has(packageName)) {
       return;
     }
 
