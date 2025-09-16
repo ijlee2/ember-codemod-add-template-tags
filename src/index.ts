@@ -39,8 +39,5 @@ export function runCodemod(codemodOptions: CodemodOptions): void {
     console.log('✅ Updated tests');
   }
 
-  updateTests(packages, entities);
-  console.log('✅ Updated tests');
-
   console.log();
 }
