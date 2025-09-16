@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.1
+
+### Patch Changes
+
+- [#7](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/7) Patched #6 ([@ijlee2](https://github.com/ijlee2))
+
 ## 0.3.0
 
 ### Minor Changes
