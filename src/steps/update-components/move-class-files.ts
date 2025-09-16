@@ -9,34 +9,13 @@ import { insertTemplateTag } from '../../utils/update-components/index.js';
 
 export function moveClassFiles(packages: Packages): void {
   for (const [, packageData] of packages) {
-    const { filesWithHBS, packageRoot, packageType } = packageData;
+    const { packageRoot, packageType } = packageData;
 
     const source = SOURCE_FOR_INTERNAL_PACKAGES[packageType];
 
     const classFilePaths = findFiles(`${source}/components/**/*.{js,ts}`, {
       ignoreList: ['**/*.d.ts'],
       projectRoot: packageRoot,
-    });
-
-    const classFilePathSet = new Set(classFilePaths);
-
-    // Add the class file to template-only components if missing
-    filesWithHBS.components.forEach((templateFilePath) => {
-      const classFilePathJs = templateFilePath.replace(/\.hbs$/, '.js');
-      const classFilePathTs = templateFilePath.replace(/\.hbs$/, '.ts');
-
-      if (
-        classFilePathSet.has(classFilePathJs) ||
-        classFilePathSet.has(classFilePathTs)
-      ) {
-        return;
-      }
-
-      const newFilePath = templateFilePath.replace(/\.hbs$/, '.gjs');
-
-      const newFile = '<template></template>\n';
-
-      writeFileSync(join(packageRoot, newFilePath), newFile, 'utf8');
     });
 
     classFilePaths.forEach((classFilePath) => {
