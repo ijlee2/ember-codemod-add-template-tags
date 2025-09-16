@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.3.2
+
+### Patch Changes
+
+- [#9](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/9) Refactored code (Part 2) ([@ijlee2](https://github.com/ijlee2))
+- [#8](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/8) Refactored code (Part 1) ([@ijlee2](https://github.com/ijlee2))
+
 ## 0.3.1
 
 ### Patch Changes
