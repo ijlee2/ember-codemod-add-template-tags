@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.5.0
+
+### Minor Changes
+
+- [#14](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/14) Created removeTemplateOnlyComponentImport() ([@ijlee2](https://github.com/ijlee2))
+
+### Patch Changes
+
+- [#13](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/13) Improved JavaScript support (remove-hbs-import) ([@ijlee2](https://github.com/ijlee2))
+
 ## 0.4.2
 
 ### Patch Changes
