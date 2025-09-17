@@ -9,6 +9,7 @@ import {
   SOURCE_FOR_EXTERNAL_PACKAGES,
   SOURCE_FOR_INTERNAL_PACKAGES,
 } from '../ember.js';
+import { analyzeBarrelFile } from './analyze-barrel-file.js';
 
 export function analyzeEmberPackage({
   componentStructure,
@@ -36,6 +37,8 @@ export function analyzeEmberPackage({
   if (source === undefined) {
     return entities;
   }
+
+  analyzeBarrelFile({ packageRoot, packageType });
 
   ENTITY_TYPES.forEach((entityType) => {
     const entityFolder = ENTITY_SOURCE_FOLDERS[entityType];
