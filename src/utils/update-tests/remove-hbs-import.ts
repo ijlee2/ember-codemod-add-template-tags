@@ -26,10 +26,19 @@ export function removeHbsImport(file: string, data: Data): string {
 
   const ast = traverse(file, {
     visitImportDeclaration(node) {
-      if (
-        node.value.source.type !== 'StringLiteral' ||
-        node.value.source.value !== 'ember-cli-htmlbars'
-      ) {
+      if (data.isTypeScript && node.value.importKind !== 'value') {
+        return false;
+      }
+
+      const sourceType = node.value.source?.type as string | undefined;
+
+      if (sourceType !== 'Literal' && sourceType !== 'StringLiteral') {
+        return false;
+      }
+
+      const importPath = node.value.source.value as string;
+
+      if (importPath !== 'ember-cli-htmlbars') {
         return false;
       }
 
@@ -37,15 +46,16 @@ export function removeHbsImport(file: string, data: Data): string {
         (specifier) => {
           const { imported, importKind, type } = specifier;
 
-          if (type !== 'ImportSpecifier' || importKind !== 'value') {
+          if (data.isTypeScript && importKind !== 'value') {
             return true;
           }
 
-          if (imported.type !== 'Identifier' || imported.name !== 'hbs') {
-            return true;
-          }
+          const hasHbs =
+            type === 'ImportSpecifier' &&
+            imported.type === 'Identifier' &&
+            imported.name === 'hbs';
 
-          return false;
+          return !hasHbs;
         },
       );
 
