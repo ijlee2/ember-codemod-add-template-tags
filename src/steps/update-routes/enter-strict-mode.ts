@@ -1,14 +1,20 @@
-import { readFileSync, writeFileSync } from 'node:fs';
+import { writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 
 import { doubleColonize } from '@codemod-utils/ember';
 
-import type { AllEntities, Entities, Packages } from '../../types/index.js';
+import type {
+  AllEntities,
+  Entities,
+  FilesCached,
+  Packages,
+} from '../../types/index.js';
 import { updateTemplateTagFile } from '../../utils/update-components/index.js';
 
 export function enterStrictMode(
   packages: Packages,
   entities: AllEntities,
+  filesCached: FilesCached,
 ): void {
   const componentsDoubleColonized: Entities = new Map();
 
@@ -20,7 +26,7 @@ export function enterStrictMode(
     const { filesWithTemplateTag, packageRoot } = packageData;
 
     filesWithTemplateTag.routes.forEach((filePath) => {
-      const oldFile = readFileSync(join(packageRoot, filePath), 'utf8');
+      const oldFile = filesCached.get(join(packageRoot, filePath))!;
 
       const newFile = updateTemplateTagFile(oldFile, {
         componentsDoubleColonized,

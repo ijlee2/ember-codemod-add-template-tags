@@ -3,9 +3,12 @@ import { join } from 'node:path';
 
 import { removeFiles } from '@codemod-utils/files';
 
-import type { Packages } from '../../types/index.js';
+import type { FilesCached, Packages } from '../../types/index.js';
 
-export function moveTemplateFiles(packages: Packages): void {
+export function moveTemplateFiles(
+  packages: Packages,
+  filesCached: FilesCached,
+): void {
   for (const [packageName, packageData] of packages) {
     const {
       filesWithHBS,
@@ -42,6 +45,7 @@ export function moveTemplateFiles(packages: Packages): void {
       classFile += '\n';
 
       writeFileSync(join(packageRoot, classFilePath), classFile, 'utf8');
+      filesCached.set(join(packageRoot, classFilePath), classFile);
 
       filesWithTemplateTag.routes.push(classFilePath);
     });
