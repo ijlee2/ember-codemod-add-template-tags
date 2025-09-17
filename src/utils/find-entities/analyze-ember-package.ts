@@ -38,7 +38,7 @@ export function analyzeEmberPackage({
     return entities;
   }
 
-  analyzeBarrelFile({ packageRoot, packageType });
+  const entitiesExported = analyzeBarrelFile({ packageRoot, packageType });
 
   ENTITY_TYPES.forEach((entityType) => {
     const entityFolder = ENTITY_SOURCE_FOLDERS[entityType];
