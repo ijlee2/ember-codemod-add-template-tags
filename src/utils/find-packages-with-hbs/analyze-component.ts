@@ -4,7 +4,6 @@ import { AST } from '@codemod-utils/ast-javascript';
 const componentMap = {
   '@ember/component': 'classic',
   '@ember/component/template-only': 'template-only',
-  '@ember/template-compiler': 'template-tag',
   '@glimmer/component': 'glimmer',
 } as const;
 
@@ -63,22 +62,7 @@ export function analyzeComponent(file: string): Data {
           }
 
           baseComponentName = defaultImport.local!.name as string;
-          componentType = componentMap[importPath as ComponentImportPath];
-
-          return false;
-        }
-
-        case '@ember/template-compiler': {
-          const namedImport = path.node.specifiers!.find(({ type }) => {
-            return type === 'ImportSpecifier';
-          });
-
-          if (!namedImport) {
-            return false;
-          }
-
-          baseComponentName = namedImport.local!.name as string;
-          componentType = componentMap[importPath as ComponentImportPath];
+          componentType = componentMap[importPath];
 
           return false;
         }

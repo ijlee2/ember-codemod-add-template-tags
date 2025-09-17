@@ -24,11 +24,11 @@ export function moveTemplateFiles(
       let classFile: string;
       let classFilePath: string;
 
-      if (filesCached.has(classFilePathGjs)) {
-        classFile = filesCached.get(classFilePathGjs)!;
+      if (filesCached.has(join(packageRoot, classFilePathGjs))) {
+        classFile = filesCached.get(join(packageRoot, classFilePathGjs))!;
         classFilePath = classFilePathGjs;
-      } else if (filesCached.has(classFilePathGts)) {
-        classFile = filesCached.get(classFilePathGts)!;
+      } else if (filesCached.has(join(packageRoot, classFilePathGts))) {
+        classFile = filesCached.get(join(packageRoot, classFilePathGts))!;
         classFilePath = classFilePathGts;
       } else {
         classFile = '<template></template>\n';

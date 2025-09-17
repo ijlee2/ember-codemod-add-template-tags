@@ -1,18 +1,17 @@
-import type {
-  AllEntities,
-  Dependencies,
-  EntityType,
-} from '../../types/index.js';
+import type { AllEntities, Dependencies } from '../../types/index.js';
+import { ENTITY_TYPES } from '../ember.js';
 
 export function mergeEntities(
   allEntities: AllEntities,
   dependencies: Dependencies,
 ): void {
-  for (const [, packageData] of dependencies) {
-    for (const [entityType, entities] of Object.entries(packageData.entities)) {
-      for (const [entityName, entity] of entities) {
-        allEntities[entityType as EntityType].set(entityName, entity);
+  ENTITY_TYPES.forEach((entityType) => {
+    for (const [, packageData] of dependencies) {
+      const entities = allEntities[entityType];
+
+      for (const [entityName, entity] of packageData.entities[entityType]) {
+        entities.set(entityName, entity);
       }
     }
-  }
+  });
 }

@@ -62,7 +62,7 @@ function analyze(file: string, data: Data): EntitiesExported | undefined {
     entitiesExported.helpers.size === 0 &&
     entitiesExported.modifiers.size === 0
   ) {
-    return undefined;
+    return;
   }
 
   return entitiesExported;
@@ -76,7 +76,7 @@ export function analyzeBarrelFile({
   packageType: PackageType;
 }): EntitiesExported | undefined {
   if (packageType !== 'v1-addon' && packageType !== 'v2-addon') {
-    return undefined;
+    return;
   }
 
   const source = SOURCE_FOR_EXTERNAL_PACKAGES[packageType];

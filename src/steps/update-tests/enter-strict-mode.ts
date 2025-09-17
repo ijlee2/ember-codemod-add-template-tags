@@ -10,10 +10,8 @@ import type {
   FilesCached,
   Packages,
 } from '../../types/index.js';
-import {
-  removeHbsImport,
-  updateTemplateTagFile,
-} from '../../utils/update-tests/index.js';
+import { updateTemplateTagFile } from '../../utils/update-template/index.js';
+import { removeHbsImport } from '../../utils/update-tests/index.js';
 
 export function enterStrictMode(
   packages: Packages,

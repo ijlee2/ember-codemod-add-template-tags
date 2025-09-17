@@ -2,14 +2,14 @@ export type PackageVersion = string;
 
 function parse(version?: PackageVersion): [number, number] | undefined {
   if (version === undefined) {
-    return undefined;
+    return;
   }
 
   const regex = new RegExp(/^(\^|~)?(\d+\.\d+).*/);
   const matches = version.match(regex);
 
   if (!matches) {
-    return undefined;
+    return;
   }
 
   const [majorVersion, minorVersion] = matches[2]!.split('.') as [

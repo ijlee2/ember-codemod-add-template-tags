@@ -5,7 +5,7 @@ import { getPackageType, readPackageJson } from '@codemod-utils/package-json';
 
 import type { Dependencies, Options } from '../../types/index.js';
 import { analyzeEmberPackage } from './analyze-ember-package.js';
-import { ignoreEmberPackage } from './ignore-ember-package.js';
+import { isEntitiesEmpty } from './is-entities-empty.js';
 
 function getExternalPackageRoots(options: Options): string[] {
   const { projectRoot } = options;
@@ -49,7 +49,7 @@ export function analyzeExternalDependencies(options: Options): Dependencies {
       packageType,
     });
 
-    if (ignoreEmberPackage(entities)) {
+    if (isEntitiesEmpty(entities)) {
       return;
     }
 
