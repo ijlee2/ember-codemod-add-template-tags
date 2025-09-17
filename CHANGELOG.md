@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.4.0
+
+### Minor Changes
+
+- [#10](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/10) Supported importing from barrel file ([@ijlee2](https://github.com/ijlee2))
+
 ## 0.3.2
 
 ### Patch Changes
