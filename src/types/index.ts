@@ -43,6 +43,8 @@ type EntityName = string;
 
 type EntityType = (typeof ENTITY_TYPES)[number];
 
+type FilesCached = Map<string, string>;
+
 type FilesToConvert = {
   components: string[];
   routes: string[];
@@ -73,6 +75,7 @@ export type {
   EntityData,
   EntityName,
   EntityType,
+  FilesCached,
   FilesToConvert,
   Options,
   PackageName,
