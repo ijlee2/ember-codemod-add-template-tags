@@ -1,8 +1,4 @@
-import {
-  findTemplateTags,
-  replaceTemplateTag,
-  type TemplateTag,
-} from '@codemod-utils/ast-template-tag';
+import { updateTemplates } from '@codemod-utils/ast-template-tag';
 
 import type { AllEntities, Entities } from '../../types/index.js';
 import { ImportStatements, updateTemplate } from '../update-template/index.js';
@@ -13,15 +9,10 @@ type Data = {
 };
 
 export function updateTemplateTagFile(file: string, data: Data): string {
-  const templateTags = findTemplateTags(file) as [TemplateTag];
   const importStatements = new ImportStatements();
 
-  const { contents, range } = templateTags[0];
-  const template = updateTemplate(contents, importStatements, data);
-
-  file = replaceTemplateTag(file, {
-    code: `<template>${template}</template>`,
-    range,
+  file = updateTemplates(file, (code) => {
+    return updateTemplate(code, importStatements, data);
   });
 
   if (importStatements.exist()) {
