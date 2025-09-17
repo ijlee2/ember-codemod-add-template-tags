@@ -53,7 +53,10 @@ type SpecifierForTypeScript =
 
 type Specifier = SpecifierForJavaScript | SpecifierForTypeScript;
 
-export function removeHbsImport(file: string, data: Data): string {
+export function removeTemplateOnlyComponentImport(
+  file: string,
+  data: Data,
+): string {
   const traverse = AST.traverse(data.isTypeScript);
 
   const ast = traverse(file, {
@@ -70,24 +73,18 @@ export function removeHbsImport(file: string, data: Data): string {
 
       const importPath = node.value.source.value as string;
 
-      if (importPath !== 'ember-cli-htmlbars') {
+      if (importPath !== '@ember/component/template-only') {
         return false;
       }
 
       node.value.specifiers = (node.value.specifiers as Specifier[]).filter(
         (specifier) => {
-          const { imported, importKind, type } = specifier;
+          const { local, type } = specifier;
 
-          if (data.isTypeScript && importKind !== 'value') {
-            return true;
-          }
+          const hasTemplateOnlyComponent =
+            type === 'ImportDefaultSpecifier' && local.type === 'Identifier';
 
-          const hasHbs =
-            type === 'ImportSpecifier' &&
-            imported.type === 'Identifier' &&
-            imported.name === 'hbs';
-
-          return !hasHbs;
+          return !hasTemplateOnlyComponent;
         },
       );
 

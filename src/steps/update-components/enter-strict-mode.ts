@@ -1,10 +1,14 @@
 import { readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 
+import { updateJavaScript } from '@codemod-utils/ast-template-tag';
 import { doubleColonize } from '@codemod-utils/ember';
 
 import type { AllEntities, Entities, Packages } from '../../types/index.js';
-import { updateTemplateTagFile } from '../../utils/update-components/index.js';
+import {
+  removeTemplateOnlyComponentImport,
+  updateTemplateTagFile,
+} from '../../utils/update-components/index.js';
 
 export function enterStrictMode(
   packages: Packages,
@@ -22,7 +26,13 @@ export function enterStrictMode(
     filesWithTemplateTag.components.forEach((filePath) => {
       const oldFile = readFileSync(join(packageRoot, filePath), 'utf8');
 
-      const newFile = updateTemplateTagFile(oldFile, {
+      let newFile = updateJavaScript(oldFile, (code) => {
+        return removeTemplateOnlyComponentImport(code, {
+          isTypeScript: filePath.endsWith('.gts'),
+        });
+      });
+
+      newFile = updateTemplateTagFile(newFile, {
         componentsDoubleColonized,
         entities,
       });
