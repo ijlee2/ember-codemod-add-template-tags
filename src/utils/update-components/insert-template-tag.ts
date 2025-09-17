@@ -37,21 +37,11 @@ function insertToTemplateOnlyComponent(file: string, data: Data): string {
       }
 
       switch (node.parentPath.value.type) {
-        /*
-          ```ts
-          export default MyComponent = templateOnlyComponent();
-          ```
-        */
         case 'AssignmentExpression': {
           node.parentPath.value.right = '<template></template>';
           break;
         }
 
-        /*
-          ```ts
-          export default templateOnlyComponent();
-          ```
-        */
         case 'ExportDefaultDeclaration': {
           if (node.parentPath.value.id === undefined) {
             node.parentPath.value.declaration = '<template></template>';
@@ -59,12 +49,6 @@ function insertToTemplateOnlyComponent(file: string, data: Data): string {
           break;
         }
 
-        /*
-          ```ts
-          const MyComponent = templateOnlyComponent();
-          export default MyComponent;
-          ```
-        */
         case 'VariableDeclarator': {
           if (node.parentPath.value.id.name === data.componentName) {
             node.parentPath.value.init = '<template></template>';
