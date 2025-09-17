@@ -26,15 +26,15 @@ export function enterStrictMode(
     filesWithTemplateTag.tests.forEach((filePath) => {
       const oldFile = readFileSync(join(packageRoot, filePath), 'utf8');
 
-      let newFile = updateTemplateTagFile(oldFile, {
-        componentsDoubleColonized,
-        entities,
-      });
-
-      newFile = updateJavaScript(newFile, (code) => {
+      let newFile = updateJavaScript(oldFile, (code) => {
         return removeHbsImport(code, {
           isTypeScript: filePath.endsWith('.gts'),
         });
+      });
+
+      newFile = updateTemplateTagFile(newFile, {
+        componentsDoubleColonized,
+        entities,
       });
 
       writeFileSync(join(packageRoot, filePath), newFile, 'utf8');

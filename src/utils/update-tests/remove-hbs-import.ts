@@ -5,21 +5,53 @@ type Data = {
   isTypeScript: boolean;
 };
 
-type Specifier =
+type SpecifierForJavaScript =
   | {
       importKind: undefined;
       imported: undefined;
+      local: {
+        name: string;
+        type: string;
+      };
       type: 'ImportDefaultSpecifier';
     }
   | {
-      importKind: 'type' | 'value';
+      importKind: undefined;
       imported: {
-        [key: string]: unknown;
+        name: string;
+        type: string;
+      };
+      local: {
         name: string;
         type: string;
       };
       type: 'ImportSpecifier';
     };
+
+type SpecifierForTypeScript =
+  | {
+      importKind: undefined;
+      imported: undefined;
+      local: {
+        name: string;
+        type: string;
+      };
+      type: 'ImportDefaultSpecifier';
+    }
+  | {
+      importKind: 'type' | 'value';
+      imported: {
+        name: string;
+        type: string;
+      };
+      local: {
+        name: string;
+        type: string;
+      };
+      type: 'ImportSpecifier';
+    };
+
+type Specifier = SpecifierForJavaScript | SpecifierForTypeScript;
 
 export function removeHbsImport(file: string, data: Data): string {
   const traverse = AST.traverse(data.isTypeScript);
