@@ -1,7 +1,8 @@
 import { updateTemplates } from '@codemod-utils/ast-template-tag';
 
 import type { AllEntities, Entities } from '../../types/index.js';
-import { ImportStatements, updateTemplate } from '../update-template/index.js';
+import { ImportStatements } from './import-statements.js';
+import { updateTemplate } from './update-template.js';
 
 type Data = {
   componentsDoubleColonized: Entities;

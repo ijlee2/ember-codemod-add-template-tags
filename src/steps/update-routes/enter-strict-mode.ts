@@ -9,7 +9,7 @@ import type {
   FilesCached,
   Packages,
 } from '../../types/index.js';
-import { updateTemplateTagFile } from '../../utils/update-components/index.js';
+import { updateTemplateTagFile } from '../../utils/update-template/index.js';
 
 export function enterStrictMode(
   packages: Packages,
