@@ -76,6 +76,18 @@ export function analyzeEmberPackage({
         }
       }
 
+      if (entitiesExported && entitiesExported[entityType].has(entityName)) {
+        entities[entityType].set(entityName, {
+          filePath,
+          filePathAlias: '.',
+          isDefaultExport: false,
+          isTypeScript,
+          packageName,
+        });
+
+        return;
+      }
+
       entities[entityType].set(entityName, {
         filePath,
         filePathAlias: relative(source, join(dir, name)),
