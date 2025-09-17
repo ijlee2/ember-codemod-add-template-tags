@@ -1,11 +1,11 @@
 import { AST } from '@codemod-utils/ast-template';
 
-import type { AllEntities } from '../../types/index.js';
+import type { AllEntities, Entities } from '../../types/index.js';
 import { getNewName } from './get-new-name.js';
 import type { ImportStatements } from './import-statements.js';
 
 type Data = {
-  componentsDoubleColonized: Set<string>;
+  componentsDoubleColonized: Entities;
   entities: AllEntities;
 };
 
@@ -39,12 +39,7 @@ export function updateTemplate(
 
     ElementNode(node) {
       const componentName = node.tag;
-
-      if (!componentsDoubleColonized.has(componentName)) {
-        return;
-      }
-
-      const entityData = entities.components.get(componentName);
+      const entityData = componentsDoubleColonized.get(componentName);
 
       if (!entityData) {
         return;

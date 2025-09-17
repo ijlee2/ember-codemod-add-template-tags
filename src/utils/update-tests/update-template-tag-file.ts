@@ -3,11 +3,11 @@ import {
   replaceTemplateTag,
 } from '@codemod-utils/ast-template-tag';
 
-import type { AllEntities } from '../../types/index.js';
+import type { AllEntities, Entities } from '../../types/index.js';
 import { ImportStatements, updateTemplate } from '../update-template/index.js';
 
 type Data = {
-  componentsDoubleColonized: Set<string>;
+  componentsDoubleColonized: Entities;
   entities: AllEntities;
 };
 
