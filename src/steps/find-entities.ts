@@ -17,9 +17,9 @@ export function findEntities(options: Options): AllEntities {
   const externalDependencies = analyzeExternalDependencies(options);
   const internalDependencies = analyzeInternalDependencies(options);
 
-  mergeEntities(entities, emberDependencies);
-  mergeEntities(entities, externalDependencies);
-  mergeEntities(entities, internalDependencies);
+  mergeEntities(entities, emberDependencies, true);
+  mergeEntities(entities, externalDependencies, true);
+  mergeEntities(entities, internalDependencies, false);
   sortEntities(entities);
 
   return entities;
