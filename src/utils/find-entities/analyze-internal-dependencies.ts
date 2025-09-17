@@ -19,7 +19,7 @@ export function analyzeInternalDependencies(options: Options): Dependencies {
 
     const packageType = getPackageType(packageJson);
 
-    if (packageType !== 'v1-addon' && packageType !== 'v2-addon') {
+    if (packageType === 'node') {
       return;
     }
 
