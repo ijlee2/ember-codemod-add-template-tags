@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.6.0
+
+### Minor Changes
+
+- [#17](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/17) Warned name conflicts ([@ijlee2](https://github.com/ijlee2))
+- [#15](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/15) Improved runtime ([@ijlee2](https://github.com/ijlee2))
+
+### Patch Changes
+
+- [#16](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/16) Refactored code (Part 3) ([@ijlee2](https://github.com/ijlee2))
+- [#16](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/16) Patched #15 ([@ijlee2](https://github.com/ijlee2))
+
 ## 0.5.0
 
 ### Minor Changes
