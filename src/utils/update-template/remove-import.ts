@@ -2,6 +2,10 @@
 import { AST } from '@codemod-utils/ast-javascript';
 
 type Data = {
+  importKind: 'type' | 'value';
+  importName: string;
+  importPath: string;
+  isDefaultImport: boolean;
   isTypeScript: boolean;
 };
 
@@ -53,12 +57,36 @@ type SpecifierForTypeScript =
 
 type Specifier = SpecifierForJavaScript | SpecifierForTypeScript;
 
-export function removeHbsImport(file: string, data: Data): string {
+function keepDefaultImport(specifier: Specifier): boolean {
+  const { local, type } = specifier;
+
+  if (type !== 'ImportDefaultSpecifier' || local.type !== 'Identifier') {
+    return true;
+  }
+
+  return false;
+}
+
+function keepNamedImport(specifier: Specifier, data: Data): boolean {
+  const { imported, importKind, type } = specifier;
+
+  if (data.isTypeScript && importKind !== data.importKind) {
+    return true;
+  }
+
+  if (type !== 'ImportSpecifier' || imported.type !== 'Identifier') {
+    return true;
+  }
+
+  return imported.name !== data.importName;
+}
+
+export function removeImport(file: string, data: Data) {
   const traverse = AST.traverse(data.isTypeScript);
 
   const ast = traverse(file, {
     visitImportDeclaration(node) {
-      if (data.isTypeScript && node.value.importKind !== 'value') {
+      if (data.isTypeScript && node.value.importKind !== data.importKind) {
         return false;
       }
 
@@ -70,24 +98,17 @@ export function removeHbsImport(file: string, data: Data): string {
 
       const importPath = node.value.source.value as string;
 
-      if (importPath !== 'ember-cli-htmlbars') {
+      if (importPath !== data.importPath) {
         return false;
       }
 
       node.value.specifiers = (node.value.specifiers as Specifier[]).filter(
         (specifier) => {
-          const { imported, importKind, type } = specifier;
-
-          if (data.isTypeScript && importKind !== 'value') {
-            return true;
+          if (data.isDefaultImport) {
+            return keepDefaultImport(specifier);
           }
 
-          const hasHbs =
-            type === 'ImportSpecifier' &&
-            imported.type === 'Identifier' &&
-            imported.name === 'hbs';
-
-          return !hasHbs;
+          return keepNamedImport(specifier, data);
         },
       );
 

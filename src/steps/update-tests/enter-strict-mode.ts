@@ -10,8 +10,10 @@ import type {
   FilesCached,
   Packages,
 } from '../../types/index.js';
-import { updateTemplateTagFile } from '../../utils/update-template/index.js';
-import { removeHbsImport } from '../../utils/update-tests/index.js';
+import {
+  removeImport,
+  updateTemplateTagFile,
+} from '../../utils/update-template/index.js';
 
 export function enterStrictMode(
   packages: Packages,
@@ -31,7 +33,11 @@ export function enterStrictMode(
       const oldFile = filesCached.get(join(packageRoot, filePath))!;
 
       let newFile = updateJavaScript(oldFile, (code) => {
-        return removeHbsImport(code, {
+        return removeImport(code, {
+          importKind: 'value',
+          importName: 'hbs',
+          importPath: 'ember-cli-htmlbars',
+          isDefaultImport: false,
           isTypeScript: filePath.endsWith('.gts'),
         });
       });

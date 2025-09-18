@@ -10,8 +10,10 @@ import type {
   FilesCached,
   Packages,
 } from '../../types/index.js';
-import { removeTemplateOnlyComponentImport } from '../../utils/update-components/index.js';
-import { updateTemplateTagFile } from '../../utils/update-template/index.js';
+import {
+  removeImport,
+  updateTemplateTagFile,
+} from '../../utils/update-template/index.js';
 
 export function enterStrictMode(
   packages: Packages,
@@ -31,7 +33,11 @@ export function enterStrictMode(
       const oldFile = filesCached.get(join(packageRoot, filePath))!;
 
       let newFile = updateJavaScript(oldFile, (code) => {
-        return removeTemplateOnlyComponentImport(code, {
+        return removeImport(code, {
+          importKind: 'value',
+          importName: 'templateOnlyComponent',
+          importPath: '@ember/component/template-only',
+          isDefaultImport: true,
           isTypeScript: filePath.endsWith('.gts'),
         });
       });
