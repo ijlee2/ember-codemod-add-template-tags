@@ -11,9 +11,9 @@ Introducing `<template>` tag to large projects can be a tedious, erroneous task.
 
 The codemod:
 
-- Statically analyzes code (doesn't need to know your build steps)
+- Statically analyzes code (doesn't need to build your projects)
 - Supports v1 apps (classic build, Webpack), v2 apps (Vite), v1 addons, and v2 addons
-- Supports monorepos
+- Supports monorepos (simply run it from the workspace root)
 
 
 ## Usage
@@ -22,7 +22,7 @@ Step 1. Quickly migrate.<sup>1</sup>
 
 ```sh
 cd <path/to/your/project>
-npx ember-codemod-add-template-tags <arguments>
+pnpx ember-codemod-add-template-tags <arguments>
 ```
 
 Step 2. Review the package.
@@ -42,7 +42,7 @@ Step 2. Review the package.
 By default, an Octane project has the flat component structure. Pass `--component-structure` to indicate otherwise.
 
 ```sh
-npx ember-codemod-add-template-tags --component-structure nested
+pnpx ember-codemod-add-template-tags --component-structure nested
 ```
 
 </details>
@@ -55,10 +55,10 @@ By default, the codemod updates components, routes, and tests. Pass `--convert` 
 
 ```sh
 # 1. Components and tests only
-npx ember-codemod-add-template-tags --convert components tests
+pnpx ember-codemod-add-template-tags --convert components tests
 
 # 2. Routes only (e.g. after installing `ember-route-template` or updating `ember-source` to 6.3 or higher)
-npx ember-codemod-add-template-tags --convert routes
+pnpx ember-codemod-add-template-tags --convert routes
 ```
 
 </details>
@@ -70,7 +70,7 @@ npx ember-codemod-add-template-tags --convert routes
 Pass `--root` to run the codemod somewhere else (i.e. not in the current directory).
 
 ```sh
-npx ember-codemod-add-template-tags --root <path/to/your/project>
+pnpx ember-codemod-add-template-tags --root <path/to/your/project>
 ```
 
 </details>
@@ -97,18 +97,18 @@ pnpm build
 
 <details>
 
-<summary>Running <code>prettier</code> resulted in the <code>Scope.checkBlockScopedCollisions</code> error</summary>
+<summary>Running <code>prettier</code> results in a <code>Scope.checkBlockScopedCollisions</code> error</summary>
 
 `prettier` throws the error,
 
 ```sh
-app/components/hello.gts: TypeError: Cannot read properties of undefined (reading 'buildError')
+app/components/my-folder.gts: TypeError: Cannot read properties of undefined (reading 'buildError')
   at Scope.checkBlockScopedCollisions
   at Scope.registerBinding
   ...
 ```
 
-when a `*.{gjs,gts}` file imports the same-named object from different paths. For example,
+when it encounters a name conflict in a `*.{gjs,gts}` file. For example,
 
 ```gts
 import { get } from '@ember/helper'; // <-- Added by codemod
@@ -120,7 +120,18 @@ import htmlSafe from 'my-app/helpers/html-safe'; // <-- Added by codemod
 import type { htmlSafe } from '@ember/template';
 ```
 
-Rename or remove one of the objects to fix the error.
+```gts
+import MyFolder from 'my-app/components/my-folder'; // <-- Added by codemod
+
+export default class MyFolder extends Component {
+  // Recursion
+  <template>
+    <MyFolder />
+  </template>
+}
+```
+
+To fix the error, rename or remove one of the imported objects.
 
 </details>
 
