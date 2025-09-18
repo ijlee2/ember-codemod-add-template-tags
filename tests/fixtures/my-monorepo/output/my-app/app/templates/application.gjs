@@ -1,5 +1,6 @@
 import { array, hash } from '@ember/helper';
 import NavigationMenu from 'my-addon/components/navigation-menu';
+
 <template>
 {{page-title (t "routes.application.app-name")}}
 

@@ -2,6 +2,7 @@ import { hash } from '@ember/helper';
 import LinkTo from '@ember/routing';
 import ProductsProductImage from 'my-app/components/products/product/image';
 import formatPrice from 'my-app/helpers/format-price';
+
 import Component from '@glimmer/component';
 
 import type { Product } from '../../../utils/routes/products';

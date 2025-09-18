@@ -1,5 +1,6 @@
 import { hash } from '@ember/helper';
 import UiPage from 'docs-app/components/ui/page';
+
 <template>
 {{page-title "Page Not Found"}}
 

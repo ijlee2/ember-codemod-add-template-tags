@@ -1,4 +1,5 @@
 import ProductsProductImage from 'docs-app/components/products/product/image';
+
 import { render, type TestContext } from '@ember/test-helpers';
 import { setupRenderingTest } from 'docs-app/tests/helpers';
 import { module, test } from 'qunit';

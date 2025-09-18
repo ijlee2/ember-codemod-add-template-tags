@@ -1,4 +1,5 @@
 import TracksTable from 'docs-app/components/tracks/table';
+
 import {
   findAll,
   render,

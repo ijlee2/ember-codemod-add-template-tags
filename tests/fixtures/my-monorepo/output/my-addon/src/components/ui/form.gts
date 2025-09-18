@@ -7,6 +7,7 @@ import UiFormNumber from 'my-addon/components/ui/form/number';
 import UiFormSelect from 'my-addon/components/ui/form/select';
 import UiFormTextarea from 'my-addon/components/ui/form/textarea';
 import autofocus from 'my-addon/modifiers/autofocus';
+
 import { action } from '@ember/object';
 import Component from '@glimmer/component';
 import type { WithBoundArgs } from '@glint/template';

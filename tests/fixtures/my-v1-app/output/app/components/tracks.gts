@@ -1,6 +1,7 @@
 import { hash } from '@ember/helper';
 import TracksList from 'docs-app/components/tracks/list';
 import TracksTable from 'docs-app/components/tracks/table';
+
 import type { TOC } from '@ember/component/template-only';
 
 import type { Track } from '../data/album';
