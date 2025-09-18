@@ -1,4 +1,5 @@
 import UiPage from 'docs-app/components/ui/page';
+
 <template>
 <UiPage @title="Welcome!">
   <p>

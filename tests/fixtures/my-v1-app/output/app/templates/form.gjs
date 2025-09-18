@@ -1,6 +1,7 @@
 import { hash } from '@ember/helper';
 import UiForm from 'docs-app/components/ui/form';
 import UiPage from 'docs-app/components/ui/page';
+
 <template>
 {{page-title "Form"}}
 

@@ -1,5 +1,6 @@
 import { hash } from '@ember/helper';
 import UiForm from 'docs-app/components/ui/form';
+
 import {
   click,
   fillIn,

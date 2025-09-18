@@ -4,6 +4,7 @@ import UiFormSelect from 'my-addon/components/ui/form/select';
 import UiPage from 'my-addon/components/ui/page';
 import ProductsProductCard from 'my-app/components/products/product/card';
 import experiment from 'my-app/helpers/experiment';
+
 <template>
 {{page-title (t "routes.products.title")}}
 

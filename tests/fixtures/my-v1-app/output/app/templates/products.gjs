@@ -2,6 +2,7 @@ import { array, hash } from '@ember/helper';
 import ProductsProductCard from 'docs-app/components/products/product/card';
 import UiFormInput from 'docs-app/components/ui/form/input';
 import UiPage from 'docs-app/components/ui/page';
+
 <template>
 {{page-title "Products"}}
 

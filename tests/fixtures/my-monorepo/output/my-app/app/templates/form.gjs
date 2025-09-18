@@ -1,5 +1,6 @@
 import UiForm from 'my-addon/components/ui/form';
 import UiPage from 'my-addon/components/ui/page';
+
 <template>
 {{page-title (t "routes.form.title")}}
 

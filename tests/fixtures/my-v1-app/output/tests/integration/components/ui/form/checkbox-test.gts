@@ -1,4 +1,5 @@
 import UiFormCheckbox from 'docs-app/components/ui/form/checkbox';
+
 import { set } from '@ember/object';
 import {
   click,

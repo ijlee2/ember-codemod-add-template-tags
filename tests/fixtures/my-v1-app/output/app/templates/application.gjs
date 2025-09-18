@@ -1,5 +1,6 @@
 import { array, hash } from '@ember/helper';
 import NavigationMenu from 'docs-app/components/navigation-menu';
+
 <template>
 {{page-title "Ember Container Query"}}
 

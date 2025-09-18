@@ -1,4 +1,5 @@
 import drawStackedChart from 'docs-app/modifiers/draw-stacked-chart';
+
 import { render } from '@ember/test-helpers';
 import { setupRenderingTest } from 'docs-app/tests/helpers';
 import { module, test } from 'qunit';

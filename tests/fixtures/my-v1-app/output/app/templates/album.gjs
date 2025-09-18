@@ -1,6 +1,7 @@
 import { hash } from '@ember/helper';
 import Tracks from 'docs-app/components/tracks';
 import UiPage from 'docs-app/components/ui/page';
+
 <template>
 {{page-title "Album"}}
 
