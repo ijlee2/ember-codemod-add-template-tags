@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.7.3
+
+### Patch Changes
+
+- [#27](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/27) Ignored inherited components ([@ijlee2](https://github.com/ijlee2))
+
 ## 0.7.2
 
 ### Patch Changes
