@@ -7,7 +7,7 @@ _Codemod to add `<template>` tags_
 
 ## Why use it?
 
-Introducing `<template>` tag to large projects can be a tedious, erroneous task. Run this codemod to get started.
+Introducing `<template>` tag to large projects can be tedious and error-prone. Run this codemod to get started.
 
 The codemod:
 
@@ -27,10 +27,12 @@ pnpx ember-codemod-add-template-tags <arguments>
 
 Step 2. Review the package.
 
-- [x] Fix format and lint errors.
+- [x] Fix format and lint errors.<sup>2</sup>
 - [x] Run tests.
 
 <sup>1. To analyze external dependencies, the codemod reads your `node_modules`. Install your project's dependencies before running the codemod.</sup>
+
+<sup>2. If you need lint configs that support `*.{gjs,gts}`, you can install packages from [`@ijlee2-frontend-configs`](https://github.com/ijlee2/frontend-configs).</sup>
 
 
 ### Arguments
@@ -102,13 +104,13 @@ pnpm build
 `prettier` throws the error,
 
 ```sh
-app/components/my-folder.gts: TypeError: Cannot read properties of undefined (reading 'buildError')
+TypeError: Cannot read properties of undefined (reading 'buildError')
   at Scope.checkBlockScopedCollisions
   at Scope.registerBinding
   ...
 ```
 
-when it encounters a name conflict in a `*.{gjs,gts}` file. For example,
+when it encounters a name conflict in the `*.{gjs,gts}` file. Examples include:
 
 ```gts
 import { get } from '@ember/helper'; // <-- Added by codemod
