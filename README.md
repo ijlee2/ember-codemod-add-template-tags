@@ -67,6 +67,38 @@ pnpm build
 ```
 
 
+## Troubleshoot
+
+<details>
+
+<summary>Running <code>prettier</code> resulted in the <code>Scope.checkBlockScopedCollisions</code> error</summary>
+
+`prettier` throws the error,
+
+```sh
+app/components/hello.gts: TypeError: Cannot read properties of undefined (reading 'buildError')
+  at Scope.checkBlockScopedCollisions
+  at Scope.registerBinding
+  ...
+```
+
+when a `*.{gjs,gts}` file imports the same-named object from different paths. For example,
+
+```gts
+import { get } from '@ember/helper'; // <-- Added by codemod
+import { get } from '@ember/object';
+```
+
+```gts
+import htmlSafe from 'my-app/helpers/html-safe'; // <-- Added by codemod
+import type { htmlSafe } from '@ember/template';
+```
+
+Rename or remove one of the objects to fix the error.
+
+</details>
+
+
 ## Compatibility
 
 - Node.js v20 or above
