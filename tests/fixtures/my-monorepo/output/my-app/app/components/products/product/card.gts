@@ -1,7 +1,5 @@
 import { hash } from '@ember/helper';
 import LinkTo from '@ember/routing';
-import { ContainerQuery, width } from 'ember-container-query';
-import { t } from 'ember-intl';
 import ProductsProductImage from 'my-app/components/products/product/image';
 import formatPrice from 'my-app/helpers/format-price';
 import Component from '@glimmer/component';

@@ -1,4 +1,3 @@
-import { t } from 'ember-intl';
 import UiForm from 'my-addon/components/ui/form';
 import UiPage from 'my-addon/components/ui/page';
 <template>

@@ -1,7 +1,5 @@
 import { concat, hash, uniqueId } from '@ember/helper';
 import { on } from '@ember/modifier';
-import { ContainerQuery, width } from 'ember-container-query';
-import { t } from 'ember-intl';
 import UiFormCheckbox from 'my-addon/components/ui/form/checkbox';
 import UiFormInformation from 'my-addon/components/ui/form/information';
 import UiFormInput from 'my-addon/components/ui/form/input';

@@ -1,6 +1,5 @@
 import { fn } from '@ember/helper';
 import { on } from '@ember/modifier';
-import { t } from 'ember-intl';
 import formatPrice from 'my-app/helpers/format-price';
 import { action } from '@ember/object';
 import Component from '@glimmer/component';

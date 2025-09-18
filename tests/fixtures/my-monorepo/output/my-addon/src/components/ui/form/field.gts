@@ -1,5 +1,4 @@
 import { hash, uniqueId } from '@ember/helper';
-import { local } from 'embroider-css-modules';
 import Component from '@glimmer/component';
 
 import styles from './field.css';

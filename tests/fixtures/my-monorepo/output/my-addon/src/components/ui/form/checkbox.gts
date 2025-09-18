@@ -1,7 +1,5 @@
 import { concat } from '@ember/helper';
 import { on } from '@ember/modifier';
-import { or } from 'ember-truth-helpers';
-import { local } from 'embroider-css-modules';
 import UiFormField from 'my-addon/components/ui/form/field';
 import { action, get } from '@ember/object';
 import Component from '@glimmer/component';

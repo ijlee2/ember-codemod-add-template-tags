@@ -1,5 +1,4 @@
 import { hash } from '@ember/helper';
-import { t } from 'ember-intl';
 import UiFormInput from 'my-addon/components/ui/form/input';
 import UiFormSelect from 'my-addon/components/ui/form/select';
 import UiPage from 'my-addon/components/ui/page';
