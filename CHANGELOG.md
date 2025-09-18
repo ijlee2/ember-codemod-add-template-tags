@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.6.1
+
+### Patch Changes
+
+- [#19](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/19) Documented how to fix Scope.checkBlockScopedCollisions error ([@ijlee2](https://github.com/ijlee2))
+- [#18](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/18) Created removeImport() ([@ijlee2](https://github.com/ijlee2))
+- [#20](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/20) Updated README ([@ijlee2](https://github.com/ijlee2))
+
 ## 0.6.0
 
 ### Minor Changes
