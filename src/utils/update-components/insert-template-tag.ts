@@ -1,10 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { AST } from '@codemod-utils/ast-javascript';
 
-import {
-  analyzeComponent,
-  type Data,
-} from '../find-packages-with-hbs/index.js';
+import { analyzeComponent } from '../find-packages-with-hbs/index.js';
+
+type Data = {
+  baseComponentName: string | undefined;
+  componentName: string | undefined;
+};
 
 function insertToGlimmerComponent(file: string, data: Data): string {
   const traverse = AST.traverse(true);
