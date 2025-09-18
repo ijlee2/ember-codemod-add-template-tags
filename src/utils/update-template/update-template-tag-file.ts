@@ -17,7 +17,7 @@ export function updateTemplateTagFile(file: string, data: Data): string {
   });
 
   if (importStatements.exist()) {
-    file = `${importStatements.print()}\n\n${file}`;
+    file = `${importStatements.print()}\n${file}`;
   }
 
   return file;

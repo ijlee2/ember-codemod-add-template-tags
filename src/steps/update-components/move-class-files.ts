@@ -23,12 +23,15 @@ export function moveClassFiles(
 
     classFilePaths.forEach((classFilePath) => {
       const classFile = readFileSync(join(packageRoot, classFilePath), 'utf8');
+      const isTypeScript = classFilePath.endsWith('.ts');
 
-      const newFilePath = classFilePath.endsWith('.js')
-        ? classFilePath.replace(/\.js$/, '.gjs')
-        : classFilePath.replace(/\.ts$/, '.gts');
+      const newFilePath = isTypeScript
+        ? classFilePath.replace(/\.ts$/, '.gts')
+        : classFilePath.replace(/\.js$/, '.gjs');
 
-      const newFile = insertTemplateTag(classFile);
+      const newFile = insertTemplateTag(classFile, {
+        isTypeScript,
+      });
 
       writeFileSync(join(packageRoot, newFilePath), newFile, 'utf8');
       filesCached.set(join(packageRoot, newFilePath), newFile);
