@@ -5,7 +5,33 @@
 _Codemod to add `<template>` tags_
 
 
+## Why use it?
+
+Introducing `<template>` tag to large projects can be a tedious, erroneous task. Run this codemod to get started.
+
+The codemod:
+
+- Statically analyzes code (doesn't need to know your build steps)
+- Supports v1 apps (classic build, Webpack), v2 apps (Vite), v1 addons, and v2 addons
+- Supports monorepos
+
+
 ## Usage
+
+Step 1. Quickly migrate.<sup>1</sup>
+
+```sh
+cd <path/to/your/project>
+npx ember-codemod-add-template-tags <arguments>
+```
+
+Step 2. Review the package.
+
+- [x] Fix format and lint errors.
+- [x] Run tests.
+
+<sup>1. To analyze external dependencies, the codemod reads your `node_modules`. Install your project's dependencies before running the codemod.</sup>
+
 
 ### Arguments
 
@@ -16,7 +42,7 @@ _Codemod to add `<template>` tags_
 By default, an Octane project has the flat component structure. Pass `--component-structure` to indicate otherwise.
 
 ```sh
-npx ember-codemod-add-component-signatures --component-structure nested
+npx ember-codemod-add-template-tags --component-structure nested
 ```
 
 </details>
@@ -29,10 +55,10 @@ By default, the codemod updates components, routes, and tests. Pass `--convert` 
 
 ```sh
 # 1. Components and tests only
-npx ember-codemod-add-component-signatures --convert components tests
+npx ember-codemod-add-template-tags --convert components tests
 
 # 2. Routes only (e.g. after installing `ember-route-template` or updating `ember-source` to 6.3 or higher)
-npx ember-codemod-add-component-signatures --convert routes
+npx ember-codemod-add-template-tags --convert routes
 ```
 
 </details>
