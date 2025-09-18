@@ -21,6 +21,8 @@ export function moveClassFiles(
       projectRoot: packageRoot,
     });
 
+    const classFilePathsToRemove: string[] = [];
+
     classFilePaths.forEach((classFilePath) => {
       const classFile = readFileSync(join(packageRoot, classFilePath), 'utf8');
       const isTypeScript = classFilePath.endsWith('.ts');
@@ -33,11 +35,16 @@ export function moveClassFiles(
         isTypeScript,
       });
 
+      if (!newFile) {
+        return;
+      }
+
+      classFilePathsToRemove.push(classFilePath);
       writeFileSync(join(packageRoot, newFilePath), newFile, 'utf8');
       filesCached.set(join(packageRoot, newFilePath), newFile);
     });
 
-    removeFiles(classFilePaths, {
+    removeFiles(classFilePathsToRemove, {
       projectRoot: packageRoot,
     });
   }

@@ -112,7 +112,7 @@ function insertToTemplateOnlyComponent(file: string, data: Data): string {
 export function insertTemplateTag(
   file: string,
   data: Pick<Data, 'isTypeScript'>,
-): string {
+): string | undefined {
   const { baseComponentName, componentName, componentType } =
     analyzeComponent(file);
 
@@ -134,7 +134,7 @@ export function insertTemplateTag(
     }
 
     default: {
-      return file;
+      return;
     }
   }
 }
