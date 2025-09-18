@@ -1,7 +1,11 @@
+import { t } from 'ember-intl';
+import UiForm from 'my-addon/components/ui/form';
+import UiPage from 'my-addon/components/ui/page';
+<template>
 {{page-title (t "routes.form.title")}}
 
-<Ui::Page @title={{t "routes.form.title"}}>
-  <Ui::Form
+<UiPage @title={{t "routes.form.title"}}>
+  <UiForm
     @data={{this.contactMe.initialData}}
     @instructions={{t "routes.form.contact-me-form.instructions"}}
     @onSubmit={{perform this.contactMe.submitData}}
@@ -58,5 +62,6 @@
         />
       </div>
     {{/if}}
-  </Ui::Form>
-</Ui::Page>
+  </UiForm>
+</UiPage>
+</template>

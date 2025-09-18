@@ -1,6 +1,14 @@
+import { hash } from '@ember/helper';
+import { t } from 'ember-intl';
+import UiFormInput from 'my-addon/components/ui/form/input';
+import UiFormSelect from 'my-addon/components/ui/form/select';
+import UiPage from 'my-addon/components/ui/page';
+import ProductsProductCard from 'my-app/components/products/product/card';
+import experiment from 'my-app/helpers/experiment';
+<template>
 {{page-title (t "routes.products.title")}}
 
-<Ui::Page @title={{t "routes.products.title"}}>
+<UiPage @title={{t "routes.products.title"}}>
   <div
     class={{if
       (experiment name="nest-product-details" variant="v1")
@@ -10,7 +18,7 @@
   >
     <div class={{this.styles.filters}}>
       <div class={{this.styles.filter}}>
-        <Ui::Form::Input
+        <UiFormInput
           @data={{hash name=this.name}}
           @key="name"
           @label={{t "routes.products.filter-by.name.label"}}
@@ -20,7 +28,7 @@
       </div>
 
       <div class={{this.styles.filter}}>
-        <Ui::Form::Select
+        <UiFormSelect
           @data={{hash sortBy=this.sortBy}}
           @key="sortBy"
           @label={{t "routes.products.sort-by.label"}}
@@ -36,7 +44,7 @@
         as |product|
       }}
         <div>
-          <Products::Product::Card
+          <ProductsProductCard
             @product={{product}}
             @redirectTo={{if
               (experiment name="nest-product-details" variant="v1")
@@ -56,4 +64,5 @@
       {{outlet}}
     </div>
   </div>
-</Ui::Page>
+</UiPage>
+</template>

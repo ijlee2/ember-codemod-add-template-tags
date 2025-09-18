@@ -1,3 +1,8 @@
+import { concat } from '@ember/helper';
+import { on } from '@ember/modifier';
+import { or } from 'ember-truth-helpers';
+import { local } from 'embroider-css-modules';
+import UiFormField from 'my-addon/components/ui/form/field';
 import { action, get } from '@ember/object';
 import Component from '@glimmer/component';
 
@@ -54,4 +59,50 @@ export default class UiFormCheckboxComponent extends Component<UiFormCheckboxSig
       this.updateValue();
     }
   }
+
+
+  <template>
+  <UiFormField
+  @errorMessage={{this.errorMessage}}
+  @isInline={{@isInline}}
+  @isWide={{@isWide}}
+  >
+  <:label as |l|>
+  <label data-test-label id={{concat l.inputId "-label"}}>
+    {{@label}}
+
+    {{#if @isRequired}}
+      <span aria-hidden="true">
+        *
+      </span>
+    {{/if}}
+  </label>
+  </:label>
+
+  <:field as |f|>
+  <span
+    aria-checked={{if this.isChecked "true" "false"}}
+    aria-disabled={{if @isDisabled "true" "false"}}
+    aria-labelledby={{concat f.inputId "-label"}}
+    aria-readonly={{if @isReadOnly "true" "false"}}
+    aria-required={{if @isRequired "true" "false"}}
+    class={{local
+      this.styles
+      "checkbox"
+      (if this.isChecked "is-checked")
+      (if (or @isDisabled @isReadOnly) "is-disabled")
+    }}
+    data-test-field={{@label}}
+    role="checkbox"
+    tabindex={{unless @isDisabled "0"}}
+    {{on "click" this.updateValue}}
+    {{on "keypress" this.updateValueByPressingSpace}}
+  >
+    {{#if this.isChecked}}
+      <span aria-hidden="true">✔</span>
+    {{/if}}
+  </span>
+  </:field>
+  </UiFormField>
+  </template>
 }
