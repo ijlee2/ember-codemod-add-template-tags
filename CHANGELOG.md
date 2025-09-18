@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.7.2
+
+### Patch Changes
+
+- [#26](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/26) Added a new line to improve readability ([@ijlee2](https://github.com/ijlee2))
+- [#25](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/25) Added a v1 app example to tests ([@ijlee2](https://github.com/ijlee2))
+
 ## 0.7.1
 
 ### Patch Changes
@@ -18,9 +25,9 @@
 
 ### Patch Changes
 
+- [#20](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/20) Updated README ([@ijlee2](https://github.com/ijlee2))
 - [#19](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/19) Documented how to fix Scope.checkBlockScopedCollisions error ([@ijlee2](https://github.com/ijlee2))
 - [#18](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/18) Created removeImport() ([@ijlee2](https://github.com/ijlee2))
-- [#20](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/20) Updated README ([@ijlee2](https://github.com/ijlee2))
 
 ## 0.6.0
 
@@ -32,7 +39,6 @@
 ### Patch Changes
 
 - [#16](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/16) Refactored code (Part 3) ([@ijlee2](https://github.com/ijlee2))
-- [#16](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/16) Patched #15 ([@ijlee2](https://github.com/ijlee2))
 
 ## 0.5.0
 
