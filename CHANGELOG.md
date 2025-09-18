@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.7.1
+
+### Patch Changes
+
+- [#24](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/24) Added a monorepo example to tests ([@ijlee2](https://github.com/ijlee2))
+- [#23](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/23) Updated README ([@ijlee2](https://github.com/ijlee2))
+
 ## 0.7.0
 
 ### Minor Changes
