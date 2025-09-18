@@ -11,13 +11,13 @@ type ComponentImportPath = keyof typeof componentMap;
 
 type ComponentType = (typeof componentMap)[ComponentImportPath];
 
-export type Data = {
+type Component = {
   baseComponentName: string | undefined;
   componentName: string | undefined;
   componentType: ComponentType | undefined;
 };
 
-export function analyzeComponent(file: string): Data {
+export function analyzeComponent(file: string): Component {
   const traverse = AST.traverse(true);
 
   let baseComponentName: string | undefined;
