@@ -57,6 +57,30 @@ export function updateTemplate(
       }
 
       const helperName = node.path.original;
+
+      if (helperName === 'component') {
+        if (
+          node.params.length !== 1 ||
+          node.params[0]!.type !== 'StringLiteral'
+        ) {
+          return;
+        }
+
+        const componentName = node.params[0]!.original;
+        const entityData = entities.components.get(componentName);
+
+        if (!entityData) {
+          return;
+        }
+
+        const newName = getNewName(componentName, 'pascalize');
+
+        node.params[0] = AST.builders.path(newName);
+        importStatements.add(newName, entityData);
+
+        return;
+      }
+
       const entityData = entities.helpers.get(helperName);
 
       if (!entityData) {
