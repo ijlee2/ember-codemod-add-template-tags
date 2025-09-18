@@ -1,0 +1,73 @@
+import { hash } from '@ember/helper';
+import Component from '@glimmer/component';
+import { tracked } from '@glimmer/tracking';
+
+import musicRevenue from '../../data/music-revenue';
+import type { Data, Summary } from '../../utils/components/widgets/widget-2';
+import {
+  createDataForVisualization,
+  createSummariesForCaptions,
+} from '../../utils/components/widgets/widget-2';
+import styles from './widget-2.css';
+
+interface WidgetsWidget2Signature {
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  Args: {};
+}
+
+export default class WidgetsWidget2Component extends Component<WidgetsWidget2Signature> {
+  styles = styles;
+
+  @tracked data = [] as Data[];
+  @tracked summaries = [] as Summary[];
+
+  constructor(owner: unknown, args: WidgetsWidget2Signature['Args']) {
+    super(owner, args);
+
+    this.loadData();
+  }
+
+  loadData(): void {
+    this.data = createDataForVisualization(musicRevenue);
+    this.summaries = createSummariesForCaptions(this.data);
+  }
+
+
+  <template>
+  <ContainerQuery
+  @features={{hash
+  short=(height max=240)
+  tall=(height min=240 max=480)
+  very-tall=(height min=480)
+  }}
+  @tagName="section"
+  class={{this.styles.container}}
+  as |CQ|
+  >
+  <header>
+  <h2>Widget 2</h2>
+  </header>
+
+  {{#unless CQ.features.short}}
+  <div
+    class={{this.styles.visualization}}
+    data-test-visualization
+  >
+    <Widgets::Widget-2::StackedChart @data={{this.data}} />
+  </div>
+  {{/unless}}
+
+  <div class={{this.styles.captions}} data-test-captions>
+  <Widgets::Widget-2::Captions
+    @summaries={{this.summaries}}
+  />
+  </div>
+  </ContainerQuery>
+  </template>
+}
+
+declare module '@glint/environment-ember-loose/registry' {
+  export default interface Registry {
+    'Widgets::Widget-2': typeof WidgetsWidget2Component;
+  }
+}
