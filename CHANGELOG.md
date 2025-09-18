@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.7.0
+
+### Minor Changes
+
+- [#22](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/22) Provided component signature to TOC for template-only components ([@ijlee2](https://github.com/ijlee2))
+- [#21](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/21) Handled {{component}} helper (MustacheStatement) ([@ijlee2](https://github.com/ijlee2))
+
 ## 0.6.1
 
 ### Patch Changes
