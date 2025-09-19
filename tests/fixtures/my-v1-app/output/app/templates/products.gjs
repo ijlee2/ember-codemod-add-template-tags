@@ -9,29 +9,29 @@ import UiPage from 'docs-app/components/ui/page';
 <UiPage @title="Products">
   <div
     class={{local
-      this.styles
+      @controller.styles
       (if
-        this.isPartOfNestProductDetailsExperiment
+        @controller.isPartOfNestProductDetailsExperiment
         (array "shared-layout" "products-with-details")
         (array "shared-layout" "products")
       )
       "sticky-container"
     }}
   >
-    <div class={{this.styles.filters}}>
-      <div class={{this.styles.filter}}>
+    <div class={{@controller.styles.filters}}>
+      <div class={{@controller.styles.filter}}>
         <UiFormInput
-          @changeset={{hash name=this.name}}
+          @changeset={{hash name=@controller.name}}
           @key="name"
           @label="Filter by"
-          @onUpdate={{this.updateQueryParameters}}
+          @onUpdate={{@controller.updateQueryParameters}}
           @placeholder="Cake, pasta, etc."
         />
       </div>
     </div>
 
-    <div class={{this.styles.list}}>
-      {{#each this.filteredProducts as |product|}}
+    <div class={{@controller.styles.list}}>
+      {{#each @controller.filteredProducts as |product|}}
         <ProductsProductCard @product={{product}} />
       {{else}}
         <p>
@@ -40,7 +40,7 @@ import UiPage from 'docs-app/components/ui/page';
       {{/each}}
     </div>
 
-    <div class={{this.styles.product-details}}>
+    <div class={{@controller.styles.product-details}}>
       {{outlet}}
     </div>
   </div>

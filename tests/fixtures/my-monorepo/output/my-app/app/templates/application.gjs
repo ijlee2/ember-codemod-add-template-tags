@@ -4,8 +4,8 @@ import NavigationMenu from 'my-addon/components/navigation-menu';
 <template>
 {{page-title (t "routes.application.app-name")}}
 
-<div class={{this.styles.application}}>
-  <header class={{this.styles.header}}>
+<div class={{@controller.styles.application}}>
+  <header class={{@controller.styles.header}}>
     <NavigationNarrator
       @navigationText={{t "routes.application.navigation-text"}}
       @skipText={{t "routes.application.skip-text"}}
@@ -37,14 +37,14 @@ import NavigationMenu from 'my-addon/components/navigation-menu';
     />
   </header>
 
-  <main class={{this.styles.main}}>
-    <div class={{this.styles.center}}>
+  <main class={{@controller.styles.main}}>
+    <div class={{@controller.styles.center}}>
       {{outlet}}
     </div>
   </main>
 
-  <footer class={{this.styles.footer}}>
-    <span class={{this.styles.copyright}}>
+  <footer class={{@controller.styles.footer}}>
+    <span class={{@controller.styles.copyright}}>
       {{t "routes.application.copyright" htmlSafe=true}}
     </span>
   </footer>

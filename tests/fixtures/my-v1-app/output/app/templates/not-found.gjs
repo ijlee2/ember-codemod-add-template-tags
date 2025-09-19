@@ -8,24 +8,24 @@ import UiPage from 'docs-app/components/ui/page';
   <p>Feeling lost? Un<em>contained</em>?</p>
   <p>Don't worry. We all have our off days.</p>
 
-  <div class={{this.styles.animation}}>
+  <div class={{@controller.styles.animation}}>
     <ContainerQuery
       @features={{hash small=(width max=350)}}
       as |CQ|
     >
       <div
         class={{local
-          this.styles
+          @controller.styles
           "metaphor"
           (if CQ.features.small "small-layout")
         }}
       >
-        <div class={{this.styles.mental-block}}>
+        <div class={{@controller.styles.mental-block}}>
         </div>
 
         <div
           aria-hidden="true"
-          class={{this.styles.the-next-idea}}
+          class={{@controller.styles.the-next-idea}}
         >
           ember-<br />container-<br />query
         </div>

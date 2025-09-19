@@ -4,24 +4,24 @@ import UiPage from 'docs-app/components/ui/page';
 {{page-title "Dashboard"}}
 
 <UiPage @title="Dashboard">
-  <div class={{this.styles.widgets}}>
-    <div class={{this.styles.widget-1}} data-test-widget="1">
+  <div class={{@controller.styles.widgets}}>
+    <div class={{@controller.styles.widget-1}} data-test-widget="1">
       <Widgets::Widget-1 />
     </div>
 
-    <div class={{this.styles.widget-2}} data-test-widget="2">
+    <div class={{@controller.styles.widget-2}} data-test-widget="2">
       <Widgets::Widget-2 />
     </div>
 
-    <div class={{this.styles.widget-3}} data-test-widget="3">
+    <div class={{@controller.styles.widget-3}} data-test-widget="3">
       <Widgets::Widget-3 />
     </div>
 
-    <div class={{this.styles.widget-4}} data-test-widget="4">
+    <div class={{@controller.styles.widget-4}} data-test-widget="4">
       <Widgets::Widget-4 />
     </div>
 
-    <div class={{this.styles.widget-5}} data-test-widget="5">
+    <div class={{@controller.styles.widget-5}} data-test-widget="5">
       <Widgets::Widget-5 />
     </div>
   </div>
