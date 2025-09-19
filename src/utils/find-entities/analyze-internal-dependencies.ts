@@ -2,8 +2,8 @@ import { getPackageRoots } from '@codemod-utils/files';
 import { getPackageType, readPackageJson } from '@codemod-utils/package-json';
 
 import type { Dependencies, Options } from '../../types/index.js';
-import { analyzeEmberPackage } from './analyze-ember-package.js';
-import { isEntitiesEmpty } from './is-entities-empty.js';
+import { analyzeEmberPackage } from './analyze-dependencies/analyze-ember-package.js';
+import { isEntitiesEmpty } from './analyze-dependencies/is-entities-empty.js';
 
 export function analyzeInternalDependencies(options: Options): Dependencies {
   const packageRoots = getPackageRoots(options);

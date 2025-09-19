@@ -2,13 +2,17 @@ import { join, relative } from 'node:path';
 
 import { findFiles, parseFilePath } from '@codemod-utils/files';
 
-import type { AllEntities, Options, PackageType } from '../../types/index.js';
+import type {
+  AllEntities,
+  Options,
+  PackageType,
+} from '../../../types/index.js';
 import {
   ENTITY_SOURCE_FOLDERS,
   ENTITY_TYPES,
   SOURCE_FOR_EXTERNAL_PACKAGES,
   SOURCE_FOR_INTERNAL_PACKAGES,
-} from '../ember.js';
+} from '../../ember.js';
 import { analyzeBarrelFile } from './analyze-barrel-file.js';
 
 export function analyzeEmberPackage({
