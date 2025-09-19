@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.8.1
+
+### Patch Changes
+
+- [#30](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/30) Documented what to do if rendering tests fail ([@ijlee2](https://github.com/ijlee2))
+
 ## 0.8.0
 
 ### Minor Changes
