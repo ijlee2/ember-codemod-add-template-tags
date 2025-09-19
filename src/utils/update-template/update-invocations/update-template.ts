@@ -1,8 +1,8 @@
 import { AST } from '@codemod-utils/ast-template';
 
-import type { AllEntities, Entities } from '../../types/index.js';
+import type { AllEntities, Entities } from '../../../types/index.js';
+import type { ImportStatements } from '../import-statements.js';
 import { getNewName } from './get-new-name.js';
-import type { ImportStatements } from './import-statements.js';
 
 type Data = {
   componentsDoubleColonized: Entities;

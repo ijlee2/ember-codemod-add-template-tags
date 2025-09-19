@@ -9,7 +9,7 @@ import type {
   FilesCached,
   Packages,
 } from '../../types/index.js';
-import { updateTemplateTagFile } from '../../utils/update-template/index.js';
+import { updateInvocations } from '../../utils/update-template/index.js';
 
 export function enterStrictMode(
   packages: Packages,
@@ -28,7 +28,7 @@ export function enterStrictMode(
     filesWithTemplateTag.routes.forEach((filePath) => {
       const oldFile = filesCached.get(join(packageRoot, filePath))!;
 
-      const newFile = updateTemplateTagFile(oldFile, {
+      const newFile = updateInvocations(oldFile, {
         componentsDoubleColonized,
         entities,
       });

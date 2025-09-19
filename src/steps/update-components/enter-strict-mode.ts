@@ -12,7 +12,7 @@ import type {
 } from '../../types/index.js';
 import {
   removeImport,
-  updateTemplateTagFile,
+  updateInvocations,
 } from '../../utils/update-template/index.js';
 
 export function enterStrictMode(
@@ -42,7 +42,7 @@ export function enterStrictMode(
         });
       });
 
-      newFile = updateTemplateTagFile(newFile, {
+      newFile = updateInvocations(newFile, {
         componentsDoubleColonized,
         entities,
       });
