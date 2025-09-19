@@ -9,6 +9,7 @@ import type {
   FilesCached,
   Packages,
 } from '../../types/index.js';
+import { renameThis } from '../../utils/update-routes/rename-this.js';
 import { updateInvocations } from '../../utils/update-template/index.js';
 
 export function enterStrictMode(
@@ -28,7 +29,9 @@ export function enterStrictMode(
     filesWithTemplateTag.routes.forEach((filePath) => {
       const oldFile = filesCached.get(join(packageRoot, filePath))!;
 
-      const newFile = updateInvocations(oldFile, {
+      let newFile = renameThis(oldFile);
+
+      newFile = updateInvocations(newFile, {
         componentsDoubleColonized,
         entities,
       });
