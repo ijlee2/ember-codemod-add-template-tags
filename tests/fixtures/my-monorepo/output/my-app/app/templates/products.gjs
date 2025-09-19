@@ -12,35 +12,35 @@ import experiment from 'my-app/helpers/experiment';
   <div
     class={{if
       (experiment name="nest-product-details" variant="v1")
-      this.styles.products-with-details
-      this.styles.products
+      @controller.styles.products-with-details
+      @controller.styles.products
     }}
   >
-    <div class={{this.styles.filters}}>
-      <div class={{this.styles.filter}}>
+    <div class={{@controller.styles.filters}}>
+      <div class={{@controller.styles.filter}}>
         <UiFormInput
-          @data={{hash name=this.name}}
+          @data={{hash name=@controller.name}}
           @key="name"
           @label={{t "routes.products.filter-by.name.label"}}
-          @onUpdate={{perform this.updateQueryParameters}}
+          @onUpdate={{perform @controller.updateQueryParameters}}
           @placeholder={{t "routes.products.filter-by.name.placeholder"}}
         />
       </div>
 
-      <div class={{this.styles.filter}}>
+      <div class={{@controller.styles.filter}}>
         <UiFormSelect
-          @data={{hash sortBy=this.sortBy}}
+          @data={{hash sortBy=@controller.sortBy}}
           @key="sortBy"
           @label={{t "routes.products.sort-by.label"}}
-          @onUpdate={{perform this.updateQueryParameters}}
-          @options={{this.options}}
+          @onUpdate={{perform @controller.updateQueryParameters}}
+          @options={{@controller.options}}
         />
       </div>
     </div>
 
-    <div class={{this.styles.list}}>
+    <div class={{@controller.styles.list}}>
       {{#each
-        (sortBy (if this.sortBy this.sortBy "") @model)
+        (sortBy (if @controller.sortBy @controller.sortBy "") @model)
         as |product|
       }}
         <div>
@@ -60,7 +60,7 @@ import experiment from 'my-app/helpers/experiment';
       {{/each}}
     </div>
 
-    <div class={{this.styles.product-details}}>
+    <div class={{@controller.styles.product-details}}>
       {{outlet}}
     </div>
   </div>

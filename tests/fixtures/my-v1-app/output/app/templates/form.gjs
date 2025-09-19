@@ -15,11 +15,11 @@ import UiPage from 'docs-app/components/ui/page';
       subscribe=true
     }}
     @instructions="Still have questions about ember-container-query? Try sending me a message."
-    @onSubmit={{this.submitForm}}
+    @onSubmit={{@controller.submitForm}}
     @title="Contact me"
     as |F|
   >
-    <div class={{this.styles.field}}>
+    <div class={{@controller.styles.field}}>
       <F.Input
         @isRequired={{true}}
         @key="name"
@@ -28,7 +28,7 @@ import UiPage from 'docs-app/components/ui/page';
       />
     </div>
 
-    <div class={{this.styles.field}}>
+    <div class={{@controller.styles.field}}>
       <F.Input
         @isRequired={{true}}
         @key="email"
@@ -38,18 +38,18 @@ import UiPage from 'docs-app/components/ui/page';
       />
     </div>
 
-    <div class={{this.styles.field}}>
+    <div class={{@controller.styles.field}}>
       <F.Textarea @key="message" @label="Message" />
     </div>
 
-    <div class={{this.styles.field}}>
+    <div class={{@controller.styles.field}}>
       <F.Checkbox
         @key="subscribe"
         @label="Subscribe to The Ember Times?"
       />
     </div>
 
-    <div class={{this.styles.field}}>
+    <div class={{@controller.styles.field}}>
       <F.Number
         @key="donation"
         @label="Donation amount ($)"

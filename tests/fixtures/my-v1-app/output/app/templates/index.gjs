@@ -5,7 +5,7 @@ import UiPage from 'docs-app/components/ui/page';
   <p>
     Thanks for trying out
     <a
-      class={{this.styles.code}}
+      class={{@controller.styles.code}}
       data-test-link="ember-container-query"
       href="https://github.com/ijlee2/ember-container-query"
       rel="noopener noreferrer"

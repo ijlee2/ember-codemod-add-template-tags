@@ -4,8 +4,8 @@ import NavigationMenu from 'docs-app/components/navigation-menu';
 <template>
 {{page-title "Ember Container Query"}}
 
-<div class={{this.styles.application}}>
-  <header class={{this.styles.header}}>
+<div class={{@controller.styles.application}}>
+  <header class={{@controller.styles.header}}>
     <NavigationNarrator @skipTo="#main-content" />
 
     <NavigationMenu
@@ -20,17 +20,17 @@ import NavigationMenu from 'docs-app/components/navigation-menu';
     />
   </header>
 
-  <main class={{this.styles.main}}>
-    <div class={{this.styles.center}}>
+  <main class={{@controller.styles.main}}>
+    <div class={{@controller.styles.center}}>
       {{outlet}}
     </div>
   </main>
 
-  <footer class={{this.styles.footer}}>
-    <span class={{this.styles.copyright}}>
+  <footer class={{@controller.styles.footer}}>
+    <span class={{@controller.styles.copyright}}>
       Created by
       <a
-        class={{this.styles.link}}
+        class={{@controller.styles.link}}
         href="https://www.linkedin.com/in/ijlee2/"
         rel="noopener noreferrer"
         target="_blank"

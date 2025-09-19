@@ -6,13 +6,13 @@ import UiPage from 'my-addon/components/ui/page';
 
 <UiPage @title={{t "routes.form.title"}}>
   <UiForm
-    @data={{this.contactMe.initialData}}
+    @data={{@controller.contactMe.initialData}}
     @instructions={{t "routes.form.contact-me-form.instructions"}}
-    @onSubmit={{perform this.contactMe.submitData}}
+    @onSubmit={{perform @controller.contactMe.submitData}}
     @title={{t "routes.form.contact-me-form.title"}}
     as |F|
   >
-    <div class={{this.styles.field}}>
+    <div class={{@controller.styles.field}}>
       <F.Input
         @isRequired={{true}}
         @key="name"
@@ -23,7 +23,7 @@ import UiPage from 'my-addon/components/ui/page';
       />
     </div>
 
-    <div class={{this.styles.field}}>
+    <div class={{@controller.styles.field}}>
       <F.Input
         @isRequired={{true}}
         @key="email"
@@ -35,22 +35,22 @@ import UiPage from 'my-addon/components/ui/page';
       />
     </div>
 
-    <div class={{this.styles.field}}>
+    <div class={{@controller.styles.field}}>
       <F.Textarea
         @key="message"
         @label={{t "routes.form.contact-me-form.fields.message.label"}}
       />
     </div>
 
-    {{#if this.contactMe.showSubscribe}}
-      <div class={{this.styles.field}}>
+    {{#if @controller.contactMe.showSubscribe}}
+      <div class={{@controller.styles.field}}>
         <F.Checkbox
           @key="subscribe"
           @label={{t "routes.form.contact-me-form.fields.subscribe.label"}}
         />
       </div>
     {{else}}
-      <div class={{this.styles.field}}>
+      <div class={{@controller.styles.field}}>
         <F.Number
           @key="donation"
           @label={{t "routes.form.contact-me-form.fields.donation.label"}}
