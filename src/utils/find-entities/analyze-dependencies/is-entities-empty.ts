@@ -1,5 +1,5 @@
-import type { AllEntities } from '../../types/index.js';
-import { ENTITY_TYPES } from '../ember.js';
+import type { AllEntities } from '../../../types/index.js';
+import { ENTITY_TYPES } from '../../ember.js';
 
 export function isEntitiesEmpty(entities: AllEntities): boolean {
   return ENTITY_TYPES.every((entityType) => {

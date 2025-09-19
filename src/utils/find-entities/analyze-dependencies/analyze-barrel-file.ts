@@ -5,11 +5,15 @@ import { join, relative } from 'node:path';
 import { AST } from '@codemod-utils/ast-javascript';
 import { findFiles, parseFilePath } from '@codemod-utils/files';
 
-import type { EntityName, EntityType, PackageType } from '../../types/index.js';
+import type {
+  EntityName,
+  EntityType,
+  PackageType,
+} from '../../../types/index.js';
 import {
   ENTITY_SOURCE_FOLDERS,
   SOURCE_FOR_EXTERNAL_PACKAGES,
-} from '../ember.js';
+} from '../../ember.js';
 
 type Data = {
   isTypeScript: boolean;
