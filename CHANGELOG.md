@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.9.0
+
+### Minor Changes
+
+- [#31](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/31) Supported {{ensure-safe-component}} ([@ijlee2](https://github.com/ijlee2))
+
 ## 0.8.1
 
 ### Patch Changes
