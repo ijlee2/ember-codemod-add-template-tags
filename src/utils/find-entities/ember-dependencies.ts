@@ -2,6 +2,29 @@ import type { Dependencies } from '../../types/index.js';
 
 export const emberDependencies: Dependencies = new Map([
   [
+    '@embroider/util',
+    {
+      entities: {
+        components: new Map([]),
+        helpers: new Map([
+          [
+            'ensure-safe-component',
+            {
+              filePath: '.',
+              filePathAlias: '.',
+              isDefaultExport: false,
+              isTypeScript: false,
+              packageName: '@embroider/util',
+            },
+          ],
+        ]),
+        modifiers: new Map([]),
+      },
+      packageRoot: '',
+      packageType: 'v1-addon',
+    },
+  ],
+  [
     'ember-source',
     {
       entities: {
