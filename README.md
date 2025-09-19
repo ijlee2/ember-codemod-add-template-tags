@@ -11,9 +11,11 @@ Introducing `<template>` tag to large projects can be tedious and error-prone. R
 
 The codemod:
 
-- Statically analyzes code (doesn't need to build your projects)
-- Supports v1 apps (classic build, Webpack), v2 apps (Vite), v1 addons, and v2 addons
-- Supports monorepos (simply run it from the workspace root)
+- Statically analyzes code (no need to build projects)
+- Supports v1 apps (classic, Webpack), v2 apps (Vite)
+- Supports v1 addons, v2 addons
+- Supports monorepos (convert all packages at once)
+- Light and fast
 
 
 ## Usage
