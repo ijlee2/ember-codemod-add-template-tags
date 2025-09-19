@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.8.0
+
+### Minor Changes
+
+- [#29](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/29) Renamed this in route templates ([@ijlee2](https://github.com/ijlee2))
+
+### Patch Changes
+
+- [#28](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/28) Reorganized utility files ([@ijlee2](https://github.com/ijlee2))
+
 ## 0.7.3
 
 ### Patch Changes
