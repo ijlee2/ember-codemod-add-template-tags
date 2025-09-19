@@ -19,4 +19,5 @@
 /eslint.config.mjs
 /prettier.config.mjs
 /tests/
+/TROUBLESHOOT.md
 /update-test-fixtures.sh
