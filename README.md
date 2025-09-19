@@ -30,6 +30,8 @@ Step 2. Review the package.
 - [x] Fix format and lint errors.<sup>2</sup>
 - [x] Run tests.
 
+You can check [Troubleshoot](TROUBLESHOOT.md) if you encounter an issue.
+
 <sup>1. To analyze external dependencies, the codemod reads your `node_modules`. Install your project's dependencies before running the codemod.</sup>
 
 <sup>2. If you need lint configs that support `*.{gjs,gts}`, you can install packages from [`@ijlee2-frontend-configs`](https://github.com/ijlee2/frontend-configs).</sup>
@@ -93,49 +95,6 @@ pnpm build
 # Run codemod
 ./dist/bin/ember-codemod-add-template-tags.js --root <path/to/your/project>
 ```
-
-
-## Troubleshoot
-
-<details>
-
-<summary>Running <code>prettier</code> results in a <code>Scope.checkBlockScopedCollisions</code> error</summary>
-
-`prettier` throws the error,
-
-```sh
-TypeError: Cannot read properties of undefined (reading 'buildError')
-  at Scope.checkBlockScopedCollisions
-  at Scope.registerBinding
-  ...
-```
-
-when it encounters a name conflict in the `*.{gjs,gts}` file. Examples include:
-
-```gts
-import { get } from '@ember/helper'; // <-- Added by codemod
-import { get } from '@ember/object';
-```
-
-```gts
-import htmlSafe from 'my-app/helpers/html-safe'; // <-- Added by codemod
-import type { htmlSafe } from '@ember/template';
-```
-
-```gts
-import MyFolder from 'my-app/components/my-folder'; // <-- Added by codemod
-
-export default class MyFolder extends Component {
-  // Recursion
-  <template>
-    <MyFolder />
-  </template>
-}
-```
-
-To fix the error, rename or remove one of the imported objects.
-
-</details>
 
 
 ## Compatibility
