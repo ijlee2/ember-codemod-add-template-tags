@@ -1,4 +1,4 @@
-import type { AllEntities, FilesCached, Packages } from '../types/index.js';
+import type { AllEntities, Packages } from '../types/index.js';
 import {
   enterStrictMode,
   moveClassFiles,
@@ -9,9 +9,7 @@ export function updateComponents(
   packages: Packages,
   entities: AllEntities,
 ): void {
-  const filesCached: FilesCached = new Map();
-
-  moveClassFiles(packages, filesCached);
-  moveTemplateFiles(packages, filesCached);
-  enterStrictMode(packages, entities, filesCached);
+  moveClassFiles(packages);
+  moveTemplateFiles(packages);
+  enterStrictMode(packages, entities);
 }

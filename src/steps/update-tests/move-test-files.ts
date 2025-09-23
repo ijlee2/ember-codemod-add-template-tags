@@ -3,13 +3,10 @@ import { join } from 'node:path';
 
 import { removeFiles } from '@codemod-utils/files';
 
-import type { FilesCached, Packages } from '../../types/index.js';
+import type { Packages } from '../../types/index.js';
 import { insertTemplateTag } from '../../utils/update-tests/index.js';
 
-export function moveTestFiles(
-  packages: Packages,
-  filesCached: FilesCached,
-): void {
+export function moveTestFiles(packages: Packages): void {
   for (const [, packageData] of packages) {
     const {
       filesWithHBS,
@@ -32,7 +29,6 @@ export function moveTestFiles(
         : filePath.replace(/\.js$/, '.gjs');
 
       writeFileSync(join(packageRoot, newFilePath), testFile, 'utf8');
-      filesCached.set(join(packageRoot, newFilePath), testFile);
 
       filesWithTemplateTag.tests.push(newFilePath);
     });
