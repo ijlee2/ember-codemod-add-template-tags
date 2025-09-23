@@ -22,7 +22,7 @@ export function findFilesWithHBS({
     projectRoot: packageRoot,
   });
 
-  const tests = findFiles(`tests/integration/**/*.{js,ts}`, {
+  const tests = findFiles(`tests/integration/**/*-test.{js,ts}`, {
     ignoreList: ['**/*.d.ts'],
     projectRoot: packageRoot,
   });
