@@ -1,15 +1,10 @@
-import { writeFileSync } from 'node:fs';
+import { readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 
 import { updateJavaScript } from '@codemod-utils/ast-template-tag';
 import { doubleColonize } from '@codemod-utils/ember';
 
-import type {
-  AllEntities,
-  Entities,
-  FilesCached,
-  Packages,
-} from '../../types/index.js';
+import type { AllEntities, Entities, Packages } from '../../types/index.js';
 import {
   removeImport,
   updateInvocations,
@@ -18,7 +13,6 @@ import {
 export function enterStrictMode(
   packages: Packages,
   entities: AllEntities,
-  filesCached: FilesCached,
 ): void {
   const componentsDoubleColonized: Entities = new Map();
 
@@ -30,7 +24,7 @@ export function enterStrictMode(
     const { filesWithTemplateTag, packageRoot } = packageData;
 
     filesWithTemplateTag.tests.forEach((filePath) => {
-      const oldFile = filesCached.get(join(packageRoot, filePath))!;
+      const oldFile = readFileSync(join(packageRoot, filePath), 'utf8');
 
       let newFile = updateJavaScript(oldFile, (code) => {
         return removeImport(code, {

@@ -3,14 +3,11 @@ import { join } from 'node:path';
 
 import { findFiles, removeFiles } from '@codemod-utils/files';
 
-import type { FilesCached, Packages } from '../../types/index.js';
+import type { Packages } from '../../types/index.js';
 import { SOURCE_FOR_INTERNAL_PACKAGES } from '../../utils/ember.js';
 import { insertTemplateTag } from '../../utils/update-components/index.js';
 
-export function moveClassFiles(
-  packages: Packages,
-  filesCached: FilesCached,
-): void {
+export function moveClassFiles(packages: Packages): void {
   for (const [, packageData] of packages) {
     const { packageRoot, packageType } = packageData;
 
@@ -41,7 +38,6 @@ export function moveClassFiles(
 
       classFilePathsToRemove.push(classFilePath);
       writeFileSync(join(packageRoot, newFilePath), newFile, 'utf8');
-      filesCached.set(join(packageRoot, newFilePath), newFile);
     });
 
     removeFiles(classFilePathsToRemove, {

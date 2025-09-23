@@ -6,16 +6,23 @@ import {
   replaceTemplateTag,
   type TemplateTag,
 } from '@codemod-utils/ast-template-tag';
-import { removeFiles } from '@codemod-utils/files';
+import { findFiles, removeFiles } from '@codemod-utils/files';
 
-import type { FilesCached, Packages } from '../../types/index.js';
+import type { Packages } from '../../types/index.js';
+import { SOURCE_FOR_INTERNAL_PACKAGES } from '../../utils/ember.js';
 
-export function moveTemplateFiles(
-  packages: Packages,
-  filesCached: FilesCached,
-): void {
+export function moveTemplateFiles(packages: Packages): void {
   for (const [, packageData] of packages) {
-    const { filesWithHBS, filesWithTemplateTag, packageRoot } = packageData;
+    const { filesWithHBS, filesWithTemplateTag, packageRoot, packageType } =
+      packageData;
+
+    const source = SOURCE_FOR_INTERNAL_PACKAGES[packageType];
+
+    const classFilePaths = findFiles(`${source}/components/**/*.{gjs,gts}`, {
+      projectRoot: packageRoot,
+    });
+
+    const classFilePathSet = new Set(classFilePaths);
 
     filesWithHBS.components.forEach((templateFilePath) => {
       const classFilePathGjs = templateFilePath.replace(/\.hbs$/, '.gjs');
@@ -24,11 +31,11 @@ export function moveTemplateFiles(
       let classFile: string;
       let classFilePath: string;
 
-      if (filesCached.has(join(packageRoot, classFilePathGjs))) {
-        classFile = filesCached.get(join(packageRoot, classFilePathGjs))!;
+      if (classFilePathSet.has(classFilePathGjs)) {
+        classFile = readFileSync(join(packageRoot, classFilePathGjs), 'utf8');
         classFilePath = classFilePathGjs;
-      } else if (filesCached.has(join(packageRoot, classFilePathGts))) {
-        classFile = filesCached.get(join(packageRoot, classFilePathGts))!;
+      } else if (classFilePathSet.has(classFilePathGts)) {
+        classFile = readFileSync(join(packageRoot, classFilePathGts), 'utf8');
         classFilePath = classFilePathGts;
       } else {
         classFile = '<template></template>\n';
@@ -48,7 +55,6 @@ export function moveTemplateFiles(
       });
 
       writeFileSync(join(packageRoot, classFilePath), classFile, 'utf8');
-      filesCached.set(join(packageRoot, classFilePath), classFile);
 
       filesWithTemplateTag.components.push(classFilePath);
     });
