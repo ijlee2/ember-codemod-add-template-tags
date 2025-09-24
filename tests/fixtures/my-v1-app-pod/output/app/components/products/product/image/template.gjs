@@ -1,3 +1,4 @@
+<template>
 {{#if this.isTestEnvironment}}
   <div class={{this.styles.placeholder-image}}></div>
 
@@ -12,3 +13,4 @@
   {{! template-lint-enable no-redundant-role }}
 
 {{/if}}
+</template>

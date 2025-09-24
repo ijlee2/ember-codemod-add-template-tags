@@ -1,3 +1,4 @@
+<template>
 <table data-test-table="Tracks">
   <thead>
     <tr>
@@ -27,3 +28,4 @@
     {{/each}}
   </tbody>
 </table>
+</template>

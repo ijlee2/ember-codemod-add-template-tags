@@ -1,3 +1,6 @@
+import { hash } from '@ember/helper';
+
+<template>
 <ContainerQuery
   @features={{hash
     small=(width max=480)
@@ -22,3 +25,4 @@
 
   {{/if}}
 </ContainerQuery>
+</template>

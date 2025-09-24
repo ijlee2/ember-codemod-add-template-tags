@@ -1,3 +1,6 @@
+import LinkTo from '@ember/routing';
+
+<template>
 <nav aria-label={{@name}} data-test-nav={{@name}}>
   <ul class="navigation-menu-list">
     {{#each @menuItems as |menuItem|}}
@@ -13,3 +16,4 @@
     {{/each}}
   </ul>
 </nav>
+</template>

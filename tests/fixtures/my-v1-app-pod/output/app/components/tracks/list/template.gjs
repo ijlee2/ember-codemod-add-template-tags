@@ -1,3 +1,4 @@
+<template>
 <ul
   class={{this.styles.list}}
   data-test-list="Tracks"
@@ -29,3 +30,4 @@
     </li>
   {{/each}}
 </ul>
+</template>

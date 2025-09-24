@@ -1,3 +1,7 @@
+import { hash } from '@ember/helper';
+import LinkTo from '@ember/routing';
+
+<template>
 <ContainerQuery
   @features={{hash wide=(width min=320)}}
   @tagName="article"
@@ -23,7 +27,7 @@
     </p>
 
     <p class={{this.styles.price}} data-test-field="Price">
-      \${{@product.price}}
+      \\\${{@product.price}}
     </p>
   </div>
 
@@ -38,3 +42,4 @@
     </LinkTo>
   </div>
 </ContainerQuery>
+</template>
