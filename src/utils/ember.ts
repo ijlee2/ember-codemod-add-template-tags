@@ -1,4 +1,4 @@
-export const ENTITY_SOURCE_FOLDERS = {
+export const ENTITY_FOLDERS = {
   components: 'components',
   helpers: 'helpers',
   modifiers: 'modifiers',
