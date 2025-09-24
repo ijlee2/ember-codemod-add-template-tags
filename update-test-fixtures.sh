@@ -36,3 +36,10 @@ cp -r "tests/fixtures/my-v1-app-nested/input" "tests/fixtures/my-v1-app-nested/o
 ./dist/bin/ember-codemod-add-template-tags.js \
   --component-structure nested \
   --root "tests/fixtures/my-v1-app-nested/output"
+
+# Update fixtures
+rm -r "tests/fixtures/my-v1-app-pod/output"
+cp -r "tests/fixtures/my-v1-app-pod/input" "tests/fixtures/my-v1-app-pod/output"
+
+./dist/bin/ember-codemod-add-template-tags.js \
+  --root "tests/fixtures/my-v1-app-pod/output"
