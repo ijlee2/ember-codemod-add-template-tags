@@ -20,7 +20,7 @@ The codemod:
 
 ## Usage
 
-Step 1. Quickly migrate.<sup>1</sup>
+Step 1. Quickly migrate.<sup>1,2</sup>
 
 ```sh
 cd <path/to/your/project>
@@ -29,14 +29,16 @@ pnpx ember-codemod-add-template-tags <arguments>
 
 Step 2. Review the package.
 
-- [x] Fix format and lint errors.<sup>2</sup>
+- [x] Fix format and lint errors.<sup>3</sup>
 - [x] Run tests.
 
 You can check [Troubleshoot](TROUBLESHOOT.md) if you encounter an issue.
 
-<sup>1. To analyze external dependencies, the codemod reads your `node_modules`. Install your project's dependencies before running the codemod.</sup>
+<sup>1. The codemod assumes apps and addons to follow the Octane layout (flat or nested). You can leverage the codemods for [classic](https://github.com/ember-codemods/ember-component-template-colocation-migrator) and [pod](https://github.com/ijlee2/ember-codemod-pod-to-octane).</sup>
 
-<sup>2. If you need lint configs that support `*.{gjs,gts}`, you can install packages from [`@ijlee2-frontend-configs`](https://github.com/ijlee2/frontend-configs).</sup>
+<sup>2. To analyze external dependencies, the codemod reads your `node_modules`. Install your project's dependencies before running the codemod.</sup>
+
+<sup>3. If you need lint configs that support `*.{gjs,gts}`, you can install packages from [`@ijlee2-frontend-configs`](https://github.com/ijlee2/frontend-configs).</sup>
 
 
 ### Arguments
