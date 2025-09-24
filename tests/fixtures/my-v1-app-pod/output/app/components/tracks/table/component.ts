@@ -1,4 +1,3 @@
-import type { TOC } from '@ember/component/template-only';
 import templateOnlyComponent from '@ember/component/template-only';
 
 import type { Track } from '../../../data/album';
@@ -9,7 +8,7 @@ interface TracksTableSignature {
   };
 }
 
-const TracksTableComponent = <template></template> satisfies TOC<TracksTableSignature>;
+const TracksTableComponent = templateOnlyComponent<TracksTableSignature>();
 
 export default TracksTableComponent;
 

@@ -6,7 +6,4 @@ import styles from './styles.css';
 export default class ProductsProductImageComponent extends Component {
   isTestEnvironment = config.environment === 'test';
   styles = styles;
-
-
-  <template></template>
 }

@@ -28,9 +28,6 @@ export default class TracksListComponent extends Component<TracksListSignature> 
 
     return Math.ceil(tracks.length / this.numColumns);
   }
-
-
-  <template></template>
 }
 
 declare module '@glint/environment-ember-loose/registry' {
