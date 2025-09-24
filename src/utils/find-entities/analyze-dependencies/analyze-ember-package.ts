@@ -80,6 +80,7 @@ export function analyzeEmberPackage({
         }
       }
 
+      // Prefer importing from the barrel file
       if (entitiesExported && entitiesExported[entityType].has(entityName)) {
         entities[entityType].set(entityName, {
           filePath,
