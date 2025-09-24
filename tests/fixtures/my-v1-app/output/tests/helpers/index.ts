@@ -5,8 +5,6 @@ import {
   type SetupTestOptions,
 } from 'ember-qunit';
 
-import { resetViewport } from './reset-viewport';
-
 // This file exists to provide wrappers around ember-qunit's
 // test setup functions. This way, you can easily extend the setup that is
 // needed per test type.
@@ -50,7 +48,3 @@ function setupTest(hooks: NestedHooks, options?: SetupTestOptions): void {
 }
 
 export { setupApplicationTest, setupRenderingTest, setupTest };
-
-export * from './percy';
-export * from './reset-viewport';
-export * from './resize-container';
