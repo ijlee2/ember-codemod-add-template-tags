@@ -5,7 +5,7 @@ function parse(version?: PackageVersion): [number, number] | undefined {
     return;
   }
 
-  const regex = new RegExp(/^(\^|~)?(\d+\.\d+).*/);
+  const regex = new RegExp(/^(\^|~)?(\d+(\.\d+)?).*/);
   const matches = version.match(regex);
 
   if (!matches) {
@@ -17,7 +17,7 @@ function parse(version?: PackageVersion): [number, number] | undefined {
     string,
   ];
 
-  return [Number(majorVersion), Number(minorVersion)];
+  return [Number(majorVersion), Number(minorVersion ?? 0)];
 }
 
 export function isEmberSourceRecent(version?: PackageVersion): boolean {
