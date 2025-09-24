@@ -8,7 +8,7 @@ import type {
   PackageType,
 } from '../../../types/index.js';
 import {
-  ENTITY_SOURCE_FOLDERS,
+  ENTITY_FOLDERS,
   ENTITY_TYPES,
   SOURCE_FOR_EXTERNAL_PACKAGES,
   SOURCE_FOR_INTERNAL_PACKAGES,
@@ -45,7 +45,7 @@ export function analyzeEmberPackage({
   const entitiesExported = analyzeBarrelFile({ packageRoot, packageType });
 
   ENTITY_TYPES.forEach((entityType) => {
-    const entityFolder = ENTITY_SOURCE_FOLDERS[entityType];
+    const entityFolder = ENTITY_FOLDERS[entityType];
 
     const filePaths = findFiles(
       `${source}/${entityFolder}/**/*.{gjs,gts,hbs,js,ts}`,
@@ -80,6 +80,7 @@ export function analyzeEmberPackage({
         }
       }
 
+      // Prefer importing from the barrel file
       if (entitiesExported && entitiesExported[entityType].has(entityName)) {
         entities[entityType].set(entityName, {
           filePath,

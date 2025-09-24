@@ -10,10 +10,7 @@ import type {
   EntityType,
   PackageType,
 } from '../../../types/index.js';
-import {
-  ENTITY_SOURCE_FOLDERS,
-  SOURCE_FOR_EXTERNAL_PACKAGES,
-} from '../../ember.js';
+import { ENTITY_FOLDERS, SOURCE_FOR_EXTERNAL_PACKAGES } from '../../ember.js';
 
 type Data = {
   isTypeScript: boolean;
@@ -44,9 +41,7 @@ function analyze(file: string, data: Data): EntitiesExported | undefined {
 
       const exportPath = node.value.source.value as string;
 
-      for (const [entityType, entityFolder] of Object.entries(
-        ENTITY_SOURCE_FOLDERS,
-      )) {
+      for (const [entityType, entityFolder] of Object.entries(ENTITY_FOLDERS)) {
         if (!exportPath.startsWith(`./${entityFolder}/`)) {
           continue;
         }
