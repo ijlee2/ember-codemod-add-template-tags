@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.9.2
+
+### Patch Changes
+
+- [#37](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/37) Added unit tests (Part 1) ([@ijlee2](https://github.com/ijlee2))
+- [#37](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/37) Improved partial matching in isEmberSourceRecent() ([@ijlee2](https://github.com/ijlee2))
+- [#36](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/36) Documented that the pod structure won't be supported ([@ijlee2](https://github.com/ijlee2))
+- [#35](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/35) Added tests for nested component structure ([@ijlee2](https://github.com/ijlee2))
+
 ## 0.9.1
 
 ### Patch Changes
