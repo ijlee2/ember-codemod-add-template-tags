@@ -55,8 +55,6 @@ export class ImportStatements {
         }
       }
 
-      namedImports.sort().join(', ');
-
       let line = 'import ';
 
       if (defaultImports.length > 0) {
