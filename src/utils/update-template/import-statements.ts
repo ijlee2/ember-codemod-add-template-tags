@@ -7,7 +7,7 @@ type ImportName = string;
 type Imports = Map<ImportPath, Map<ImportName, { isDefaultImport: boolean }>>;
 
 export class ImportStatements {
-  declare imports: Imports;
+  declare private imports: Imports;
 
   constructor() {
     this.imports = new Map();
@@ -54,8 +54,6 @@ export class ImportStatements {
           namedImports.push(name);
         }
       }
-
-      namedImports.sort().join(', ');
 
       let line = 'import ';
 

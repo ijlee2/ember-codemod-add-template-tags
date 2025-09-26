@@ -9,55 +9,59 @@ type Data = {
   isTypeScript: boolean;
 };
 
-type SpecifierForJavaScript =
-  | {
-      importKind: undefined;
-      imported: undefined;
-      local: {
-        name: string;
-        type: string;
-      };
-      type: 'ImportDefaultSpecifier';
-    }
-  | {
-      importKind: undefined;
-      imported: {
-        name: string;
-        type: string;
-      };
-      local: {
-        name: string;
-        type: string;
-      };
-      type: 'ImportSpecifier';
-    };
+type SpecifierDefaultJavaScript = {
+  importKind: undefined;
+  imported: undefined;
+  local: {
+    name: string;
+    type: string;
+  };
+  type: 'ImportDefaultSpecifier';
+};
 
-type SpecifierForTypeScript =
-  | {
-      importKind: undefined;
-      imported: undefined;
-      local: {
-        name: string;
-        type: string;
-      };
-      type: 'ImportDefaultSpecifier';
-    }
-  | {
-      importKind: 'type' | 'value';
-      imported: {
-        name: string;
-        type: string;
-      };
-      local: {
-        name: string;
-        type: string;
-      };
-      type: 'ImportSpecifier';
-    };
+type SpecifierDefaultTypeScript = {
+  importKind: undefined;
+  imported: undefined;
+  local: {
+    name: string;
+    type: string;
+  };
+  type: 'ImportDefaultSpecifier';
+};
 
-type Specifier = SpecifierForJavaScript | SpecifierForTypeScript;
+type SpecifierDefault = SpecifierDefaultJavaScript | SpecifierDefaultTypeScript;
 
-function keepDefaultImport(specifier: Specifier): boolean {
+type SpecifierNamedJavaScript = {
+  importKind: undefined;
+  imported: {
+    name: string;
+    type: string;
+  };
+  local: {
+    name: string;
+    type: string;
+  };
+  type: 'ImportSpecifier';
+};
+
+type SpecifierNamedTypeScript = {
+  importKind: 'type' | 'value';
+  imported: {
+    name: string;
+    type: string;
+  };
+  local: {
+    name: string;
+    type: string;
+  };
+  type: 'ImportSpecifier';
+};
+
+type SpecifierNamed = SpecifierNamedJavaScript | SpecifierNamedTypeScript;
+
+type Specifier = SpecifierDefault | SpecifierNamed;
+
+function keepDefaultImport(specifier: SpecifierDefault): boolean {
   const { local, type } = specifier;
 
   if (type !== 'ImportDefaultSpecifier' || local.type !== 'Identifier') {
@@ -67,7 +71,7 @@ function keepDefaultImport(specifier: Specifier): boolean {
   return false;
 }
 
-function keepNamedImport(specifier: Specifier, data: Data): boolean {
+function keepNamedImport(specifier: SpecifierNamed, data: Data): boolean {
   const { imported, importKind, type } = specifier;
 
   if (data.isTypeScript && importKind !== data.importKind) {
@@ -105,10 +109,10 @@ export function removeImport(file: string, data: Data) {
       node.value.specifiers = (node.value.specifiers as Specifier[]).filter(
         (specifier) => {
           if (data.isDefaultImport) {
-            return keepDefaultImport(specifier);
+            return keepDefaultImport(specifier as SpecifierDefault);
           }
 
-          return keepNamedImport(specifier, data);
+          return keepNamedImport(specifier as SpecifierNamed, data);
         },
       );
 
