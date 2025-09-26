@@ -1,26 +1,25 @@
 import { findAll, render } from '@ember/test-helpers';
 import { a11yAudit } from 'ember-a11y-testing/test-support';
-import { NavigationMenu } from 'my-addon';
 import { getClassForNavigationMenu as getClass } from 'my-addon/test-support';
 import { setupRenderingTest } from 'my-app/tests/helpers';
 import { module, test } from 'qunit';
+
+const template = hbs`,
+  <NavigationMenu @menuItems={{this.menuItems}} @name="Main Navigation" />
+`;
 
 module('Integration | Component | navigation-menu', function (hooks) {
   setupRenderingTest(hooks);
 
   test('it renders', async function (assert) {
-    const menuItems = [
+    this.menuItems = [
       {
         label: 'Home',
         route: 'index',
       },
     ];
 
-    await render(
-      <template>
-        <NavigationMenu @menuItems={{menuItems}} @name="Main Navigation" />
-      </template>,
-    );
+    await render(template);
 
     assert
       .dom('[data-test-nav="Main Navigation"]')
@@ -37,18 +36,14 @@ module('Integration | Component | navigation-menu', function (hooks) {
   });
 
   test('CSS modules', async function (assert) {
-    const menuItems = [
+    this.menuItems = [
       {
         label: 'Home',
         route: 'index',
       },
     ];
 
-    await render(
-      <template>
-        <NavigationMenu @menuItems={{menuItems}} @name="Main Navigation" />
-      </template>,
-    );
+    await render(template);
 
     assert.dom('[data-test-link="Home"]').hasClass(getClass('link'));
   });

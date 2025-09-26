@@ -1,6 +1,6 @@
 import { render } from '@ember/test-helpers';
 import { a11yAudit } from 'ember-a11y-testing/test-support';
-import { UiFormField } from 'my-addon';
+import { hbs } from 'ember-cli-htmlbars';
 import { setupRenderingTest } from 'my-app/tests/helpers';
 import { module, test } from 'qunit';
 
@@ -9,8 +9,8 @@ module('Integration | Component | ui/form/field', function (hooks) {
 
   test('it renders', async function (assert) {
     await render(
-      <template>
-        <UiFormField>
+      hbs`
+        <Ui::Form::Field>
           <:label as |l|>
             <label data-test-label for={{l.inputId}}>
               Name
@@ -20,8 +20,8 @@ module('Integration | Component | ui/form/field', function (hooks) {
           <:field as |f|>
             <input data-test-field="Name" id={{f.inputId}} type="text" />
           </:field>
-        </UiFormField>
-      </template>,
+        </Ui::Form::Field>
+      `,
     );
 
     assert.dom('[data-test-label]').hasText('Name');
@@ -35,8 +35,8 @@ module('Integration | Component | ui/form/field', function (hooks) {
 
   test('We can pass @errorMessage to show an error message', async function (assert) {
     await render(
-      <template>
-        <UiFormField @errorMessage="Please provide a value.">
+      hbs`
+        <Ui::Form::Field @errorMessage="Please provide a value.">
           <:label as |l|>
             <label data-test-label for={{l.inputId}}>
               Name
@@ -51,8 +51,8 @@ module('Integration | Component | ui/form/field', function (hooks) {
               type="text"
             />
           </:field>
-        </UiFormField>
-      </template>,
+        </Ui::Form::Field>
+      `,
     );
 
     assert.dom('[data-test-error-message]').hasText('Please provide a value.');

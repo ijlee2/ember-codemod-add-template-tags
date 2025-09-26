@@ -4,8 +4,8 @@ import {
   type TestContext as BaseTestContext,
 } from '@ember/test-helpers';
 import { a11yAudit } from 'ember-a11y-testing/test-support';
+import { hbs } from 'ember-cli-htmlbars';
 import { setupIntl } from 'ember-intl/test-support';
-import ProductsProductDetails from 'my-app/components/products/product/details';
 import { setupRenderingTest } from 'my-app/tests/helpers';
 import type { Product } from 'my-app/utils/routes/products';
 import { module, test } from 'qunit';
@@ -34,10 +34,8 @@ module('Integration | Component | products/product/details', function (hooks) {
   });
 
   test('it renders', async function (this: TestContext, assert) {
-    const { product } = this;
-
-    await render(
-      <template><ProductsProductDetails @product={{product}} /></template>,
+    await render<TestContext>(
+      hbs`<Products::Product::Details @product={{this.product}} />`,
     );
 
     assert.dom('[data-test-field="Name"]').hasText('Vanilla Ice Cream Cake');
@@ -64,10 +62,8 @@ module('Integration | Component | products/product/details', function (hooks) {
   test('We can click on the add to cart button', async function (this: TestContext, assert) {
     const log = stub(console, 'log');
 
-    const { product } = this;
-
-    await render(
-      <template><ProductsProductDetails @product={{product}} /></template>,
+    await render<TestContext>(
+      hbs`<Products::Product::Details @product={{this.product}} />`,
     );
 
     assert.true(log.notCalled);

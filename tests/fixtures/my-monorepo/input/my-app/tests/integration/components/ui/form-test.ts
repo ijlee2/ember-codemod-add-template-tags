@@ -6,8 +6,8 @@ import {
   type TestContext as BaseTestContext,
 } from '@ember/test-helpers';
 import { a11yAudit } from 'ember-a11y-testing/test-support';
+import { hbs } from 'ember-cli-htmlbars';
 import { setupIntl } from 'ember-intl/test-support';
-import { UiForm } from 'my-addon';
 import { setupRenderingTest } from 'my-app/tests/helpers';
 import { module, test } from 'qunit';
 import { type SinonSpy, spy } from 'sinon';
@@ -34,14 +34,12 @@ module('Integration | Component | ui/form', function (hooks) {
   });
 
   test('it renders', async function (this: TestContext, assert) {
-    const { data, submitForm } = this;
-
-    await render(
-      <template>
-        <UiForm
-          @data={{data}}
+    await render<TestContext>(
+      hbs`
+        <Ui::Form
+          @data={{this.data}}
           @instructions="Still have questions about ember-container-query? Try sending me a message."
-          @onSubmit={{submitForm}}
+          @onSubmit={{this.submitForm}}
           @title="Contact me"
           as |F|
         >
@@ -84,8 +82,8 @@ module('Integration | Component | ui/form', function (hooks) {
               />
             </div>
           </div>
-        </UiForm>
-      </template>,
+        </Ui::Form>
+      `,
     );
 
     const titleId = find('[data-test-title]')!.getAttribute('id')!;
@@ -110,11 +108,9 @@ module('Integration | Component | ui/form', function (hooks) {
   });
 
   test('We can submit the form', async function (this: TestContext, assert) {
-    const { data, submitForm } = this;
-
-    await render(
-      <template>
-        <UiForm @data={{data}} @onSubmit={{submitForm}} as |F|>
+    await render<TestContext>(
+      hbs`
+        <Ui::Form @data={{this.data}} @onSubmit={{this.submitForm}} as |F|>
           <div>
             <F.Input
               @isRequired={{true}}
@@ -154,8 +150,8 @@ module('Integration | Component | ui/form', function (hooks) {
               @step={{10}}
             />
           </div>
-        </UiForm>
-      </template>,
+        </Ui::Form>
+      `,
     );
 
     await fillIn('[data-test-field="Name"]', 'Zoey');

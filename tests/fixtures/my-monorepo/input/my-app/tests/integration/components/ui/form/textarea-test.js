@@ -1,22 +1,13 @@
 import { set } from '@ember/object';
-import {
-  fillIn,
-  render,
-  type TestContext as BaseTestContext,
-} from '@ember/test-helpers';
-import { UiFormTextarea } from 'my-addon';
+import { fillIn, render } from '@ember/test-helpers';
+import { hbs } from 'ember-cli-htmlbars';
 import { setupRenderingTest } from 'my-app/tests/helpers';
 import { module, test } from 'qunit';
-
-interface TestContext extends BaseTestContext {
-  data: Record<string, unknown>;
-  updateData: ({ key, value }: { key: string; value: unknown }) => void;
-}
 
 module('Integration | Component | ui/form/textarea', function (hooks) {
   setupRenderingTest(hooks);
 
-  hooks.beforeEach(function (this: TestContext) {
+  hooks.beforeEach(function () {
     this.data = {
       email: 'zoey@emberjs.com',
       message: 'I 🧡 container queries!',
@@ -29,18 +20,16 @@ module('Integration | Component | ui/form/textarea', function (hooks) {
     };
   });
 
-  test('it renders', async function (this: TestContext, assert) {
-    const { data, updateData } = this;
-
+  test('it renders', async function (assert) {
     await render(
-      <template>
-        <UiFormTextarea
-          @data={{data}}
+      hbs`
+        <Ui::Form::Textarea
+          @data={{this.data}}
           @key="message"
           @label="Message"
-          @onUpdate={{updateData}}
+          @onUpdate={{this.updateData}}
         />
-      </template>,
+      `,
     );
 
     assert.dom('[data-test-label]').hasText('Message');
@@ -56,37 +45,33 @@ module('Integration | Component | ui/form/textarea', function (hooks) {
     assert.dom('[data-test-error-message]').doesNotExist();
   });
 
-  test('We can pass @isDisabled to disable the text area', async function (this: TestContext, assert) {
-    const { data, updateData } = this;
-
+  test('We can pass @isDisabled to disable the text area', async function (assert) {
     await render(
-      <template>
-        <UiFormTextarea
-          @data={{data}}
+      hbs`
+        <Ui::Form::Textarea
+          @data={{this.data}}
           @isDisabled={{true}}
           @key="message"
           @label="Message"
-          @onUpdate={{updateData}}
+          @onUpdate={{this.updateData}}
         />
-      </template>,
+      `,
     );
 
     assert.dom('[data-test-field]').isDisabled();
   });
 
-  test('We can pass @isReadOnly to display the value', async function (this: TestContext, assert) {
-    const { data, updateData } = this;
-
+  test('We can pass @isReadOnly to display the value', async function (assert) {
     await render(
-      <template>
-        <UiFormTextarea
-          @data={{data}}
+      hbs`
+        <Ui::Form::Textarea
+          @data={{this.data}}
           @isReadOnly={{true}}
           @key="message"
           @label="Message"
-          @onUpdate={{updateData}}
+          @onUpdate={{this.updateData}}
         />
-      </template>,
+      `,
     );
 
     assert
@@ -95,19 +80,17 @@ module('Integration | Component | ui/form/textarea', function (hooks) {
       .hasValue('I 🧡 container queries!');
   });
 
-  test('We can pass @isRequired to require a value', async function (this: TestContext, assert) {
-    const { data, updateData } = this;
-
+  test('We can pass @isRequired to require a value', async function (assert) {
     await render(
-      <template>
-        <UiFormTextarea
-          @data={{data}}
+      hbs`
+        <Ui::Form::Textarea
+          @data={{this.data}}
           @isRequired={{true}}
           @key="message"
           @label="Message"
-          @onUpdate={{updateData}}
+          @onUpdate={{this.updateData}}
         />
-      </template>,
+      `,
     );
 
     assert.dom('[data-test-label]').hasText('Message *');
@@ -115,12 +98,10 @@ module('Integration | Component | ui/form/textarea', function (hooks) {
     assert.dom('[data-test-field]').isRequired();
   });
 
-  test('We can pass @onUpdate to get the updated value', async function (this: TestContext, assert) {
-    const { data } = this;
-
+  test('We can pass @onUpdate to get the updated value', async function (assert) {
     let expectedValue = '';
 
-    const updateData = ({ key, value }: { key: string; value: unknown }) => {
+    this.updateData = ({ key, value }) => {
       assert.step('onUpdate');
 
       assert.strictEqual(value, expectedValue);
@@ -129,15 +110,15 @@ module('Integration | Component | ui/form/textarea', function (hooks) {
     };
 
     await render(
-      <template>
-        <UiFormTextarea
-          @data={{data}}
+      hbs`
+        <Ui::Form::Textarea
+          @data={{this.data}}
           @isRequired={{true}}
           @key="message"
           @label="Message"
-          @onUpdate={{updateData}}
+          @onUpdate={{this.updateData}}
         />
-      </template>,
+      `,
     );
 
     // Update the value

@@ -1,5 +1,5 @@
 import { render } from '@ember/test-helpers';
-import { autofocus } from 'my-addon';
+import { hbs } from 'ember-cli-htmlbars';
 import { setupRenderingTest } from 'my-app/tests/helpers';
 import { module, test } from 'qunit';
 
@@ -8,7 +8,7 @@ module('Integration | Modifier | autofocus', function (hooks) {
 
   test('it focuses the first editable input', async function (assert) {
     await render(
-      <template>
+      hbs`
         <form data-test-form {{autofocus}}>
           <label>
             Field 1
@@ -25,7 +25,7 @@ module('Integration | Modifier | autofocus', function (hooks) {
             <input data-test-field="3" />
           </label>
         </form>
-      </template>,
+      `,
     );
 
     assert
