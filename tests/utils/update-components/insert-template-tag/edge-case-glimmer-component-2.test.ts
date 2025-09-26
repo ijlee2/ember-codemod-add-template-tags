@@ -30,5 +30,4 @@ test('utils | update-components | insert-template-tag > edge case (Glimmer compo
       ``,
     ].join('\n'),
   );
-  // TODO: Fix bug
-}).ignore();
+});
