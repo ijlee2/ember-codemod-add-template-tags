@@ -246,7 +246,7 @@ test('utils | find-entities | analyze-internal-dependencies > base case', functi
               [
                 'component-from-v2-addon',
                 {
-                  filePath: 'src/components/component-from-v2-addon.hbs',
+                  filePath: 'src/components/component-from-v2-addon.ts',
                   filePathAlias: 'components/component-from-v2-addon',
                   isDefaultExport: true,
                   isTypeScript: true,
@@ -256,7 +256,7 @@ test('utils | find-entities | analyze-internal-dependencies > base case', functi
               [
                 'select-locale',
                 {
-                  filePath: 'src/components/select-locale.hbs',
+                  filePath: 'src/components/select-locale.ts',
                   filePathAlias: 'components/select-locale',
                   isDefaultExport: true,
                   isTypeScript: true,
@@ -312,7 +312,7 @@ test('utils | find-entities | analyze-internal-dependencies > base case', functi
               [
                 'lazy-hello',
                 {
-                  filePath: 'app/components/lazy-hello.hbs',
+                  filePath: 'app/components/lazy-hello.ts',
                   filePathAlias: 'components/lazy-hello',
                   isDefaultExport: true,
                   isTypeScript: true,

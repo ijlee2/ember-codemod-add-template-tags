@@ -67,13 +67,19 @@ export function analyzeEmberPackage({
           entityName = entityName.replace(/\/index$/, '');
         }
 
-        // A component may consist of 2 files
+        // If a component consists of 2 files (*.hbs and *.{js,ts}),
+        // then use the data extracted from *.{js,ts} for imports.
         if (entities[entityType].has(entityName)) {
           const entityData = entities[entityType].get(entityName)!;
 
+          const newData = {
+            filePath: ext === '.hbs' ? entityData.filePath : filePath,
+            isTypeScript: entityData.isTypeScript || isTypeScript,
+          };
+
           entities[entityType].set(entityName, {
             ...entityData,
-            isTypeScript: entityData.isTypeScript || isTypeScript,
+            ...newData,
           });
 
           return;
