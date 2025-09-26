@@ -4,7 +4,7 @@ import {
   type TestContext as BaseTestContext,
   triggerKeyEvent,
 } from '@ember/test-helpers';
-import { UiFormCheckbox } from 'my-addon';
+import { hbs } from 'ember-cli-htmlbars';
 import { UiForm } from 'my-addon/test-support';
 import { setupRenderingTest } from 'my-app/tests/helpers';
 import { module, test } from 'qunit';
@@ -21,17 +21,15 @@ module('Integration | Component | ui/form/checkbox', function (hooks) {
   });
 
   test('it renders', async function (this: TestContext, assert) {
-    const { parent } = this;
-
-    await render(
-      <template>
-        <UiFormCheckbox
-          @data={{parent.data}}
+    await render<TestContext>(
+      hbs`
+        <Ui::Form::Checkbox
+          @data={{this.parent.data}}
           @key="subscribe"
           @label="Subscribe to The Ember Times?"
-          @onUpdate={{parent.updateData}}
+          @onUpdate={{this.parent.updateData}}
         />
-      </template>,
+      `,
     );
 
     assert.dom('[data-test-label]').hasText('Subscribe to The Ember Times?');
@@ -50,18 +48,16 @@ module('Integration | Component | ui/form/checkbox', function (hooks) {
   });
 
   test('We can pass @isDisabled to disable the checkbox', async function (this: TestContext, assert) {
-    const { parent } = this;
-
-    await render(
-      <template>
-        <UiFormCheckbox
-          @data={{parent.data}}
+    await render<TestContext>(
+      hbs`
+        <Ui::Form::Checkbox
+          @data={{this.parent.data}}
           @isDisabled={{true}}
           @key="subscribe"
           @label="Subscribe to The Ember Times?"
-          @onUpdate={{parent.updateData}}
+          @onUpdate={{this.parent.updateData}}
         />
-      </template>,
+      `,
     );
 
     assert
@@ -71,18 +67,16 @@ module('Integration | Component | ui/form/checkbox', function (hooks) {
   });
 
   test('We can pass @isReadOnly to display the value', async function (this: TestContext, assert) {
-    const { parent } = this;
-
-    await render(
-      <template>
-        <UiFormCheckbox
-          @data={{parent.data}}
+    await render<TestContext>(
+      hbs`
+        <Ui::Form::Checkbox
+          @data={{this.parent.data}}
           @isReadOnly={{true}}
           @key="subscribe"
           @label="Subscribe to The Ember Times?"
-          @onUpdate={{parent.updateData}}
+          @onUpdate={{this.parent.updateData}}
         />
-      </template>,
+      `,
     );
 
     assert
@@ -93,18 +87,16 @@ module('Integration | Component | ui/form/checkbox', function (hooks) {
   });
 
   test('We can pass @isRequired to require a value', async function (this: TestContext, assert) {
-    const { parent } = this;
-
-    await render(
-      <template>
-        <UiFormCheckbox
-          @data={{parent.data}}
+    await render<TestContext>(
+      hbs`
+        <Ui::Form::Checkbox
+          @data={{this.parent.data}}
           @isRequired={{true}}
           @key="subscribe"
           @label="Subscribe to The Ember Times?"
-          @onUpdate={{parent.updateData}}
+          @onUpdate={{this.parent.updateData}}
         />
-      </template>,
+      `,
     );
 
     assert.dom('[data-test-label]').hasText('Subscribe to The Ember Times? *');
@@ -113,18 +105,16 @@ module('Integration | Component | ui/form/checkbox', function (hooks) {
   });
 
   test('We can click on the checkbox to toggle the value', async function (this: TestContext, assert) {
-    const { parent } = this;
-
-    await render(
-      <template>
-        <UiFormCheckbox
-          @data={{parent.data}}
+    await render<TestContext>(
+      hbs`
+        <Ui::Form::Checkbox
+          @data={{this.parent.data}}
           @isRequired={{true}}
           @key="subscribe"
           @label="Subscribe to The Ember Times?"
-          @onUpdate={{parent.updateData}}
+          @onUpdate={{this.parent.updateData}}
         />
-      </template>,
+      `,
     );
 
     // Click the checkbox
@@ -145,18 +135,16 @@ module('Integration | Component | ui/form/checkbox', function (hooks) {
   });
 
   test('We can press the Space key to toggle the value', async function (this: TestContext, assert) {
-    const { parent } = this;
-
-    await render(
-      <template>
-        <UiFormCheckbox
-          @data={{parent.data}}
+    await render<TestContext>(
+      hbs`
+        <Ui::Form::Checkbox
+          @data={{this.parent.data}}
           @isRequired={{true}}
           @key="subscribe"
           @label="Subscribe to The Ember Times?"
-          @onUpdate={{parent.updateData}}
+          @onUpdate={{this.parent.updateData}}
         />
-      </template>,
+      `,
     );
 
     // Press the Space key
