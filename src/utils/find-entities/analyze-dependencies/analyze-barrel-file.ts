@@ -10,7 +10,11 @@ import type {
   EntityType,
   PackageType,
 } from '../../../types/index.js';
-import { ENTITY_FOLDERS, SOURCE_FOR_EXTERNAL_PACKAGES } from '../../ember.js';
+import {
+  ENTITY_FOLDERS,
+  ENTITY_TYPES,
+  SOURCE_FOR_EXTERNAL_PACKAGES,
+} from '../../ember.js';
 
 type Data = {
   isTypeScript: boolean;
@@ -56,11 +60,11 @@ function analyze(file: string, data: Data): EntitiesExported | undefined {
     },
   });
 
-  if (
-    entitiesExported.components.size === 0 &&
-    entitiesExported.helpers.size === 0 &&
-    entitiesExported.modifiers.size === 0
-  ) {
+  const isEntitiesEmpty = ENTITY_TYPES.every((entityType) => {
+    return entitiesExported[entityType].size === 0;
+  });
+
+  if (isEntitiesEmpty) {
     return;
   }
 
