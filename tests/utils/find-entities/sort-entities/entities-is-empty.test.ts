@@ -16,4 +16,12 @@ test('utils | find-entities | sort-entities > entities is empty', function () {
     helpers: new Map(),
     modifiers: new Map(),
   });
+
+  sortEntities(entities);
+
+  assert.deepEqual(entities, {
+    components: new Map(),
+    helpers: new Map(),
+    modifiers: new Map(),
+  });
 });

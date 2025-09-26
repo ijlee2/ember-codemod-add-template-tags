@@ -19,4 +19,12 @@ test('utils | find-entities | merge-entities > dependencies is empty', function 
     helpers: new Map(),
     modifiers: new Map(),
   });
+
+  mergeEntities(entities, dependencies, true);
+
+  assert.deepEqual(entities, {
+    components: new Map(),
+    helpers: new Map(),
+    modifiers: new Map(),
+  });
 });
