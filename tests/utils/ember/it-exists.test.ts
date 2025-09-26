@@ -5,9 +5,9 @@ import {
   ENTITY_TYPES,
   SOURCE_FOR_EXTERNAL_PACKAGES,
   SOURCE_FOR_INTERNAL_PACKAGES,
-} from '../../src/utils/ember.js';
+} from '../../../src/utils/ember.js';
 
-test('utils | ember', function () {
+test('utils | ember > it exists', function () {
   assert.deepStrictEqual(ENTITY_FOLDERS, {
     components: 'components',
     helpers: 'helpers',
