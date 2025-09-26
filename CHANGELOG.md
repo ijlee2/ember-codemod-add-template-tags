@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.10.1
+
+### Patch Changes
+
+- [#46](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/46) Removed `\*.{gjs,gts}` from input fixtures ([@ijlee2](https://github.com/ijlee2))
+- [#45](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/45) Handled Glimmer components without a name ([@ijlee2](https://github.com/ijlee2))
+- [#44](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/44) Added unit tests (Part 6) ([@ijlee2](https://github.com/ijlee2))
+- [#43](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/43) Added unit tests (Part 5) ([@ijlee2](https://github.com/ijlee2))
+
 ## 0.10.0
 
 ### Minor Changes
