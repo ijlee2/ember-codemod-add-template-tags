@@ -13,9 +13,7 @@ test('utils | update-template | remove-import > importKind must match (named)', 
     isTypeScript: true,
   });
 
-  // TODO: Fix bug
-  // assert.strictEqual(newFile, '');
-  assert.strictEqual(newFile, `import type { hbs } from 'ember-cli-htmlbars';`);
+  assert.strictEqual(newFile, '');
 
   oldFile = `import { type hbs } from 'ember-cli-htmlbars';`;
 
@@ -27,9 +25,7 @@ test('utils | update-template | remove-import > importKind must match (named)', 
     isTypeScript: true,
   });
 
-  // TODO: Fix bug
-  // assert.strictEqual(newFile, '');
-  assert.strictEqual(newFile, `import { type hbs } from 'ember-cli-htmlbars';`);
+  assert.strictEqual(newFile, '');
 
   oldFile = `import type { hbs } from 'ember-cli-htmlbars';`;
 
