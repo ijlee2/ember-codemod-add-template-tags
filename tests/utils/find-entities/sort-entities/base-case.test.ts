@@ -314,4 +314,47 @@ test('utils | find-entities | sort-entities > base case', function () {
     'container-query',
     'on',
   ]);
+
+  sortEntities(entities);
+
+  assert.deepEqual(Object.keys(entities), [
+    'components',
+    'helpers',
+    'modifiers',
+  ]);
+
+  assert.deepEqual(Array.from(entities.components.keys()), [
+    'container-query',
+    'input',
+    'link-to',
+    'textarea',
+  ]);
+
+  assert.deepEqual(Array.from(entities.helpers.keys()), [
+    'array',
+    'aspect-ratio',
+    'concat',
+    'ensure-safe-component',
+    'fn',
+    'format-date',
+    'format-date-range',
+    'format-list',
+    'format-message',
+    'format-number',
+    'format-relative',
+    'format-relative-time',
+    'format-time',
+    'get',
+    'hash',
+    'height',
+    'htmlSafe',
+    't',
+    'unique-id',
+    'width',
+  ]);
+
+  assert.deepEqual(Array.from(entities.modifiers.keys()), [
+    'container-query',
+    'on',
+  ]);
 });
