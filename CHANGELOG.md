@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.10.0
+
+### Minor Changes
+
+- [#42](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/42) Ensured that imports are removed when there is a match ([@ijlee2](https://github.com/ijlee2))
+- [#39](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/39) Ensured that entityData.filePath doesn't refer to `*.hbs` for components ([@ijlee2](https://github.com/ijlee2))
+
+### Patch Changes
+
+- [#41](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/41) Added unit tests (Part 4) ([@ijlee2](https://github.com/ijlee2))
+- [#40](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/40) Added unit tests (Part 3) ([@ijlee2](https://github.com/ijlee2))
+- [#38](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/38) Added unit tests (Part 2) ([@ijlee2](https://github.com/ijlee2))
+
 ## 0.9.2
 
 ### Patch Changes
