@@ -90,11 +90,7 @@ export function removeImport(file: string, data: Data) {
 
   const ast = traverse(file, {
     visitImportDeclaration(node) {
-      if (
-        data.isTypeScript &&
-        data.importKind === 'value' &&
-        node.value.importKind === 'type'
-      ) {
+      if (data.importKind === 'value' && node.value.importKind === 'type') {
         return false;
       }
 
@@ -119,9 +115,8 @@ export function removeImport(file: string, data: Data) {
           let importKind = specifier.importKind;
 
           if (
-            data.isTypeScript &&
-            (node.value.importKind === 'type' ||
-              specifier.importKind === 'type')
+            node.value.importKind === 'type' ||
+            specifier.importKind === 'type'
           ) {
             importKind = 'type';
           }
