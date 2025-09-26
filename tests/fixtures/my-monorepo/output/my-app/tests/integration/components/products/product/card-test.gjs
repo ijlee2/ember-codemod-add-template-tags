@@ -1,23 +1,16 @@
-import {
-  render,
-  type TestContext as BaseTestContext,
-} from '@ember/test-helpers';
+import ProductsProductCard from 'my-app/components/products/product/card';
+
+import { render } from '@ember/test-helpers';
 import { a11yAudit } from 'ember-a11y-testing/test-support';
 import { setupIntl } from 'ember-intl/test-support';
-import ProductsProductCard from 'my-app/components/products/product/card';
 import { setupRenderingTest } from 'my-app/tests/helpers';
-import type { Product } from 'my-app/utils/routes/products';
 import { module, test } from 'qunit';
-
-interface TestContext extends BaseTestContext {
-  product: Product;
-}
 
 module('Integration | Component | products/product/card', function (hooks) {
   setupRenderingTest(hooks);
   setupIntl(hooks, 'en-us');
 
-  hooks.beforeEach(function (this: TestContext) {
+  hooks.beforeEach(function () {
     this.product = {
       categoryId: 'cake',
       description: 'Made with organic herbs',
@@ -31,17 +24,13 @@ module('Integration | Component | products/product/card', function (hooks) {
     };
   });
 
-  test('it renders', async function (this: TestContext, assert) {
-    const { product } = this;
-
-    await render(
-      <template>
-        <ProductsProductCard
-          @product={{product}}
-          @redirectTo="products.product"
-        />
-      </template>,
-    );
+  test('it renders', async function (assert) {
+    await render(<template>
+    <ProductsProductCard
+      @product={{this.product}}
+      @redirectTo="products.product"
+    />
+    </template>);
 
     assert.dom('[data-test-field="Name"]').hasText('Vanilla Ice Cream Cake');
 

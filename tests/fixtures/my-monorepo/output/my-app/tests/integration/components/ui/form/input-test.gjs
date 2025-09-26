@@ -1,22 +1,13 @@
 import { set } from '@ember/object';
-import {
-  fillIn,
-  render,
-  type TestContext as BaseTestContext,
-} from '@ember/test-helpers';
+import { fillIn, render } from '@ember/test-helpers';
 import { UiFormInput } from 'my-addon';
 import { setupRenderingTest } from 'my-app/tests/helpers';
 import { module, test } from 'qunit';
 
-interface TestContext extends BaseTestContext {
-  data: Record<string, any>;
-  updateData: ({ key, value }: { key: string; value: unknown }) => void;
-}
-
 module('Integration | Component | ui/form/input', function (hooks) {
   setupRenderingTest(hooks);
 
-  hooks.beforeEach(function (this: TestContext) {
+  hooks.beforeEach(function () {
     this.data = {
       email: 'zoey@emberjs.com',
       message: 'I 🧡 container queries!',
@@ -29,7 +20,7 @@ module('Integration | Component | ui/form/input', function (hooks) {
     };
   });
 
-  test('it renders', async function (this: TestContext, assert) {
+  test('it renders', async function (assert) {
     const { data, updateData } = this;
 
     await render(
@@ -57,7 +48,7 @@ module('Integration | Component | ui/form/input', function (hooks) {
     assert.dom('[data-test-error-message]').doesNotExist();
   });
 
-  test('We can pass @isDisabled to disable the input', async function (this: TestContext, assert) {
+  test('We can pass @isDisabled to disable the input', async function (assert) {
     const { data, updateData } = this;
 
     await render(
@@ -75,7 +66,7 @@ module('Integration | Component | ui/form/input', function (hooks) {
     assert.dom('[data-test-field]').isDisabled();
   });
 
-  test('We can pass @isReadOnly to display the value', async function (this: TestContext, assert) {
+  test('We can pass @isReadOnly to display the value', async function (assert) {
     const { data, updateData } = this;
 
     await render(
@@ -96,7 +87,7 @@ module('Integration | Component | ui/form/input', function (hooks) {
       .hasValue('Zoey');
   });
 
-  test('We can pass @isRequired to require a value', async function (this: TestContext, assert) {
+  test('We can pass @isRequired to require a value', async function (assert) {
     const { data, updateData } = this;
 
     await render(
@@ -116,7 +107,7 @@ module('Integration | Component | ui/form/input', function (hooks) {
     assert.dom('[data-test-field]').isRequired();
   });
 
-  test('We can pass @onUpdate to get the updated value', async function (this: TestContext, assert) {
+  test('We can pass @onUpdate to get the updated value', async function (assert) {
     const { data } = this;
 
     let expectedValue = '';
@@ -160,7 +151,7 @@ module('Integration | Component | ui/form/input', function (hooks) {
     assert.verifySteps(['onUpdate', 'onUpdate']);
   });
 
-  test('We can pass @type to create an email input', async function (this: TestContext, assert) {
+  test('We can pass @type to create an email input', async function (assert) {
     const { data, updateData } = this;
 
     await render(
