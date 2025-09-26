@@ -44,21 +44,10 @@ test('utils | update-template | remove-import > import is found (named, multiple
     isTypeScript: true,
   });
 
-  // TODO: Fix bug
-  // assert.strictEqual(
-  //   newFile,
-  //   [
-  //     `import { click, fillIn, render } from '@ember/test-helpers';`,
-  //     `import { hbs } from 'ember-cli-htmlbars';`,
-  //     `import { setupIntl } from 'ember-intl/test-support';`,
-  //     `import { setupRenderingTest } from 'my-app/tests/helpers';`,
-  //     `import { module, test } from 'qunit';`,
-  //   ].join('\n'),
-  // );
   assert.strictEqual(
     newFile,
     [
-      `import { click, fillIn, render, type TestContext as BaseTestContext } from '@ember/test-helpers';`,
+      `import { click, fillIn, render } from '@ember/test-helpers';`,
       `import { hbs } from 'ember-cli-htmlbars';`,
       `import { setupIntl } from 'ember-intl/test-support';`,
       `import { setupRenderingTest } from 'my-app/tests/helpers';`,

@@ -90,7 +90,11 @@ export function removeImport(file: string, data: Data) {
 
   const ast = traverse(file, {
     visitImportDeclaration(node) {
-      if (data.isTypeScript && node.value.importKind !== data.importKind) {
+      if (
+        data.isTypeScript &&
+        data.importKind === 'value' &&
+        node.value.importKind === 'type'
+      ) {
         return false;
       }
 
@@ -112,7 +116,22 @@ export function removeImport(file: string, data: Data) {
             return keepDefaultImport(specifier as SpecifierDefault);
           }
 
-          return keepNamedImport(specifier as SpecifierNamed, data);
+          let importKind = specifier.importKind;
+
+          if (
+            data.isTypeScript &&
+            (node.value.importKind === 'type' ||
+              specifier.importKind === 'type')
+          ) {
+            importKind = 'type';
+          }
+
+          const specifierModified: SpecifierNamed = {
+            ...(specifier as SpecifierNamed),
+            importKind,
+          };
+
+          return keepNamedImport(specifierModified, data);
         },
       );
 
