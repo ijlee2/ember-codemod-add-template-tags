@@ -12,7 +12,7 @@ test('index > my-monorepo', function () {
   assertFixture(outputProject, codemodOptions);
 
   // TODO: Check idempotence
-  // runCodemod(codemodOptions);
+  runCodemod(codemodOptions);
 
-  // assertFixture(outputProject, codemodOptions);
+  assertFixture(outputProject, codemodOptions);
 });

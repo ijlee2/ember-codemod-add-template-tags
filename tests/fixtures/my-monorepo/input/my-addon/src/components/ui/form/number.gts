@@ -5,7 +5,7 @@ import { or } from 'ember-truth-helpers';
 import { local } from 'embroider-css-modules';
 
 import { generateErrorMessage } from '../../../utils/components/ui/form.ts';
-import UiFormField from './field.gts';
+import UiFormField from './field.ts';
 import styles from './number.css';
 
 interface UiFormNumberSignature {

@@ -1,14 +1,12 @@
 import { action } from '@ember/object';
 import Component from '@glimmer/component';
-import type { WithBoundArgs } from '@glint/template';
+import type { ComponentLike, WithBoundArgs } from '@glint/template';
 import { TrackedObject } from 'tracked-built-ins';
 
 import styles from './form.css';
-import type UiFormCheckbox from './form/checkbox.gts';
-import type UiFormInput from './form/input.gts';
-import type UiFormNumber from './form/number.gts';
-import type UiFormSelect from './form/select.gts';
-import type UiFormTextarea from './form/textarea.gts';
+import type UiFormCheckbox from './form/checkbox.ts';
+import type UiFormInput from './form/input.ts';
+import type UiFormSelect from './form/select.ts';
 
 interface UiFormSignature {
   Args: {
@@ -28,18 +26,14 @@ interface UiFormSignature {
           typeof UiFormInput,
           'data' | 'isWide' | 'onUpdate'
         >;
-        Number: WithBoundArgs<
-          typeof UiFormNumber,
-          'data' | 'isWide' | 'onUpdate'
-        >;
+        // @ts-expect-error: Incorrect type
+        Number: ComponentLike;
         Select: WithBoundArgs<
           typeof UiFormSelect,
           'data' | 'isWide' | 'onUpdate'
         >;
-        Textarea: WithBoundArgs<
-          typeof UiFormTextarea,
-          'data' | 'isWide' | 'onUpdate'
-        >;
+        // @ts-expect-error: Incorrect type
+        Textarea: ComponentLike;
       },
     ];
   };
