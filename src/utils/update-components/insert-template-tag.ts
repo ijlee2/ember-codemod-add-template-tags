@@ -14,7 +14,7 @@ function insertToGlimmerComponent(file: string, data: Data): string {
 
   const ast = traverse(file, {
     visitClassDeclaration(node) {
-      const className = node.value.id.name as string;
+      const className = node.value.id?.name as string | undefined;
 
       if (className !== data.componentName) {
         return false;

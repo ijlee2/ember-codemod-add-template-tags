@@ -33,7 +33,7 @@ export function analyzeComponent(file: string): Component {
         }
 
         case 'ClassDeclaration': {
-          componentName = node.value.declaration?.id.name as string | undefined;
+          componentName = node.value.declaration.id?.name as string | undefined;
           break;
         }
 
