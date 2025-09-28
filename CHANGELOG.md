@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.11.0
+
+### Minor Changes
+
+- [#48](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/48) Allowed limiting search by passing --folder ([@ijlee2](https://github.com/ijlee2))
+
+### Patch Changes
+
+- [#47](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/47) Updated moveClassFiles() to use filesWithHBS ([@ijlee2](https://github.com/ijlee2))
+- [#47](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/47) Fixed typos in ignoreList ([@ijlee2](https://github.com/ijlee2))
+
 ## 0.10.1
 
 ### Patch Changes
