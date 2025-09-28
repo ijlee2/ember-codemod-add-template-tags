@@ -45,28 +45,47 @@ You can check [Troubleshoot](TROUBLESHOOT.md) if you encounter an issue.
 
 <details>
 
-<summary>Optional: Specify the component structure</summary>
+<summary>Optional: Limit types of files to consider</summary>
 
-By default, an Octane project has the flat component structure. Pass `--component-structure` to indicate otherwise.
+By default, the codemod considers components, routes, and tests. Pass `--convert` to consider a subset of these.
 
 ```sh
-pnpx ember-codemod-add-template-tags --component-structure nested
+# Components and tests only
+pnpx ember-codemod-add-template-tags --convert components tests
+
+# Routes only
+pnpx ember-codemod-add-template-tags --convert routes
 ```
 
 </details>
 
 <details>
 
-<summary>Optional: Incrementally migrate</summary>
+<summary>Optional: Limit folders to consider</summary>
 
-By default, the codemod updates components, routes, and tests. Pass `--convert` to update a subset of these.
+By default, the codemod considers all files and folders for components, routes, and tests. Pass `--folder` to limit the consideration to 1 folder. (You may use glob patterns to specify multiple folders.)
 
 ```sh
-# 1. Components and tests only
-pnpx ember-codemod-add-template-tags --convert components tests
+# `ui` folder only
+pnpx ember-codemod-add-template-tags --folder ui
 
-# 2. Routes only (e.g. after installing `ember-route-template` or updating `ember-source` to 6.3 or higher)
-pnpx ember-codemod-add-template-tags --convert routes
+# `ui/form` folder only
+pnpx ember-codemod-add-template-tags --folder ui/form
+
+# `route1` and `route2` folders only
+pnpx ember-codemod-add-template-tags --convert routes --folder "{route1,route2}"
+```
+
+</details>
+
+<details>
+
+<summary>Optional: Specify the component structure</summary>
+
+By default, an Octane project has the flat component structure. Pass `--component-structure` to indicate otherwise.
+
+```sh
+pnpx ember-codemod-add-template-tags --component-structure nested
 ```
 
 </details>
