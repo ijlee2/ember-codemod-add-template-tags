@@ -3,6 +3,7 @@ import type { CodemodOptions, Options } from '../../../src/types/index.js';
 const codemodOptions: CodemodOptions = {
   componentStructure: 'nested',
   convert: new Set(['components', 'routes', 'tests']),
+  folder: '',
   projectRoot: 'tmp/my-v1-app-nested',
 };
 
@@ -13,6 +14,7 @@ const options: Options = {
     routes: true,
     tests: true,
   },
+  folder: '',
   projectRoot: 'tmp/my-v1-app-nested',
 };
 

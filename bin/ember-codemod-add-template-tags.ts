@@ -19,8 +19,12 @@ const argv = yargs(hideBin(process.argv))
   })
   .option('convert', {
     choices: ['components', 'routes', 'tests'] as const,
-    describe: 'Which files to convert',
+    describe: 'Which type of files to consider',
     type: 'array',
+  })
+  .option('folder', {
+    describe: 'Which folder to consider',
+    type: 'string',
   })
   .option('root', {
     describe: 'Where to run the codemod',
@@ -33,6 +37,7 @@ const DEFAULT_FOR_CONVERT = ['components', 'routes', 'tests'] as const;
 const codemodOptions: CodemodOptions = {
   componentStructure: argv['component-structure'] ?? 'flat',
   convert: new Set(argv['convert'] ?? DEFAULT_FOR_CONVERT),
+  folder: argv['folder'] ?? '',
   projectRoot: argv['root'] ?? process.cwd(),
 };
 
