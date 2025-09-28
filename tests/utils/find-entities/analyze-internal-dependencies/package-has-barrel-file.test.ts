@@ -1,7 +1,7 @@
 import { assert, loadFixture, test } from '@codemod-utils/tests';
 
-import type { CodemodOptions, Options } from '../../../../src/types/index.js';
 import { analyzeInternalDependencies } from '../../../../src/utils/find-entities/index.js';
+import { codemodOptions, options } from '../../../helpers/mocks/index.js';
 
 test('utils | find-entities | analyze-internal-dependencies > package has barrel file', function () {
   const inputProject = {
@@ -128,22 +128,6 @@ test('utils | find-entities | analyze-internal-dependencies > package has barrel
         }),
       },
     },
-  };
-
-  const codemodOptions: CodemodOptions = {
-    componentStructure: 'flat',
-    convert: new Set(['components', 'routes', 'tests']),
-    projectRoot: 'tmp/my-monorepo',
-  };
-
-  const options: Options = {
-    componentStructure: 'flat',
-    convert: {
-      components: true,
-      routes: true,
-      tests: true,
-    },
-    projectRoot: 'tmp/my-monorepo',
   };
 
   loadFixture(inputProject, codemodOptions);
