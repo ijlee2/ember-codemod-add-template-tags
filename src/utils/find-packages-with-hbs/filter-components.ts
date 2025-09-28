@@ -20,7 +20,7 @@ export function filterComponents(
   const source = SOURCE_FOR_INTERNAL_PACKAGES[packageType];
 
   const classFilePaths = findFiles(`${source}/components/**/*.{js,ts}`, {
-    ignoreList: ['**/*.d.js'],
+    ignoreList: ['**/*.d.ts'],
     projectRoot: packageRoot,
   });
 
