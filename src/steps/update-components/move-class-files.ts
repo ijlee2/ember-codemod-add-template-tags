@@ -9,7 +9,7 @@ import { insertTemplateTag } from '../../utils/update-components/index.js';
 
 export function moveClassFiles(packages: Packages): void {
   for (const [, packageData] of packages) {
-    const { packageRoot, packageType } = packageData;
+    const { filesWithHBS, packageRoot, packageType } = packageData;
 
     const source = SOURCE_FOR_INTERNAL_PACKAGES[packageType];
 
@@ -18,9 +18,25 @@ export function moveClassFiles(packages: Packages): void {
       projectRoot: packageRoot,
     });
 
+    const classFilePathSet = new Set(classFilePaths);
     const classFilePathsToRemove: string[] = [];
 
-    classFilePaths.forEach((classFilePath) => {
+    filesWithHBS.components.forEach((templateFilePath) => {
+      const classFilePathJs = templateFilePath.replace(/\.hbs$/, '.js');
+      const classFilePathTs = templateFilePath.replace(/\.hbs$/, '.ts');
+
+      let classFilePath: string | undefined;
+
+      if (classFilePathSet.has(classFilePathJs)) {
+        classFilePath = classFilePathJs;
+      } else if (classFilePathSet.has(classFilePathTs)) {
+        classFilePath = classFilePathTs;
+      }
+
+      if (!classFilePath) {
+        return;
+      }
+
       const classFile = readFileSync(join(packageRoot, classFilePath), 'utf8');
       const isTypeScript = classFilePath.endsWith('.ts');
 
