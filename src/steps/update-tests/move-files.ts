@@ -6,7 +6,7 @@ import { removeFiles } from '@codemod-utils/files';
 import type { Packages } from '../../types/index.js';
 import { insertTemplateTag } from '../../utils/update-tests/index.js';
 
-export function moveTestFiles(packages: Packages): void {
+export function moveFiles(packages: Packages): void {
   for (const [, packageData] of packages) {
     const {
       filesWithHBS,
@@ -15,22 +15,22 @@ export function moveTestFiles(packages: Packages): void {
       packageRoot,
     } = packageData;
 
-    filesWithHBS.tests.forEach((filePath) => {
-      const oldFile = readFileSync(join(packageRoot, filePath), 'utf8');
-      const isTypeScript = filePath.endsWith('.ts');
+    filesWithHBS.tests.forEach((testFilePath) => {
+      let testFile = readFileSync(join(packageRoot, testFilePath), 'utf8');
+      const isTypeScript = testFilePath.endsWith('.ts');
 
-      const testFile = insertTemplateTag(oldFile, {
+      testFile = insertTemplateTag(testFile, {
         isTypeScript,
         useLexicalThis: isEmberSourceRecent,
       });
 
-      const newFilePath = isTypeScript
-        ? filePath.replace(/\.ts$/, '.gts')
-        : filePath.replace(/\.js$/, '.gjs');
+      testFilePath = isTypeScript
+        ? testFilePath.replace(/\.ts$/, '.gts')
+        : testFilePath.replace(/\.js$/, '.gjs');
 
-      writeFileSync(join(packageRoot, newFilePath), testFile, 'utf8');
+      writeFileSync(join(packageRoot, testFilePath), testFile, 'utf8');
 
-      filesWithTemplateTag.tests.push(newFilePath);
+      filesWithTemplateTag.tests.push(testFilePath);
     });
 
     removeFiles(filesWithHBS.tests, {
