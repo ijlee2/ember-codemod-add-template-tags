@@ -7,7 +7,7 @@ import type { Packages } from '../../types/index.js';
 import { SOURCE_FOR_INTERNAL_PACKAGES } from '../../utils/ember.js';
 import { insertTemplateTag } from '../../utils/update-components/index.js';
 
-export function moveClassFiles(packages: Packages): void {
+export function moveFiles(packages: Packages): void {
   for (const [, packageData] of packages) {
     const { filesWithHBS, packageRoot, packageType } = packageData;
 
