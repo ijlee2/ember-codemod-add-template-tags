@@ -5,7 +5,7 @@ import { removeFiles } from '@codemod-utils/files';
 
 import type { Packages } from '../../types/index.js';
 
-export function moveTemplateFiles(packages: Packages): void {
+export function moveFiles(packages: Packages): void {
   for (const [packageName, packageData] of packages) {
     const {
       filesWithHBS,
