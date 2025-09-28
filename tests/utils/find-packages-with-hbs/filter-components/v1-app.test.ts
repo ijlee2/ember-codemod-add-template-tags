@@ -32,6 +32,7 @@ test('utils | find-packages-with-hbs | filter-components > v1-app', function () 
   const codemodOptions: CodemodOptions = {
     componentStructure: 'flat',
     convert: new Set(['components', 'routes', 'tests']),
+    folder: '',
     projectRoot: 'tmp/my-v1-app',
   };
 
