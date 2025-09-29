@@ -1,10 +1,23 @@
 # Troubleshoot
 
-## Lint
+<details>
 
-### Running `prettier` resulted in a `Scope.checkBlockScopedCollisions` error
+<summary>Codemod didn't convert all files</summary>
 
-`prettier` throws the error,
+For simplicity, the codemod doesn't cover these cases:
+
+- Classic components (`@ember/component`)
+- Components that extend another component (class inheritance)
+- Rendering tests that don't use the `hbs` tag inside `render()`
+- `dummy` app in v1 addons
+
+</details>
+
+<details>
+
+<summary>Running <code>prettier</code> resulted in <code>Scope.checkBlockScopedCollisions</code></summary>
+
+`prettier` throws the error
 
 ```sh
 TypeError: Cannot read properties of undefined (reading 'buildError')
@@ -40,9 +53,29 @@ To fix the error, rename or remove one of the imported objects.
 
 </details>
 
-## Test
+<details>
 
-### Assertions for a rendering test failed
+<summary>Running the app resulted in <code>template is not a function</code></summary>
+
+Ember throws the error
+
+```sh
+Error while processing route: <route-name> template is not a function
+```
+
+when the conditions for using `<template>` in routes aren't met. Namely, the version of your `ember-source` is below `6.3.0`.
+
+You have 3 options:
+
+1. Update `ember-source` to `6.3.0` or higher.
+1. Install [`ember-route-template`](https://github.com/discourse/ember-route-template) (supports `3.28` and above).
+1. Use `--convert` to convert components and tests only.
+
+</details>
+
+<details>
+
+<summary>Test assertions failed</summary>
 
 If a project depends on `ember-source@<6.4.0`, the codemod renames `this` to `self` to work around a bug that prevents us from using `this` inside a `<template>` tag.
 
@@ -84,3 +117,5 @@ module('Integration | Component | hello', function (hooks) {
   });
 });
 ```
+
+</details>
