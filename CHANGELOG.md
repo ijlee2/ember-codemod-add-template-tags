@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.11.1
+
+### Patch Changes
+
+- [#51](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/51) Updated TROUBLESHOOT ([@ijlee2](https://github.com/ijlee2))
+- [#50](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/50) Added integration tests (Part 1) ([@ijlee2](https://github.com/ijlee2))
+
 ## 0.11.0
 
 ### Minor Changes
