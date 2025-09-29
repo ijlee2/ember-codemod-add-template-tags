@@ -66,9 +66,18 @@ test('steps | find-packages-with-hbs > v1-addon', function () {
         'my-v1-addon',
         {
           filesWithHBS: {
-            components: ['addon/components/navigation-menu.hbs'],
-            routes: [],
-            tests: [],
+            components: [
+              'addon/components/navigation-menu.hbs',
+              'tests/dummy/app/components/select-locale.hbs',
+            ],
+            routes: [
+              'tests/dummy/app/templates/application.hbs',
+              'tests/dummy/app/templates/index.hbs',
+            ],
+            tests: [
+              'tests/dummy/tests/integration/components/navigation-menu-test.ts',
+              'tests/dummy/tests/integration/components/select-locale-test.js',
+            ],
           },
           filesWithTemplateTag: {
             components: [],
