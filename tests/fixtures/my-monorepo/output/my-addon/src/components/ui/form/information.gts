@@ -1,3 +1,16 @@
+import { concat } from '@ember/helper';
+
+import type { TOC } from '@ember/component/template-only';
+
+interface UiFormInformationSignature {
+  Args: {
+    formId: string;
+    instructions?: string;
+    title?: string;
+  };
+}
+
+const UiFormInformationComponent = <template>
 {{#if (or @title @instructions)}}
   <div class="ui-form-information-container">
     {{#if @title}}
@@ -21,3 +34,6 @@
     {{/if}}
   </div>
 {{/if}}
+</template> satisfies TOC<UiFormInformationSignature>;
+
+export default UiFormInformationComponent;

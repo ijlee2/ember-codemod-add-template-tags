@@ -1,3 +1,20 @@
+import LinkTo from '@ember/routing';
+
+import type { TOC } from '@ember/component/template-only';
+
+type MenuItem = {
+  label: string;
+  route: string;
+};
+
+interface NavigationMenuSignature {
+  Args: {
+    menuItems: MenuItem[];
+    name?: string;
+  };
+}
+
+<template>
 <nav aria-label={{@name}} data-test-nav={{@name}}>
   <ul class="navigation-menu-list">
     {{#each @menuItems as |menuItem|}}
@@ -13,3 +30,4 @@
     {{/each}}
   </ul>
 </nav>
+</template>
