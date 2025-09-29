@@ -63,7 +63,7 @@ pnpx ember-codemod-add-template-tags --convert routes
 
 <summary>Optional: Limit folders to consider</summary>
 
-By default, the codemod considers all files and folders for components, routes, and tests. Pass `--folder` to limit the consideration to 1 folder. (You may use glob patterns to specify multiple folders.)
+By default, the codemod considers all files and folders for components, routes, and tests. Pass `--folder` to limit the search to 1 folder. (You may use glob patterns to specify multiple folders.)
 
 ```sh
 # `ui` folder only
