@@ -37,32 +37,6 @@ export function findFilesWithHBS({
     },
   );
 
-  if (packageType === 'v1-addon') {
-    const testApp = findFilesWithHBS({
-      folder,
-      packageRoot: join(packageRoot, 'tests/dummy'),
-      packageType: 'v1-app',
-    });
-
-    components.push(
-      ...testApp.components.map((filePath) => {
-        return join('tests/dummy', filePath);
-      }),
-    );
-
-    routes.push(
-      ...testApp.routes.map((filePath) => {
-        return join('tests/dummy', filePath);
-      }),
-    );
-
-    tests.push(
-      ...testApp.tests.map((filePath) => {
-        return join('tests/dummy', filePath);
-      }),
-    );
-  }
-
   return {
     components: filterComponents(components, {
       packageRoot,
