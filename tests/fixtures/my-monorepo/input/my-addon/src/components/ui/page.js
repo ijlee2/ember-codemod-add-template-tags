@@ -1,4 +1,4 @@
-import { templateOnlyComponent } from '@ember/component/template-only';
+import templateOnlyComponent from '@ember/component/template-only';
 
 const UiPageComponent = templateOnlyComponent();
 

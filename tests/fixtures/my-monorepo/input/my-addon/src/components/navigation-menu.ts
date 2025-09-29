@@ -1,4 +1,4 @@
-import { templateOnlyComponent as toc } from '@ember/component/template-only';
+import toc from '@ember/component/template-only';
 
 type MenuItem = {
   label: string;

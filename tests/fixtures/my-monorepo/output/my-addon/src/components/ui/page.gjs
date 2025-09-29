@@ -1,3 +1,4 @@
+const UiPageComponent = <template>
 <div class="ui-page-container">
   <h1 class="ui-page-title">
     {{@title}}
@@ -7,3 +8,6 @@
     {{yield}}
   </div>
 </div>
+</template>;
+
+export default UiPageComponent;
