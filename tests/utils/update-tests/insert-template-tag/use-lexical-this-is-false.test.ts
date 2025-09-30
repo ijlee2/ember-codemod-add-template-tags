@@ -2,7 +2,7 @@ import { assert, test } from '@codemod-utils/tests';
 
 import { insertTemplateTag } from '../../../../src/utils/update-tests/index.js';
 
-test('utils | update-tests | insert-template-tag > TypeScript', function () {
+test('utils | update-tests | insert-template-tag > useLexicalThis is false', function () {
   const oldFile = [
     `import {`,
     `  click,`,
@@ -227,6 +227,10 @@ test('utils | update-tests | insert-template-tag > TypeScript', function () {
       ``,
       `  test('it renders', async function (this: TestContext, assert) {`,
       `    const self = this;`,
+      ``,
+      ``,
+      ``,
+      ``,
       `    await render<TestContext>(<template>`,
       `      <Ui::Form`,
       `          @data={{self.data}}`,
@@ -300,6 +304,10 @@ test('utils | update-tests | insert-template-tag > TypeScript', function () {
       ``,
       `  test('We can submit the form', async function (this: TestContext, assert) {`,
       `    const self = this;`,
+      ``,
+      ``,
+      ``,
+      ``,
       `    await render<TestContext>(<template>`,
       `      <Ui::Form @data={{self.data}} @onSubmit={{self.submitForm}} as |F|>`,
       `          <div>`,

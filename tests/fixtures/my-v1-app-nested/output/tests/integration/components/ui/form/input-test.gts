@@ -31,12 +31,17 @@ module('Integration | Component | ui/form/input', function (hooks) {
   });
 
   test('The component renders a label and an input', async function (this: TestContext, assert) {
+    const self = this;
+
+
+
+
     await render<TestContext>(<template>
     <UiFormInput
-    @changeset={{this.changeset}}
+    @changeset={{self.changeset}}
     @key="name"
     @label="Name"
-    @onUpdate={{this.updateChangeset}}
+    @onUpdate={{self.updateChangeset}}
     />
     </template>);
 
@@ -59,13 +64,18 @@ module('Integration | Component | ui/form/input', function (hooks) {
   });
 
   test('We can pass @isDisabled to disable the input', async function (this: TestContext, assert) {
+    const self = this;
+
+
+
+
     await render<TestContext>(<template>
     <UiFormInput
-    @changeset={{this.changeset}}
+    @changeset={{self.changeset}}
     @isDisabled={{true}}
     @key="name"
     @label="Name"
-    @onUpdate={{this.updateChangeset}}
+    @onUpdate={{self.updateChangeset}}
     />
     </template>);
 
@@ -73,13 +83,18 @@ module('Integration | Component | ui/form/input', function (hooks) {
   });
 
   test('We can pass @isReadOnly to display the value', async function (this: TestContext, assert) {
+    const self = this;
+
+
+
+
     await render<TestContext>(<template>
     <UiFormInput
-    @changeset={{this.changeset}}
+    @changeset={{self.changeset}}
     @isReadOnly={{true}}
     @key="name"
     @label="Name"
-    @onUpdate={{this.updateChangeset}}
+    @onUpdate={{self.updateChangeset}}
     />
     </template>);
 
@@ -90,13 +105,18 @@ module('Integration | Component | ui/form/input', function (hooks) {
   });
 
   test('We can pass @isRequired to require a value', async function (this: TestContext, assert) {
+    const self = this;
+
+
+
+
     await render<TestContext>(<template>
     <UiFormInput
-    @changeset={{this.changeset}}
+    @changeset={{self.changeset}}
     @isRequired={{true}}
     @key="name"
     @label="Name"
-    @onUpdate={{this.updateChangeset}}
+    @onUpdate={{self.updateChangeset}}
     />
     </template>);
 
@@ -122,13 +142,18 @@ module('Integration | Component | ui/form/input', function (hooks) {
       set(this.changeset, key, value);
     };
 
+    const self = this;
+
+
+
+
     await render<TestContext>(<template>
     <UiFormInput
-    @changeset={{this.changeset}}
+    @changeset={{self.changeset}}
     @isRequired={{true}}
     @key="name"
     @label="Name"
-    @onUpdate={{this.updateChangeset}}
+    @onUpdate={{self.updateChangeset}}
     />
     </template>);
 
@@ -160,12 +185,17 @@ module('Integration | Component | ui/form/input', function (hooks) {
   });
 
   test('We can pass @type to create an email input', async function (this: TestContext, assert) {
+    const self = this;
+
+
+
+
     await render<TestContext>(<template>
     <UiFormInput
-    @changeset={{this.changeset}}
+    @changeset={{self.changeset}}
     @key="email"
     @label="Email"
-    @onUpdate={{this.updateChangeset}}
+    @onUpdate={{self.updateChangeset}}
     @type="email"
     />
     </template>);

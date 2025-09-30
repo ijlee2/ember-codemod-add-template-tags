@@ -20,11 +20,16 @@ module('Integration | Component | tracks', function (hooks) {
   });
 
   test('uses container queries to render tracks', async function (this: TestContext, assert) {
+    const self = this;
+
+
+
+
     // Features: small, short
     await render<TestContext>(<template>
     {{! template-lint-disable no-inline-styles }}
     <div data-test-parent-element style="width: 240px; height: 240px;">
-    <Tracks @tracks={{this.album.tracks}} />
+    <Tracks @tracks={{self.album.tracks}} />
     </div>
     </template>);
 

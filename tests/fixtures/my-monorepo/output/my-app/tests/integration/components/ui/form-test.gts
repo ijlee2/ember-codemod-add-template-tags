@@ -35,11 +35,16 @@ module('Integration | Component | ui/form', function (hooks) {
   });
 
   test('it renders', async function (this: TestContext, assert) {
+    const self = this;
+
+
+
+
     await render<TestContext>(<template>
     <UiForm
-      @data={{this.data}}
+      @data={{self.data}}
       @instructions="Still have questions about ember-container-query? Try sending me a message."
-      @onSubmit={{this.submitForm}}
+      @onSubmit={{self.submitForm}}
       @title="Contact me"
       as |F|
     >
@@ -107,8 +112,13 @@ module('Integration | Component | ui/form', function (hooks) {
   });
 
   test('We can submit the form', async function (this: TestContext, assert) {
+    const self = this;
+
+
+
+
     await render<TestContext>(<template>
-    <UiForm @data={{this.data}} @onSubmit={{this.submitForm}} as |F|>
+    <UiForm @data={{self.data}} @onSubmit={{self.submitForm}} as |F|>
       <div>
         <F.Input
           @isRequired={{true}}

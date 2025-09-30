@@ -25,6 +25,11 @@ module('Integration | Component | ui/form', function (hooks) {
       assert.step('Submit form');
     };
 
+    const self = this;
+
+
+
+
     await render<TestContext>(<template>
     <UiForm
     @data={{hash
@@ -35,7 +40,7 @@ module('Integration | Component | ui/form', function (hooks) {
       subscribe=true
     }}
     @instructions="Still have questions about ember-container-query? Try sending me a message."
-    @onSubmit={{this.submitForm}}
+    @onSubmit={{self.submitForm}}
     @title="Contact me"
     as |F|
     >
@@ -125,6 +130,11 @@ module('Integration | Component | ui/form', function (hooks) {
       assert.step('Submit form');
     };
 
+    const self = this;
+
+
+
+
     await render<TestContext>(<template>
     <UiForm
     @data={{hash
@@ -134,7 +144,7 @@ module('Integration | Component | ui/form', function (hooks) {
       name=undefined
       subscribe=true
     }}
-    @onSubmit={{this.submitForm}}
+    @onSubmit={{self.submitForm}}
     as |F|
     >
     <div>

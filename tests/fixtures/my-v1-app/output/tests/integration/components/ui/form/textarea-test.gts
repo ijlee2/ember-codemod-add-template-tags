@@ -31,12 +31,17 @@ module('Integration | Component | ui/form/textarea', function (hooks) {
   });
 
   test('The component renders a label and a textarea', async function (this: TestContext, assert) {
+    const self = this;
+
+
+
+
     await render<TestContext>(<template>
     <UiFormTextarea
-    @changeset={{this.changeset}}
+    @changeset={{self.changeset}}
     @key="message"
     @label="Message"
-    @onUpdate={{this.updateChangeset}}
+    @onUpdate={{self.updateChangeset}}
     />
     </template>);
 
@@ -58,13 +63,18 @@ module('Integration | Component | ui/form/textarea', function (hooks) {
   });
 
   test('We can pass @isDisabled to disable the text area', async function (this: TestContext, assert) {
+    const self = this;
+
+
+
+
     await render<TestContext>(<template>
     <UiFormTextarea
-    @changeset={{this.changeset}}
+    @changeset={{self.changeset}}
     @isDisabled={{true}}
     @key="message"
     @label="Message"
-    @onUpdate={{this.updateChangeset}}
+    @onUpdate={{self.updateChangeset}}
     />
     </template>);
 
@@ -74,13 +84,18 @@ module('Integration | Component | ui/form/textarea', function (hooks) {
   });
 
   test('We can pass @isReadOnly to display the value', async function (this: TestContext, assert) {
+    const self = this;
+
+
+
+
     await render<TestContext>(<template>
     <UiFormTextarea
-    @changeset={{this.changeset}}
+    @changeset={{self.changeset}}
     @isReadOnly={{true}}
     @key="message"
     @label="Message"
-    @onUpdate={{this.updateChangeset}}
+    @onUpdate={{self.updateChangeset}}
     />
     </template>);
 
@@ -91,13 +106,18 @@ module('Integration | Component | ui/form/textarea', function (hooks) {
   });
 
   test('We can pass @isRequired to require a value', async function (this: TestContext, assert) {
+    const self = this;
+
+
+
+
     await render<TestContext>(<template>
     <UiFormTextarea
-    @changeset={{this.changeset}}
+    @changeset={{self.changeset}}
     @isRequired={{true}}
     @key="message"
     @label="Message"
-    @onUpdate={{this.updateChangeset}}
+    @onUpdate={{self.updateChangeset}}
     />
     </template>);
 
@@ -125,13 +145,18 @@ module('Integration | Component | ui/form/textarea', function (hooks) {
       set(this.changeset, key, value);
     };
 
+    const self = this;
+
+
+
+
     await render<TestContext>(<template>
     <UiFormTextarea
-    @changeset={{this.changeset}}
+    @changeset={{self.changeset}}
     @isRequired={{true}}
     @key="message"
     @label="Message"
-    @onUpdate={{this.updateChangeset}}
+    @onUpdate={{self.updateChangeset}}
     />
     </template>);
 

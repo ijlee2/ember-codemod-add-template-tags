@@ -35,8 +35,13 @@ module('Integration | Component | products/product/details', function (hooks) {
   });
 
   test('it renders', async function (this: TestContext, assert) {
+    const self = this;
+
+
+
+
     await render<TestContext>(<template>
-    <ProductsProductDetails @product={{this.product}} />
+    <ProductsProductDetails @product={{self.product}} />
     </template>);
 
     assert.dom('[data-test-field="Name"]').hasText('Vanilla Ice Cream Cake');
@@ -63,8 +68,13 @@ module('Integration | Component | products/product/details', function (hooks) {
   test('We can click on the add to cart button', async function (this: TestContext, assert) {
     const log = stub(console, 'log');
 
+    const self = this;
+
+
+
+
     await render<TestContext>(<template>
-    <ProductsProductDetails @product={{this.product}} />
+    <ProductsProductDetails @product={{self.product}} />
     </template>);
 
     assert.true(log.notCalled);
