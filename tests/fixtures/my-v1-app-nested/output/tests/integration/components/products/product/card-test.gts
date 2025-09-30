@@ -31,9 +31,14 @@ module('Integration | Component | products/product/card', function (hooks) {
   });
 
   test('it renders', async function (this: TestContext, assert) {
+    const self = this;
+
+
+
+
     await render<TestContext>(<template>
     <ProductsProductCard
-    @product={{this.product}}
+    @product={{self.product}}
     @redirectTo="products.product"
     />
     </template>);

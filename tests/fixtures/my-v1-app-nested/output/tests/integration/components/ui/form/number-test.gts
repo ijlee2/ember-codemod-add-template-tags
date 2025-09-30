@@ -30,13 +30,18 @@ module('Integration | Component | ui/form/number', function (hooks) {
   });
 
   test('The component renders a label and an input', async function (this: TestContext, assert) {
+    const self = this;
+
+
+
+
     await render<TestContext>(<template>
     <Ui::Form::Number
-    @changeset={{this.changeset}}
+    @changeset={{self.changeset}}
     @key="donation"
     @label="Donation amount (\$)"
     @minValue={{0}}
-    @onUpdate={{this.updateChangeset}}
+    @onUpdate={{self.updateChangeset}}
     @placeholder="100"
     />
     </template>);
@@ -60,14 +65,19 @@ module('Integration | Component | ui/form/number', function (hooks) {
   });
 
   test('We can pass @isDisabled to disable the input', async function (this: TestContext, assert) {
+    const self = this;
+
+
+
+
     await render<TestContext>(<template>
     <Ui::Form::Number
-    @changeset={{this.changeset}}
+    @changeset={{self.changeset}}
     @isDisabled={{true}}
     @key="donation"
     @label="Donation amount (\$)"
     @minValue={{0}}
-    @onUpdate={{this.updateChangeset}}
+    @onUpdate={{self.updateChangeset}}
     @placeholder="100"
     />
     </template>);
@@ -78,14 +88,19 @@ module('Integration | Component | ui/form/number', function (hooks) {
   });
 
   test('We can pass @isReadOnly to display the value', async function (this: TestContext, assert) {
+    const self = this;
+
+
+
+
     await render<TestContext>(<template>
     <Ui::Form::Number
-    @changeset={{this.changeset}}
+    @changeset={{self.changeset}}
     @isReadOnly={{true}}
     @key="donation"
     @label="Donation amount (\$)"
     @minValue={{0}}
-    @onUpdate={{this.updateChangeset}}
+    @onUpdate={{self.updateChangeset}}
     @placeholder="100"
     />
     </template>);
@@ -97,14 +112,19 @@ module('Integration | Component | ui/form/number', function (hooks) {
   });
 
   test('We can pass @isRequired to require a value', async function (this: TestContext, assert) {
+    const self = this;
+
+
+
+
     await render<TestContext>(<template>
     <Ui::Form::Number
-    @changeset={{this.changeset}}
+    @changeset={{self.changeset}}
     @isRequired={{true}}
     @key="donation"
     @label="Donation amount (\$)"
     @minValue={{0}}
-    @onUpdate={{this.updateChangeset}}
+    @onUpdate={{self.updateChangeset}}
     @placeholder="100"
     />
     </template>);
@@ -136,14 +156,19 @@ module('Integration | Component | ui/form/number', function (hooks) {
       set(this.changeset, key, value);
     };
 
+    const self = this;
+
+
+
+
     await render<TestContext>(<template>
     <Ui::Form::Number
-    @changeset={{this.changeset}}
+    @changeset={{self.changeset}}
     @isRequired={{true}}
     @key="donation"
     @label="Donation amount (\$)"
     @minValue={{0}}
-    @onUpdate={{this.updateChangeset}}
+    @onUpdate={{self.updateChangeset}}
     @placeholder="100"
     />
     </template>);

@@ -58,8 +58,13 @@ module('Integration | Component | tracks/list', function (hooks) {
     test('The component renders an empty list', async function (this: TestContext, assert: CustomAssert) {
       this.tracks = [];
 
+      const self = this;
+
+
+
+
       await render<TestContext>(<template>
-      <TracksList @tracks={{this.tracks}} />
+      <TracksList @tracks={{self.tracks}} />
       </template>);
 
       assert.dom('[data-test-item]').doesNotExist('There are 0 tracks.');
@@ -70,8 +75,13 @@ module('Integration | Component | tracks/list', function (hooks) {
     test('The component renders a non-empty list', async function (this: TestContext, assert: CustomAssert) {
       this.tracks = album.tracks;
 
+      const self = this;
+
+
+
+
       await render<TestContext>(<template>
-      <TracksList @tracks={{this.tracks}} />
+      <TracksList @tracks={{self.tracks}} />
       </template>);
 
       const tracks = findAll('[data-test-item]');
