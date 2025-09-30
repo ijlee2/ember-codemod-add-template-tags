@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.11.2
+
+### Patch Changes
+
+- [#52](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/52) Used named import for Input, LinkTo, and Textarea ([@ijlee2](https://github.com/ijlee2))
+
 ## 0.11.1
 
 ### Patch Changes
