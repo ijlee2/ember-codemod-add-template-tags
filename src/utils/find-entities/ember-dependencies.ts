@@ -34,7 +34,7 @@ export const emberDependencies: Dependencies = new Map([
             {
               filePath: '.',
               filePathAlias: '.',
-              isDefaultExport: true,
+              isDefaultExport: false,
               isTypeScript: true,
               packageName: '@ember/component',
             },
@@ -44,7 +44,7 @@ export const emberDependencies: Dependencies = new Map([
             {
               filePath: '.',
               filePathAlias: '.',
-              isDefaultExport: true,
+              isDefaultExport: false,
               isTypeScript: true,
               packageName: '@ember/routing',
             },
@@ -54,7 +54,7 @@ export const emberDependencies: Dependencies = new Map([
             {
               filePath: '.',
               filePathAlias: '.',
-              isDefaultExport: true,
+              isDefaultExport: false,
               isTypeScript: true,
               packageName: '@ember/component',
             },
