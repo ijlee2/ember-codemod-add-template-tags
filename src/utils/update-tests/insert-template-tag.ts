@@ -53,7 +53,7 @@ function updateBody(body: unknown[], index: number): unknown[] {
     ),
   ]);
 
-  return [...body.slice(0, index), newNode, ...body.slice(index)];
+  return [...body.slice(0, index), newNode, '\n', ...body.slice(index)];
 }
 
 type Data = {
