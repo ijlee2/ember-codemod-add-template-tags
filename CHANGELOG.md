@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.12.0
+
+### Minor Changes
+
+- [#53](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/53) Set useLexicalThis to false even for ember-source>=6.4.0 ([@ijlee2](https://github.com/ijlee2))
+
 ## 0.11.2
 
 ### Patch Changes
