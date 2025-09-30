@@ -77,7 +77,7 @@ You have 3 options:
 
 <summary>Test assertions failed</summary>
 
-If a project depends on `ember-source@<6.4.0`, the codemod renames `this` to `self` to work around a bug that prevents us from using `this` inside a `<template>` tag.
+The codemod adds an alias of `this` (called `self`) due to a bug that prevents us from using `this` inside the `<template>` tag.
 
 ```diff
 module('Integration | Component | hello', function (hooks) {
@@ -98,7 +98,7 @@ module('Integration | Component | hello', function (hooks) {
 });
 ```
 
-For `ember-source@>=6.4.0`, the codemod keeps `this` around to minimize change. If you see that assertions fail because of `this`, you can rename it as shown above, or destructure it (see below), to fix the error.
+The bug isn't fully fixed as of `ember-source@6.6.0`. If you see that assertions are failing, you can rename `this` as shown above, destructure it, or remove it altogether.
 
 ```gts
 module('Integration | Component | hello', function (hooks) {
@@ -108,6 +108,20 @@ module('Integration | Component | hello', function (hooks) {
 
   test('it renders', async function (assert) {
     const { name } = this;
+
+    await render(
+      <template><Hello @name={{name}} /></template>,
+    );
+
+    assert.dom().hasText('Hello, Zoey!');
+  });
+});
+```
+
+```gts
+module('Integration | Component | hello', function (hooks) {
+  test('it renders', async function (assert) {
+    const name = 'Zoey';
 
     await render(
       <template><Hello @name={{name}} /></template>,
