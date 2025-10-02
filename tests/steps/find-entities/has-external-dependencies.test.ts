@@ -1,0 +1,419 @@
+import { assert, loadFixture, test } from '@codemod-utils/tests';
+
+import { findEntities } from '../../../src/steps/index.js';
+import { options } from '../../helpers/mocks/index.js';
+
+test('steps | find-entities > has external dependencies', function () {
+  const inputProject = {
+    node_modules: {
+      '.pnpm': {
+        'ember-container-query@6.0.2': {
+          node_modules: {
+            'ember-container-query': {
+              declarations: {
+                components: {
+                  'container-query.d.ts': '',
+                },
+                helpers: {
+                  'aspect-ratio.d.ts': '',
+                  'height.d.ts': '',
+                  'width.d.ts': '',
+                },
+                modifiers: {
+                  'container-query.d.ts': '',
+                },
+                'index.d.ts': [
+                  `export { default as ContainerQuery } from './components/container-query';`,
+                  `export { default as aspectRatio } from './helpers/aspect-ratio.ts';`,
+                  `export { default as height } from './helpers/height.ts';`,
+                  `export { default as width } from './helpers/width.ts';`,
+                  `export type { Dimensions, Features, IndexSignatureParameter, Metadata, QueryResults, } from './modifiers/container-query.ts';`,
+                  `export { default as containerQuery } from './modifiers/container-query.ts';`,
+                  ``,
+                ].join('\n'),
+              },
+              dist: {
+                components: {
+                  'container-query.css': '',
+                  'container-query.js': '',
+                },
+                helpers: {
+                  'aspect-ratio.js': '',
+                  'height.js': '',
+                  'width.js': '',
+                },
+                modifiers: {
+                  'container-query.js': '',
+                },
+                'index.js': [
+                  `export { default as ContainerQuery } from './components/container-query.js';`,
+                  `export { default as aspectRatio } from './helpers/aspect-ratio.js';`,
+                  `export { default as height } from './helpers/height.js';`,
+                  `export { default as width } from './helpers/width.js';`,
+                  `export { default as containerQuery } from './modifiers/container-query.js';`,
+                  `//# sourceMappingURL=index.js.map`,
+                  ``,
+                ].join('\n'),
+              },
+              'package.json': JSON.stringify({
+                name: 'ember-container-query',
+                version: '6.0.2',
+                keywords: ['ember-addon'],
+                'ember-addon': {
+                  'app-js': {
+                    './components/container-query.js':
+                      './dist/_app_/components/container-query.js',
+                    './helpers/aspect-ratio.js':
+                      './dist/_app_/helpers/aspect-ratio.js',
+                    './helpers/height.js': './dist/_app_/helpers/height.js',
+                    './helpers/width.js': './dist/_app_/helpers/width.js',
+                    './modifiers/container-query.js':
+                      './dist/_app_/modifiers/container-query.js',
+                  },
+                  main: 'addon-main.cjs',
+                  type: 'addon',
+                  version: 2,
+                },
+              }),
+            },
+          },
+        },
+        'ember-intl@7.3.1': {
+          node_modules: {
+            'ember-intl': {
+              addon: {
+                helpers: {
+                  'format-date-range.ts': '',
+                  'format-date.ts': '',
+                  'format-list.ts': '',
+                  'format-message.ts': '',
+                  'format-number.ts': '',
+                  'format-relative-time.ts': '',
+                  'format-relative.ts': '',
+                  'format-time.ts': '',
+                  't.ts': '',
+                },
+                services: {
+                  'intl.ts': '',
+                },
+                'index.ts': [
+                  `export { default as formatDate } from './helpers/format-date';`,
+                  `export { default as formatDateRange } from './helpers/format-date-range';`,
+                  `export { default as formatList } from './helpers/format-list';`,
+                  `export { default as formatMessage } from './helpers/format-message';`,
+                  `export { default as formatNumber } from './helpers/format-number';`,
+                  `export { default as formatRelative } from './helpers/format-relative';`,
+                  `export { default as formatRelativeTime } from './helpers/format-relative-time';`,
+                  `export { default as formatTime } from './helpers/format-time';`,
+                  `export { default as t } from './helpers/t';`,
+                  `export type { Formats, default as IntlService } from './services/intl';`,
+                  ``,
+                ].join('\n'),
+              },
+              'package.json': JSON.stringify({
+                name: 'ember-intl',
+                version: '7.3.1',
+                keywords: ['ember-addon'],
+                'ember-addon': {
+                  configPath: 'tests/dummy/config',
+                  demoURL: 'https://ember-intl.github.io/ember-intl/',
+                },
+              }),
+            },
+          },
+        },
+        'type-css-modules@2.0.4': {
+          node_modules: {
+            'type-css-modules': {
+              dist: {
+                bin: {
+                  'type-css-modules.js': '',
+                },
+                src: {
+                  'index.js': '',
+                },
+              },
+              'package.json': JSON.stringify({
+                name: 'type-css-modules',
+                version: '2.0.4',
+              }),
+            },
+          },
+        },
+      },
+    },
+  };
+
+  loadFixture(inputProject, options);
+
+  const entities = findEntities(options);
+
+  assert.deepStrictEqual(entities, {
+    components: new Map([
+      [
+        'container-query',
+        {
+          filePath: 'dist/components/container-query.js',
+          filePathAlias: '.',
+          isDefaultExport: false,
+          isTypeScript: false,
+          packageName: 'ember-container-query',
+        },
+      ],
+      [
+        'input',
+        {
+          filePath: '.',
+          filePathAlias: '.',
+          isDefaultExport: false,
+          isTypeScript: true,
+          packageName: '@ember/component',
+        },
+      ],
+      [
+        'link-to',
+        {
+          filePath: '.',
+          filePathAlias: '.',
+          isDefaultExport: false,
+          isTypeScript: true,
+          packageName: '@ember/routing',
+        },
+      ],
+      [
+        'textarea',
+        {
+          filePath: '.',
+          filePathAlias: '.',
+          isDefaultExport: false,
+          isTypeScript: true,
+          packageName: '@ember/component',
+        },
+      ],
+    ]),
+    helpers: new Map([
+      [
+        'array',
+        {
+          filePath: '.',
+          filePathAlias: '.',
+          isDefaultExport: false,
+          isTypeScript: true,
+          packageName: '@ember/helper',
+        },
+      ],
+      [
+        'aspect-ratio',
+        {
+          filePath: 'dist/helpers/aspect-ratio.js',
+          filePathAlias: '.',
+          isDefaultExport: false,
+          isTypeScript: false,
+          packageName: 'ember-container-query',
+        },
+      ],
+      [
+        'concat',
+        {
+          filePath: '.',
+          filePathAlias: '.',
+          isDefaultExport: false,
+          isTypeScript: true,
+          packageName: '@ember/helper',
+        },
+      ],
+      [
+        'ensure-safe-component',
+        {
+          filePath: '.',
+          filePathAlias: '.',
+          isDefaultExport: false,
+          isTypeScript: false,
+          packageName: '@embroider/util',
+        },
+      ],
+      [
+        'fn',
+        {
+          filePath: '.',
+          filePathAlias: '.',
+          isDefaultExport: false,
+          isTypeScript: true,
+          packageName: '@ember/helper',
+        },
+      ],
+      [
+        'format-date',
+        {
+          filePath: 'addon/helpers/format-date.ts',
+          filePathAlias: '.',
+          isDefaultExport: false,
+          isTypeScript: true,
+          packageName: 'ember-intl',
+        },
+      ],
+      [
+        'format-date-range',
+        {
+          filePath: 'addon/helpers/format-date-range.ts',
+          filePathAlias: '.',
+          isDefaultExport: false,
+          isTypeScript: true,
+          packageName: 'ember-intl',
+        },
+      ],
+      [
+        'format-list',
+        {
+          filePath: 'addon/helpers/format-list.ts',
+          filePathAlias: '.',
+          isDefaultExport: false,
+          isTypeScript: true,
+          packageName: 'ember-intl',
+        },
+      ],
+      [
+        'format-message',
+        {
+          filePath: 'addon/helpers/format-message.ts',
+          filePathAlias: '.',
+          isDefaultExport: false,
+          isTypeScript: true,
+          packageName: 'ember-intl',
+        },
+      ],
+      [
+        'format-number',
+        {
+          filePath: 'addon/helpers/format-number.ts',
+          filePathAlias: '.',
+          isDefaultExport: false,
+          isTypeScript: true,
+          packageName: 'ember-intl',
+        },
+      ],
+      [
+        'format-relative',
+        {
+          filePath: 'addon/helpers/format-relative.ts',
+          filePathAlias: '.',
+          isDefaultExport: false,
+          isTypeScript: true,
+          packageName: 'ember-intl',
+        },
+      ],
+      [
+        'format-relative-time',
+        {
+          filePath: 'addon/helpers/format-relative-time.ts',
+          filePathAlias: '.',
+          isDefaultExport: false,
+          isTypeScript: true,
+          packageName: 'ember-intl',
+        },
+      ],
+      [
+        'format-time',
+        {
+          filePath: 'addon/helpers/format-time.ts',
+          filePathAlias: '.',
+          isDefaultExport: false,
+          isTypeScript: true,
+          packageName: 'ember-intl',
+        },
+      ],
+      [
+        'get',
+        {
+          filePath: '.',
+          filePathAlias: '.',
+          isDefaultExport: false,
+          isTypeScript: true,
+          packageName: '@ember/helper',
+        },
+      ],
+      [
+        'hash',
+        {
+          filePath: '.',
+          filePathAlias: '.',
+          isDefaultExport: false,
+          isTypeScript: true,
+          packageName: '@ember/helper',
+        },
+      ],
+      [
+        'height',
+        {
+          filePath: 'dist/helpers/height.js',
+          filePathAlias: '.',
+          isDefaultExport: false,
+          isTypeScript: false,
+          packageName: 'ember-container-query',
+        },
+      ],
+      [
+        'htmlSafe',
+        {
+          filePath: '.',
+          filePathAlias: '.',
+          isDefaultExport: false,
+          isTypeScript: true,
+          packageName: '@ember/template',
+        },
+      ],
+      [
+        't',
+        {
+          filePath: 'addon/helpers/t.ts',
+          filePathAlias: '.',
+          isDefaultExport: false,
+          isTypeScript: true,
+          packageName: 'ember-intl',
+        },
+      ],
+      [
+        'unique-id',
+        {
+          filePath: '.',
+          filePathAlias: '.',
+          isDefaultExport: false,
+          isTypeScript: true,
+          packageName: '@ember/helper',
+        },
+      ],
+      [
+        'width',
+        {
+          filePath: 'dist/helpers/width.js',
+          filePathAlias: '.',
+          isDefaultExport: false,
+          isTypeScript: false,
+          packageName: 'ember-container-query',
+        },
+      ],
+    ]),
+    modifiers: new Map([
+      [
+        'container-query',
+        {
+          filePath: 'dist/modifiers/container-query.js',
+          filePathAlias: '.',
+          isDefaultExport: false,
+          isTypeScript: false,
+          packageName: 'ember-container-query',
+        },
+      ],
+      [
+        'on',
+        {
+          filePath: '.',
+          filePathAlias: '.',
+          isDefaultExport: false,
+          isTypeScript: true,
+          packageName: '@ember/modifier',
+        },
+      ],
+    ]),
+  });
+});
