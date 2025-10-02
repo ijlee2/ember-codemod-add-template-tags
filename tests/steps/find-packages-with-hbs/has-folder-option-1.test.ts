@@ -1,11 +1,11 @@
 import { assert, loadFixture, test } from '@codemod-utils/tests';
 
 import { findPackagesWithHBS } from '../../../src/steps/index.js';
-import { options } from '../../helpers/mocks/index.js';
+import type { Options } from '../../../src/types/index.js';
 
-test('steps | find-packages-with-hbs > v2-app', function () {
+test('steps | find-packages-with-hbs > has folder option (1)', function () {
   const inputProject = {
-    'my-v2-app': {
+    'my-v1-app': {
       app: {
         components: {
           ui: {
@@ -67,17 +67,30 @@ test('steps | find-packages-with-hbs > v2-app', function () {
         },
       },
       'package.json': JSON.stringify({
-        name: 'my-v2-app',
+        name: 'my-v1-app',
         version: '1.0.0',
         devDependencies: {
-          '@embroider/vite': '^1.2.0',
+          '@embroider/webpack': '^4.1.1',
           'ember-source': '~6.7.0',
         },
       }),
     },
   };
 
-  loadFixture(inputProject, options);
+  const options: Options = {
+    componentStructure: 'flat',
+    convert: {
+      components: true,
+      routes: true,
+      tests: true,
+    },
+    folder: 'ui',
+    projectRoot: 'tmp/my-monorepo',
+  };
+
+  loadFixture(inputProject, {
+    projectRoot: 'tmp/my-monorepo',
+  });
 
   const packages = findPackagesWithHBS(options);
 
@@ -85,12 +98,10 @@ test('steps | find-packages-with-hbs > v2-app', function () {
     packages,
     new Map([
       [
-        'my-v2-app',
+        'my-v1-app',
         {
           filesWithHBS: {
             components: [
-              'app/components/navigation-menu.hbs',
-              'app/components/select-locale.hbs',
               'app/components/ui/form.hbs',
               'app/components/ui/form/checkbox.hbs',
               'app/components/ui/form/field.hbs',
@@ -98,13 +109,8 @@ test('steps | find-packages-with-hbs > v2-app', function () {
               'app/components/ui/form/select.hbs',
               'app/components/ui/page.hbs',
             ],
-            routes: [
-              'app/templates/application.hbs',
-              'app/templates/index.hbs',
-            ],
+            routes: [],
             tests: [
-              'tests/integration/components/navigation-menu-test.js',
-              'tests/integration/components/select-locale-test.js',
               'tests/integration/components/ui/form-test.ts',
               'tests/integration/components/ui/form/checkbox-test.ts',
               'tests/integration/components/ui/form/field-test.ts',
@@ -119,8 +125,8 @@ test('steps | find-packages-with-hbs > v2-app', function () {
           },
           hasEmberRouteTemplate: false,
           isEmberSourceRecent: true,
-          packageRoot: 'tmp/my-monorepo/my-v2-app',
-          packageType: 'v2-app',
+          packageRoot: 'tmp/my-monorepo/my-v1-app',
+          packageType: 'v1-app',
         },
       ],
     ]),

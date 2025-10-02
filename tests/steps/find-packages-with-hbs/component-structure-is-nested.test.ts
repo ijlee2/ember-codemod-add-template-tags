@@ -1,36 +1,56 @@
 import { assert, loadFixture, test } from '@codemod-utils/tests';
 
 import { findPackagesWithHBS } from '../../../src/steps/index.js';
-import { options } from '../../helpers/mocks/index.js';
+import type { Options } from '../../../src/types/index.js';
 
-test('steps | find-packages-with-hbs > v2-app', function () {
+test('steps | find-packages-with-hbs > component structure is nested', function () {
   const inputProject = {
-    'my-v2-app': {
+    'my-v1-app': {
       app: {
         components: {
           ui: {
             form: {
-              'checkbox.hbs': ``,
-              'checkbox.ts': `import Component from '@glimmer/component';`,
-              'field.hbs': ``,
-              'field.ts': `import Component from '@glimmer/component';`,
-              'information.hbs': ``,
-              'information.ts': `import templateOnlyComponent from '@ember/component/template-only-component';`,
-              'input.hbs': ``,
-              'input.js': `import Component from '@glimmer/component';`,
-              'number.gts': ``,
-              'select.hbs': ``,
-              'select.ts': `import Component from '@glimmer/component';`,
-              'textarea.gjs': ``,
+              checkbox: {
+                'index.hbs': ``,
+                'index.ts': `import Component from '@glimmer/component';`,
+              },
+              field: {
+                'index.hbs': ``,
+                'index.ts': `import Component from '@glimmer/component';`,
+              },
+              information: {
+                'index.hbs': ``,
+                'index.ts': `import templateOnlyComponent from '@ember/component/template-only-component';`,
+              },
+              input: {
+                'index.hbs': ``,
+                'index.js': `import Component from '@glimmer/component';`,
+              },
+              number: {
+                'index.gts': ``,
+              },
+              select: {
+                'index.hbs': ``,
+                'index.ts': `import Component from '@glimmer/component';`,
+              },
+              textarea: {
+                'index.gjs': ``,
+              },
+              'index.hbs': ``,
+              'index.ts': `import Component from '@glimmer/component';`,
             },
-            'form.hbs': ``,
-            'form.ts': `import Component from '@glimmer/component';`,
-            'page.hbs': ``,
-            'page.js': `import templateOnlyComponent from '@ember/component/template-only';`,
+            page: {
+              'index.hbs': ``,
+              'index.js': `import templateOnlyComponent from '@ember/component/template-only';`,
+            },
           },
-          'navigation-menu.hbs': '',
-          'select-locale.hbs': '',
-          'select-locale.js': `import Component from '@glimmer/component';`,
+          'navigation-menu': {
+            'index.hbs': '',
+          },
+          'select-locale': {
+            'index.hbs': '',
+            'index.js': `import Component from '@glimmer/component';`,
+          },
         },
         templates: {
           'application.hbs': [
@@ -67,14 +87,25 @@ test('steps | find-packages-with-hbs > v2-app', function () {
         },
       },
       'package.json': JSON.stringify({
-        name: 'my-v2-app',
+        name: 'my-v1-app',
         version: '1.0.0',
         devDependencies: {
-          '@embroider/vite': '^1.2.0',
+          '@embroider/webpack': '^4.1.1',
           'ember-source': '~6.7.0',
         },
       }),
     },
+  };
+
+  const options: Options = {
+    componentStructure: 'nested',
+    convert: {
+      components: true,
+      routes: true,
+      tests: true,
+    },
+    folder: '',
+    projectRoot: 'tmp/my-monorepo',
   };
 
   loadFixture(inputProject, options);
@@ -85,18 +116,18 @@ test('steps | find-packages-with-hbs > v2-app', function () {
     packages,
     new Map([
       [
-        'my-v2-app',
+        'my-v1-app',
         {
           filesWithHBS: {
             components: [
-              'app/components/navigation-menu.hbs',
-              'app/components/select-locale.hbs',
-              'app/components/ui/form.hbs',
-              'app/components/ui/form/checkbox.hbs',
-              'app/components/ui/form/field.hbs',
-              'app/components/ui/form/input.hbs',
-              'app/components/ui/form/select.hbs',
-              'app/components/ui/page.hbs',
+              'app/components/navigation-menu/index.hbs',
+              'app/components/select-locale/index.hbs',
+              'app/components/ui/form/checkbox/index.hbs',
+              'app/components/ui/form/field/index.hbs',
+              'app/components/ui/form/index.hbs',
+              'app/components/ui/form/input/index.hbs',
+              'app/components/ui/form/select/index.hbs',
+              'app/components/ui/page/index.hbs',
             ],
             routes: [
               'app/templates/application.hbs',
@@ -119,8 +150,8 @@ test('steps | find-packages-with-hbs > v2-app', function () {
           },
           hasEmberRouteTemplate: false,
           isEmberSourceRecent: true,
-          packageRoot: 'tmp/my-monorepo/my-v2-app',
-          packageType: 'v2-app',
+          packageRoot: 'tmp/my-monorepo/my-v1-app',
+          packageType: 'v1-app',
         },
       ],
     ]),
