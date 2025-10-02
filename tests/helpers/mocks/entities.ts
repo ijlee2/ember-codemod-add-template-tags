@@ -21,7 +21,7 @@ export const entities: AllEntities = {
       {
         filePath: '.',
         filePathAlias: '.',
-        isDefaultExport: true,
+        isDefaultExport: false,
         isTypeScript: true,
         packageName: '@ember/component',
       },
@@ -31,7 +31,7 @@ export const entities: AllEntities = {
       {
         filePath: '.',
         filePathAlias: '.',
-        isDefaultExport: true,
+        isDefaultExport: false,
         isTypeScript: true,
         packageName: '@ember/routing',
       },
@@ -81,7 +81,7 @@ export const entities: AllEntities = {
       {
         filePath: '.',
         filePathAlias: '.',
-        isDefaultExport: true,
+        isDefaultExport: false,
         isTypeScript: true,
         packageName: '@ember/component',
       },
