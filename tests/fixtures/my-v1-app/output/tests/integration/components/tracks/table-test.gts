@@ -70,7 +70,7 @@ module('Integration | Component | tracks/table', function (hooks) {
 
 
 
-      await render<TestContext>(<template>
+      await render(<template>
       <TracksTable @tracks={{self.tracks}} />
       </template>);
 
@@ -87,7 +87,7 @@ module('Integration | Component | tracks/table', function (hooks) {
 
 
 
-      await render<TestContext>(<template>
+      await render(<template>
       <TracksTable @tracks={{self.tracks}} />
       </template>);
 

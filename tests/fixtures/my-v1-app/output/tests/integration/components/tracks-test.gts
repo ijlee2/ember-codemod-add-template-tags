@@ -26,7 +26,7 @@ module('Integration | Component | tracks', function (hooks) {
 
 
     // Features: small, short
-    await render<TestContext>(<template>
+    await render(<template>
     {{! template-lint-disable no-inline-styles }}
     <div data-test-parent-element style="width: 240px; height: 240px;">
     <Tracks @tracks={{self.album.tracks}} />

@@ -63,7 +63,7 @@ module('Integration | Component | tracks/list', function (hooks) {
 
 
 
-      await render<TestContext>(<template>
+      await render(<template>
       <TracksList @tracks={{self.tracks}} />
       </template>);
 
@@ -80,7 +80,7 @@ module('Integration | Component | tracks/list', function (hooks) {
 
 
 
-      await render<TestContext>(<template>
+      await render(<template>
       <TracksList @tracks={{self.tracks}} />
       </template>);
 

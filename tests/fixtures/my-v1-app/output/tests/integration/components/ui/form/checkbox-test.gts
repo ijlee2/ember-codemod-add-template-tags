@@ -37,7 +37,7 @@ module('Integration | Component | ui/form/checkbox', function (hooks) {
 
 
 
-    await render<TestContext>(<template>
+    await render(<template>
     <UiFormCheckbox
     @changeset={{self.changeset}}
     @key="subscribe"
@@ -71,7 +71,7 @@ module('Integration | Component | ui/form/checkbox', function (hooks) {
 
 
 
-    await render<TestContext>(<template>
+    await render(<template>
     <UiFormCheckbox
     @changeset={{self.changeset}}
     @isDisabled={{true}}
@@ -93,7 +93,7 @@ module('Integration | Component | ui/form/checkbox', function (hooks) {
 
 
 
-    await render<TestContext>(<template>
+    await render(<template>
     <UiFormCheckbox
     @changeset={{self.changeset}}
     @isReadOnly={{true}}
@@ -116,7 +116,7 @@ module('Integration | Component | ui/form/checkbox', function (hooks) {
 
 
 
-    await render<TestContext>(<template>
+    await render(<template>
     <UiFormCheckbox
     @changeset={{self.changeset}}
     @isRequired={{true}}
@@ -158,7 +158,7 @@ module('Integration | Component | ui/form/checkbox', function (hooks) {
 
 
 
-    await render<TestContext>(<template>
+    await render(<template>
     <UiFormCheckbox
     @changeset={{self.changeset}}
     @isRequired={{true}}
@@ -215,7 +215,7 @@ module('Integration | Component | ui/form/checkbox', function (hooks) {
 
 
 
-    await render<TestContext>(<template>
+    await render(<template>
     <UiFormCheckbox
     @changeset={{self.changeset}}
     @isRequired={{true}}
