@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.14.0
+
+### Minor Changes
+
+- [#57](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/57) Removed Glint registry in apps ([@ijlee2](https://github.com/ijlee2))
+
 ## 0.13.0
 
 ### Minor Changes
