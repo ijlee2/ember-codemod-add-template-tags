@@ -35,7 +35,7 @@ module('Integration | Component | ui/form/number', function (hooks) {
 
 
 
-    await render<TestContext>(<template>
+    await render(<template>
     <Ui::Form::Number
     @changeset={{self.changeset}}
     @key="donation"
@@ -70,7 +70,7 @@ module('Integration | Component | ui/form/number', function (hooks) {
 
 
 
-    await render<TestContext>(<template>
+    await render(<template>
     <Ui::Form::Number
     @changeset={{self.changeset}}
     @isDisabled={{true}}
@@ -93,7 +93,7 @@ module('Integration | Component | ui/form/number', function (hooks) {
 
 
 
-    await render<TestContext>(<template>
+    await render(<template>
     <Ui::Form::Number
     @changeset={{self.changeset}}
     @isReadOnly={{true}}
@@ -117,7 +117,7 @@ module('Integration | Component | ui/form/number', function (hooks) {
 
 
 
-    await render<TestContext>(<template>
+    await render(<template>
     <Ui::Form::Number
     @changeset={{self.changeset}}
     @isRequired={{true}}
@@ -161,7 +161,7 @@ module('Integration | Component | ui/form/number', function (hooks) {
 
 
 
-    await render<TestContext>(<template>
+    await render(<template>
     <Ui::Form::Number
     @changeset={{self.changeset}}
     @isRequired={{true}}

@@ -27,7 +27,7 @@ module('Integration | Component | ui/form/checkbox', function (hooks) {
 
 
 
-    await render<TestContext>(<template>
+    await render(<template>
     <UiFormCheckbox
       @data={{self.parent.data}}
       @key="subscribe"
@@ -57,7 +57,7 @@ module('Integration | Component | ui/form/checkbox', function (hooks) {
 
 
 
-    await render<TestContext>(<template>
+    await render(<template>
     <UiFormCheckbox
       @data={{self.parent.data}}
       @isDisabled={{true}}
@@ -79,7 +79,7 @@ module('Integration | Component | ui/form/checkbox', function (hooks) {
 
 
 
-    await render<TestContext>(<template>
+    await render(<template>
     <UiFormCheckbox
       @data={{self.parent.data}}
       @isReadOnly={{true}}
@@ -102,7 +102,7 @@ module('Integration | Component | ui/form/checkbox', function (hooks) {
 
 
 
-    await render<TestContext>(<template>
+    await render(<template>
     <UiFormCheckbox
       @data={{self.parent.data}}
       @isRequired={{true}}
@@ -123,7 +123,7 @@ module('Integration | Component | ui/form/checkbox', function (hooks) {
 
 
 
-    await render<TestContext>(<template>
+    await render(<template>
     <UiFormCheckbox
       @data={{self.parent.data}}
       @isRequired={{true}}
@@ -156,7 +156,7 @@ module('Integration | Component | ui/form/checkbox', function (hooks) {
 
 
 
-    await render<TestContext>(<template>
+    await render(<template>
     <UiFormCheckbox
       @data={{self.parent.data}}
       @isRequired={{true}}

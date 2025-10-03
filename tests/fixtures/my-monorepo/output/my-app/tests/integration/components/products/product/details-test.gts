@@ -40,7 +40,7 @@ module('Integration | Component | products/product/details', function (hooks) {
 
 
 
-    await render<TestContext>(<template>
+    await render(<template>
     <ProductsProductDetails @product={{self.product}} />
     </template>);
 
@@ -73,7 +73,7 @@ module('Integration | Component | products/product/details', function (hooks) {
 
 
 
-    await render<TestContext>(<template>
+    await render(<template>
     <ProductsProductDetails @product={{self.product}} />
     </template>);
 

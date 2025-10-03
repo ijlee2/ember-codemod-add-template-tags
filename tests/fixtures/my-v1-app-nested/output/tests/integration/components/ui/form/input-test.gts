@@ -36,7 +36,7 @@ module('Integration | Component | ui/form/input', function (hooks) {
 
 
 
-    await render<TestContext>(<template>
+    await render(<template>
     <UiFormInput
     @changeset={{self.changeset}}
     @key="name"
@@ -69,7 +69,7 @@ module('Integration | Component | ui/form/input', function (hooks) {
 
 
 
-    await render<TestContext>(<template>
+    await render(<template>
     <UiFormInput
     @changeset={{self.changeset}}
     @isDisabled={{true}}
@@ -88,7 +88,7 @@ module('Integration | Component | ui/form/input', function (hooks) {
 
 
 
-    await render<TestContext>(<template>
+    await render(<template>
     <UiFormInput
     @changeset={{self.changeset}}
     @isReadOnly={{true}}
@@ -110,7 +110,7 @@ module('Integration | Component | ui/form/input', function (hooks) {
 
 
 
-    await render<TestContext>(<template>
+    await render(<template>
     <UiFormInput
     @changeset={{self.changeset}}
     @isRequired={{true}}
@@ -147,7 +147,7 @@ module('Integration | Component | ui/form/input', function (hooks) {
 
 
 
-    await render<TestContext>(<template>
+    await render(<template>
     <UiFormInput
     @changeset={{self.changeset}}
     @isRequired={{true}}
@@ -190,7 +190,7 @@ module('Integration | Component | ui/form/input', function (hooks) {
 
 
 
-    await render<TestContext>(<template>
+    await render(<template>
     <UiFormInput
     @changeset={{self.changeset}}
     @key="email"

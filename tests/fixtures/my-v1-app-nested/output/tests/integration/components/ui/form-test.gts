@@ -30,7 +30,7 @@ module('Integration | Component | ui/form', function (hooks) {
 
 
 
-    await render<TestContext>(<template>
+    await render(<template>
     <UiForm
     @data={{hash
       donation=undefined
@@ -135,7 +135,7 @@ module('Integration | Component | ui/form', function (hooks) {
 
 
 
-    await render<TestContext>(<template>
+    await render(<template>
     <UiForm
     @data={{hash
       donation=undefined

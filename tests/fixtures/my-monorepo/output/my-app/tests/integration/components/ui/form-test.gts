@@ -40,7 +40,7 @@ module('Integration | Component | ui/form', function (hooks) {
 
 
 
-    await render<TestContext>(<template>
+    await render(<template>
     <UiForm
       @data={{self.data}}
       @instructions="Still have questions about ember-container-query? Try sending me a message."
@@ -117,7 +117,7 @@ module('Integration | Component | ui/form', function (hooks) {
 
 
 
-    await render<TestContext>(<template>
+    await render(<template>
     <UiForm @data={{self.data}} @onSubmit={{self.submitForm}} as |F|>
       <div>
         <F.Input

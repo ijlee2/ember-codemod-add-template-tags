@@ -36,7 +36,7 @@ module('Integration | Component | products/product/card', function (hooks) {
 
 
 
-    await render<TestContext>(<template>
+    await render(<template>
     <ProductsProductCard
     @product={{self.product}}
     @redirectTo="products.product"

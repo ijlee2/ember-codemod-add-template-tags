@@ -36,7 +36,7 @@ module('Integration | Component | ui/form/textarea', function (hooks) {
 
 
 
-    await render<TestContext>(<template>
+    await render(<template>
     <UiFormTextarea
     @changeset={{self.changeset}}
     @key="message"
@@ -68,7 +68,7 @@ module('Integration | Component | ui/form/textarea', function (hooks) {
 
 
 
-    await render<TestContext>(<template>
+    await render(<template>
     <UiFormTextarea
     @changeset={{self.changeset}}
     @isDisabled={{true}}
@@ -89,7 +89,7 @@ module('Integration | Component | ui/form/textarea', function (hooks) {
 
 
 
-    await render<TestContext>(<template>
+    await render(<template>
     <UiFormTextarea
     @changeset={{self.changeset}}
     @isReadOnly={{true}}
@@ -111,7 +111,7 @@ module('Integration | Component | ui/form/textarea', function (hooks) {
 
 
 
-    await render<TestContext>(<template>
+    await render(<template>
     <UiFormTextarea
     @changeset={{self.changeset}}
     @isRequired={{true}}
@@ -150,7 +150,7 @@ module('Integration | Component | ui/form/textarea', function (hooks) {
 
 
 
-    await render<TestContext>(<template>
+    await render(<template>
     <UiFormTextarea
     @changeset={{self.changeset}}
     @isRequired={{true}}
