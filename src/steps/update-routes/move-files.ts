@@ -6,20 +6,13 @@ import { removeFiles } from '@codemod-utils/files';
 import type { Packages } from '../../types/index.js';
 
 export function moveFiles(packages: Packages): void {
-  for (const [packageName, packageData] of packages) {
+  for (const [, packageData] of packages) {
     const {
       filesWithHBS,
       filesWithTemplateTag,
       hasEmberRouteTemplate,
-      isEmberSourceRecent,
       packageRoot,
     } = packageData;
-
-    if (!isEmberSourceRecent && !hasEmberRouteTemplate) {
-      console.warn(
-        `WARNING: You need to install \`ember-route-template\` in \`${packageName}\`.`,
-      );
-    }
 
     filesWithHBS.routes.forEach((templateFilePath) => {
       const classFilePath = templateFilePath.replace(/\.hbs$/, '.gjs');
@@ -31,7 +24,7 @@ export function moveFiles(packages: Packages): void {
 
       let classFile = `<template>\n${templateFile}\n</template>`;
 
-      if (!isEmberSourceRecent && hasEmberRouteTemplate) {
+      if (hasEmberRouteTemplate) {
         classFile = [
           `import RouteTemplate from 'ember-route-template';`,
           ``,
