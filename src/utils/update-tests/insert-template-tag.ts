@@ -141,6 +141,7 @@ export function insertTemplateTag(file: string, data: Data): string {
       const indent = node.value.loc.indent as number;
 
       node.value.arguments[0] = `<template>\n  ${indentToLeft(template.trim(), indent)}\n</template>`;
+      node.value.typeParameters = null;
 
       return false;
     },
