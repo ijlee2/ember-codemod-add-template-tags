@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { AST } from '@codemod-utils/ast-javascript';
 
 import type { PackageType } from '../../types/index.js';
@@ -21,7 +22,16 @@ export function removeGlintRegistry(file: string, data: Data): string {
   const traverse = AST.traverse(isTypeScript);
 
   const ast = traverse(file, {
-    // ...
+    visitTSModuleDeclaration(node) {
+      if (
+        node.value.id?.type !== 'StringLiteral' ||
+        node.value.id.value !== '@glint/environment-ember-loose/registry'
+      ) {
+        return false;
+      }
+
+      return null;
+    },
   });
 
   return AST.print(ast);
