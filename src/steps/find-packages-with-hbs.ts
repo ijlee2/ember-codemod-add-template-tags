@@ -34,8 +34,7 @@ export function findPackagesWithHBS(options: Options): Packages {
       return;
     }
 
-    const { hasEmberRouteTemplate, isEmberSourceRecent } =
-      analyzeDependencies(packageJson);
+    const { hasEmberRouteTemplate } = analyzeDependencies(packageJson);
 
     packages.set(packageName, {
       filesWithHBS,
@@ -45,7 +44,6 @@ export function findPackagesWithHBS(options: Options): Packages {
         tests: [],
       },
       hasEmberRouteTemplate,
-      isEmberSourceRecent,
       packageRoot,
       packageType,
     });
