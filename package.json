@@ -1,6 +1,6 @@
 {
   "name": "ember-codemod-add-template-tags",
-  "version": "0.12.0",
+  "version": "0.13.0",
   "description": "Codemod to add <template> tags",
   "keywords": [
     "codemod",

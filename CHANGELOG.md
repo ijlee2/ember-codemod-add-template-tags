@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.13.0
+
+### Minor Changes
+
+- [#56](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/56) Removed TestContext passed to render() ([@ijlee2](https://github.com/ijlee2))
+- [#55](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/55) Removed the isEmberSourceRecent check from updateRoutes() ([@ijlee2](https://github.com/ijlee2))
+
+### Patch Changes
+
+- [#54](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/54) Added integration tests (Part 2) ([@ijlee2](https://github.com/ijlee2))
+
 ## 0.12.0
 
 ### Minor Changes
