@@ -76,7 +76,6 @@ test('steps | find-packages-with-hbs > v1-addon', function () {
             tests: [],
           },
           hasEmberRouteTemplate: true,
-          isEmberSourceRecent: false,
           packageRoot: 'tmp/my-monorepo/my-v1-addon',
           packageType: 'v1-addon',
         },

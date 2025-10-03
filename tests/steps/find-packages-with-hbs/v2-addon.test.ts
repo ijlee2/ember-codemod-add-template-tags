@@ -52,7 +52,6 @@ test('steps | find-packages-with-hbs > v2-addon', function () {
             tests: [],
           },
           hasEmberRouteTemplate: false,
-          isEmberSourceRecent: false,
           packageRoot: 'tmp/my-monorepo/my-v2-addon',
           packageType: 'v2-addon',
         },
