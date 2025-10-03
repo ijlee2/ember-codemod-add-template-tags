@@ -149,7 +149,6 @@ test('steps | find-packages-with-hbs > component structure is nested', function 
             tests: [],
           },
           hasEmberRouteTemplate: false,
-          isEmberSourceRecent: true,
           packageRoot: 'tmp/my-monorepo/my-v1-app',
           packageType: 'v1-app',
         },

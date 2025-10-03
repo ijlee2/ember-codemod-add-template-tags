@@ -34,7 +34,7 @@ Step 2. Review the package.
 
 You can check [Troubleshoot](TROUBLESHOOT.md) if you encounter an issue.
 
-<sup>1. The codemod assumes apps and addons to follow the Octane layout (flat or nested). You can leverage the codemods for [classic](https://github.com/ember-codemods/ember-component-template-colocation-migrator) and [pod](https://github.com/ijlee2/ember-codemod-pod-to-octane).</sup>
+<sup>1. The codemod assumes that your apps and addons follow the Octane layout (flat or nested). If not, you can run codemods to move away from [classic](https://github.com/ember-codemods/ember-component-template-colocation-migrator) and [pod](https://github.com/ijlee2/ember-codemod-pod-to-octane).</sup>
 
 <sup>2. To analyze external dependencies, the codemod reads your `node_modules`. Install your project's dependencies before running the codemod.</sup>
 

@@ -2,6 +2,31 @@
 
 <details>
 
+<summary>Do I need <code>ember-template-imports</code>?</summary>
+
+In general, you need [`ember-template-imports`](https://github.com/ember-cli/ember-template-imports) to use `<template>` tag in components and tests. Otherwise, Ember will not render your app.
+
+You can uninstall the addon in these cases:
+
+- Your app runs on `@embroider/core@4.x` or above. Currently, `v4` only supports v2 apps (Vite).
+- Your addon is a v2 addon.
+
+</details>
+
+<details>
+
+<summary>Do I need <code>ember-route-template</code>?</summary>
+
+In general, you need [`ember-route-template`](https://github.com/discourse/ember-route-template) to use `<template>` tag in routes. Otherwise, Ember will throw the error `template is not a function`.
+
+You can uninstall the addon in these cases:
+
+- Your app runs on `ember-source@6.3` or above.
+
+</details>
+
+<details>
+
 <summary>Codemod didn't convert all files</summary>
 
 For simplicity, the codemod doesn't cover these cases:
@@ -10,6 +35,7 @@ For simplicity, the codemod doesn't cover these cases:
 - Components that extend another component (class inheritance)
 - Rendering tests that don't use the `hbs` tag inside `render()`
 - `dummy` app in v1 addons
+- In-repo addons
 
 </details>
 
@@ -50,26 +76,6 @@ export default class MyFolder extends Component {
 ```
 
 To fix the error, rename or remove one of the imported objects.
-
-</details>
-
-<details>
-
-<summary>Running the app resulted in <code>template is not a function</code></summary>
-
-Ember throws the error
-
-```sh
-Error while processing route: <route-name> template is not a function
-```
-
-when the conditions for using `<template>` in routes aren't met. Namely, the version of your `ember-source` is below `6.3.0`.
-
-You have 3 options:
-
-1. Update `ember-source` to `6.3.0` or higher.
-1. Install [`ember-route-template`](https://github.com/discourse/ember-route-template) (supports `3.28` and above).
-1. Use `--convert` to convert components and tests only.
 
 </details>
 

@@ -121,7 +121,6 @@ test('steps | find-packages-with-hbs > has folder option (2)', function () {
             tests: [],
           },
           hasEmberRouteTemplate: false,
-          isEmberSourceRecent: true,
           packageRoot: 'tmp/my-monorepo/my-v1-app',
           packageType: 'v1-app',
         },

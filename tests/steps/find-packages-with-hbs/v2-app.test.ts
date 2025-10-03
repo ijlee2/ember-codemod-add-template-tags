@@ -118,7 +118,6 @@ test('steps | find-packages-with-hbs > v2-app', function () {
             tests: [],
           },
           hasEmberRouteTemplate: false,
-          isEmberSourceRecent: true,
           packageRoot: 'tmp/my-monorepo/my-v2-app',
           packageType: 'v2-app',
         },

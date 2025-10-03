@@ -118,7 +118,6 @@ test('steps | find-packages-with-hbs > v1-app', function () {
             tests: [],
           },
           hasEmberRouteTemplate: false,
-          isEmberSourceRecent: true,
           packageRoot: 'tmp/my-monorepo/my-v1-app',
           packageType: 'v1-app',
         },
