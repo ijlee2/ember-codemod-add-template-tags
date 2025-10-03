@@ -89,10 +89,3 @@ export default class UiFormTextareaComponent extends Component<UiFormTextareaSig
   </UiFormField>
   </template>
 }
-
-declare module '@glint/environment-ember-loose/registry' {
-  export default interface Registry {
-    'Ui::Form::Textarea': typeof UiFormTextareaComponent;
-    'ui/form/textarea': typeof UiFormTextareaComponent;
-  }
-}

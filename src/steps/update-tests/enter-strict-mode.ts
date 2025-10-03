@@ -25,6 +25,7 @@ export function enterStrictMode(
 
     filesWithTemplateTag.tests.forEach((filePath) => {
       const oldFile = readFileSync(join(packageRoot, filePath), 'utf8');
+      const isTypeScript = filePath.endsWith('.gts');
 
       let newFile = updateJavaScript(oldFile, (code) => {
         return removeImport(code, {
@@ -32,7 +33,7 @@ export function enterStrictMode(
           importName: 'hbs',
           importPath: 'ember-cli-htmlbars',
           isDefaultImport: false,
-          isTypeScript: filePath.endsWith('.gts'),
+          isTypeScript,
         });
       });
 
