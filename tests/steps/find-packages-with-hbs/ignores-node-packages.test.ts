@@ -1,7 +1,7 @@
 import { assert, loadFixture, test } from '@codemod-utils/tests';
 
 import { findPackagesWithHBS } from '../../../src/steps/index.js';
-import { options } from '../../helpers/mocks/index.js';
+import { options } from '../../helpers/shared-test-setups/my-monorepo.js';
 
 test('steps | find-packages-with-hbs > ignores node packages', function () {
   const inputProject = {

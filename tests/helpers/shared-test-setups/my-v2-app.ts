@@ -8,7 +8,7 @@ const codemodOptions: CodemodOptions = {
   componentStructure: 'flat',
   convert: new Set(['components', 'routes', 'tests']),
   folder: '',
-  projectRoot: 'tmp/my-v1-app',
+  projectRoot: 'tmp/my-v2-app',
 };
 
 const inputProject = {
@@ -141,10 +141,10 @@ const inputProject = {
     },
   },
   'package.json': JSON.stringify({
-    name: 'my-v1-app',
+    name: 'my-v2-app',
     version: '1.0.0',
     devDependencies: {
-      '@embroider/webpack': '^4.1.1',
+      '@embroider/vite': '^1.2.0',
       'ember-source': '~6.7.0',
     },
   }),
@@ -158,12 +158,12 @@ const options: Options = {
     tests: true,
   },
   folder: '',
-  projectRoot: 'tmp/my-v1-app',
+  projectRoot: 'tmp/my-v2-app',
 };
 
 const packages: Packages = new Map([
   [
-    'my-v1-app',
+    'my-v2-app',
     {
       filesWithHBS: {
         components: [
@@ -194,8 +194,8 @@ const packages: Packages = new Map([
         tests: [],
       },
       hasEmberRouteTemplate: false,
-      packageRoot: 'tmp/my-v1-app',
-      packageType: 'v1-app',
+      packageRoot: 'tmp/my-v2-app',
+      packageType: 'v2-app',
     },
   ],
 ]);
