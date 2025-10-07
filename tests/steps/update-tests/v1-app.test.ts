@@ -1,13 +1,13 @@
 import { assertFixture, loadFixture, test } from '@codemod-utils/tests';
 
-import { findEntities, updateRoutes } from '../../../src/steps/index.js';
+import { findEntities, updateTests } from '../../../src/steps/index.js';
 import {
   inputProject,
   options,
   packages,
 } from '../../helpers/shared-test-setups/my-v1-app.js';
 
-test('steps | update-routes > v1-app', function () {
+test('steps | update-tests > v1-app', function () {
   const outputProject = {
     app: {
       components: {
@@ -104,10 +104,7 @@ test('steps | update-routes > v1-app', function () {
         ].join('\n'),
       },
       templates: {
-        'application.gjs': [
-          `import NavigationMenu from 'my-v1-app/components/navigation-menu';`,
-          ``,
-          `<template>`,
+        'application.hbs': [
           `<header>`,
           `  <NavigationMenu />`,
           `</header>`,
@@ -115,17 +112,8 @@ test('steps | update-routes > v1-app', function () {
           `<main>`,
           `  {{outlet}}`,
           `</main>`,
-          `</template>`,
-          ``,
         ].join('\n'),
-        'index.gjs': [
-          `import SelectLocale from 'my-v1-app/components/select-locale';`,
-          ``,
-          `<template>`,
-          `<SelectLocale />`,
-          `</template>`,
-          ``,
-        ].join('\n'),
+        'index.hbs': `<SelectLocale />`,
       },
     },
     tests: {
@@ -133,12 +121,13 @@ test('steps | update-routes > v1-app', function () {
         components: {
           ui: {
             form: {
-              'checkbox-test.ts': [
+              'checkbox-test.gts': [
+                `import UiFormCheckbox from 'my-v1-app/components/ui/form/checkbox';`,
+                ``,
                 `import {`,
                 `  render,`,
                 `  type TestContext as BaseTestContext,`,
                 `} from '@ember/test-helpers';`,
-                `import { hbs } from 'ember-cli-htmlbars';`,
                 `import { UiForm } from 'my-addon/test-support';`,
                 `import { setupRenderingTest } from 'my-v1-app/tests/helpers';`,
                 `import { module, test } from 'qunit';`,
@@ -155,30 +144,34 @@ test('steps | update-routes > v1-app', function () {
                 `  });`,
                 ``,
                 `  test('it renders', async function (this: TestContext, assert) {`,
-                `    await render<TestContext>(`,
-                `      hbs\``,
-                `        <Ui::Form::Checkbox`,
-                `          @data={{this.parent.data}}`,
-                `          @key="subscribe"`,
-                `          @label="Subscribe to The Ember Times?"`,
-                `          @onUpdate={{this.parent.updateData}}`,
-                `        />`,
-                `      \`,`,
-                `    );`,
+                `    const self = this;`,
+                ``,
+                ``,
+                ``,
+                ``,
+                `    await render(<template>`,
+                `    <UiFormCheckbox`,
+                `      @data={{self.parent.data}}`,
+                `      @key="subscribe"`,
+                `      @label="Subscribe to The Ember Times?"`,
+                `      @onUpdate={{self.parent.updateData}}`,
+                `    />`,
+                `    </template>);`,
                 ``,
                 `    assert.ok(true);`,
                 `  });`,
                 `});`,
                 ``,
               ].join('\n'),
-              'field-test.ts': '',
-              'information-test.ts': '',
+              'field-test.gts': '',
+              'information-test.gts': '',
               'input-test.gjs': '',
               'number-test.gts': '',
               'select-test.gts': '',
-              'textarea-test.js': [
+              'textarea-test.gjs': [
+                `import UiFormTextarea from 'my-v1-app/components/ui/form/textarea';`,
+                ``,
                 `import { render } from '@ember/test-helpers';`,
-                `import { hbs } from 'ember-cli-htmlbars';`,
                 `import { setupRenderingTest } from 'my-v1-app/tests/helpers';`,
                 `import { module, test } from 'qunit';`,
                 ``,
@@ -199,16 +192,19 @@ test('steps | update-routes > v1-app', function () {
                 `  });`,
                 ``,
                 `  test('it renders', async function (assert) {`,
-                `    await render(`,
-                `      hbs\``,
-                `        <Ui::Form::Textarea`,
-                `          @data={{this.data}}`,
-                `          @key="message"`,
-                `          @label="Message"`,
-                `          @onUpdate={{this.updateData}}`,
-                `        />`,
-                `      \`,`,
-                `    );`,
+                `    const self = this;`,
+                ``,
+                ``,
+                ``,
+                ``,
+                `    await render(<template>`,
+                `    <UiFormTextarea`,
+                `      @data={{self.data}}`,
+                `      @key="message"`,
+                `      @label="Message"`,
+                `      @onUpdate={{self.updateData}}`,
+                `    />`,
+                `    </template>);`,
                 ``,
                 `    assert.ok(true);`,
                 `  });`,
@@ -216,11 +212,11 @@ test('steps | update-routes > v1-app', function () {
                 ``,
               ].join('\n'),
             },
-            'form-test.ts': '',
+            'form-test.gts': '',
             'page-test.gjs': '',
           },
-          'navigation-menu-test.js': '',
-          'select-locale-test.js': '',
+          'navigation-menu-test.gjs': '',
+          'select-locale-test.gjs': '',
         },
       },
     },
@@ -238,7 +234,7 @@ test('steps | update-routes > v1-app', function () {
 
   const entities = findEntities(options);
 
-  updateRoutes(packages, entities);
+  updateTests(packages, entities);
 
   assertFixture(outputProject, options);
 });
