@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.14.1
+
+### Patch Changes
+
+- [#62](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/62) Updated development dependencies ([@ijlee2](https://github.com/ijlee2))
+- [#61](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/61) Removed the word Component from component names ([@ijlee2](https://github.com/ijlee2))
+- [#60](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/60) Added integration tests (Part 4) ([@ijlee2](https://github.com/ijlee2))
+- [#59](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/59) Simplified test setups ([@ijlee2](https://github.com/ijlee2))
+- [#58](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/58) Added integration tests (Part 3) ([@ijlee2](https://github.com/ijlee2))
+
 ## 0.14.0
 
 ### Minor Changes
