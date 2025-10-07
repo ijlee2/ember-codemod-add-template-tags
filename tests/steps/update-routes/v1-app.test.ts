@@ -1,114 +1,113 @@
 import { assertFixture, loadFixture, test } from '@codemod-utils/tests';
 
-import { findEntities, updateComponents } from '../../../src/steps/index.js';
+import { findEntities, updateRoutes } from '../../../src/steps/index.js';
 import {
   inputProject,
   options,
   packages,
-} from '../../helpers/shared-test-setups/my-v2-app.js';
+} from '../../helpers/shared-test-setups/my-v1-app.js';
 
-test('steps | update-components > v2-app', function () {
+test('steps | update-routes > v1-app', function () {
   const outputProject = {
     app: {
       components: {
         ui: {
           form: {
-            'checkbox.gts': [
+            'checkbox.hbs': ``,
+            'checkbox.ts': [
               `import Component from '@glimmer/component';`,
               ``,
               `interface UiFormCheckboxSignature {}`,
               ``,
-              `export default class UiFormCheckboxComponent extends Component<UiFormCheckboxSignature> {`,
-              `    <template>`,
+              `export default class UiFormCheckboxComponent extends Component<UiFormCheckboxSignature> {}`,
               ``,
-              `    </template>`,
+              `declare module '@glint/environment-ember-loose/registry' {`,
+              `  export default interface Registry {`,
+              `    'Ui::Form::Checkbox': typeof UiFormCheckboxComponent;`,
+              `    'ui/form/checkbox': typeof UiFormCheckboxComponent;`,
+              `  }`,
               `}`,
               ``,
             ].join('\n'),
-            'field.gts': [
+            'field.hbs': ``,
+            'field.ts': [
               `import Component from '@glimmer/component';`,
               ``,
               `interface UiFormFieldSignature {}`,
               ``,
-              `export default class UiFormFieldComponent extends Component<UiFormFieldSignature> {`,
-              `    <template>`,
-              ``,
-              `    </template>`,
-              `}`,
+              `export default class UiFormFieldComponent extends Component<UiFormFieldSignature> {}`,
               ``,
             ].join('\n'),
-            'information.gts': [
-              `import type { TOC } from '@ember/component/template-only';`,
+            'information.hbs': ``,
+            'information.ts': [
+              `import templateOnlyComponent from '@ember/component/template-only';`,
               ``,
               `interface UiFormInformationSignature {}`,
               ``,
-              `const UiFormInformationComponent = <template>`,
-              ``,
-              `</template> satisfies TOC<UiFormInformationSignature>;`,
+              `const UiFormInformationComponent = templateOnlyComponent<UiFormInformationSignature>();`,
               ``,
               `export default UiFormInformationComponent;`,
               ``,
-            ].join('\n'),
-            'input.gjs': [
-              `import Component from '@glimmer/component';`,
-              ``,
-              `export default class UiFormInputComponent extends Component {`,
-              `    <template>`,
-              ``,
-              `    </template>`,
+              `declare module '@glint/environment-ember-loose/registry' {`,
+              `  export default interface Registry {`,
+              `    'Ui::Form::Information': typeof UiFormInformationComponent;`,
+              `    'ui/form/information': typeof UiFormInformationComponent;`,
+              `  }`,
               `}`,
               ``,
             ].join('\n'),
+            'input.hbs': ``,
+            'input.js': [
+              `import Component from '@glimmer/component';`,
+              ``,
+              `export default class UiFormInputComponent extends Component {}`,
+              ``,
+            ].join('\n'),
             'number.gts': ``,
-            'select.gts': [
+            'select.hbs': ``,
+            'select.ts': [
               `import Component from '@glimmer/component';`,
               ``,
               `interface UiFormSelectSignature {}`,
               ``,
-              `export default class UiFormSelect extends Component<UiFormSelectSignature> {`,
-              `    <template>`,
-              ``,
-              `    </template>`,
-              `}`,
+              `export default class UiFormSelect extends Component<UiFormSelectSignature> {}`,
               ``,
             ].join('\n'),
             'textarea.gjs': ``,
           },
-          'form.gts': [
+          'form.hbs': ``,
+          'form.ts': [
             `import Component from '@glimmer/component';`,
             ``,
             `interface UiFormSignature {}`,
             ``,
-            `export default class UiFormComponent extends Component<UiFormSignature> {`,
-            `    <template>`,
-            ``,
-            `    </template>`,
-            `}`,
+            `export default class UiFormComponent extends Component<UiFormSignature> {}`,
             ``,
           ].join('\n'),
-          'page.gjs': [
-            `const UiPageComponent = <template>`,
+          'page.hbs': ``,
+          'page.js': [
+            `import templateOnlyComponent from '@ember/component/template-only';`,
             ``,
-            `</template>;`,
+            `const UiPageComponent = templateOnlyComponent();`,
             ``,
             `export default UiPageComponent;`,
             ``,
           ].join('\n'),
         },
-        'navigation-menu.gjs': [`<template>`, ``, `</template>`, ``].join('\n'),
-        'select-locale.gjs': [
+        'navigation-menu.hbs': '',
+        'select-locale.hbs': '',
+        'select-locale.js': [
           `import Component from '@glimmer/component';`,
           ``,
-          `export default class SelectLocaleComponent extends Component {`,
-          `    <template>`,
-          ``,
-          `    </template>`,
-          `}`,
+          `export default class SelectLocaleComponent extends Component {}`,
           ``,
         ].join('\n'),
       },
       templates: {
-        'application.hbs': [
+        'application.gjs': [
+          `import NavigationMenu from 'my-v1-app/components/navigation-menu';`,
+          ``,
+          `<template>`,
           `<header>`,
           `  <NavigationMenu />`,
           `</header>`,
@@ -116,8 +115,17 @@ test('steps | update-components > v2-app', function () {
           `<main>`,
           `  {{outlet}}`,
           `</main>`,
+          `</template>`,
+          ``,
         ].join('\n'),
-        'index.hbs': `<SelectLocale />`,
+        'index.gjs': [
+          `import SelectLocale from 'my-v1-app/components/select-locale';`,
+          ``,
+          `<template>`,
+          `<SelectLocale />`,
+          `</template>`,
+          ``,
+        ].join('\n'),
       },
     },
     tests: {
@@ -132,7 +140,7 @@ test('steps | update-components > v2-app', function () {
                 `} from '@ember/test-helpers';`,
                 `import { hbs } from 'ember-cli-htmlbars';`,
                 `import { UiForm } from 'my-addon/test-support';`,
-                `import { setupRenderingTest } from 'my-v2-app/tests/helpers';`,
+                `import { setupRenderingTest } from 'my-v1-app/tests/helpers';`,
                 `import { module, test } from 'qunit';`,
                 ``,
                 `interface TestContext extends BaseTestContext {`,
@@ -171,7 +179,7 @@ test('steps | update-components > v2-app', function () {
               'textarea-test.js': [
                 `import { render } from '@ember/test-helpers';`,
                 `import { hbs } from 'ember-cli-htmlbars';`,
-                `import { setupRenderingTest } from 'my-v2-app/tests/helpers';`,
+                `import { setupRenderingTest } from 'my-v1-app/tests/helpers';`,
                 `import { module, test } from 'qunit';`,
                 ``,
                 `module('Integration | Component | ui/form/textarea', function (hooks) {`,
@@ -217,10 +225,10 @@ test('steps | update-components > v2-app', function () {
       },
     },
     'package.json': JSON.stringify({
-      name: 'my-v2-app',
+      name: 'my-v1-app',
       version: '1.0.0',
       devDependencies: {
-        '@embroider/vite': '^1.2.0',
+        '@embroider/webpack': '^4.1.1',
         'ember-source': '~6.7.0',
       },
     }),
@@ -230,7 +238,7 @@ test('steps | update-components > v2-app', function () {
 
   const entities = findEntities(options);
 
-  updateComponents(packages, entities);
+  updateRoutes(packages, entities);
 
   assertFixture(outputProject, options);
 });

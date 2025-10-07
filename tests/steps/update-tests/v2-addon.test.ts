@@ -1,38 +1,34 @@
 import { assertFixture, loadFixture, test } from '@codemod-utils/tests';
 
-import { findEntities, updateComponents } from '../../../src/steps/index.js';
+import { findEntities, updateTests } from '../../../src/steps/index.js';
 import {
   inputProject,
   options,
   packages,
 } from '../../helpers/shared-test-setups/my-v2-addon.js';
 
-test('steps | update-components > v2-addon', function () {
+test('steps | update-tests > v2-addon', function () {
   const outputProject = {
     src: {
       components: {
-        'navigation-menu.gts': [
-          `import type { TOC } from '@ember/component/template-only';`,
+        'navigation-menu.hbs': '',
+        'navigation-menu.ts': [
+          `import templateOnlyComponent from '@ember/component/template-only';`,
           ``,
           `interface NavigationMenuSignature {}`,
           ``,
-          `const NavigationMenuComponent = <template>`,
-          ``,
-          `</template> satisfies TOC<NavigationMenuSignature>;`,
+          `const NavigationMenuComponent = templateOnlyComponent<NavigationMenuSignature>();`,
           ``,
           `export default NavigationMenuComponent;`,
           ``,
         ].join('\n'),
-        'select-locale.gts': [
+        'select-locale.hbs': '',
+        'select-locale.ts': [
           `import Component from '@glimmer/component';`,
           ``,
           `interface SelectLocaleSignature {}`,
           ``,
-          `export default class SelectLocaleComponent extends Component<SelectLocaleSignature> {`,
-          `    <template>`,
-          ``,
-          `    </template>`,
-          `}`,
+          `export default class SelectLocaleComponent extends Component<SelectLocaleSignature> {}`,
           ``,
         ].join('\n'),
       },
@@ -54,7 +50,7 @@ test('steps | update-components > v2-addon', function () {
 
   const entities = findEntities(options);
 
-  updateComponents(packages, entities);
+  updateTests(packages, entities);
 
   assertFixture(outputProject, options);
 });

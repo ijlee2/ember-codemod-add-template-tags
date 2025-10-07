@@ -1,21 +1,22 @@
 import { assertFixture, loadFixture, test } from '@codemod-utils/tests';
 
-import { findEntities, updateComponents } from '../../../src/steps/index.js';
+import { findEntities, updateRoutes } from '../../../src/steps/index.js';
 import {
   inputProject,
   options,
   packages,
 } from '../../helpers/shared-test-setups/my-v1-addon.js';
 
-test('steps | update-components > v1-addon', function () {
+test('steps | update-routes > v1-addon', function () {
   const outputProject = {
     addon: {
       components: {
         'navigation-menu.d.ts': '',
-        'navigation-menu.gjs': [
-          `const NavigationMenuComponent = <template>`,
+        'navigation-menu.hbs': '',
+        'navigation-menu.js': [
+          `import templateOnlyComponent from '@ember/component/template-only';`,
           ``,
-          `</template>;`,
+          `const NavigationMenuComponent = templateOnlyComponent();`,
           ``,
           `export default NavigationMenuComponent;`,
           ``,
@@ -72,7 +73,7 @@ test('steps | update-components > v1-addon', function () {
 
   const entities = findEntities(options);
 
-  updateComponents(packages, entities);
+  updateRoutes(packages, entities);
 
   assertFixture(outputProject, options);
 });

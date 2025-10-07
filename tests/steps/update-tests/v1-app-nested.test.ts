@@ -1,70 +1,73 @@
 import { assertFixture, loadFixture, test } from '@codemod-utils/tests';
 
-import { updateComponents } from '../../../src/steps/index.js';
-import { entities } from '../../helpers/mocks/index.js';
+import { findEntities, updateTests } from '../../../src/steps/index.js';
 import {
   inputProject,
   options,
   packages,
 } from '../../helpers/shared-test-setups/my-v1-app-nested.js';
 
-test('steps | update-components > component structure is nested', function () {
+test('steps | update-tests > v1-app-nested', function () {
   const outputProject = {
     app: {
       components: {
         ui: {
           form: {
             checkbox: {
-              'index.gts': [
+              'index.hbs': ``,
+              'index.ts': [
                 `import Component from '@glimmer/component';`,
                 ``,
                 `interface UiFormCheckboxSignature {}`,
                 ``,
-                `export default class UiFormCheckboxComponent extends Component<UiFormCheckboxSignature> {`,
-                `    <template>`,
+                `export default class UiFormCheckboxComponent extends Component<UiFormCheckboxSignature> {}`,
                 ``,
-                `    </template>`,
+                `declare module '@glint/environment-ember-loose/registry' {`,
+                `  export default interface Registry {`,
+                `    'Ui::Form::Checkbox': typeof UiFormCheckboxComponent;`,
+                `    'ui/form/checkbox': typeof UiFormCheckboxComponent;`,
+                `  }`,
                 `}`,
                 ``,
               ].join('\n'),
             },
             field: {
-              'index.gts': [
+              'index.hbs': ``,
+              'index.ts': [
                 `import Component from '@glimmer/component';`,
                 ``,
                 `interface UiFormFieldSignature {}`,
                 ``,
-                `export default class UiFormFieldComponent extends Component<UiFormFieldSignature> {`,
-                `    <template>`,
-                ``,
-                `    </template>`,
-                `}`,
+                `export default class UiFormFieldComponent extends Component<UiFormFieldSignature> {}`,
                 ``,
               ].join('\n'),
             },
             information: {
-              'index.gts': [
-                `import type { TOC } from '@ember/component/template-only';`,
+              'index.hbs': ``,
+              'index.ts': [
+                `import templateOnlyComponent from '@ember/component/template-only';`,
                 ``,
                 `interface UiFormInformationSignature {}`,
                 ``,
-                `const UiFormInformationComponent = <template>`,
-                ``,
-                `</template> satisfies TOC<UiFormInformationSignature>;`,
+                `const UiFormInformationComponent = templateOnlyComponent<UiFormInformationSignature>();`,
                 ``,
                 `export default UiFormInformationComponent;`,
+                ``,
+                `declare module '@glint/environment-ember-loose/registry' {`,
+                `  export default interface Registry {`,
+                `    'Ui::Form::Information': typeof UiFormInformationComponent;`,
+                `    'ui/form/information': typeof UiFormInformationComponent;`,
+                `  }`,
+                `}`,
                 ``,
               ].join('\n'),
             },
             input: {
-              'index.gjs': [
+              'index.hbs': ``,
+              'index.js': [
                 `import Component from '@glimmer/component';`,
                 ``,
-                `export default class UiFormInputComponent extends Component {`,
-                `    <template>`,
-                ``,
-                `    </template>`,
-                `}`,
+                `export default class UiFormInputComponent extends Component {}`,
                 ``,
               ].join('\n'),
             },
@@ -72,40 +75,35 @@ test('steps | update-components > component structure is nested', function () {
               'index.gts': ``,
             },
             select: {
-              'index.gts': [
+              'index.hbs': ``,
+              'index.ts': [
                 `import Component from '@glimmer/component';`,
                 ``,
                 `interface UiFormSelectSignature {}`,
                 ``,
-                `export default class UiFormSelect extends Component<UiFormSelectSignature> {`,
-                `    <template>`,
-                ``,
-                `    </template>`,
-                `}`,
+                `export default class UiFormSelect extends Component<UiFormSelectSignature> {}`,
                 ``,
               ].join('\n'),
             },
             textarea: {
               'index.gjs': ``,
             },
-            'index.gts': [
+            'index.hbs': ``,
+            'index.ts': [
               `import Component from '@glimmer/component';`,
               ``,
               `interface UiFormSignature {}`,
               ``,
-              `export default class UiFormComponent extends Component<UiFormSignature> {`,
-              `    <template>`,
-              ``,
-              `    </template>`,
-              `}`,
+              `export default class UiFormComponent extends Component<UiFormSignature> {}`,
               ``,
             ].join('\n'),
           },
           page: {
-            'index.gjs': [
-              `const UiPageComponent = <template>`,
+            'index.hbs': ``,
+            'index.js': [
+              `import templateOnlyComponent from '@ember/component/template-only';`,
               ``,
-              `</template>;`,
+              `const UiPageComponent = templateOnlyComponent();`,
               ``,
               `export default UiPageComponent;`,
               ``,
@@ -113,17 +111,14 @@ test('steps | update-components > component structure is nested', function () {
           },
         },
         'navigation-menu': {
-          'index.gjs': [`<template>`, ``, `</template>`, ``].join('\n'),
+          'index.hbs': '',
         },
         'select-locale': {
-          'index.gjs': [
+          'index.hbs': '',
+          'index.js': [
             `import Component from '@glimmer/component';`,
             ``,
-            `export default class SelectLocaleComponent extends Component {`,
-            `    <template>`,
-            ``,
-            `    </template>`,
-            `}`,
+            `export default class SelectLocaleComponent extends Component {}`,
             ``,
           ].join('\n'),
         },
@@ -146,19 +141,19 @@ test('steps | update-components > component structure is nested', function () {
         components: {
           ui: {
             form: {
-              'checkbox-test.ts': '',
-              'field-test.ts': '',
-              'information-test.ts': '',
+              'checkbox-test.gts': '',
+              'field-test.gts': '',
+              'information-test.gts': '',
               'input-test.gjs': '',
               'number-test.gts': '',
               'select-test.gts': '',
-              'textarea-test.js': '',
+              'textarea-test.gjs': '',
             },
-            'form-test.ts': '',
+            'form-test.gts': '',
             'page-test.gjs': '',
           },
-          'navigation-menu-test.js': '',
-          'select-locale-test.js': '',
+          'navigation-menu-test.gjs': '',
+          'select-locale-test.gjs': '',
         },
       },
     },
@@ -174,7 +169,9 @@ test('steps | update-components > component structure is nested', function () {
 
   loadFixture(inputProject, options);
 
-  updateComponents(packages, entities);
+  const entities = findEntities(options);
+
+  updateTests(packages, entities);
 
   assertFixture(outputProject, options);
 });

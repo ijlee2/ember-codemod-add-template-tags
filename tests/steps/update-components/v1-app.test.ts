@@ -1,7 +1,6 @@
 import { assertFixture, loadFixture, test } from '@codemod-utils/tests';
 
-import { updateComponents } from '../../../src/steps/index.js';
-import { entities } from '../../helpers/mocks/index.js';
+import { findEntities, updateComponents } from '../../../src/steps/index.js';
 import {
   inputProject,
   options,
@@ -126,13 +125,88 @@ test('steps | update-components > v1-app', function () {
         components: {
           ui: {
             form: {
-              'checkbox-test.ts': '',
+              'checkbox-test.ts': [
+                `import {`,
+                `  render,`,
+                `  type TestContext as BaseTestContext,`,
+                `} from '@ember/test-helpers';`,
+                `import { hbs } from 'ember-cli-htmlbars';`,
+                `import { UiForm } from 'my-addon/test-support';`,
+                `import { setupRenderingTest } from 'my-v1-app/tests/helpers';`,
+                `import { module, test } from 'qunit';`,
+                ``,
+                `interface TestContext extends BaseTestContext {`,
+                `  parent: UiForm;`,
+                `}`,
+                ``,
+                `module('Integration | Component | ui/form/checkbox', function (hooks) {`,
+                `  setupRenderingTest(hooks);`,
+                ``,
+                `  hooks.beforeEach(function (this: TestContext) {`,
+                `    this.parent = new UiForm();`,
+                `  });`,
+                ``,
+                `  test('it renders', async function (this: TestContext, assert) {`,
+                `    await render<TestContext>(`,
+                `      hbs\``,
+                `        <Ui::Form::Checkbox`,
+                `          @data={{this.parent.data}}`,
+                `          @key="subscribe"`,
+                `          @label="Subscribe to The Ember Times?"`,
+                `          @onUpdate={{this.parent.updateData}}`,
+                `        />`,
+                `      \`,`,
+                `    );`,
+                ``,
+                `    assert.ok(true);`,
+                `  });`,
+                `});`,
+                ``,
+              ].join('\n'),
               'field-test.ts': '',
               'information-test.ts': '',
               'input-test.gjs': '',
               'number-test.gts': '',
               'select-test.gts': '',
-              'textarea-test.js': '',
+              'textarea-test.js': [
+                `import { render } from '@ember/test-helpers';`,
+                `import { hbs } from 'ember-cli-htmlbars';`,
+                `import { setupRenderingTest } from 'my-v1-app/tests/helpers';`,
+                `import { module, test } from 'qunit';`,
+                ``,
+                `module('Integration | Component | ui/form/textarea', function (hooks) {`,
+                `  setupRenderingTest(hooks);`,
+                ``,
+                `  hooks.beforeEach(function () {`,
+                `    this.data = {`,
+                `      email: 'zoey@emberjs.com',`,
+                `      message: 'I 🧡 container queries!',`,
+                `      name: 'Zoey',`,
+                `      subscribe: false,`,
+                `    };`,
+                ``,
+                `    this.updateData = () => {`,
+                `      // Do nothing`,
+                `    };`,
+                `  });`,
+                ``,
+                `  test('it renders', async function (assert) {`,
+                `    await render(`,
+                `      hbs\``,
+                `        <Ui::Form::Textarea`,
+                `          @data={{this.data}}`,
+                `          @key="message"`,
+                `          @label="Message"`,
+                `          @onUpdate={{this.updateData}}`,
+                `        />`,
+                `      \`,`,
+                `    );`,
+                ``,
+                `    assert.ok(true);`,
+                `  });`,
+                `});`,
+                ``,
+              ].join('\n'),
             },
             'form-test.ts': '',
             'page-test.gjs': '',
@@ -153,6 +227,8 @@ test('steps | update-components > v1-app', function () {
   };
 
   loadFixture(inputProject, options);
+
+  const entities = findEntities(options);
 
   updateComponents(packages, entities);
 
