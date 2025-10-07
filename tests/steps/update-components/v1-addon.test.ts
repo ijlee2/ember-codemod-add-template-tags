@@ -1,7 +1,6 @@
 import { assertFixture, loadFixture, test } from '@codemod-utils/tests';
 
-import { updateComponents } from '../../../src/steps/index.js';
-import { entities } from '../../helpers/mocks/index.js';
+import { findEntities, updateComponents } from '../../../src/steps/index.js';
 import {
   inputProject,
   options,
@@ -70,6 +69,8 @@ test('steps | update-components > v1-addon', function () {
   };
 
   loadFixture(inputProject, options);
+
+  const entities = findEntities(options);
 
   updateComponents(packages, entities);
 

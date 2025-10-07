@@ -6,7 +6,7 @@ import {
   options,
 } from '../../helpers/shared-test-setups/my-v1-app-nested.js';
 
-test('steps | find-packages-with-hbs > component structure is nested', function () {
+test('steps | find-packages-with-hbs > v1-app (nested)', function () {
   loadFixture(inputProject, options);
 
   const packages = findPackagesWithHBS(options);
