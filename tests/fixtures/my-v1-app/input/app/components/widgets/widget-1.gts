@@ -7,7 +7,7 @@ import WidgetsWidget1Item from './widget-1/item';
 
 interface WidgetsWidget1Signature {}
 
-const WidgetsWidget1Component: TOC<WidgetsWidget1Signature> =
+const WidgetsWidget1: TOC<WidgetsWidget1Signature> =
   <template>
     <ContainerQuery
       @features={{hash
@@ -38,10 +38,10 @@ const WidgetsWidget1Component: TOC<WidgetsWidget1Signature> =
     </ContainerQuery>
   </template>
 
-export default WidgetsWidget1Component;
+export default WidgetsWidget1;
 
 declare module '@glint/environment-ember-loose/registry' {
   export default interface Registry {
-    'Widgets::Widget-1': typeof WidgetsWidget1Component;
+    'Widgets::Widget-1': typeof WidgetsWidget1;
   }
 }

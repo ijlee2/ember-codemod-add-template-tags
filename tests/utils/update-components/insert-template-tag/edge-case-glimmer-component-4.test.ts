@@ -8,9 +8,9 @@ test('utils | update-components | insert-template-tag > edge case (Glimmer compo
     ``,
     `interface UiFormSignature { /* ... */ }`,
     ``,
-    `class UiFormComponent extends Component<UiFormSignature> {}`,
+    `class UiForm extends Component<UiFormSignature> {}`,
     ``,
-    `export default UiFormComponent;`,
+    `export default UiForm;`,
     ``,
   ].join('\n');
 
@@ -25,12 +25,12 @@ test('utils | update-components | insert-template-tag > edge case (Glimmer compo
       ``,
       `interface UiFormSignature { /* ... */ }`,
       ``,
-      `class UiFormComponent extends Component<UiFormSignature> {`,
+      `class UiForm extends Component<UiFormSignature> {`,
       ``,
       `  <template></template>`,
       `}`,
       ``,
-      `export default UiFormComponent;`,
+      `export default UiForm;`,
       ``,
     ].join('\n'),
   );

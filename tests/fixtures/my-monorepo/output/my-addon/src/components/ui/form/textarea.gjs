@@ -8,7 +8,7 @@ import { generateErrorMessage } from '../../../utils/components/ui/form';
 import UiFormField from './field';
 import styles from './textarea.css';
 
-export default class UiFormTextareaComponent extends Component {
+export default class UiFormTextarea extends Component {
   get errorMessage() {
     const { isRequired } = this.args;
 

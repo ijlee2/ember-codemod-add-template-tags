@@ -12,9 +12,9 @@ import { tracked } from '@glimmer/tracking';
 import { WithBoundArgs } from '@glint/template';
 
 import styles from './form.css';
-import type UiFormCheckboxComponent from './form/checkbox';
-import type UiFormInputComponent from './form/input';
-import type UiFormTextareaComponent from './form/textarea';
+import type UiFormCheckbox from './form/checkbox';
+import type UiFormInput from './form/input';
+import type UiFormTextarea from './form/textarea';
 
 interface UiFormSignature {
   Args: {
@@ -26,15 +26,15 @@ interface UiFormSignature {
     default: [
       {
         Checkbox: WithBoundArgs<
-          typeof UiFormCheckboxComponent,
+          typeof UiFormCheckbox,
           'changeset' | 'isInline' | 'isWide' | 'onUpdate'
         >;
         Input: WithBoundArgs<
-          typeof UiFormInputComponent,
+          typeof UiFormInput,
           'changeset' | 'isWide' | 'onUpdate'
         >;
         Textarea: WithBoundArgs<
-          typeof UiFormTextareaComponent,
+          typeof UiFormTextarea,
           'changeset' | 'isWide' | 'onUpdate'
         >;
       },
@@ -42,7 +42,7 @@ interface UiFormSignature {
   };
 }
 
-export default class UiFormComponent extends Component<UiFormSignature> {
+export default class UiForm extends Component<UiFormSignature> {
   formId = guidFor(this);
   styles = styles;
 

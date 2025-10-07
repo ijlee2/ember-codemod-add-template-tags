@@ -7,7 +7,7 @@ import styles from './index.css';
 
 interface WidgetsWidget5Signature {}
 
-const WidgetsWidget5Component: TOC<WidgetsWidget5Signature> =
+const WidgetsWidget5: TOC<WidgetsWidget5Signature> =
   <template>
     <ContainerQuery
       @features={{hash large=(width min=224) tall=(height min=120)}}
@@ -45,10 +45,10 @@ const WidgetsWidget5Component: TOC<WidgetsWidget5Signature> =
     </ContainerQuery>
   </template>
 
-export default WidgetsWidget5Component;
+export default WidgetsWidget5;
 
 declare module '@glint/environment-ember-loose/registry' {
   export default interface Registry {
-    'Widgets::Widget-5': typeof WidgetsWidget5Component;
+    'Widgets::Widget-5': typeof WidgetsWidget5;
   }
 }

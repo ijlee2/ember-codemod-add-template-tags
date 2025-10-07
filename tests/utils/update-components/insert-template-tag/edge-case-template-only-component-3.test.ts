@@ -6,9 +6,9 @@ test('utils | update-components | insert-template-tag > edge case (template-only
   const oldFile = [
     `import foo from '@ember/component/template-only';`,
     ``,
-    `const UiFormComponent = foo<UiFormSignature>();`,
+    `const UiForm = foo<UiFormSignature>();`,
     ``,
-    `export default UiFormComponent;`,
+    `export default UiForm;`,
     ``,
   ].join('\n');
 
@@ -22,9 +22,9 @@ test('utils | update-components | insert-template-tag > edge case (template-only
       `import type { TOC } from '@ember/component/template-only';`,
       `import foo from '@ember/component/template-only';`,
       ``,
-      `const UiFormComponent = <template></template> satisfies TOC<UiFormSignature>;`,
+      `const UiForm = <template></template> satisfies TOC<UiFormSignature>;`,
       ``,
-      `export default UiFormComponent;`,
+      `export default UiForm;`,
       ``,
     ].join('\n'),
   );

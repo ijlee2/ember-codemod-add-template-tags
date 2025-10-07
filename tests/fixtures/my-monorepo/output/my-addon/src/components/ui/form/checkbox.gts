@@ -22,7 +22,7 @@ interface UiFormCheckboxSignature {
   };
 }
 
-export default class UiFormCheckboxComponent extends Component<UiFormCheckboxSignature> {
+export default class UiFormCheckbox extends Component<UiFormCheckboxSignature> {
   styles = styles;
 
   get errorMessage(): string | undefined {

@@ -39,7 +39,7 @@ interface UiFormSignature {
   };
 }
 
-export default class UiFormComponent extends Component<UiFormSignature> {
+export default class UiForm extends Component<UiFormSignature> {
   data = new TrackedObject<Record<string, unknown>>(this.args.data ?? {});
 
   styles = styles;

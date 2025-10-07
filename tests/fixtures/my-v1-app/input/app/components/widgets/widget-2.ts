@@ -14,7 +14,7 @@ interface WidgetsWidget2Signature {
   Args: {};
 }
 
-export default class WidgetsWidget2Component extends Component<WidgetsWidget2Signature> {
+export default class WidgetsWidget2 extends Component<WidgetsWidget2Signature> {
   styles = styles;
 
   @tracked data = [] as Data[];
@@ -34,6 +34,6 @@ export default class WidgetsWidget2Component extends Component<WidgetsWidget2Sig
 
 declare module '@glint/environment-ember-loose/registry' {
   export default interface Registry {
-    'Widgets::Widget-2': typeof WidgetsWidget2Component;
+    'Widgets::Widget-2': typeof WidgetsWidget2;
   }
 }

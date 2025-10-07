@@ -25,7 +25,7 @@ interface WidgetsWidget2CaptionsSignature {
   };
 }
 
-export default class WidgetsWidget2CaptionsComponent extends Component<WidgetsWidget2CaptionsSignature> {
+export default class WidgetsWidget2Captions extends Component<WidgetsWidget2CaptionsSignature> {
   colorSvg = colorSvg;
   styles = styles;
 

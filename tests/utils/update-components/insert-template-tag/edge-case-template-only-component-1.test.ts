@@ -8,9 +8,9 @@ test('utils | update-components | insert-template-tag > edge case (template-only
     ``,
     `interface UiFormSignature { /* ... */ }`,
     ``,
-    `const UiFormComponent = templateOnlyComponent();`,
+    `const UiForm = templateOnlyComponent();`,
     ``,
-    `export default UiFormComponent;`,
+    `export default UiForm;`,
     ``,
   ].join('\n');
 
@@ -26,9 +26,9 @@ test('utils | update-components | insert-template-tag > edge case (template-only
       ``,
       `interface UiFormSignature { /* ... */ }`,
       ``,
-      `const UiFormComponent = <template></template>;`,
+      `const UiForm = <template></template>;`,
       ``,
-      `export default UiFormComponent;`,
+      `export default UiForm;`,
       ``,
     ].join('\n'),
   );

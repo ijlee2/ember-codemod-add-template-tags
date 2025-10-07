@@ -10,7 +10,7 @@ interface WidgetsWidget2StackedChartSignature {
   };
 }
 
-const WidgetsWidget2StackedChartComponent: TOC<WidgetsWidget2StackedChartSignature> =
+const WidgetsWidget2StackedChart: TOC<WidgetsWidget2StackedChartSignature> =
   <template>
     <div
       class={{styles.svg-container}}
@@ -22,10 +22,10 @@ const WidgetsWidget2StackedChartComponent: TOC<WidgetsWidget2StackedChartSignatu
     </div>
   </template>
 
-export default WidgetsWidget2StackedChartComponent;
+export default WidgetsWidget2StackedChart;
 
 declare module '@glint/environment-ember-loose/registry' {
   export default interface Registry {
-    'Widgets::Widget-2::StackedChart': typeof WidgetsWidget2StackedChartComponent;
+    'Widgets::Widget-2::StackedChart': typeof WidgetsWidget2StackedChart;
   }
 }

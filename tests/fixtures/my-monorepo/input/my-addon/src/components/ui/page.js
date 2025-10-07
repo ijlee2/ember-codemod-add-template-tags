@@ -1,5 +1,5 @@
 import templateOnlyComponent from '@ember/component/template-only';
 
-const UiPageComponent = templateOnlyComponent();
+const UiPage = templateOnlyComponent();
 
-export default UiPageComponent;
+export default UiPage;

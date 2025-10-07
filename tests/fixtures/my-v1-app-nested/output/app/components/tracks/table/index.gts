@@ -10,7 +10,7 @@ interface TracksTableSignature {
   };
 }
 
-const TracksTableComponent: TOC<TracksTableSignature> =
+const TracksTable: TOC<TracksTableSignature> =
   <template>
     <table data-test-table="Tracks">
       <thead>
@@ -43,10 +43,10 @@ const TracksTableComponent: TOC<TracksTableSignature> =
     </table>
   </template>
 
-export default TracksTableComponent;
+export default TracksTable;
 
 declare module '@glint/environment-ember-loose/registry' {
   export default interface Registry {
-    'Tracks::Table': typeof TracksTableComponent;
+    'Tracks::Table': typeof TracksTable;
   }
 }

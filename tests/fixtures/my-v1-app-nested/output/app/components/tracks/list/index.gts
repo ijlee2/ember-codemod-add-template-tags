@@ -13,7 +13,7 @@ interface TracksListSignature {
   };
 }
 
-export default class TracksListComponent extends Component<TracksListSignature> {
+export default class TracksList extends Component<TracksListSignature> {
   styles = styles;
 
   get numColumns(): number {
