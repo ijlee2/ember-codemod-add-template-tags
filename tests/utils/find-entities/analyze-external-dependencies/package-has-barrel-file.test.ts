@@ -1,7 +1,10 @@
 import { assert, loadFixture, test } from '@codemod-utils/tests';
 
 import { analyzeExternalDependencies } from '../../../../src/utils/find-entities/index.js';
-import { codemodOptions, options } from '../../../helpers/mocks/index.js';
+import {
+  codemodOptions,
+  options,
+} from '../../../helpers/shared-test-setups/my-monorepo.js';
 
 test('utils | find-entities | analyze-external-dependencies > package has barrel file', function () {
   const inputProject = {
