@@ -16,7 +16,7 @@ interface WidgetsWidget2Signature {
   Args: {};
 }
 
-export default class WidgetsWidget2Component extends Component<WidgetsWidget2Signature> {
+export default class WidgetsWidget2 extends Component<WidgetsWidget2Signature> {
   styles = styles;
 
   @tracked data = [] as Data[];

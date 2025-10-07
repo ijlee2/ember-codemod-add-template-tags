@@ -9,18 +9,18 @@ interface ProductsProductImageSignature {
   };
 }
 
-const ProductsProductImageComponent: TOC<ProductsProductImageSignature> =
+const ProductsProductImage: TOC<ProductsProductImageSignature> =
   macroCondition(isTesting())
     ? <template>
         <div class={{styles.placeholder-image}}></div>
       </template>
     : <template><img alt="" class={{styles.image}} src={{@src}} /></template>;
 
-export default ProductsProductImageComponent;
+export default ProductsProductImage;
 
 declare module '@glint/environment-ember-loose/registry' {
   export default interface Registry {
-    'Products::Product::Image': typeof ProductsProductImageComponent;
-    'products/product/image': typeof ProductsProductImageComponent;
+    'Products::Product::Image': typeof ProductsProductImage;
+    'products/product/image': typeof ProductsProductImage;
   }
 }

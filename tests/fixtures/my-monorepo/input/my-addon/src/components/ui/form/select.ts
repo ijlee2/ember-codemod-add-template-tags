@@ -23,7 +23,7 @@ interface UiFormSelectSignature {
   };
 }
 
-export default class UiFormSelectComponent extends Component<UiFormSelectSignature> {
+export default class UiFormSelect extends Component<UiFormSelectSignature> {
   styles = styles;
 
   get errorMessage(): string | undefined {

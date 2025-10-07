@@ -16,9 +16,9 @@ test('steps | update-tests > v1-addon', function () {
         'navigation-menu.js': [
           `import templateOnlyComponent from '@ember/component/template-only';`,
           ``,
-          `const NavigationMenuComponent = templateOnlyComponent();`,
+          `const NavigationMenu = templateOnlyComponent();`,
           ``,
-          `export default NavigationMenuComponent;`,
+          `export default NavigationMenu;`,
           ``,
         ].join('\n'),
       },
@@ -31,7 +31,7 @@ test('steps | update-tests > v1-addon', function () {
             'select-locale.js': [
               `import Component from '@glimmer/component';`,
               ``,
-              `export default class SelectLocaleComponent extends Component {}`,
+              `export default class SelectLocale extends Component {}`,
               ``,
             ].join('\n'),
           },

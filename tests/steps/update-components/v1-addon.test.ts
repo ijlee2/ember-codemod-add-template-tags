@@ -13,11 +13,11 @@ test('steps | update-components > v1-addon', function () {
       components: {
         'navigation-menu.d.ts': '',
         'navigation-menu.gjs': [
-          `const NavigationMenuComponent = <template>`,
+          `const NavigationMenu = <template>`,
           ``,
           `</template>;`,
           ``,
-          `export default NavigationMenuComponent;`,
+          `export default NavigationMenu;`,
           ``,
         ].join('\n'),
       },
@@ -30,7 +30,7 @@ test('steps | update-components > v1-addon', function () {
             'select-locale.js': [
               `import Component from '@glimmer/component';`,
               ``,
-              `export default class SelectLocaleComponent extends Component {}`,
+              `export default class SelectLocale extends Component {}`,
               ``,
             ].join('\n'),
           },

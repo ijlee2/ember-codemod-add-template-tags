@@ -11,7 +11,7 @@ interface WidgetsWidget4MemoBodySignature {
   };
 }
 
-const WidgetsWidget4MemoBodyComponent: TOC<WidgetsWidget4MemoBodySignature> =
+const WidgetsWidget4MemoBody: TOC<WidgetsWidget4MemoBodySignature> =
   <template>
     <div
       class={{localClass
@@ -54,10 +54,10 @@ const WidgetsWidget4MemoBodyComponent: TOC<WidgetsWidget4MemoBodySignature> =
     </div>
   </template>
 
-export default WidgetsWidget4MemoBodyComponent;
+export default WidgetsWidget4MemoBody;
 
 declare module '@glint/environment-ember-loose/registry' {
   export default interface Registry {
-    'Widgets::Widget-4::Memo::Body': typeof WidgetsWidget4MemoBodyComponent;
+    'Widgets::Widget-4::Memo::Body': typeof WidgetsWidget4MemoBody;
   }
 }

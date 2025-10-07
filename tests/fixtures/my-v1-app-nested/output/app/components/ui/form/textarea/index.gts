@@ -20,7 +20,7 @@ interface UiFormTextareaSignature {
   };
 }
 
-export default class UiFormTextareaComponent extends Component<UiFormTextareaSignature> {
+export default class UiFormTextarea extends Component<UiFormTextareaSignature> {
   styles = styles;
 
   get errorMessage(): string | undefined {

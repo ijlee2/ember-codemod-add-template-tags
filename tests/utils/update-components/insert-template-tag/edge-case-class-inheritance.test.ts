@@ -4,9 +4,9 @@ import { insertTemplateTag } from '../../../../src/utils/update-components/index
 
 test('utils | update-components | insert-template-tag > edge case (class inheritance)', function () {
   const oldFile = [
-    `import ParentComponent from '../parent-component';`,
+    `import Parent from '../parent';`,
     ``,
-    `export default class MyComponent extends ParentComponent {}`,
+    `export default class Child extends Parent {}`,
     ``,
   ].join('\n');
 

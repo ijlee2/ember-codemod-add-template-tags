@@ -8,7 +8,7 @@ import Component from '@glimmer/component';
 import { generateErrorMessage } from '../../../utils/components/ui/form';
 import styles from './input.css';
 
-export default class UiFormInputComponent extends Component {
+export default class UiFormInput extends Component {
   styles = styles;
 
   get errorMessage() {

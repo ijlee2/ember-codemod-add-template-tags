@@ -12,7 +12,7 @@ interface WidgetsWidget3TourScheduleSignature {
   };
 }
 
-const WidgetsWidget3TourScheduleComponent: TOC<WidgetsWidget3TourScheduleSignature> =
+const WidgetsWidget3TourSchedule: TOC<WidgetsWidget3TourScheduleSignature> =
   <template>
     <ContainerQuery
       @features={{hash small=(width max=400)}}
@@ -49,10 +49,10 @@ const WidgetsWidget3TourScheduleComponent: TOC<WidgetsWidget3TourScheduleSignatu
     </ContainerQuery>
   </template>
 
-export default WidgetsWidget3TourScheduleComponent;
+export default WidgetsWidget3TourSchedule;
 
 declare module '@glint/environment-ember-loose/registry' {
   export default interface Registry {
-    'Widgets::Widget-3::TourSchedule': typeof WidgetsWidget3TourScheduleComponent;
+    'Widgets::Widget-3::TourSchedule': typeof WidgetsWidget3TourSchedule;
   }
 }

@@ -6,9 +6,9 @@ test('utils | update-components | insert-template-tag > template-only component 
   const oldFile = [
     `import templateOnlyComponent from '@ember/component/template-only';`,
     ``,
-    `const UiFormComponent = templateOnlyComponent();`,
+    `const UiForm = templateOnlyComponent();`,
     ``,
-    `export default UiFormComponent;`,
+    `export default UiForm;`,
     ``,
   ].join('\n');
 
@@ -21,9 +21,9 @@ test('utils | update-components | insert-template-tag > template-only component 
     [
       `import templateOnlyComponent from '@ember/component/template-only';`,
       ``,
-      `const UiFormComponent = <template></template>;`,
+      `const UiForm = <template></template>;`,
       ``,
-      `export default UiFormComponent;`,
+      `export default UiForm;`,
       ``,
     ].join('\n'),
   );

@@ -9,7 +9,7 @@ import WidgetsWidget4MemoHeader from './header';
 
 interface WidgetsWidget4MemoSignature {}
 
-const WidgetsWidget4MemoComponent: TOC<WidgetsWidget4MemoSignature> =
+const WidgetsWidget4Memo: TOC<WidgetsWidget4MemoSignature> =
   <template>
     <ContainerQuery
       @features={{hash
@@ -41,10 +41,10 @@ const WidgetsWidget4MemoComponent: TOC<WidgetsWidget4MemoSignature> =
     </ContainerQuery>
   </template>
 
-export default WidgetsWidget4MemoComponent;
+export default WidgetsWidget4Memo;
 
 declare module '@glint/environment-ember-loose/registry' {
   export default interface Registry {
-    'Widgets::Widget-4::Memo': typeof WidgetsWidget4MemoComponent;
+    'Widgets::Widget-4::Memo': typeof WidgetsWidget4Memo;
   }
 }

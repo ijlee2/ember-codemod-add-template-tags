@@ -10,7 +10,7 @@ interface WidgetsWidget3Signature {
   Args: {};
 }
 
-export default class WidgetsWidget3Component extends Component<WidgetsWidget3Signature> {
+export default class WidgetsWidget3 extends Component<WidgetsWidget3Signature> {
   styles = styles;
 
   @tracked concertData = {} as Concert;

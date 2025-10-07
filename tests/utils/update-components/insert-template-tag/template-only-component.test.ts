@@ -6,9 +6,9 @@ test('utils | update-components | insert-template-tag > template-only component'
   const oldFile = [
     `import templateOnlyComponent from '@ember/component/template-only';`,
     ``,
-    `const UiFormComponent = templateOnlyComponent<UiFormSignature>();`,
+    `const UiForm = templateOnlyComponent<UiFormSignature>();`,
     ``,
-    `export default UiFormComponent;`,
+    `export default UiForm;`,
     ``,
   ].join('\n');
 
@@ -22,9 +22,9 @@ test('utils | update-components | insert-template-tag > template-only component'
       `import type { TOC } from '@ember/component/template-only';`,
       `import templateOnlyComponent from '@ember/component/template-only';`,
       ``,
-      `const UiFormComponent = <template></template> satisfies TOC<UiFormSignature>;`,
+      `const UiForm = <template></template> satisfies TOC<UiFormSignature>;`,
       ``,
-      `export default UiFormComponent;`,
+      `export default UiForm;`,
       ``,
     ].join('\n'),
   );

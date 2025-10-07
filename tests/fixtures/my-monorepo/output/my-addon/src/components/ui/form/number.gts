@@ -26,7 +26,7 @@ interface UiFormNumberSignature {
   };
 }
 
-export default class UiFormNumberComponent extends Component<UiFormNumberSignature> {
+export default class UiFormNumber extends Component<UiFormNumberSignature> {
   get errorMessage(): string | undefined {
     const { isRequired } = this.args;
 

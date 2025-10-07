@@ -5,7 +5,7 @@ import WidgetsWidget4Memo from './memo';
 
 interface WidgetsWidget4Signature {}
 
-const WidgetsWidget4Component: TOC<WidgetsWidget4Signature> =
+const WidgetsWidget4: TOC<WidgetsWidget4Signature> =
   <template>
     <section class={{styles.container}}>
       <header class={{styles.header}}>
@@ -24,10 +24,10 @@ const WidgetsWidget4Component: TOC<WidgetsWidget4Signature> =
     </section>
   </template>
 
-export default WidgetsWidget4Component;
+export default WidgetsWidget4;
 
 declare module '@glint/environment-ember-loose/registry' {
   export default interface Registry {
-    'Widgets::Widget-4': typeof WidgetsWidget4Component;
+    'Widgets::Widget-4': typeof WidgetsWidget4;
   }
 }

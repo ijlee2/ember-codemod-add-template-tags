@@ -15,7 +15,7 @@ interface NavigationMenuSignature {
   };
 }
 
-const NavigationMenuComponent: TOC<NavigationMenuSignature> =
+const NavigationMenu: TOC<NavigationMenuSignature> =
   <template>
     <nav aria-label={{@name}} data-test-nav={{@name}}>
       <ul class={{styles.list}}>
@@ -34,10 +34,10 @@ const NavigationMenuComponent: TOC<NavigationMenuSignature> =
     </nav>
   </template>
 
-export default NavigationMenuComponent;
+export default NavigationMenu;
 
 declare module '@glint/environment-ember-loose/registry' {
   export default interface Registry {
-    NavigationMenu: typeof NavigationMenuComponent;
+    NavigationMenu: typeof NavigationMenu;
   }
 }

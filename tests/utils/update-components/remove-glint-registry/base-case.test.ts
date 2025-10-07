@@ -8,7 +8,7 @@ test('utils | update-components | remove-glint-registry > v1-app', function () {
     ``,
     `interface UiFormSignature { /* ... */ }`,
     ``,
-    `export default class UiFormComponent extends Component<UiFormSignature> {}`,
+    `export default class UiForm extends Component<UiFormSignature> {}`,
     ``,
   ].join('\n');
 
@@ -24,7 +24,7 @@ test('utils | update-components | remove-glint-registry > v1-app', function () {
       ``,
       `interface UiFormSignature { /* ... */ }`,
       ``,
-      `export default class UiFormComponent extends Component<UiFormSignature> {}`,
+      `export default class UiForm extends Component<UiFormSignature> {}`,
       ``,
     ].join('\n'),
   );

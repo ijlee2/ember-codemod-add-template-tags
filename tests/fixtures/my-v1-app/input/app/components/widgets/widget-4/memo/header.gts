@@ -12,7 +12,7 @@ interface WidgetsWidget4MemoHeaderSignature {
   };
 }
 
-const WidgetsWidget4MemoHeaderComponent: TOC<WidgetsWidget4MemoHeaderSignature> =
+const WidgetsWidget4MemoHeader: TOC<WidgetsWidget4MemoHeaderSignature> =
   <template>
     {{#let
       (strictAnd @cqFeatures.large @cqFeatures.short)
@@ -54,10 +54,10 @@ const WidgetsWidget4MemoHeaderComponent: TOC<WidgetsWidget4MemoHeaderSignature> 
     {{/let}}
   </template>
 
-export default WidgetsWidget4MemoHeaderComponent;
+export default WidgetsWidget4MemoHeader;
 
 declare module '@glint/environment-ember-loose/registry' {
   export default interface Registry {
-    'Widgets::Widget-4::Memo::Header': typeof WidgetsWidget4MemoHeaderComponent;
+    'Widgets::Widget-4::Memo::Header': typeof WidgetsWidget4MemoHeader;
   }
 }

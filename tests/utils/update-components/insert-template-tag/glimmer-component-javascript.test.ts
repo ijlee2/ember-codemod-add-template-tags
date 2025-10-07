@@ -6,7 +6,7 @@ test('utils | update-components | insert-template-tag > Glimmer component (JavaS
   const oldFile = [
     `import Component from '@glimmer/component';`,
     ``,
-    `export default class UiFormComponent extends Component {`,
+    `export default class UiForm extends Component {`,
     `  data = new TrackedObject(this.args.data ?? {});`,
     ``,
     `  styles = styles;`,
@@ -33,7 +33,7 @@ test('utils | update-components | insert-template-tag > Glimmer component (JavaS
     [
       `import Component from '@glimmer/component';`,
       ``,
-      `export default class UiFormComponent extends Component {`,
+      `export default class UiForm extends Component {`,
       `  data = new TrackedObject(this.args.data ?? {});`,
       ``,
       `  styles = styles;`,

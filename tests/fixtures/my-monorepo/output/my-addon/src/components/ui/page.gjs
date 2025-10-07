@@ -1,4 +1,4 @@
-const UiPageComponent = <template>
+const UiPage = <template>
 <div class="ui-page-container">
   <h1 class="ui-page-title">
     {{@title}}
@@ -10,4 +10,4 @@ const UiPageComponent = <template>
 </div>
 </template>;
 
-export default UiPageComponent;
+export default UiPage;

@@ -24,7 +24,7 @@ interface UiFormFieldSignature {
   };
 }
 
-export default class UiFormFieldComponent extends Component<UiFormFieldSignature> {
+export default class UiFormField extends Component<UiFormFieldSignature> {
   styles = styles;
 
 

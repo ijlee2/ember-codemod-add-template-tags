@@ -8,7 +8,7 @@ test('utils | update-components | insert-template-tag > Glimmer component is emp
     ``,
     `interface UiFormSignature { /* ... */ }`,
     ``,
-    `export default class UiFormComponent extends Component<UiFormSignature> {}`,
+    `export default class UiForm extends Component<UiFormSignature> {}`,
     ``,
   ].join('\n');
 
@@ -23,7 +23,7 @@ test('utils | update-components | insert-template-tag > Glimmer component is emp
       ``,
       `interface UiFormSignature { /* ... */ }`,
       ``,
-      `export default class UiFormComponent extends Component<UiFormSignature> {`,
+      `export default class UiForm extends Component<UiFormSignature> {`,
       ``,
       `  <template></template>`,
       `}`,

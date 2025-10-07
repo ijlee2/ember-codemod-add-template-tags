@@ -8,7 +8,7 @@ interface UiFormInformationSignature {
   };
 }
 
-const UiFormInformationComponent =
+const UiFormInformation =
   templateOnlyComponent<UiFormInformationSignature>();
 
-export default UiFormInformationComponent;
+export default UiFormInformation;

@@ -21,7 +21,7 @@ interface UiFormInputSignature {
   };
 }
 
-export default class UiFormInputComponent extends Component<UiFormInputSignature> {
+export default class UiFormInput extends Component<UiFormInputSignature> {
   styles = styles;
 
   get errorMessage(): string | undefined {

@@ -14,7 +14,7 @@ interface ProductsProductCardSignature {
   };
 }
 
-const ProductsProductCardComponent: TOC<ProductsProductCardSignature> =
+const ProductsProductCard: TOC<ProductsProductCardSignature> =
   <template>
     <ContainerQuery
       @features={{hash wide=(width min=320)}}
@@ -58,10 +58,10 @@ const ProductsProductCardComponent: TOC<ProductsProductCardSignature> =
     </ContainerQuery>
   </template>
 
-export default ProductsProductCardComponent;
+export default ProductsProductCard;
 
 declare module '@glint/environment-ember-loose/registry' {
   export default interface Registry {
-    'Products::Product::Card': typeof ProductsProductCardComponent;
+    'Products::Product::Card': typeof ProductsProductCard;
   }
 }

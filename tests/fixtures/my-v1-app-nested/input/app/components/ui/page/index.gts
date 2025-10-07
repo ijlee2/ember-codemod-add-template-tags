@@ -12,7 +12,7 @@ interface UiPageSignature {
   };
 }
 
-const UiPageComponent: TOC<UiPageSignature> =
+const UiPage: TOC<UiPageSignature> =
   <template>
     <div class={{localClass styles "container"}}>
       <h1 class={{styles.header}}>
@@ -29,10 +29,10 @@ const UiPageComponent: TOC<UiPageSignature> =
     </div>
   </template>
 
-export default UiPageComponent;
+export default UiPage;
 
 declare module '@glint/environment-ember-loose/registry' {
   export default interface Registry {
-    'Ui::Page': typeof UiPageComponent;
+    'Ui::Page': typeof UiPage;
   }
 }

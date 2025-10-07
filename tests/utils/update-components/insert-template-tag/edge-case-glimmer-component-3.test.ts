@@ -6,7 +6,7 @@ test('utils | update-components | insert-template-tag > edge case (Glimmer compo
   const oldFile = [
     `import Foo from '@glimmer/component';`,
     ``,
-    `export default class UiFormComponent extends Foo<UiFormSignature> {}`,
+    `export default class UiForm extends Foo<UiFormSignature> {}`,
     ``,
   ].join('\n');
 
@@ -19,7 +19,7 @@ test('utils | update-components | insert-template-tag > edge case (Glimmer compo
     [
       `import Foo from '@glimmer/component';`,
       ``,
-      `export default class UiFormComponent extends Foo<UiFormSignature> {`,
+      `export default class UiForm extends Foo<UiFormSignature> {`,
       ``,
       `  <template></template>`,
       `}`,

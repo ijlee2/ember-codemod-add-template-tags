@@ -8,7 +8,7 @@ interface WidgetsWidget1ItemSignature {
   };
 }
 
-const WidgetsWidget1ItemComponent: TOC<WidgetsWidget1ItemSignature> =
+const WidgetsWidget1Item: TOC<WidgetsWidget1ItemSignature> =
   <template>
     <div class={{styles.container}}>
       <p data-test-title>
@@ -17,10 +17,10 @@ const WidgetsWidget1ItemComponent: TOC<WidgetsWidget1ItemSignature> =
     </div>
   </template>
 
-export default WidgetsWidget1ItemComponent;
+export default WidgetsWidget1Item;
 
 declare module '@glint/environment-ember-loose/registry' {
   export default interface Registry {
-    'Widgets::Widget-1::Item': typeof WidgetsWidget1ItemComponent;
+    'Widgets::Widget-1::Item': typeof WidgetsWidget1Item;
   }
 }
