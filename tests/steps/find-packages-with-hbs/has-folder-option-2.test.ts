@@ -15,7 +15,7 @@ test('steps | find-packages-with-hbs > has folder option (2)', function () {
               'field.hbs': ``,
               'field.ts': `import Component from '@glimmer/component';`,
               'information.hbs': ``,
-              'information.ts': `import templateOnlyComponent from '@ember/component/template-only-component';`,
+              'information.ts': `import templateOnlyComponent from '@ember/component/template-only';`,
               'input.hbs': ``,
               'input.js': `import Component from '@glimmer/component';`,
               'number.gts': ``,
@@ -104,6 +104,7 @@ test('steps | find-packages-with-hbs > has folder option (2)', function () {
             components: [
               'app/components/ui/form/checkbox.hbs',
               'app/components/ui/form/field.hbs',
+              'app/components/ui/form/information.hbs',
               'app/components/ui/form/input.hbs',
               'app/components/ui/form/select.hbs',
             ],
