@@ -20,7 +20,7 @@ test('steps | find-packages-with-hbs > component structure is nested', function 
               },
               information: {
                 'index.hbs': ``,
-                'index.ts': `import templateOnlyComponent from '@ember/component/template-only-component';`,
+                'index.ts': `import templateOnlyComponent from '@ember/component/template-only';`,
               },
               input: {
                 'index.hbs': ``,
@@ -125,6 +125,7 @@ test('steps | find-packages-with-hbs > component structure is nested', function 
               'app/components/ui/form/checkbox/index.hbs',
               'app/components/ui/form/field/index.hbs',
               'app/components/ui/form/index.hbs',
+              'app/components/ui/form/information/index.hbs',
               'app/components/ui/form/input/index.hbs',
               'app/components/ui/form/select/index.hbs',
               'app/components/ui/page/index.hbs',
