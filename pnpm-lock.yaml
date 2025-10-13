@@ -15,8 +15,8 @@ importers:
         specifier: ^2.0.3
         version: 2.0.3
       '@codemod-utils/ast-template-tag':
-        specifier: ^0.6.0
-        version: 0.6.0
+        specifier: ^1.0.0
+        version: 1.0.0
       '@codemod-utils/ember':
         specifier: ^3.0.3
         version: 3.0.3
@@ -24,15 +24,15 @@ importers:
         specifier: ^3.0.5
         version: 3.0.5
       '@codemod-utils/package-json':
-        specifier: ^3.2.0
-        version: 3.2.0
+        specifier: ^3.2.1
+        version: 3.2.1
       yargs:
         specifier: ^18.0.0
         version: 18.0.0
     devDependencies:
       '@changesets/cli':
         specifier: ^2.29.7
-        version: 2.29.7(@types/node@20.19.17)
+        version: 2.29.7(@types/node@20.19.21)
       '@changesets/get-github-info':
         specifier: ^0.6.0
         version: 0.6.0
@@ -55,8 +55,8 @@ importers:
         specifier: ^2.0.6
         version: 2.0.6
       '@types/node':
-        specifier: ^20.19.17
-        version: 20.19.17
+        specifier: ^20.19.21
+        version: 20.19.21
       '@types/yargs':
         specifier: ^17.0.33
         version: 17.0.33
@@ -215,8 +215,8 @@ packages:
     resolution: {integrity: sha512-Gb7vU7EaRGOsHHyqQgSgjRmocS4MBkb2Gxe8pK9BjxcWyAwmF4O6xI+kHJ1QGsmVv+rN5LlmTR5Wxk2PpLOrJA==}
     engines: {node: 20.* || >= 22}
 
-  '@codemod-utils/ast-template-tag@0.6.0':
-    resolution: {integrity: sha512-J4CS4vBojG3tpHBq0EBs3wYokuJF5KPyXVJWAiyyDEaDbfacRYHXqCke6F6hVFTs0Vl9w9uDQTHDIeoiRpQXOA==}
+  '@codemod-utils/ast-template-tag@1.0.0':
+    resolution: {integrity: sha512-zYqjA98v0Dj0WC7dq4qPr9N3Sef8CnFteTg2hMdolCUD02GEUPOzwrTXZLf2DgxaiFwwNuML7/Apn2EsQYe3hQ==}
     engines: {node: 20.* || >= 22}
 
   '@codemod-utils/ast-template@2.0.3':
@@ -231,8 +231,8 @@ packages:
     resolution: {integrity: sha512-DkHpvt+NbxTkvnudsr85zLYDsUEDkuS//vSG7LW7kGLTaO12BJujws68phna9W41JqDS5K798S71KA9rM+fa8A==}
     engines: {node: 20.* || >= 22}
 
-  '@codemod-utils/package-json@3.2.0':
-    resolution: {integrity: sha512-VfZOPRMj3XDNATMTOGmukfEb33Put7rZyoiohEK9xkn3/Xb10I8Wa4GqH69e8rqstSI3IJnT3Fsj+99Z2ne83g==}
+  '@codemod-utils/package-json@3.2.1':
+    resolution: {integrity: sha512-nS8A9Xf8zaykWUl7m7FwF7vwFXfGIVcY65hGhGD5LPzXYAGHTkQnYMDkTYL+JX+uYUQ1MKRKG9AOK1Fm2zIUaA==}
     engines: {node: 20.* || >= 22}
 
   '@codemod-utils/tests@2.0.4':
@@ -441,8 +441,8 @@ packages:
   '@types/node@12.20.55':
     resolution: {integrity: sha512-J8xLz7q2OFulZ2cyGTLE1TbbZcjpno7FaN6zdJNrgAdrJ+DZzh/uFR6YrTb4C+nXakvud8Q4+rbhoIWlYQbUFQ==}
 
-  '@types/node@20.19.17':
-    resolution: {integrity: sha512-gfehUI8N1z92kygssiuWvLiwcbOB3IRktR6hTDgJlXMYh5OvkPSRmgfoBUmfZt+vhwJtX7v1Yw4KvvAf7c5QKQ==}
+  '@types/node@20.19.21':
+    resolution: {integrity: sha512-CsGG2P3I5y48RPMfprQGfy4JPRZ6csfC3ltBZSRItG3ngggmNY/qs2uZKp4p9VbrpqNNSMzUZNFZKzgOGnd/VA==}
 
   '@types/rimraf@3.0.2':
     resolution: {integrity: sha512-F3OznnSLAUxFrCEu/L5PY8+ny8DtcFRjx7fZZ9bycvXRi3KPTRS9HOitGZwvPg0juRhXFWIeKX58cnX5YqLohQ==}
@@ -1670,8 +1670,8 @@ packages:
     resolution: {integrity: sha512-XleUoc9uwGXqjWwXaUTZAmzMcFZ5858QA2vvx1Ur5xIcixXIP+8LnFDgRplU30us6teqdlskFfu+ae4K79Ooew==}
     engines: {node: '>= 0.8.0'}
 
-  type-fest@5.0.1:
-    resolution: {integrity: sha512-9MpwAI52m8H6ssA542UxSLnSiSD2dsC3/L85g6hVubLSXd82wdI80eZwTWhdOfN67NlA+D+oipAs1MlcTcu3KA==}
+  type-fest@5.1.0:
+    resolution: {integrity: sha512-wQ531tuWvB6oK+pchHIu5lHe5f5wpSCqB8Kf4dWQRbOYc9HTge7JL0G4Qd44bh6QuJCccIzL3bugb8GI0MwHrg==}
     engines: {node: '>=20'}
 
   typescript-eslint@8.46.0:
@@ -1917,7 +1917,7 @@ snapshots:
     dependencies:
       '@changesets/types': 6.1.0
 
-  '@changesets/cli@2.29.7(@types/node@20.19.17)':
+  '@changesets/cli@2.29.7(@types/node@20.19.21)':
     dependencies:
       '@changesets/apply-release-plan': 7.0.13
       '@changesets/assemble-release-plan': 6.0.9
@@ -1933,7 +1933,7 @@ snapshots:
       '@changesets/should-skip-package': 0.1.2
       '@changesets/types': 6.1.0
       '@changesets/write': 0.4.0
-      '@inquirer/external-editor': 1.0.2(@types/node@20.19.17)
+      '@inquirer/external-editor': 1.0.2(@types/node@20.19.21)
       '@manypkg/get-packages': 1.1.3
       ansi-colors: 4.1.3
       ci-info: 3.9.0
@@ -2044,7 +2044,7 @@ snapshots:
       '@babel/parser': 7.28.4
       recast: 0.23.11
 
-  '@codemod-utils/ast-template-tag@0.6.0':
+  '@codemod-utils/ast-template-tag@1.0.0':
     dependencies:
       '@codemod-utils/ast-javascript': 2.0.8
       content-tag: 4.0.0
@@ -2061,9 +2061,9 @@ snapshots:
     dependencies:
       glob: 11.0.3
 
-  '@codemod-utils/package-json@3.2.0':
+  '@codemod-utils/package-json@3.2.1':
     dependencies:
-      type-fest: 5.0.1
+      type-fest: 5.1.0
 
   '@codemod-utils/tests@2.0.4(@sondr3/minitest@0.1.2)':
     dependencies:
@@ -2214,12 +2214,12 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@inquirer/external-editor@1.0.2(@types/node@20.19.17)':
+  '@inquirer/external-editor@1.0.2(@types/node@20.19.21)':
     dependencies:
       chardet: 2.1.0
       iconv-lite: 0.7.0
     optionalDependencies:
-      '@types/node': 20.19.17
+      '@types/node': 20.19.21
 
   '@isaacs/balanced-match@4.0.1': {}
 
@@ -2311,7 +2311,7 @@ snapshots:
 
   '@types/fs-extra@9.0.13':
     dependencies:
-      '@types/node': 20.19.17
+      '@types/node': 20.19.21
 
   '@types/glob@9.0.0':
     dependencies:
@@ -2323,14 +2323,14 @@ snapshots:
 
   '@types/node@12.20.55': {}
 
-  '@types/node@20.19.17':
+  '@types/node@20.19.21':
     dependencies:
       undici-types: 6.21.0
 
   '@types/rimraf@3.0.2':
     dependencies:
       '@types/glob': 9.0.0
-      '@types/node': 20.19.17
+      '@types/node': 20.19.21
 
   '@types/semver@7.7.1': {}
 
@@ -3496,7 +3496,7 @@ snapshots:
     dependencies:
       prelude-ls: 1.2.1
 
-  type-fest@5.0.1:
+  type-fest@5.1.0:
     dependencies:
       tagged-tag: 1.0.0
 
