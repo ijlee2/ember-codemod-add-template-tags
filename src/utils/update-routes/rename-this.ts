@@ -9,7 +9,7 @@ export function renameThis(file: string): string {
         return;
       }
 
-      const newName = node.original.replace('this.', '@controller.');
+      const newName = node.original.replace(/^this/, '@controller');
 
       return AST.builders.path(newName);
     },
