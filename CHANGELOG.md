@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.15.0
+
+### Minor Changes
+
+- [#66](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/66) Handled numbers in a component name ([@ijlee2](https://github.com/ijlee2))
+
+### Patch Changes
+
+- [#65](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/65) Updated fixtures ([@ijlee2](https://github.com/ijlee2))
+
 ## 0.14.2
 
 ### Patch Changes
