@@ -1,3 +1,5 @@
+import WidgetsWidget3TourSchedule from 'docs-app/components/widgets/widget-3/tour-schedule';
+
 import type Owner from '@ember/owner';
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
@@ -41,7 +43,7 @@ export default class WidgetsWidget3 extends Component<WidgetsWidget3Signature> {
   class={{this.styles.tour-schedule}}
   data-test-tour-schedule
   >
-  <Widgets::Widget-3::TourSchedule
+  <WidgetsWidget3TourSchedule
     @concert={{this.concertData}}
   />
   </div>

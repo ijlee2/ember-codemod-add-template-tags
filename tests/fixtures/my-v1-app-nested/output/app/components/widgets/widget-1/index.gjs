@@ -1,4 +1,5 @@
 import { hash } from '@ember/helper';
+import WidgetsWidget1Item from 'docs-app/components/widgets/widget-1/item/index';
 
 import Component from '@glimmer/component';
 
@@ -24,15 +25,15 @@ export default class WidgetsWidget1 extends Component {
 
   <div class={{this.styles.items}}>
   <div class={{this.styles.item-1}}>
-    <Widgets::Widget-1::Item @title="Item 1" />
+    <WidgetsWidget1Item @title="Item 1" />
   </div>
 
   <div class={{this.styles.item-2}}>
-    <Widgets::Widget-1::Item @title="Item 2" />
+    <WidgetsWidget1Item @title="Item 2" />
   </div>
 
   <div class={{this.styles.item-3}}>
-    <Widgets::Widget-1::Item @title="Item 3" />
+    <WidgetsWidget1Item @title="Item 3" />
   </div>
   </div>
   </ContainerQuery>
