@@ -3,7 +3,7 @@ import Component from '@glimmer/component';
 import type { ComponentLike, WithBoundArgs } from '@glint/template';
 import { TrackedObject } from 'tracked-built-ins';
 
-import styles from './form.css';
+import styles from './form.module.css';
 import type UiFormCheckbox from './form/checkbox.ts';
 import type UiFormInput from './form/input.ts';
 import type UiFormSelect from './form/select.ts';

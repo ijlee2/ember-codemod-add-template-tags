@@ -114,6 +114,49 @@ module('Integration | Component | ui/form/number', function (hooks) {
     assert.dom('[data-test-field]').isRequired();
   });
 
+  test('We can pass @maxValue, @minValue, and @step to limit values', async function (this: TestContext, assert) {
+    const { parent } = this;
+
+    await render(
+      <template>
+        <UiFormNumber
+          @data={{parent.data}}
+          @key="donation"
+          @label="Donation amount ($)"
+          @maxValue={{500}}
+          @minValue={{0}}
+          @onUpdate={{parent.updateData}}
+          @placeholder="100"
+          @step={{10}}
+        />
+      </template>,
+    );
+
+    await fillIn('[data-test-field]', '0');
+
+    assert.dom('[data-test-field]').hasValue('0');
+
+    assert.strictEqual(parent.data['donation'], 0);
+
+    await fillIn('[data-test-field]', '5');
+
+    assert.dom('[data-test-field]').hasValue('');
+
+    assert.strictEqual(parent.data['donation'], undefined);
+
+    await fillIn('[data-test-field]', '10');
+
+    assert.dom('[data-test-field]').hasValue('10');
+
+    assert.strictEqual(parent.data['donation'], 10);
+
+    await fillIn('[data-test-field]', '1000');
+
+    assert.dom('[data-test-field]').hasValue('');
+
+    assert.strictEqual(parent.data['donation'], undefined);
+  });
+
   test('We can pass @onUpdate to get the updated value', async function (this: TestContext, assert) {
     const { parent } = this;
 
@@ -138,11 +181,15 @@ module('Integration | Component | ui/form/number', function (hooks) {
 
     assert.dom('[data-test-error-message]').hasText('Please provide a value.');
 
+    assert.strictEqual(parent.data['donation'], undefined);
+
     // Update the value again
     await fillIn('[data-test-field]', '10000');
 
     assert.dom('[data-test-field]').hasValue('10000');
 
     assert.dom('[data-test-error-message]').doesNotExist();
+
+    assert.strictEqual(parent.data['donation'], 10000);
   });
 });

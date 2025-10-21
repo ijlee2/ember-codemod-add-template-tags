@@ -6,7 +6,7 @@ import { action, get } from '@ember/object';
 import Component from '@glimmer/component';
 
 import { generateErrorMessage } from '../../../utils/components/ui/form';
-import styles from './input.css';
+import styles from './input.module.css';
 
 export default class UiFormInput extends Component {
   styles = styles;

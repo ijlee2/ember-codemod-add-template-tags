@@ -4,12 +4,13 @@ import UiFormField from 'docs-app/components/ui/form/field';
 
 import { action, get } from '@ember/object';
 import Component from '@glimmer/component';
+import { generateErrorMessage } from 'docs-app/utils/components/ui/form';
 
 import styles from './checkbox.css';
 
 interface UiFormCheckboxSignature {
   Args: {
-    changeset: Record<string, any>;
+    data: Record<string, unknown>;
     isDisabled?: boolean;
     isInline?: boolean;
     isReadOnly?: boolean;
@@ -17,7 +18,7 @@ interface UiFormCheckboxSignature {
     isWide?: boolean;
     key: string;
     label: string;
-    onUpdate: ({ key, value }: { key: string; value: any }) => void;
+    onUpdate: ({ key, value }: { key: string; value: unknown }) => void;
   };
 }
 
@@ -27,21 +28,17 @@ export default class UiFormCheckbox extends Component<UiFormCheckboxSignature> {
   get errorMessage(): string | undefined {
     const { isRequired } = this.args;
 
-    if (!isRequired) {
-      return undefined;
-    }
-
-    if (!this.isChecked) {
-      return 'Please select the checkbox.';
-    }
-
-    return undefined;
+    return generateErrorMessage({
+      isRequired,
+      value: this.isChecked,
+      valueType: 'boolean',
+    });
   }
 
   get isChecked(): boolean {
-    const { changeset, key } = this.args;
+    const { data, key } = this.args;
 
-    return (get(changeset, key) as boolean) ?? false;
+    return (get(data, key) as boolean) ?? false;
   }
 
   @action updateValue(): void {
@@ -88,11 +85,11 @@ export default class UiFormCheckbox extends Component<UiFormCheckboxSignature> {
     aria-labelledby={{concat f.inputId "-label"}}
     aria-readonly={{if @isReadOnly "true" "false"}}
     aria-required={{if @isRequired "true" "false"}}
-    class={{local-class
+    class={{local
       this.styles
       "checkbox"
       (if this.isChecked "is-checked")
-      (if (strict-or @isDisabled @isReadOnly) "is-disabled")
+      (if (or @isDisabled @isReadOnly) "is-disabled")
     }}
     data-test-field={{@label}}
     role="checkbox"

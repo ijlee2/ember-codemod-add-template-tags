@@ -2,7 +2,7 @@ import { action, get } from '@ember/object';
 import Component from '@glimmer/component';
 
 import { generateErrorMessage } from '../../../utils/components/ui/form.ts';
-import styles from './select.css';
+import styles from './select.module.css';
 
 type Option = {
   label: string;

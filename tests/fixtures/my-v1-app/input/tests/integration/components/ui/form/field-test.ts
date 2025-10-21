@@ -7,7 +7,7 @@ import { module, test } from 'qunit';
 module('Integration | Component | ui/form/field', function (hooks) {
   setupRenderingTest(hooks);
 
-  test('The component handles the field layout', async function (assert) {
+  test('it renders', async function (assert) {
     await render(hbs`
       <Ui::Form::Field>
         <:label as |l|>
@@ -22,17 +22,13 @@ module('Integration | Component | ui/form/field', function (hooks) {
       </Ui::Form::Field>
     `);
 
-    assert.dom('[data-test-label]').hasText('Name', 'We see the label.');
+    assert.dom('[data-test-label]').hasText('Name');
 
-    assert.dom('[data-test-field="Name"]').hasValue('', 'We see the field.');
+    assert.dom('[data-test-field="Name"]').hasNoValue();
 
-    assert
-      .dom('[data-test-feedback]')
-      .doesNotExist('We should not see an error message.');
+    assert.dom('[data-test-error-message]').doesNotExist();
 
     await a11yAudit();
-
-    assert.ok(true, 'We passed the accessibility audit.');
   });
 
   test('We can pass @errorMessage to show an error message', async function (assert) {
@@ -50,8 +46,6 @@ module('Integration | Component | ui/form/field', function (hooks) {
       </Ui::Form::Field>
     `);
 
-    assert
-      .dom('[data-test-feedback]')
-      .hasText('Please provide a value.', 'We see the error message.');
+    assert.dom('[data-test-error-message]').hasText('Please provide a value.');
   });
 });

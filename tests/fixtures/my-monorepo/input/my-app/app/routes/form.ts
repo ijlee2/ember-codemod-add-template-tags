@@ -1,8 +1,7 @@
 import type Owner from '@ember/owner';
 import Route from '@ember/routing/route';
 import { type Registry as Services, service } from '@ember/service';
-
-import type { ModelFrom } from '../utils/routes';
+import type { ModelFrom } from 'my-app/utils/routes';
 
 export type Model = ModelFrom<FormRoute>;
 

@@ -1,50 +1,36 @@
-import type { TOC } from '@ember/component/template-only';
 import { hash } from '@ember/helper';
-import { ContainerQuery, height, width } from 'ember-container-query';
 
-import styles from './index.css';
-import WidgetsWidget4MemoActions from './actions';
-import WidgetsWidget4MemoBody from './body';
-import WidgetsWidget4MemoHeader from './header';
+import type { TOC } from '@ember/component/template-only';
 
-interface WidgetsWidget4MemoSignature {}
+const WidgetsWidget4Memo = <template>
+<ContainerQuery
+  @features={{hash
+    small=(width max=200)
+    large=(width min=200)
+    short=(height max=200)
+  }}
+  @tagName="article"
+  class="widgets-widget-4-memo-container"
+  as |CQ|
+>
+  <div class="widgets-widget-4-memo-header-container">
+    <Widgets::Widget-4::Memo::Header
+      @cqFeatures={{CQ.features}}
+    />
+  </div>
 
-const WidgetsWidget4Memo: TOC<WidgetsWidget4MemoSignature> =
-  <template>
-    <ContainerQuery
-      @features={{hash
-        small=(width max=200)
-        large=(width min=200)
-        short=(height max=200)
-      }}
-      @tagName="article"
-      class={{styles.container}}
-      as |CQ|
-    >
-      <div class={{styles.header-container}}>
-        <WidgetsWidget4MemoHeader
-          @cqFeatures={{CQ.features}}
-        />
-      </div>
+  <div class="widgets-widget-4-memo-body-container">
+    <Widgets::Widget-4::Memo::Body
+      @cqFeatures={{CQ.features}}
+    />
+  </div>
 
-      <div class={{styles.body-container}}>
-        <WidgetsWidget4MemoBody
-          @cqFeatures={{CQ.features}}
-        />
-      </div>
-
-      <div class={{styles.actions-container}}>
-        <WidgetsWidget4MemoActions
-          @cqFeatures={{CQ.features}}
-        />
-      </div>
-    </ContainerQuery>
-  </template>
+  <div class="widgets-widget-4-memo-actions-container">
+    <Widgets::Widget-4::Memo::Actions
+      @cqFeatures={{CQ.features}}
+    />
+  </div>
+</ContainerQuery>
+</template>;
 
 export default WidgetsWidget4Memo;
-
-declare module '@glint/environment-ember-loose/registry' {
-  export default interface Registry {
-    'Widgets::Widget-4::Memo': typeof WidgetsWidget4Memo;
-  }
-}

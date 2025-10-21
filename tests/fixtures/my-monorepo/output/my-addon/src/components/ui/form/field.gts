@@ -2,7 +2,7 @@ import { hash, uniqueId } from '@ember/helper';
 
 import Component from '@glimmer/component';
 
-import styles from './field.css';
+import styles from './field.module.css';
 
 interface UiFormFieldSignature {
   Args: {

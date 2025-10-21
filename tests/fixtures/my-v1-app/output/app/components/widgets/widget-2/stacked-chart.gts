@@ -1,7 +1,8 @@
-import type { TOC } from '@ember/component/template-only';
+import drawStackedChart from 'docs-app/modifiers/draw-stacked-chart';
 
-import drawStackedChart from '../../../modifiers/draw-stacked-chart';
-import type { Data } from '../../../utils/components/widgets/widget-2';
+import Component from '@glimmer/component';
+import type { Data } from 'docs-app/utils/components/widgets/widget-2';
+
 import styles from './stacked-chart.css';
 
 interface WidgetsWidget2StackedChartSignature {
@@ -10,22 +11,18 @@ interface WidgetsWidget2StackedChartSignature {
   };
 }
 
-const WidgetsWidget2StackedChart: TOC<WidgetsWidget2StackedChartSignature> =
+export default class WidgetsWidget2StackedChart extends Component<WidgetsWidget2StackedChartSignature> {
+  styles = styles;
+
+
   <template>
-    <div
-      class={{styles.svg-container}}
-      {{! @glint-expect-error: The given value does not appear to be usable as a component, modifier or helper. }}
-      {{drawStackedChart data=@data}}
-    >
-      <svg class={{styles.svg}}>
-      </svg>
-    </div>
+  <div
+  class={{this.styles.svg-container}}
+  {{! @glint-expect-error: The given value does not appear to be usable as a component, modifier or helper. }}
+  {{drawStackedChart data=@data}}
+  >
+  <svg class={{this.styles.svg}}>
+  </svg>
+  </div>
   </template>
-
-export default WidgetsWidget2StackedChart;
-
-declare module '@glint/environment-ember-loose/registry' {
-  export default interface Registry {
-    'Widgets::Widget-2::StackedChart': typeof WidgetsWidget2StackedChart;
-  }
 }

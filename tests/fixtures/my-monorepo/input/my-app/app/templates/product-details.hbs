@@ -1,0 +1,15 @@
+{{page-title @model.name}}
+
+<Ui::Page @title={{t "routes.product-details.title"}}>
+  <div class={{this.styles.products}}>
+    <div class={{this.styles.product-details}}>
+      <Products::Product::Details @product={{@model}} />
+    </div>
+
+    <div class={{this.styles.actions}}>
+      <LinkTo @route="products" data-test-link="Back">
+        {{t "routes.product-details.back"}}
+      </LinkTo>
+    </div>
+  </div>
+</Ui::Page>

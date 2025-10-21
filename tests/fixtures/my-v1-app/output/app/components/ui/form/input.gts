@@ -1,21 +1,23 @@
 import { on } from '@ember/modifier';
 import UiFormField from 'docs-app/components/ui/form/field';
 
+import { assert } from '@ember/debug';
 import { action, get } from '@ember/object';
 import Component from '@glimmer/component';
+import { generateErrorMessage } from 'docs-app/utils/components/ui/form';
 
 import styles from './input.css';
 
 interface UiFormInputSignature {
   Args: {
-    changeset: Record<string, any>;
+    data: Record<string, unknown>;
     isDisabled?: boolean;
     isReadOnly?: boolean;
     isRequired?: boolean;
     isWide?: boolean;
     key: string;
     label: string;
-    onUpdate: ({ key, value }: { key: string; value: any }) => void;
+    onUpdate: ({ key, value }: { key: string; value: unknown }) => void;
     placeholder?: string;
     type?: string;
   };
@@ -27,25 +29,28 @@ export default class UiFormInput extends Component<UiFormInputSignature> {
   get errorMessage(): string | undefined {
     const { isRequired } = this.args;
 
-    if (!isRequired) {
-      return undefined;
-    }
-
-    if (!this.value) {
-      return 'Please provide a value.';
-    }
-
-    return undefined;
+    return generateErrorMessage({
+      isRequired,
+      value: this.value,
+      valueType: 'string',
+    });
   }
 
   get type(): string {
-    return this.args.type ?? 'text';
+    const { type } = this.args;
+
+    assert(
+      'To render a number input, please use <Ui::Form::Number> instead.',
+      type !== 'number',
+    );
+
+    return type ?? 'text';
   }
 
   get value(): string {
-    const { changeset, key } = this.args;
+    const { data, key } = this.args;
 
-    return ((get(changeset, key) as string) ?? '').toString();
+    return ((get(data, key) as string) ?? '').toString();
   }
 
   @action updateValue(event: Event): void {
@@ -75,10 +80,10 @@ export default class UiFormInput extends Component<UiFormInputSignature> {
 
   <:field as |f|>
   <input
-    class={{local-class
+    class={{local
       this.styles
       "input"
-      (if (strict-or @isDisabled @isReadOnly) "is-disabled")
+      (if (or @isDisabled @isReadOnly) "is-disabled")
     }}
     data-test-field={{@label}}
     disabled={{@isDisabled}}

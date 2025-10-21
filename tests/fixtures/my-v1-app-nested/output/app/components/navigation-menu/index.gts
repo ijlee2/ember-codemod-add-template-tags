@@ -1,5 +1,6 @@
-import type { TOC } from '@ember/component/template-only';
 import { LinkTo } from '@ember/routing';
+
+import Component from '@glimmer/component';
 
 import styles from './index.css';
 
@@ -15,29 +16,25 @@ interface NavigationMenuSignature {
   };
 }
 
-const NavigationMenu: TOC<NavigationMenuSignature> =
+export default class NavigationMenu extends Component<NavigationMenuSignature> {
+  styles = styles;
+
+
   <template>
-    <nav aria-label={{@name}} data-test-nav={{@name}}>
-      <ul class={{styles.list}}>
-        {{#each @menuItems as |menuItem|}}
-          <li>
-            <LinkTo
-              @route={{menuItem.route}}
-              class={{styles.link}}
-              data-test-link={{menuItem.label}}
-            >
-              {{menuItem.label}}
-            </LinkTo>
-          </li>
-        {{/each}}
-      </ul>
-    </nav>
+  <nav aria-label={{@name}} data-test-nav={{@name}}>
+  <ul class={{this.styles.list}}>
+  {{#each @menuItems as |menuItem|}}
+    <li>
+      <LinkTo
+        @route={{menuItem.route}}
+        class={{local this.styles "link"}}
+        data-test-link={{menuItem.label}}
+      >
+        {{menuItem.label}}
+      </LinkTo>
+    </li>
+  {{/each}}
+  </ul>
+  </nav>
   </template>
-
-export default NavigationMenu;
-
-declare module '@glint/environment-ember-loose/registry' {
-  export default interface Registry {
-    NavigationMenu: typeof NavigationMenu;
-  }
 }

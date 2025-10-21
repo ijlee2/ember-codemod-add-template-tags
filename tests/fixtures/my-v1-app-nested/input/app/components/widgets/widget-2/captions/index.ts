@@ -1,9 +1,9 @@
 import { action } from '@ember/object';
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
+import type { Summary } from 'docs-app/utils/components/widgets/widget-2';
 import { modifier } from 'ember-modifier';
 
-import type { Summary } from '../../../../utils/components/widgets/widget-2';
 import styles from './index.css';
 
 const colorSvg = modifier((container: Element, [color]: [string]) => {
@@ -57,5 +57,6 @@ export default class WidgetsWidget2Captions extends Component<WidgetsWidget2Capt
 declare module '@glint/environment-ember-loose/registry' {
   export default interface Registry {
     'Widgets::Widget-2::Captions': typeof WidgetsWidget2Captions;
+    'widgets/widget-2/captions': typeof WidgetsWidget2Captions;
   }
 }

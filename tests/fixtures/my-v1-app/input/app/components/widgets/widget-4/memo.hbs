@@ -1,0 +1,28 @@
+<ContainerQuery
+  @features={{hash
+    small=(width max=200)
+    large=(width min=200)
+    short=(height max=200)
+  }}
+  @tagName="article"
+  class="widgets-widget-4-memo-container"
+  as |CQ|
+>
+  <div class="widgets-widget-4-memo-header-container">
+    <Widgets::Widget-4::Memo::Header
+      @cqFeatures={{CQ.features}}
+    />
+  </div>
+
+  <div class="widgets-widget-4-memo-body-container">
+    <Widgets::Widget-4::Memo::Body
+      @cqFeatures={{CQ.features}}
+    />
+  </div>
+
+  <div class="widgets-widget-4-memo-actions-container">
+    <Widgets::Widget-4::Memo::Actions
+      @cqFeatures={{CQ.features}}
+    />
+  </div>
+</ContainerQuery>

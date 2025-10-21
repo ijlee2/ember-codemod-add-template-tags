@@ -2,8 +2,8 @@ import add from 'docs-app/helpers/add';
 import dynamicCssGrid from 'docs-app/modifiers/dynamic-css-grid';
 
 import Component from '@glimmer/component';
+import type { Track } from 'docs-app/data/album';
 
-import type { Track } from '../../../data/album';
 import styles from './index.css';
 
 interface TracksListSignature {

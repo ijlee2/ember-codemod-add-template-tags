@@ -1,0 +1,8 @@
+<div
+  class={{this.styles.svg-container}}
+  {{! @glint-expect-error: The given value does not appear to be usable as a component, modifier or helper. }}
+  {{draw-stacked-chart data=@data}}
+>
+  <svg class={{this.styles.svg}}>
+  </svg>
+</div>

@@ -3,8 +3,7 @@ import TracksList from 'docs-app/components/tracks/list/index';
 import TracksTable from 'docs-app/components/tracks/table/index';
 
 import type { TOC } from '@ember/component/template-only';
-
-import type { Track } from '../../data/album';
+import type { Track } from 'docs-app/data/album';
 
 interface TracksSignature {
   Args: {
@@ -22,9 +21,8 @@ const Tracks = <template>
   }}
   as |CQ|
 >
-  {{#if (strict-and CQ.features.large CQ.features.tall)}}
+  {{#if (and CQ.features.large CQ.features.tall)}}
     <TracksTable @tracks={{@tracks}} />
-
   {{else}}
     <TracksList
       @numColumns={{if
@@ -34,7 +32,6 @@ const Tracks = <template>
       }}
       @tracks={{@tracks}}
     />
-
   {{/if}}
 </ContainerQuery>
 </template> satisfies TOC<TracksSignature>;

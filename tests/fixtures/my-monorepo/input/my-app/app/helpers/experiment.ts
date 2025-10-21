@@ -1,7 +1,9 @@
 import Helper from '@ember/component/helper';
 import { type Registry as Services, service } from '@ember/service';
-
-import type { ExperimentName, Variant } from '../utils/services/experiments';
+import type {
+  ExperimentName,
+  Variant,
+} from 'my-app/utils/services/experiments';
 
 interface ExperimentSignature<E extends ExperimentName> {
   Args: {

@@ -1,9 +1,8 @@
 import { action } from '@ember/object';
 import Route from '@ember/routing/route';
 import { type Registry as Services, service } from '@ember/service';
-
-import type { ModelFrom } from '../utils/routes';
-import type { Product } from '../utils/routes/products';
+import type { ModelFrom } from 'my-app/utils/routes';
+import type { Product } from 'my-app/utils/routes/products';
 
 export type Model = ModelFrom<ProductDetailsRoute> & {
   id: string;

@@ -1,6 +1,6 @@
 import Component from '@glimmer/component';
+import type { Track } from 'docs-app/data/album';
 
-import type { Track } from '../../../data/album';
 import styles from './index.css';
 
 interface TracksListSignature {
@@ -33,5 +33,6 @@ export default class TracksList extends Component<TracksListSignature> {
 declare module '@glint/environment-ember-loose/registry' {
   export default interface Registry {
     'Tracks::List': typeof TracksList;
+    'tracks/list': typeof TracksList;
   }
 }
