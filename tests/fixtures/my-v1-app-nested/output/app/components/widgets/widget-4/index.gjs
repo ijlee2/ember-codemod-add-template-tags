@@ -1,3 +1,5 @@
+import WidgetsWidget4Memo from 'docs-app/components/widgets/widget-4/memo/index';
+
 const WidgetsWidget4 = <template>
 <section class="widgets-widget-4-container">
   <header class="widgets-widget-4-header">
@@ -5,7 +7,7 @@ const WidgetsWidget4 = <template>
   </header>
 
   <div class="widgets-widget-4-memo-highlight">
-    <Widgets::Widget-4::Memo />
+    <WidgetsWidget4Memo />
   </div>
 
   <div class="widgets-widget-4-actions">

@@ -14,7 +14,7 @@ export function getNewName(
     }
 
     case 'remove-double-colons': {
-      return name.replaceAll('::', '');
+      return name.replaceAll('::', '').replaceAll('-', '');
     }
   }
 }

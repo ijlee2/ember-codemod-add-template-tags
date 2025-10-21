@@ -1,3 +1,5 @@
+import WidgetsWidget1 from 'docs-app/components/widgets/widget-1';
+
 import { findAll, render } from '@ember/test-helpers';
 import { setupRenderingTest } from 'docs-app/tests/helpers';
 import { module, test } from 'qunit';
@@ -7,7 +9,7 @@ module('Integration | Component | widgets/widget-1', function (hooks) {
 
   test('The component renders', async function (assert) {
     await render(<template>
-    <Widgets::Widget-1 />
+    <WidgetsWidget1 />
     </template>);
 
     const titles = findAll('[data-test-title]');

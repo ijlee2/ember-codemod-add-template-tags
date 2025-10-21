@@ -1,4 +1,5 @@
 import { hash } from '@ember/helper';
+import WidgetsWidget3TourScheduleResponsiveImage from 'docs-app/components/widgets/widget-3/tour-schedule/responsive-image';
 
 import Component from '@glimmer/component';
 
@@ -17,7 +18,7 @@ export default class WidgetsWidget3TourSchedule extends Component {
   <div class={{this.styles.splash}}>
   <div class={{this.styles.splash-image-container}}>
     {{#if @concert.images}}
-      <Widgets::Widget-3::TourSchedule::ResponsiveImage
+      <WidgetsWidget3TourScheduleResponsiveImage
         @images={{@concert.images}}
       />
     {{else}}

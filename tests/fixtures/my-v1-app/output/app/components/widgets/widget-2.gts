@@ -1,4 +1,6 @@
 import { hash } from '@ember/helper';
+import WidgetsWidget2Captions from 'docs-app/components/widgets/widget-2/captions';
+import WidgetsWidget2StackedChart from 'docs-app/components/widgets/widget-2/stacked-chart';
 
 import type Owner from '@ember/owner';
 import Component from '@glimmer/component';
@@ -55,12 +57,12 @@ export default class WidgetsWidget2 extends Component<WidgetsWidget2Signature> {
     class={{this.styles.visualization}}
     data-test-visualization
   >
-    <Widgets::Widget-2::StackedChart @data={{this.data}} />
+    <WidgetsWidget2StackedChart @data={{this.data}} />
   </div>
   {{/unless}}
 
   <div class={{this.styles.captions}} data-test-captions>
-  <Widgets::Widget-2::Captions
+  <WidgetsWidget2Captions
     @summaries={{this.summaries}}
   />
   </div>

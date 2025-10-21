@@ -1,3 +1,5 @@
+import WidgetsWidget2 from 'docs-app/components/widgets/widget-2';
+
 import { render } from '@ember/test-helpers';
 import { setupRenderingTest } from 'docs-app/tests/helpers';
 import { module, test } from 'qunit';
@@ -7,7 +9,7 @@ module('Integration | Component | widgets/widget-2', function (hooks) {
 
   test('The component renders', async function (assert) {
     await render(<template>
-    <Widgets::Widget-2 />
+    <WidgetsWidget2 />
     </template>);
 
     assert.ok(true);

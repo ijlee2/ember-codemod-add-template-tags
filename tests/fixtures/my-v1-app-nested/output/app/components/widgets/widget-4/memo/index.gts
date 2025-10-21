@@ -1,4 +1,7 @@
 import { hash } from '@ember/helper';
+import WidgetsWidget4MemoActions from 'docs-app/components/widgets/widget-4/memo/actions/index';
+import WidgetsWidget4MemoBody from 'docs-app/components/widgets/widget-4/memo/body/index';
+import WidgetsWidget4MemoHeader from 'docs-app/components/widgets/widget-4/memo/header/index';
 
 import type { TOC } from '@ember/component/template-only';
 
@@ -14,19 +17,19 @@ const WidgetsWidget4Memo = <template>
   as |CQ|
 >
   <div class="widgets-widget-4-memo-header-container">
-    <Widgets::Widget-4::Memo::Header
+    <WidgetsWidget4MemoHeader
       @cqFeatures={{CQ.features}}
     />
   </div>
 
   <div class="widgets-widget-4-memo-body-container">
-    <Widgets::Widget-4::Memo::Body
+    <WidgetsWidget4MemoBody
       @cqFeatures={{CQ.features}}
     />
   </div>
 
   <div class="widgets-widget-4-memo-actions-container">
-    <Widgets::Widget-4::Memo::Actions
+    <WidgetsWidget4MemoActions
       @cqFeatures={{CQ.features}}
     />
   </div>
