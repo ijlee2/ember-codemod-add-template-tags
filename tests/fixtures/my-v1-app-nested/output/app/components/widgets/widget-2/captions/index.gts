@@ -4,9 +4,9 @@ import { on } from '@ember/modifier';
 import { action } from '@ember/object';
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
+import type { Summary } from 'docs-app/utils/components/widgets/widget-2';
 import { modifier } from 'ember-modifier';
 
-import type { Summary } from '../../../../utils/components/widgets/widget-2';
 import styles from './index.css';
 
 const colorSvg = modifier((container: Element, [color]: [string]) => {
@@ -63,7 +63,7 @@ export default class WidgetsWidget2Captions extends Component<WidgetsWidget2Capt
   as |CQ|
   >
   <div
-  class={{local-class
+  class={{local
     this.styles
     "container"
     (unless CQ.features.tall "flat")
@@ -71,7 +71,7 @@ export default class WidgetsWidget2Captions extends Component<WidgetsWidget2Capt
   >
   {{#if this.summary}}
     <div
-      class={{local-class
+      class={{local
         this.styles
         "summary"
         (if CQ.features.large "horizontal-layout")
@@ -79,7 +79,7 @@ export default class WidgetsWidget2Captions extends Component<WidgetsWidget2Capt
       tabindex="0"
     >
       <h3
-        class={{local-class
+        class={{local
           this.styles
           "music-format"
           (unless CQ.features.large "small-font-size")
@@ -105,7 +105,7 @@ export default class WidgetsWidget2Captions extends Component<WidgetsWidget2Capt
         class={{this.styles.annual-revenue}}
         data-test-field="Annual Revenue"
       >
-        {{#if (strict-or CQ.features.tall CQ.features.large)}}
+        {{#if (or CQ.features.tall CQ.features.large)}}
           <span>Annual revenue:</span>
         {{/if}}
 
@@ -118,7 +118,7 @@ export default class WidgetsWidget2Captions extends Component<WidgetsWidget2Capt
         class={{this.styles.relevant-years}}
         data-test-field="Relevant Years"
       >
-        {{#if (strict-or CQ.features.tall CQ.features.large)}}
+        {{#if (or CQ.features.tall CQ.features.large)}}
           <span>Relevant years:</span>
         {{/if}}
 
@@ -140,15 +140,13 @@ export default class WidgetsWidget2Captions extends Component<WidgetsWidget2Capt
       >
         {{#if CQ.features.tall}}
           Previous
-
         {{else}}
           {{svg-jar
             "chevron-left"
-            class=(local-class this.styles "icon")
+            class=(local this.styles "icon")
             desc="A chevron arrow pointing left"
             role="img"
           }}
-
         {{/if}}
       </button>
     {{/if}}
@@ -163,15 +161,13 @@ export default class WidgetsWidget2Captions extends Component<WidgetsWidget2Capt
       >
         {{#if CQ.features.tall}}
           Next
-
         {{else}}
           {{svg-jar
             "chevron-right"
-            class=(local-class this.styles "icon")
+            class=(local this.styles "icon")
             desc="A chevron arrow pointing right"
             role="img"
           }}
-
         {{/if}}
       </button>
     {{/if}}

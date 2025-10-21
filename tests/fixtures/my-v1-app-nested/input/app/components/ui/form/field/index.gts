@@ -1,10 +1,9 @@
-import { hash } from '@ember/helper';
-import { guidFor } from '@ember/object/internals';
-import Component from '@glimmer/component';
+import type { TOC } from '@ember/component/template-only';
+import { hash, uniqueId } from '@ember/helper';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore: Could not find a declaration file for module 'ember-svg-jar/helpers/svg-jar'.
 import svgJar from 'ember-svg-jar/helpers/svg-jar';
-import { localClass } from 'embroider-css-modules';
+import { local } from 'embroider-css-modules';
 
 import styles from './index.css';
 
@@ -18,22 +17,20 @@ interface UiFormFieldSignature {
     field: [
       {
         inputId: string;
-      }
+      },
     ];
     label: [
       {
         inputId: string;
-      }
+      },
     ];
   };
 }
 
-export default class UiFormField extends Component<UiFormFieldSignature> {
-  inputId = guidFor(this);
-
-  <template>
+const UiFormField: TOC<UiFormFieldSignature> = <template>
+  {{#let (uniqueId) as |inputId|}}
     <div
-      class={{localClass
+      class={{local
         styles
         "container"
         (if @isInline "is-inline")
@@ -43,38 +40,35 @@ export default class UiFormField extends Component<UiFormFieldSignature> {
       data-test-field-container
     >
       <div class={{styles.label}}>
-        {{yield (hash inputId=this.inputId) to="label"}}
+        {{yield (hash inputId=inputId) to="label"}}
       </div>
 
       <div class={{styles.field}}>
-        {{yield (hash inputId=this.inputId) to="field"}}
+        {{yield (hash inputId=inputId) to="field"}}
       </div>
 
       {{#if @errorMessage}}
-        <div
-          class={{localClass styles "feedback" "is-error"}}
-        >
+        <div class={{local styles "feedback" "is-error"}}>
           {{svgJar
             "alert"
             desc="A warning to indicate that the input field has an error"
             role="img"
           }}
 
-          <span
-            class={{styles.message}}
-            data-test-feedback
-            role="alert"
-          >
+          <span class={{styles.message}} data-test-error-message role="alert">
             {{@errorMessage}}
           </span>
         </div>
       {{/if}}
     </div>
-  </template>
-}
+  {{/let}}
+</template>;
+
+export default UiFormField;
 
 declare module '@glint/environment-ember-loose/registry' {
   export default interface Registry {
     'Ui::Form::Field': typeof UiFormField;
+    'ui/form/field': typeof UiFormField;
   }
 }

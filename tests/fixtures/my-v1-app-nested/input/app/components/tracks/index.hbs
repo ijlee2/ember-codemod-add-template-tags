@@ -7,9 +7,8 @@
   }}
   as |CQ|
 >
-  {{#if (strict-and CQ.features.large CQ.features.tall)}}
+  {{#if (and CQ.features.large CQ.features.tall)}}
     <Tracks::Table @tracks={{@tracks}} />
-
   {{else}}
     <Tracks::List
       @numColumns={{if
@@ -19,6 +18,5 @@
       }}
       @tracks={{@tracks}}
     />
-
   {{/if}}
 </ContainerQuery>

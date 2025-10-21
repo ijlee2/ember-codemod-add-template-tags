@@ -1,11 +1,12 @@
 import { action, get } from '@ember/object';
 import Component from '@glimmer/component';
+import { generateErrorMessage } from 'docs-app/utils/components/ui/form';
 
 import styles from './index.css';
 
 interface UiFormCheckboxSignature {
   Args: {
-    changeset: Record<string, any>;
+    data: Record<string, unknown>;
     isDisabled?: boolean;
     isInline?: boolean;
     isReadOnly?: boolean;
@@ -13,7 +14,7 @@ interface UiFormCheckboxSignature {
     isWide?: boolean;
     key: string;
     label: string;
-    onUpdate: ({ key, value }: { key: string; value: any }) => void;
+    onUpdate: ({ key, value }: { key: string; value: unknown }) => void;
   };
 }
 
@@ -23,21 +24,17 @@ export default class UiFormCheckbox extends Component<UiFormCheckboxSignature> {
   get errorMessage(): string | undefined {
     const { isRequired } = this.args;
 
-    if (!isRequired) {
-      return undefined;
-    }
-
-    if (!this.isChecked) {
-      return 'Please select the checkbox.';
-    }
-
-    return undefined;
+    return generateErrorMessage({
+      isRequired,
+      value: this.isChecked,
+      valueType: 'boolean',
+    });
   }
 
   get isChecked(): boolean {
-    const { changeset, key } = this.args;
+    const { data, key } = this.args;
 
-    return (get(changeset, key) as boolean) ?? false;
+    return (get(data, key) as boolean) ?? false;
   }
 
   @action updateValue(): void {

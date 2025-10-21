@@ -1,33 +1,33 @@
+import type Owner from '@ember/owner';
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
+import { type Concert, concert } from 'docs-app/data/concert';
 
-import type { Concert } from '../../../data/concert';
-import concertData from '../../../data/concert';
 import styles from './index.css';
 
 interface WidgetsWidget3Signature {
-  // eslint-disable-next-line @typescript-eslint/ban-types
   Args: {};
 }
 
 export default class WidgetsWidget3 extends Component<WidgetsWidget3Signature> {
-  styles = styles;
-
   @tracked concertData = {} as Concert;
 
-  constructor(owner: unknown, args: WidgetsWidget3Signature['Args']) {
+  styles = styles;
+
+  constructor(owner: Owner, args: WidgetsWidget3Signature['Args']) {
     super(owner, args);
 
     this.loadData();
   }
 
   loadData(): void {
-    this.concertData = concertData;
+    this.concertData = concert;
   }
 }
 
 declare module '@glint/environment-ember-loose/registry' {
   export default interface Registry {
     'Widgets::Widget-3': typeof WidgetsWidget3;
+    'widgets/widget-3': typeof WidgetsWidget3;
   }
 }

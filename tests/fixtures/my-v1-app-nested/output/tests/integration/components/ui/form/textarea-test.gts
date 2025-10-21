@@ -10,27 +10,27 @@ import { setupRenderingTest } from 'docs-app/tests/helpers';
 import { module, test } from 'qunit';
 
 interface TestContext extends BaseTestContext {
-  changeset: Record<string, any>;
-  updateChangeset: ({ key, value }: { key: string; value: any }) => void;
+  data: Record<string, unknown>;
+  updateData: ({ key, value }: { key: string; value: unknown }) => void;
 }
 
 module('Integration | Component | ui/form/textarea', function (hooks) {
   setupRenderingTest(hooks);
 
   hooks.beforeEach(function (this: TestContext) {
-    this.changeset = {
+    this.data = {
       email: 'zoey@emberjs.com',
-      message: 'I 🧡 container queries!',
+      message: 'I 🧡 CSS modules!',
       name: 'Zoey',
       subscribe: false,
     };
 
-    this.updateChangeset = () => {
+    this.updateData = () => {
       // Do nothing
     };
   });
 
-  test('The component renders a label and a textarea', async function (this: TestContext, assert) {
+  test('it renders', async function (this: TestContext, assert) {
     const self = this;
 
 
@@ -38,28 +38,24 @@ module('Integration | Component | ui/form/textarea', function (hooks) {
 
     await render(<template>
     <UiFormTextarea
-    @changeset={{self.changeset}}
+    @data={{self.data}}
     @key="message"
     @label="Message"
-    @onUpdate={{self.updateChangeset}}
+    @onUpdate={{self.updateData}}
     />
     </template>);
 
-    assert
-      .dom('[data-test-label]')
-      .hasText('Message', 'We see the correct label.');
+    assert.dom('[data-test-label]').hasText('Message');
 
     assert
-      .dom('[data-test-field="Message"]')
-      .doesNotHaveAttribute('readonly', 'The textarea should not be readonly.')
-      .hasTagName('textarea', 'We see the correct tag name.')
-      .hasValue('I 🧡 container queries!', 'We see the correct value.')
-      .isEnabled('The textarea should be enabled.')
-      .isNotRequired('The textarea should not be required.');
+      .dom('[data-test-field]')
+      .doesNotHaveAttribute('readonly')
+      .hasTagName('textarea')
+      .hasValue('I 🧡 CSS modules!')
+      .isEnabled()
+      .isNotRequired();
 
-    assert
-      .dom('[data-test-feedback]')
-      .doesNotExist('We should not see an error message.');
+    assert.dom('[data-test-error-message]').doesNotExist();
   });
 
   test('We can pass @isDisabled to disable the text area', async function (this: TestContext, assert) {
@@ -70,17 +66,15 @@ module('Integration | Component | ui/form/textarea', function (hooks) {
 
     await render(<template>
     <UiFormTextarea
-    @changeset={{self.changeset}}
+    @data={{self.data}}
     @isDisabled={{true}}
     @key="message"
     @label="Message"
-    @onUpdate={{self.updateChangeset}}
+    @onUpdate={{self.updateData}}
     />
     </template>);
 
-    assert
-      .dom('[data-test-field="Message"]')
-      .isDisabled('The textarea is disabled.');
+    assert.dom('[data-test-field]').isDisabled();
   });
 
   test('We can pass @isReadOnly to display the value', async function (this: TestContext, assert) {
@@ -91,18 +85,18 @@ module('Integration | Component | ui/form/textarea', function (hooks) {
 
     await render(<template>
     <UiFormTextarea
-    @changeset={{self.changeset}}
+    @data={{self.data}}
     @isReadOnly={{true}}
     @key="message"
     @label="Message"
-    @onUpdate={{self.updateChangeset}}
+    @onUpdate={{self.updateData}}
     />
     </template>);
 
     assert
-      .dom('[data-test-field="Message"]')
-      .hasAttribute('readonly', '', 'We see the readonly attribute.')
-      .hasValue('I 🧡 container queries!', 'We see the correct value.');
+      .dom('[data-test-field]')
+      .hasAttribute('readonly', '')
+      .hasValue('I 🧡 CSS modules!');
   });
 
   test('We can pass @isRequired to require a value', async function (this: TestContext, assert) {
@@ -113,36 +107,28 @@ module('Integration | Component | ui/form/textarea', function (hooks) {
 
     await render(<template>
     <UiFormTextarea
-    @changeset={{self.changeset}}
+    @data={{self.data}}
     @isRequired={{true}}
     @key="message"
     @label="Message"
-    @onUpdate={{self.updateChangeset}}
+    @onUpdate={{self.updateData}}
     />
     </template>);
 
-    assert
-      .dom('[data-test-label]')
-      .hasText('Message *', 'The label shows that the field is required.');
+    assert.dom('[data-test-label]').hasText('Message *');
 
-    assert
-      .dom('[data-test-field="Message"]')
-      .isRequired('The textarea is required.');
+    assert.dom('[data-test-field]').isRequired();
   });
 
   test('We can pass @onUpdate to get the updated value', async function (this: TestContext, assert) {
     let expectedValue = '';
 
-    this.updateChangeset = ({ key, value }) => {
+    this.updateData = ({ key, value }: { key: string; value: unknown }) => {
       assert.step('onUpdate');
 
-      assert.strictEqual(
-        value,
-        expectedValue,
-        'The changeset has the correct value.',
-      );
+      assert.strictEqual(value, expectedValue);
 
-      set(this.changeset, key, value);
+      set(this.data, key, value);
     };
 
     const self = this;
@@ -152,37 +138,29 @@ module('Integration | Component | ui/form/textarea', function (hooks) {
 
     await render(<template>
     <UiFormTextarea
-    @changeset={{self.changeset}}
+    @data={{self.data}}
     @isRequired={{true}}
     @key="message"
     @label="Message"
-    @onUpdate={{self.updateChangeset}}
+    @onUpdate={{self.updateData}}
     />
     </template>);
 
     // Update the value
     await fillIn('[data-test-field="Message"]', '');
 
-    assert
-      .dom('[data-test-field="Message"]')
-      .hasValue('', 'We see the correct value.');
+    assert.dom('[data-test-field]').hasNoValue();
 
-    assert
-      .dom('[data-test-feedback]')
-      .hasText('Please provide a value.', 'We see an error message.');
+    assert.dom('[data-test-error-message]').hasText('Please provide a value.');
 
     // Update the value again
     expectedValue = 'Keep up the good work!';
 
-    await fillIn('[data-test-field="Message"]', 'Keep up the good work!');
+    await fillIn('[data-test-field]', 'Keep up the good work!');
 
-    assert
-      .dom('[data-test-field="Message"]')
-      .hasValue('Keep up the good work!', 'We see the correct value.');
+    assert.dom('[data-test-field]').hasValue('Keep up the good work!');
 
-    assert
-      .dom('[data-test-feedback]')
-      .doesNotExist('We should not see an error message.');
+    assert.dom('[data-test-error-message]').doesNotExist();
 
     assert.verifySteps(['onUpdate', 'onUpdate']);
   });

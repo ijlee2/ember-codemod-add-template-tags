@@ -1,33 +1,34 @@
+import type Owner from '@ember/owner';
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
-
-import musicRevenue from '../../../data/music-revenue';
-import type { Data, Summary } from '../../../utils/components/widgets/widget-2';
+import { revenues } from 'docs-app/data/music-revenue';
 import {
   createDataForVisualization,
   createSummariesForCaptions,
-} from '../../../utils/components/widgets/widget-2';
+  type Data,
+  type Summary,
+} from 'docs-app/utils/components/widgets/widget-2';
+
 import styles from './index.css';
 
 interface WidgetsWidget2Signature {
-  // eslint-disable-next-line @typescript-eslint/ban-types
   Args: {};
 }
 
 export default class WidgetsWidget2 extends Component<WidgetsWidget2Signature> {
-  styles = styles;
-
   @tracked data = [] as Data[];
   @tracked summaries = [] as Summary[];
 
-  constructor(owner: unknown, args: WidgetsWidget2Signature['Args']) {
+  styles = styles;
+
+  constructor(owner: Owner, args: WidgetsWidget2Signature['Args']) {
     super(owner, args);
 
     this.loadData();
   }
 
   loadData(): void {
-    this.data = createDataForVisualization(musicRevenue);
+    this.data = createDataForVisualization(revenues);
     this.summaries = createSummariesForCaptions(this.data);
   }
 }
@@ -35,5 +36,6 @@ export default class WidgetsWidget2 extends Component<WidgetsWidget2Signature> {
 declare module '@glint/environment-ember-loose/registry' {
   export default interface Registry {
     'Widgets::Widget-2': typeof WidgetsWidget2;
+    'widgets/widget-2': typeof WidgetsWidget2;
   }
 }

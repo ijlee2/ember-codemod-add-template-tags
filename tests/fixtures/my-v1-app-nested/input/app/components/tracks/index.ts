@@ -1,6 +1,5 @@
-import templateOnlyComponent from '@ember/component/template-only';
-
-import type { Track } from '../../data/album';
+import toc from '@ember/component/template-only';
+import type { Track } from 'docs-app/data/album';
 
 interface TracksSignature {
   Args: {
@@ -8,12 +7,13 @@ interface TracksSignature {
   };
 }
 
-const Tracks = templateOnlyComponent<TracksSignature>();
+const Tracks = toc<TracksSignature>();
 
 export default Tracks;
 
 declare module '@glint/environment-ember-loose/registry' {
   export default interface Registry {
     Tracks: typeof Tracks;
+    tracks: typeof Tracks;
   }
 }
