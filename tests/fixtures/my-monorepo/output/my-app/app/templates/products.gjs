@@ -40,7 +40,7 @@ import experiment from 'my-app/helpers/experiment';
 
     <div class={{@controller.styles.list}}>
       {{#each
-        (sortBy (if @controller.sortBy @controller.sortBy "") @model)
+        (sort-by (if @controller.sortBy @controller.sortBy "") @model)
         as |product|
       }}
         <div>

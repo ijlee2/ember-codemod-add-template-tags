@@ -4,9 +4,9 @@ import ProductsProductImage from 'my-app/components/products/product/image';
 import formatPrice from 'my-app/helpers/format-price';
 
 import Component from '@glimmer/component';
+import type { Product } from 'my-app/utils/routes/products';
 
-import type { Product } from '../../../utils/routes/products';
-import styles from './card.css';
+import styles from './card.module.css';
 
 interface ProductsProductCardSignature {
   Args: {

@@ -1,7 +1,7 @@
 import { action } from '@ember/object';
 import Component from '@glimmer/component';
 
-import styles from './details.css';
+import styles from './details.module.css';
 
 export default class ProductsProductDetails extends Component {
   styles = styles;

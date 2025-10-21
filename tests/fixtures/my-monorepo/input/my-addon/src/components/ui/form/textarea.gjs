@@ -6,7 +6,7 @@ import { local } from 'embroider-css-modules';
 
 import { generateErrorMessage } from '../../../utils/components/ui/form';
 import UiFormField from './field';
-import styles from './textarea.css';
+import styles from './textarea.module.css';
 
 export default class UiFormTextarea extends Component {
   get errorMessage() {

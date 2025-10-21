@@ -5,7 +5,7 @@ import { action, get } from '@ember/object';
 import Component from '@glimmer/component';
 
 import { generateErrorMessage } from '../../../utils/components/ui/form.ts';
-import styles from './select.css';
+import styles from './select.module.css';
 
 type Option = {
   label: string;
@@ -94,10 +94,6 @@ export default class UiFormSelect extends Component<UiFormSelectSignature> {
       required={{@isRequired}}
       {{on "change" this.updateValue}}
     >
-      {{!
-        BUG: We can't conditionally render the \`selected\` attribute
-        https://github.com/emberjs/ember.js/issues/19115
-      }}
       {{#if (eq this.value "")}}
         <option disabled selected value="">
           {{t "components.ui.form.select.default-option"}}

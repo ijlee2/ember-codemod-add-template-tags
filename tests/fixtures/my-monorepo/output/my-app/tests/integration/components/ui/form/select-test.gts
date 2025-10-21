@@ -200,6 +200,8 @@ module('Integration | Component | ui/form/select', function (hooks) {
       .hasText('Price: High to Low');
 
     assert.dom('[data-test-error-message]').doesNotExist();
+
+    assert.strictEqual(parent.data['sortBy'], 'price:desc');
   });
 
   test('We can click on the clear button to reset the option', async function (this: TestContext, assert) {
@@ -225,5 +227,7 @@ module('Integration | Component | ui/form/select', function (hooks) {
     assert.dom('[data-test-option]:checked').doesNotExist();
 
     assert.dom('[data-test-error-message]').hasText('Please provide a value.');
+
+    assert.strictEqual(parent.data['sortBy'], undefined);
   });
 });

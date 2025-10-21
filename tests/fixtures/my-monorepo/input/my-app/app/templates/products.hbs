@@ -32,7 +32,7 @@
 
     <div class={{this.styles.list}}>
       {{#each
-        (sortBy (if this.sortBy this.sortBy "") @model)
+        (sort-by (if this.sortBy this.sortBy "") @model)
         as |product|
       }}
         <div>

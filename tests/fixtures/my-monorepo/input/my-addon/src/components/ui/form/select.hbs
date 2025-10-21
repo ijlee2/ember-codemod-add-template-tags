@@ -28,10 +28,6 @@
         required={{@isRequired}}
         {{on "change" this.updateValue}}
       >
-        {{!
-          BUG: We can't conditionally render the `selected` attribute
-          https://github.com/emberjs/ember.js/issues/19115
-        }}
         {{#if (eq this.value "")}}
           <option disabled selected value="">
             {{t "components.ui.form.select.default-option"}}

@@ -126,12 +126,16 @@ module('Integration | Component | ui/form/checkbox', function (hooks) {
       .dom('[data-test-error-message]')
       .hasText('Please select the checkbox.');
 
+    assert.false(this.parent.data['subscribe']);
+
     // Click the checkbox again
     await click('[data-test-field]');
 
     assert.dom('[data-test-field]').hasAria('checked', 'true');
 
     assert.dom('[data-test-error-message]').doesNotExist();
+
+    assert.true(this.parent.data['subscribe']);
   });
 
   test('We can press the Space key to toggle the value', async function (this: TestContext, assert) {
@@ -152,6 +156,8 @@ module('Integration | Component | ui/form/checkbox', function (hooks) {
 
     assert.dom('[data-test-field]').hasAria('checked', 'false');
 
+    assert.false(this.parent.data['subscribe']);
+
     assert
       .dom('[data-test-error-message]')
       .hasText('Please select the checkbox.');
@@ -162,5 +168,7 @@ module('Integration | Component | ui/form/checkbox', function (hooks) {
     assert.dom('[data-test-field]').hasAria('checked', 'true');
 
     assert.dom('[data-test-error-message]').doesNotExist();
+
+    assert.true(this.parent.data['subscribe']);
   });
 });

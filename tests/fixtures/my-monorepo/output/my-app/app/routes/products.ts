@@ -1,10 +1,9 @@
 import type Owner from '@ember/owner';
 import Route from '@ember/routing/route';
 import { type Registry as Services, service } from '@ember/service';
-
-import type ProductsController from '../controllers/products';
-import type { ModelFrom } from '../utils/routes';
-import type { Product } from '../utils/routes/products';
+import type ProductsController from 'my-app/controllers/products';
+import type { ModelFrom } from 'my-app/utils/routes';
+import type { Product } from 'my-app/utils/routes/products';
 
 export type Model = ModelFrom<ProductsRoute>;
 

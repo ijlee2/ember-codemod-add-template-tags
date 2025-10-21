@@ -6,7 +6,7 @@ import { local } from 'embroider-css-modules';
 
 import { generateErrorMessage } from '../../../utils/components/ui/form.ts';
 import UiFormField from './field.ts';
-import styles from './number.css';
+import styles from './number.module.css';
 
 interface UiFormNumberSignature {
   Args: {
@@ -45,14 +45,15 @@ export default class UiFormNumber extends Component<UiFormNumberSignature> {
 
   @action updateValue(event: Event): void {
     const { key, onUpdate } = this.args;
-    const { value } = event.target as HTMLInputElement;
+    const isValid = (event.target as HTMLInputElement).checkValidity();
 
-    const valueAsNumber = Number.parseFloat(value);
-
-    if (Number.isNaN(valueAsNumber)) {
+    if (!isValid) {
       onUpdate({ key, value: undefined });
       return;
     }
+
+    const { value } = event.target as HTMLInputElement;
+    const valueAsNumber = Number.parseFloat(value);
 
     onUpdate({ key, value: valueAsNumber });
   }

@@ -13,7 +13,7 @@ import Component from '@glimmer/component';
 import type { ComponentLike, WithBoundArgs } from '@glint/template';
 import { TrackedObject } from 'tracked-built-ins';
 
-import styles from './form.css';
+import styles from './form.module.css';
 import type UiFormCheckbox from './form/checkbox.ts';
 import type UiFormInput from './form/input.ts';
 import type UiFormSelect from './form/select.ts';
@@ -92,34 +92,34 @@ export default class UiForm extends Component<UiFormSignature> {
       (hash
         Checkbox=(component
           UiFormCheckbox
-          changeset=this.changeset
+          data=this.data
           isInline=true
           isWide=CQ.features.wide
-          onUpdate=this.updateChangeset
+          onUpdate=this.updateData
         )
         Input=(component
           UiFormInput
-          changeset=this.changeset
+          data=this.data
           isWide=CQ.features.wide
-          onUpdate=this.updateChangeset
+          onUpdate=this.updateData
         )
         Number=(component
           UiFormNumber
-          changeset=this.changeset
+          data=this.data
           isWide=CQ.features.wide
-          onUpdate=this.updateChangeset
+          onUpdate=this.updateData
         )
         Select=(component
           UiFormSelect
-          changeset=this.changeset
+          data=this.data
           isWide=CQ.features.wide
-          onUpdate=this.updateChangeset
+          onUpdate=this.updateData
         )
         Textarea=(component
           UiFormTextarea
-          changeset=this.changeset
+          data=this.data
           isWide=CQ.features.wide
-          onUpdate=this.updateChangeset
+          onUpdate=this.updateData
         )
       )
     }}

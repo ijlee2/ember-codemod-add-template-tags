@@ -4,6 +4,8 @@ import { isTesting, macroCondition } from '@embroider/macros';
 import { tracked } from '@glimmer/tracking';
 import { restartableTask, timeout } from 'ember-concurrency';
 
+import styles from './products.module.css';
+
 const TIMEOUT_IN_MILLISECONDS = macroCondition(isTesting()) ? 1 : 300;
 
 type Option = {
@@ -18,6 +20,8 @@ export default class ProductsController extends Controller {
 
   @tracked name: string | null = null;
   @tracked sortBy: string | null = null;
+
+  styles = styles;
 
   updateQueryParameters = restartableTask(
     async ({ key, value }: { key: string; value?: string }) => {
