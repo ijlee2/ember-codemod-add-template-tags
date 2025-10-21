@@ -1,11 +1,12 @@
-import type { TOC } from '@ember/component/template-only';
 import { hash } from '@ember/helper';
 import { LinkTo } from '@ember/routing';
-import { ContainerQuery, width } from 'ember-container-query';
+import ProductsProductImage from 'docs-app/components/products/product/image';
+import formatPrice from 'docs-app/helpers/format-price';
 
-import type { Product } from '../../../data/products';
+import Component from '@glimmer/component';
+import type { Product } from 'docs-app/utils/routes/products';
+
 import styles from './card.css';
-import ProductsProductImage from './image';
 
 interface ProductsProductCardSignature {
   Args: {
@@ -14,54 +15,47 @@ interface ProductsProductCardSignature {
   };
 }
 
-const ProductsProductCard: TOC<ProductsProductCardSignature> =
+export default class ProductsProductCard extends Component<ProductsProductCardSignature> {
+  styles = styles;
+
+
   <template>
-    <ContainerQuery
-      @features={{hash wide=(width min=320)}}
-      @tagName="article"
-      class={{styles.container}}
-      data-test-product-card
-    >
-      <header class={{styles.header}}>
-        <h2 class={{styles.name}} data-test-field="Name">
-          {{@product.name}}
-        </h2>
-      </header>
+  <ContainerQuery
+  @features={{hash wide=(width min=320)}}
+  @tagName="article"
+  class={{this.styles.container}}
+  data-test-product-card
+  >
+  <header class={{this.styles.header}}>
+  <h2 class={{this.styles.name}} data-test-field="Name">
+    {{@product.name}}
+  </h2>
+  </header>
 
-      <div class={{styles.image-container}}>
-        <ProductsProductImage @src={{@product.imageUrl}} />
-      </div>
+  <div class={{this.styles.image-container}}>
+  <ProductsProductImage @src={{@product.imageUrl}} />
+  </div>
 
-      <div class={{styles.body}}>
-        <p
-          class={{styles.description}}
-          data-test-field="Short Description"
-        >
-          {{@product.shortDescription}}
-        </p>
+  <div class={{this.styles.body}}>
+  <p class={{this.styles.description}} data-test-field="Short Description">
+    {{@product.shortDescription}}
+  </p>
 
-        <p class={{styles.price}} data-test-field="Price">
-          \${{@product.price}}
-        </p>
-      </div>
+  <p class={{this.styles.price}} data-test-field="Price">
+    {{formatPrice @product.price}}
+  </p>
+  </div>
 
-      <div class={{styles.actions}}>
-        <LinkTo
-          @model={{@product.id}}
-          @route={{@redirectTo}}
-          class={{styles.link}}
-          data-test-link="Learn More"
-        >
-          Learn more
-        </LinkTo>
-      </div>
-    </ContainerQuery>
+  <div class={{this.styles.actions}}>
+  <LinkTo
+    @model={{@product.id}}
+    @route={{@redirectTo}}
+    class={{this.styles.link}}
+    data-test-link="Learn More"
+  >
+    Learn more
+  </LinkTo>
+  </div>
+  </ContainerQuery>
   </template>
-
-export default ProductsProductCard;
-
-declare module '@glint/environment-ember-loose/registry' {
-  export default interface Registry {
-    'Products::Product::Card': typeof ProductsProductCard;
-  }
 }

@@ -7,7 +7,7 @@ import { module, test } from 'qunit';
 module('Integration | Modifier | draw-stacked-chart', function (hooks) {
   setupRenderingTest(hooks);
 
-  test('We can draw a chart', async function (assert) {
+  test('it renders', async function (assert) {
     await render(<template>
     <div {{drawStackedChart}}>
     <svg></svg>

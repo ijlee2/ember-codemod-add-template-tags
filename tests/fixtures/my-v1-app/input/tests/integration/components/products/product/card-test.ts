@@ -37,28 +37,19 @@ module('Integration | Component | products/product/card', function (hooks) {
       />
     `);
 
-    assert
-      .dom('[data-test-field="Name"]')
-      .hasText('Vanilla Ice Cream Cake', 'We see the product name.');
+    assert.dom('[data-test-field="Name"]').hasText('Vanilla Ice Cream Cake');
 
     assert
       .dom('[data-test-field="Short Description"]')
-      .hasText(
-        'Made with organic herbs',
-        'We see the product short description.',
-      );
+      .hasText('Made with organic herbs');
 
-    assert
-      .dom('[data-test-field="Price"]')
-      .hasText('$40', 'We see the product price.');
+    assert.dom('[data-test-field="Price"]').hasText('$40');
 
     assert
       .dom('[data-test-link="Learn More"]')
-      .hasTagName('a', 'We see the correct tag name.')
-      .hasText('Learn more', 'We see the learn more link.');
+      .hasTagName('a')
+      .hasText('Learn more');
 
     await a11yAudit();
-
-    assert.ok(true, 'We passed the accessibility audit.');
   });
 });
