@@ -86,6 +86,9 @@ test('utils | update-template | update-invocations > base case', function () {
   const newFile = updateInvocations(oldFile, {
     componentsDoubleColonized,
     entities,
+    filePath: 'components/ui/form.gts',
+    packageName: 'my-addon',
+    packageType: 'v2-addon',
   });
 
   assert.strictEqual(

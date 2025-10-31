@@ -149,6 +149,9 @@ test('utils | update-template | update-invocations > Glimmer component', functio
   const newFile = updateInvocations(oldFile, {
     componentsDoubleColonized,
     entities,
+    filePath: 'components/ui/form.gts',
+    packageName: 'my-addon',
+    packageType: 'v2-addon',
   });
 
   assert.strictEqual(

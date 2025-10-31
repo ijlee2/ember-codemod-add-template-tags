@@ -12,6 +12,9 @@ test('utils | update-template | update-invocations > file is empty', function ()
   const newFile = updateInvocations(oldFile, {
     componentsDoubleColonized,
     entities,
+    filePath: 'components/ui/form.gts',
+    packageName: 'my-addon',
+    packageType: 'v2-addon',
   });
 
   assert.strictEqual(newFile, '');

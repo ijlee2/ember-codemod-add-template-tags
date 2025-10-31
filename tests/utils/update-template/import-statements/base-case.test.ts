@@ -3,7 +3,11 @@ import { assert, test } from '@codemod-utils/tests';
 import { ImportStatements } from '../../../../src/utils/update-template/index.js';
 
 test('utils | update-template | import-statements > base case', function () {
-  const importStatements = new ImportStatements();
+  const importStatements = new ImportStatements({
+    filePath: 'components/ui/form.gts',
+    packageName: 'my-addon',
+    packageType: 'v2-addon',
+  });
 
   assert.strictEqual(importStatements.exist(), false);
 

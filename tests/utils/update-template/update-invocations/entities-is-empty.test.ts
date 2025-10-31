@@ -86,6 +86,9 @@ test('utils | update-template | update-invocations > entities is empty', functio
       helpers: new Map(),
       modifiers: new Map(),
     },
+    filePath: 'components/ui/form.gts',
+    packageName: 'my-addon',
+    packageType: 'v2-addon',
   });
 
   assert.strictEqual(newFile, oldFile);
