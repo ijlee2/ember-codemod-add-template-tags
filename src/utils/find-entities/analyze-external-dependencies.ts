@@ -30,36 +30,42 @@ export function analyzeExternalDependencies(options: Options): Dependencies {
   const dependencies: Dependencies = new Map();
 
   packageRoots.forEach((packageRoot) => {
-    const packageJson = readPackageJson({ projectRoot: packageRoot });
-    const packageName = packageJson['name'];
+    try {
+      const packageJson = readPackageJson({ projectRoot: packageRoot });
+      const packageName = packageJson['name'];
 
-    if (!packageName || dependencies.has(packageName)) {
-      return;
+      if (!packageName || dependencies.has(packageName)) {
+        return;
+      }
+
+      const packageType = getPackageType(packageJson);
+
+      if (packageType !== 'v1-addon' && packageType !== 'v2-addon') {
+        return;
+      }
+
+      const entities = analyzeEmberPackage({
+        componentStructure: 'flat' as const,
+        isExternal: true,
+        packageName,
+        packageRoot,
+        packageType,
+      });
+
+      if (isEntitiesEmpty(entities)) {
+        return;
+      }
+
+      dependencies.set(packageName, {
+        entities,
+        packageRoot,
+        packageType,
+      });
+    } catch (error) {
+      console.warn(
+        `Could not read package.json in ${packageRoot}. (${(error as Error).message})`,
+      );
     }
-
-    const packageType = getPackageType(packageJson);
-
-    if (packageType !== 'v1-addon' && packageType !== 'v2-addon') {
-      return;
-    }
-
-    const entities = analyzeEmberPackage({
-      componentStructure: 'flat' as const,
-      isExternal: true,
-      packageName,
-      packageRoot,
-      packageType,
-    });
-
-    if (isEntitiesEmpty(entities)) {
-      return;
-    }
-
-    dependencies.set(packageName, {
-      entities,
-      packageRoot,
-      packageType,
-    });
   });
 
   return new Map([...dependencies].sort());
