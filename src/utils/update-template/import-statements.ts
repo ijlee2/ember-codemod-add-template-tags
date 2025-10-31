@@ -2,9 +2,39 @@ import { join } from 'node:path';
 
 import type { EntityData } from '../../types/index.js';
 
-type ImportPath = string;
 type ImportName = string;
-type Imports = Map<ImportPath, Map<ImportName, { isDefaultImport: boolean }>>;
+type ImportObjects = Map<ImportName, { isDefaultImport: boolean }>;
+type ImportPath = string;
+type Imports = Map<ImportPath, ImportObjects>;
+
+function getImportName(importObjects: ImportObjects): string {
+  let defaultImport: string | undefined;
+  const namedImports: string[] = [];
+
+  for (const [name, { isDefaultImport }] of importObjects) {
+    if (isDefaultImport) {
+      defaultImport = name;
+    } else {
+      namedImports.push(name);
+    }
+  }
+
+  let importName = '';
+
+  if (defaultImport) {
+    importName += defaultImport;
+
+    if (namedImports.length > 0) {
+      importName += `, `;
+    }
+  }
+
+  if (namedImports.length > 0) {
+    importName += `{ ${namedImports.sort().join(', ')} }`;
+  }
+
+  return importName;
+}
 
 export class ImportStatements {
   declare private imports: Imports;
@@ -39,34 +69,9 @@ export class ImportStatements {
     const lines: string[] = [];
 
     for (const [importPath, importObjects] of imports) {
-      const defaultImports: string[] = [];
-      const namedImports: string[] = [];
+      const importName = getImportName(importObjects);
 
-      for (const [name, { isDefaultImport }] of importObjects) {
-        if (isDefaultImport) {
-          defaultImports.push(name);
-        } else {
-          namedImports.push(name);
-        }
-      }
-
-      let line = 'import ';
-
-      if (defaultImports.length > 0) {
-        line += defaultImports[0];
-
-        if (namedImports.length > 0) {
-          line += `, `;
-        }
-      }
-
-      if (namedImports.length > 0) {
-        line += `{ ${namedImports.sort().join(', ')} }`;
-      }
-
-      line += ` from '${importPath}';`;
-
-      lines.push(line);
+      lines.push(`import ${importName} from '${importPath}';`);
     }
 
     return lines.join('\n');
