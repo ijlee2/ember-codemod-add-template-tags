@@ -101,3 +101,10 @@ export default class UiFormNumber extends Component<UiFormNumberSignature> {
   </UiFormField>
   </template>
 }
+
+declare module '@glint/environment-ember-loose/registry' {
+  export default interface Registry {
+    'Ui::Form::Number': typeof UiFormNumber;
+    'ui/form/number': typeof UiFormNumber;
+  }
+}

@@ -67,3 +67,10 @@ export default class TracksList extends Component<TracksListSignature> {
   </ul>
   </template>
 }
+
+declare module '@glint/environment-ember-loose/registry' {
+  export default interface Registry {
+    'Tracks::List': typeof TracksList;
+    'tracks/list': typeof TracksList;
+  }
+}

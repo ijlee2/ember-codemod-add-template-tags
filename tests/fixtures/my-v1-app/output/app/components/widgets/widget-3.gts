@@ -50,3 +50,10 @@ export default class WidgetsWidget3 extends Component<WidgetsWidget3Signature> {
   </section>
   </template>
 }
+
+declare module '@glint/environment-ember-loose/registry' {
+  export default interface Registry {
+    'Widgets::Widget-3': typeof WidgetsWidget3;
+    'widgets/widget-3': typeof WidgetsWidget3;
+  }
+}

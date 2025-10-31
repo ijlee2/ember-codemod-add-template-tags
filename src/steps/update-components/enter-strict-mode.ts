@@ -5,7 +5,6 @@ import { updateJavaScript } from '@codemod-utils/ast-template-tag';
 import { doubleColonize } from '@codemod-utils/ember';
 
 import type { AllEntities, Entities, Packages } from '../../types/index.js';
-import { removeGlintRegistry } from '../../utils/update-components/index.js';
 import {
   removeImport,
   updateInvocations,
@@ -22,27 +21,20 @@ export function enterStrictMode(
   }
 
   for (const [, packageData] of packages) {
-    const { filesWithTemplateTag, packageRoot, packageType } = packageData;
+    const { filesWithTemplateTag, packageRoot } = packageData;
 
     filesWithTemplateTag.components.forEach((filePath) => {
       const oldFile = readFileSync(join(packageRoot, filePath), 'utf8');
       const isTypeScript = filePath.endsWith('.gts');
 
       let newFile = updateJavaScript(oldFile, (code) => {
-        code = removeImport(code, {
+        return removeImport(code, {
           importKind: 'value',
           importName: 'templateOnlyComponent',
           importPath: '@ember/component/template-only',
           isDefaultImport: true,
           isTypeScript,
         });
-
-        code = removeGlintRegistry(code, {
-          isTypeScript,
-          packageType,
-        });
-
-        return code;
       });
 
       newFile = updateInvocations(newFile, {

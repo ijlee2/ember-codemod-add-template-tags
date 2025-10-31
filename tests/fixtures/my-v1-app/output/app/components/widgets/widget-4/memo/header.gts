@@ -51,3 +51,10 @@ export default class WidgetsWidget4MemoHeader extends Component<WidgetsWidget4Me
   {{/let}}
   </template>
 }
+
+declare module '@glint/environment-ember-loose/registry' {
+  export default interface Registry {
+    'Widgets::Widget-4::Memo::Header': typeof WidgetsWidget4MemoHeader;
+    'widgets/widget-4/memo/header': typeof WidgetsWidget4MemoHeader;
+  }
+}

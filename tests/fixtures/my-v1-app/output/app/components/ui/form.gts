@@ -133,3 +133,10 @@ export default class UiForm extends Component<UiFormSignature> {
   {{/let}}
   </template>
 }
+
+declare module '@glint/environment-ember-loose/registry' {
+  export default interface Registry {
+    'Ui::Form': typeof UiForm;
+    'ui/form': typeof UiForm;
+  }
+}

@@ -38,3 +38,10 @@ export default class NavigationMenu extends Component<NavigationMenuSignature> {
   </nav>
   </template>
 }
+
+declare module '@glint/environment-ember-loose/registry' {
+  export default interface Registry {
+    NavigationMenu: typeof NavigationMenu;
+    'navigation-menu': typeof NavigationMenu;
+  }
+}
