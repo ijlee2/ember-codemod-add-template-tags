@@ -22,17 +22,12 @@ export class ImportStatements {
     if (this.imports.has(importPath)) {
       const map = this.imports.get(importPath)!;
 
-      if (map.has(importName)) {
-        return;
-      }
-
       map.set(importName, { isDefaultImport });
-    } else {
-      this.imports.set(
-        importPath,
-        new Map([[importName, { isDefaultImport }]]),
-      );
+
+      return;
     }
+
+    this.imports.set(importPath, new Map([[importName, { isDefaultImport }]]));
   }
 
   exist(): boolean {
