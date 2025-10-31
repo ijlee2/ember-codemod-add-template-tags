@@ -17,7 +17,7 @@ export function enterStrictMode(
     componentsDoubleColonized.set(doubleColonize(entityName), entity);
   }
 
-  for (const [, packageData] of packages) {
+  for (const [packageName, packageData] of packages) {
     const { filesWithTemplateTag, packageRoot } = packageData;
 
     filesWithTemplateTag.routes.forEach((filePath) => {
@@ -28,6 +28,9 @@ export function enterStrictMode(
       newFile = updateInvocations(newFile, {
         componentsDoubleColonized,
         entities,
+        filePath,
+        packageName,
+        packageType: packageData.packageType,
       });
 
       writeFileSync(join(packageRoot, filePath), newFile, 'utf8');

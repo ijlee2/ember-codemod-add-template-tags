@@ -1,6 +1,10 @@
 import { join } from 'node:path';
 
-import type { EntityData } from '../../types/index.js';
+import type {
+  EntityData,
+  PackageName,
+  PackageType,
+} from '../../types/index.js';
 
 type ImportName = string;
 type ImportObjects = Map<ImportName, { isDefaultImport: boolean }>;
@@ -36,10 +40,18 @@ function getImportName(importObjects: ImportObjects): string {
   return importName;
 }
 
+interface ImportStatementsArgs {
+  filePath: string;
+  packageName: PackageName;
+  packageType: PackageType;
+}
+
 export class ImportStatements {
+  declare private args: ImportStatementsArgs;
   declare private imports: Imports;
 
-  constructor() {
+  constructor(args: ImportStatementsArgs) {
+    this.args = args;
     this.imports = new Map();
   }
 

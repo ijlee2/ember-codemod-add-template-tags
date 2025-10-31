@@ -1,16 +1,24 @@
 import { updateTemplates } from '@codemod-utils/ast-template-tag';
 
-import type { AllEntities, Entities } from '../../types/index.js';
+import type {
+  AllEntities,
+  Entities,
+  PackageName,
+  PackageType,
+} from '../../types/index.js';
 import { ImportStatements } from './import-statements.js';
 import { updateTemplate } from './update-invocations/update-template.js';
 
 type Data = {
   componentsDoubleColonized: Entities;
   entities: AllEntities;
+  filePath: string;
+  packageName: PackageName;
+  packageType: PackageType;
 };
 
 export function updateInvocations(file: string, data: Data): string {
-  const importStatements = new ImportStatements();
+  const importStatements = new ImportStatements(data);
 
   file = updateTemplates(file, (code) => {
     return updateTemplate(code, importStatements, data);
