@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.16.0
+
+### Minor Changes
+
+- [#68](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/68) Ignored errors from external dependencies ([@ijlee2](https://github.com/ijlee2))
+
+### Patch Changes
+
+- [#67](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/67) Simplified ImportStatements ([@ijlee2](https://github.com/ijlee2))
+
 ## 0.15.0
 
 ### Minor Changes
