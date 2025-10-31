@@ -37,3 +37,10 @@ const WidgetsWidget4Memo = <template>
 </template>;
 
 export default WidgetsWidget4Memo;
+
+declare module '@glint/environment-ember-loose/registry' {
+  export default interface Registry {
+    'Widgets::Widget-4::Memo': typeof WidgetsWidget4Memo;
+    'widgets/widget-4/memo': typeof WidgetsWidget4Memo;
+  }
+}

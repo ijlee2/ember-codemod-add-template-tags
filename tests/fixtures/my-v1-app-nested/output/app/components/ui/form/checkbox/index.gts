@@ -110,3 +110,10 @@ export default class UiFormCheckbox extends Component<UiFormCheckboxSignature> {
   </UiFormField>
   </template>
 }
+
+declare module '@glint/environment-ember-loose/registry' {
+  export default interface Registry {
+    'Ui::Form::Checkbox': typeof UiFormCheckbox;
+    'ui/form/checkbox': typeof UiFormCheckbox;
+  }
+}

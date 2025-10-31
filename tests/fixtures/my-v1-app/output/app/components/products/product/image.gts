@@ -22,3 +22,10 @@ export default class ProductsProductImage extends Component<ProductsProductImage
   {{/if}}
   </template>
 }
+
+declare module '@glint/environment-ember-loose/registry' {
+  export default interface Registry {
+    'Products::Product::Image': typeof ProductsProductImage;
+    'products/product/image': typeof ProductsProductImage;
+  }
+}

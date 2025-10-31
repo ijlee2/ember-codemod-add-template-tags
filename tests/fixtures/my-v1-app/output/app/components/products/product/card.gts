@@ -59,3 +59,10 @@ export default class ProductsProductCard extends Component<ProductsProductCardSi
   </ContainerQuery>
   </template>
 }
+
+declare module '@glint/environment-ember-loose/registry' {
+  export default interface Registry {
+    'Products::Product::Card': typeof ProductsProductCard;
+    'products/product/card': typeof ProductsProductCard;
+  }
+}

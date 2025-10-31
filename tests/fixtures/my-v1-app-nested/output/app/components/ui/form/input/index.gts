@@ -99,3 +99,10 @@ export default class UiFormInput extends Component<UiFormInputSignature> {
   </UiFormField>
   </template>
 }
+
+declare module '@glint/environment-ember-loose/registry' {
+  export default interface Registry {
+    'Ui::Form::Input': typeof UiFormInput;
+    'ui/form/input': typeof UiFormInput;
+  }
+}
