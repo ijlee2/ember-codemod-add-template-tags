@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.17.0
+
+### Minor Changes
+
+- [#69](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/69) Removed removeGlintRegistry() ([@ijlee2](https://github.com/ijlee2))
+
+### Patch Changes
+
+- [#70](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/70) Updated dependencies ([@ijlee2](https://github.com/ijlee2))
+
 ## 0.16.0
 
 ### Minor Changes
