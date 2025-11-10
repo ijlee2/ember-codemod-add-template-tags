@@ -5,19 +5,18 @@ export function ignorePackage(
   options: Options,
 ): boolean {
   const { components, routes, tests } = filesWithHBS;
-  let consider = false;
 
   if (options.convert.components && components.length > 0) {
-    consider = true;
+    return false;
   }
 
   if (options.convert.routes && routes.length > 0) {
-    consider = true;
+    return false;
   }
 
   if (options.convert.tests && tests.length > 0) {
-    consider = true;
+    return false;
   }
 
-  return !consider;
+  return true;
 }
