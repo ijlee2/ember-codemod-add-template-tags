@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.0.0
+
+### Major Changes
+
+- [#72](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/72) Marked package as stable ([@ijlee2](https://github.com/ijlee2))
+
+### Patch Changes
+
+- [#71](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/71) Made early exits ([@ijlee2](https://github.com/ijlee2))
+
 ## 0.17.0
 
 ### Minor Changes
