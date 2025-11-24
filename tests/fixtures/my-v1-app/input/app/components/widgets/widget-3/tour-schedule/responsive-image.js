@@ -2,7 +2,6 @@ import { action } from '@ember/object';
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { findBestFittingImage } from 'docs-app/utils/components/widgets/widget-3';
-import { containerQuery } from 'ember-container-query';
 
 import styles from './responsive-image.css';
 

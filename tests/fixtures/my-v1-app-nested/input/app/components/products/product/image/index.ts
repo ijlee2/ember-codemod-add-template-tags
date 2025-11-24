@@ -1,5 +1,5 @@
+import { isTesting, macroCondition } from '@embroider/macros';
 import Component from '@glimmer/component';
-import config from 'docs-app/config/environment';
 
 import styles from './index.css';
 
@@ -10,7 +10,7 @@ interface ProductsProductImageSignature {
 }
 
 export default class ProductsProductImage extends Component<ProductsProductImageSignature> {
-  isTestEnvironment = config.environment === 'test';
+  isTestEnvironment = macroCondition(isTesting()) ? true : false;
   styles = styles;
 }
 
