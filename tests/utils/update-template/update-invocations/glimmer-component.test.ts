@@ -1,4 +1,4 @@
-import { assert, test } from '@codemod-utils/tests';
+import { assert, createFile, test } from '@codemod-utils/tests';
 
 import { updateInvocations } from '../../../../src/utils/update-template/index.js';
 import {
@@ -7,7 +7,7 @@ import {
 } from '../../../helpers/mocks/index.js';
 
 test('utils | update-template | update-invocations > Glimmer component', function () {
-  const oldFile = [
+  const oldFile = createFile([
     `import { action } from '@ember/object';`,
     `import Component from '@glimmer/component';`,
     `import type { WithBoundArgs } from '@glint/template';`,
@@ -144,7 +144,7 @@ test('utils | update-template | update-invocations > Glimmer component', functio
     `  </template>`,
     `}`,
     ``,
-  ].join('\n');
+  ]);
 
   const newFile = updateInvocations(oldFile, {
     componentsDoubleColonized,
@@ -153,7 +153,7 @@ test('utils | update-template | update-invocations > Glimmer component', functio
 
   assert.strictEqual(
     newFile,
-    [
+    createFile([
       `import { concat, hash, uniqueId } from '@ember/helper';`,
       `import { on } from '@ember/modifier';`,
       `import { ContainerQuery, width } from 'ember-container-query';`,
@@ -296,6 +296,6 @@ test('utils | update-template | update-invocations > Glimmer component', functio
       `  </template>`,
       `}`,
       ``,
-    ].join('\n'),
+    ]),
   );
 });

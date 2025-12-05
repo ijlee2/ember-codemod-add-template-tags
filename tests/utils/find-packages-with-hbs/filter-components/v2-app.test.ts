@@ -1,3 +1,5 @@
+import { normalize } from 'node:path';
+
 import { assert, loadFixture, test } from '@codemod-utils/tests';
 
 import type { CodemodOptions } from '../../../../src/types/index.js';
@@ -33,7 +35,7 @@ test('utils | find-packages-with-hbs | filter-components > v2-app', function () 
     componentStructure: 'flat',
     convert: new Set(['components', 'routes', 'tests']),
     folder: '',
-    projectRoot: 'tmp/my-v2-app',
+    projectRoot: normalize('tmp/my-v2-app'),
   };
 
   loadFixture(inputProject, codemodOptions);
@@ -47,19 +49,22 @@ test('utils | find-packages-with-hbs | filter-components > v2-app', function () 
     'app/components/widgets/widget-2.hbs',
     'app/components/widgets/widget-2/captions.hbs',
     'app/components/widgets/widget-3.hbs',
-  ];
+  ].map(normalize);
 
   const newFilePaths = filterComponents(oldFilePaths, {
-    packageRoot: 'tmp/my-v2-app',
+    packageRoot: normalize('tmp/my-v2-app'),
     packageType: 'v2-app',
   });
 
-  assert.deepStrictEqual(newFilePaths, [
-    'app/components/tracks.hbs',
-    'app/components/tracks/list.hbs',
-    'app/components/ui/form.hbs',
-    'app/components/ui/form/checkbox.hbs',
-    'app/components/widgets/widget-2.hbs',
-    'app/components/widgets/widget-2/captions.hbs',
-  ]);
+  assert.deepStrictEqual(
+    newFilePaths,
+    [
+      'app/components/tracks.hbs',
+      'app/components/tracks/list.hbs',
+      'app/components/ui/form.hbs',
+      'app/components/ui/form/checkbox.hbs',
+      'app/components/widgets/widget-2.hbs',
+      'app/components/widgets/widget-2/captions.hbs',
+    ].map(normalize),
+  );
 });

@@ -1,10 +1,12 @@
+import { normalize } from 'node:path';
+
 import type { CodemodOptions, Options } from '../../../src/types/index.js';
 
 const codemodOptions: CodemodOptions = {
   componentStructure: 'flat',
   convert: new Set(['components', 'routes', 'tests']),
   folder: '',
-  projectRoot: 'tmp/my-monorepo',
+  projectRoot: normalize('tmp/my-monorepo'),
 };
 
 const options: Options = {
@@ -15,7 +17,7 @@ const options: Options = {
     tests: true,
   },
   folder: '',
-  projectRoot: 'tmp/my-monorepo',
+  projectRoot: normalize('tmp/my-monorepo'),
 };
 
 export { codemodOptions, options };

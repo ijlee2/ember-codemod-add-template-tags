@@ -1,9 +1,9 @@
-import { assert, test } from '@codemod-utils/tests';
+import { assert, createFile, test } from '@codemod-utils/tests';
 
 import { renameThis } from '../../../../src/utils/update-routes/index.js';
 
 test('utils | update-routes | rename-this > base case', function () {
-  const oldFile = [
+  const oldFile = createFile([
     `{{page-title (t "routes.form.title")}}`,
     ``,
     `<Ui::Page @title={{t "routes.form.title"}}>`,
@@ -66,13 +66,13 @@ test('utils | update-routes | rename-this > base case', function () {
     `    {{/if}}`,
     `  </Ui::Form>`,
     `</Ui::Page>`,
-  ].join('\n');
+  ]);
 
   const newFile = renameThis(oldFile);
 
   assert.strictEqual(
     newFile,
-    [
+    createFile([
       `{{page-title (t "routes.form.title")}}`,
       ``,
       `<Ui::Page @title={{t "routes.form.title"}}>`,
@@ -135,6 +135,6 @@ test('utils | update-routes | rename-this > base case', function () {
       `    {{/if}}`,
       `  </Ui::Form>`,
       `</Ui::Page>`,
-    ].join('\n'),
+    ]),
   );
 });

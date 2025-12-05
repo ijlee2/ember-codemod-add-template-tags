@@ -1,4 +1,9 @@
-import { assertFixture, loadFixture, test } from '@codemod-utils/tests';
+import {
+  assertFixture,
+  createFile,
+  loadFixture,
+  test,
+} from '@codemod-utils/tests';
 
 import { findEntities, updateComponents } from '../../../src/steps/index.js';
 import {
@@ -14,7 +19,7 @@ test('steps | update-components > v1-app (nested)', function () {
         ui: {
           form: {
             checkbox: {
-              'index.gts': [
+              'index.gts': createFile([
                 `import Component from '@glimmer/component';`,
                 ``,
                 `interface UiFormCheckboxSignature {}`,
@@ -32,10 +37,10 @@ test('steps | update-components > v1-app (nested)', function () {
                 `  }`,
                 `}`,
                 ``,
-              ].join('\n'),
+              ]),
             },
             field: {
-              'index.gts': [
+              'index.gts': createFile([
                 `import Component from '@glimmer/component';`,
                 ``,
                 `interface UiFormFieldSignature {}`,
@@ -46,10 +51,10 @@ test('steps | update-components > v1-app (nested)', function () {
                 `    </template>`,
                 `}`,
                 ``,
-              ].join('\n'),
+              ]),
             },
             information: {
-              'index.gts': [
+              'index.gts': createFile([
                 `import type { TOC } from '@ember/component/template-only';`,
                 ``,
                 `interface UiFormInformationSignature {}`,
@@ -67,10 +72,10 @@ test('steps | update-components > v1-app (nested)', function () {
                 `  }`,
                 `}`,
                 ``,
-              ].join('\n'),
+              ]),
             },
             input: {
-              'index.gjs': [
+              'index.gjs': createFile([
                 `import Component from '@glimmer/component';`,
                 ``,
                 `export default class UiFormInput extends Component {`,
@@ -79,13 +84,13 @@ test('steps | update-components > v1-app (nested)', function () {
                 `    </template>`,
                 `}`,
                 ``,
-              ].join('\n'),
+              ]),
             },
             number: {
               'index.gts': ``,
             },
             select: {
-              'index.gts': [
+              'index.gts': createFile([
                 `import Component from '@glimmer/component';`,
                 ``,
                 `interface UiFormSelectSignature {}`,
@@ -96,12 +101,12 @@ test('steps | update-components > v1-app (nested)', function () {
                 `    </template>`,
                 `}`,
                 ``,
-              ].join('\n'),
+              ]),
             },
             textarea: {
               'index.gjs': ``,
             },
-            'index.gts': [
+            'index.gts': createFile([
               `import Component from '@glimmer/component';`,
               ``,
               `interface UiFormSignature {}`,
@@ -112,24 +117,24 @@ test('steps | update-components > v1-app (nested)', function () {
               `    </template>`,
               `}`,
               ``,
-            ].join('\n'),
+            ]),
           },
           page: {
-            'index.gjs': [
+            'index.gjs': createFile([
               `const UiPage = <template>`,
               ``,
               `</template>;`,
               ``,
               `export default UiPage;`,
               ``,
-            ].join('\n'),
+            ]),
           },
         },
         'navigation-menu': {
-          'index.gjs': [`<template>`, ``, `</template>`, ``].join('\n'),
+          'index.gjs': createFile([`<template>`, ``, `</template>`, ``]),
         },
         'select-locale': {
-          'index.gjs': [
+          'index.gjs': createFile([
             `import Component from '@glimmer/component';`,
             ``,
             `export default class SelectLocale extends Component {`,
@@ -138,11 +143,11 @@ test('steps | update-components > v1-app (nested)', function () {
             `    </template>`,
             `}`,
             ``,
-          ].join('\n'),
+          ]),
         },
       },
       templates: {
-        'application.hbs': [
+        'application.hbs': createFile([
           `<header>`,
           `  <NavigationMenu />`,
           `</header>`,
@@ -150,7 +155,7 @@ test('steps | update-components > v1-app (nested)', function () {
           `<main>`,
           `  {{outlet}}`,
           `</main>`,
-        ].join('\n'),
+        ]),
         'index.hbs': `<SelectLocale />`,
       },
     },

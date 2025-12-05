@@ -1,3 +1,5 @@
+import { normalize } from 'node:path';
+
 import { assert, loadFixture, test } from '@codemod-utils/tests';
 
 import { findPackagesWithHBS } from '../../../src/steps/index.js';
@@ -28,11 +30,11 @@ test('steps | find-packages-with-hbs > v1-app (nested)', function () {
               'app/components/ui/form/input/index.hbs',
               'app/components/ui/form/select/index.hbs',
               'app/components/ui/page/index.hbs',
-            ],
+            ].map(normalize),
             routes: [
               'app/templates/application.hbs',
               'app/templates/index.hbs',
-            ],
+            ].map(normalize),
             tests: [
               'tests/integration/components/navigation-menu-test.js',
               'tests/integration/components/select-locale-test.js',
@@ -41,7 +43,7 @@ test('steps | find-packages-with-hbs > v1-app (nested)', function () {
               'tests/integration/components/ui/form/field-test.ts',
               'tests/integration/components/ui/form/information-test.ts',
               'tests/integration/components/ui/form/textarea-test.js',
-            ],
+            ].map(normalize),
           },
           filesWithTemplateTag: {
             components: [],
@@ -49,7 +51,7 @@ test('steps | find-packages-with-hbs > v1-app (nested)', function () {
             tests: [],
           },
           hasEmberRouteTemplate: false,
-          packageRoot: 'tmp/my-v1-app-nested',
+          packageRoot: normalize('tmp/my-v1-app-nested'),
           packageType: 'v1-app',
         },
       ],

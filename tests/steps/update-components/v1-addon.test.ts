@@ -1,4 +1,9 @@
-import { assertFixture, loadFixture, test } from '@codemod-utils/tests';
+import {
+  assertFixture,
+  createFile,
+  loadFixture,
+  test,
+} from '@codemod-utils/tests';
 
 import { findEntities, updateComponents } from '../../../src/steps/index.js';
 import {
@@ -12,14 +17,14 @@ test('steps | update-components > v1-addon', function () {
     addon: {
       components: {
         'navigation-menu.d.ts': '',
-        'navigation-menu.gjs': [
+        'navigation-menu.gjs': createFile([
           `const NavigationMenu = <template>`,
           ``,
           `</template>;`,
           ``,
           `export default NavigationMenu;`,
           ``,
-        ].join('\n'),
+        ]),
       },
     },
     tests: {
@@ -27,15 +32,15 @@ test('steps | update-components > v1-addon', function () {
         app: {
           components: {
             'select-locale.hbs': '',
-            'select-locale.js': [
+            'select-locale.js': createFile([
               `import Component from '@glimmer/component';`,
               ``,
               `export default class SelectLocale extends Component {}`,
               ``,
-            ].join('\n'),
+            ]),
           },
           templates: {
-            'application.hbs': [
+            'application.hbs': createFile([
               `<header>`,
               `  <NavigationMenu />`,
               `</header>`,
@@ -43,7 +48,7 @@ test('steps | update-components > v1-addon', function () {
               `<main>`,
               `  {{outlet}}`,
               `</main>`,
-            ].join('\n'),
+            ]),
             'index.hbs': `<SelectLocale />`,
           },
         },

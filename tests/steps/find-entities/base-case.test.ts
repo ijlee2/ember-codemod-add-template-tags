@@ -1,3 +1,5 @@
+import { normalize } from 'node:path';
+
 import { assert, loadFixture, test } from '@codemod-utils/tests';
 
 import { findEntities } from '../../../src/steps/index.js';
@@ -15,8 +17,8 @@ test('steps | find-entities > base case', function () {
       [
         'input',
         {
-          filePath: '.',
-          filePathAlias: '.',
+          filePath: normalize('.'),
+          filePathAlias: normalize('.'),
           isDefaultExport: false,
           isTypeScript: true,
           packageName: '@ember/component',
@@ -25,8 +27,8 @@ test('steps | find-entities > base case', function () {
       [
         'link-to',
         {
-          filePath: '.',
-          filePathAlias: '.',
+          filePath: normalize('.'),
+          filePathAlias: normalize('.'),
           isDefaultExport: false,
           isTypeScript: true,
           packageName: '@ember/routing',
@@ -35,8 +37,8 @@ test('steps | find-entities > base case', function () {
       [
         'textarea',
         {
-          filePath: '.',
-          filePathAlias: '.',
+          filePath: normalize('.'),
+          filePathAlias: normalize('.'),
           isDefaultExport: false,
           isTypeScript: true,
           packageName: '@ember/component',
@@ -47,8 +49,8 @@ test('steps | find-entities > base case', function () {
       [
         'array',
         {
-          filePath: '.',
-          filePathAlias: '.',
+          filePath: normalize('.'),
+          filePathAlias: normalize('.'),
           isDefaultExport: false,
           isTypeScript: true,
           packageName: '@ember/helper',
@@ -57,8 +59,8 @@ test('steps | find-entities > base case', function () {
       [
         'concat',
         {
-          filePath: '.',
-          filePathAlias: '.',
+          filePath: normalize('.'),
+          filePathAlias: normalize('.'),
           isDefaultExport: false,
           isTypeScript: true,
           packageName: '@ember/helper',
@@ -67,8 +69,8 @@ test('steps | find-entities > base case', function () {
       [
         'ensure-safe-component',
         {
-          filePath: '.',
-          filePathAlias: '.',
+          filePath: normalize('.'),
+          filePathAlias: normalize('.'),
           isDefaultExport: false,
           isTypeScript: false,
           packageName: '@embroider/util',
@@ -77,8 +79,8 @@ test('steps | find-entities > base case', function () {
       [
         'fn',
         {
-          filePath: '.',
-          filePathAlias: '.',
+          filePath: normalize('.'),
+          filePathAlias: normalize('.'),
           isDefaultExport: false,
           isTypeScript: true,
           packageName: '@ember/helper',
@@ -87,8 +89,8 @@ test('steps | find-entities > base case', function () {
       [
         'get',
         {
-          filePath: '.',
-          filePathAlias: '.',
+          filePath: normalize('.'),
+          filePathAlias: normalize('.'),
           isDefaultExport: false,
           isTypeScript: true,
           packageName: '@ember/helper',
@@ -97,8 +99,8 @@ test('steps | find-entities > base case', function () {
       [
         'hash',
         {
-          filePath: '.',
-          filePathAlias: '.',
+          filePath: normalize('.'),
+          filePathAlias: normalize('.'),
           isDefaultExport: false,
           isTypeScript: true,
           packageName: '@ember/helper',
@@ -107,8 +109,8 @@ test('steps | find-entities > base case', function () {
       [
         'htmlSafe',
         {
-          filePath: '.',
-          filePathAlias: '.',
+          filePath: normalize('.'),
+          filePathAlias: normalize('.'),
           isDefaultExport: false,
           isTypeScript: true,
           packageName: '@ember/template',
@@ -117,8 +119,8 @@ test('steps | find-entities > base case', function () {
       [
         'unique-id',
         {
-          filePath: '.',
-          filePathAlias: '.',
+          filePath: normalize('.'),
+          filePathAlias: normalize('.'),
           isDefaultExport: false,
           isTypeScript: true,
           packageName: '@ember/helper',
@@ -129,8 +131,8 @@ test('steps | find-entities > base case', function () {
       [
         'on',
         {
-          filePath: '.',
-          filePathAlias: '.',
+          filePath: normalize('.'),
+          filePathAlias: normalize('.'),
           isDefaultExport: false,
           isTypeScript: true,
           packageName: '@ember/modifier',

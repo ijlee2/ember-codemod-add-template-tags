@@ -1,3 +1,5 @@
+import { normalize } from 'node:path';
+
 import { assert, test } from '@codemod-utils/tests';
 
 import type { Dependencies } from '../../../../src/types/index.js';
@@ -49,8 +51,8 @@ test('utils | find-entities | merge-entities > base case', function () {
             [
               'container-query',
               {
-                filePath: 'dist/components/container-query.js',
-                filePathAlias: '.',
+                filePath: normalize('dist/components/container-query.js'),
+                filePathAlias: normalize('.'),
                 isDefaultExport: false,
                 isTypeScript: false,
                 packageName: 'ember-container-query',
@@ -61,8 +63,8 @@ test('utils | find-entities | merge-entities > base case', function () {
             [
               'aspect-ratio',
               {
-                filePath: 'dist/helpers/aspect-ratio.js',
-                filePathAlias: '.',
+                filePath: normalize('dist/helpers/aspect-ratio.js'),
+                filePathAlias: normalize('.'),
                 isDefaultExport: false,
                 isTypeScript: false,
                 packageName: 'ember-container-query',
@@ -71,8 +73,8 @@ test('utils | find-entities | merge-entities > base case', function () {
             [
               'height',
               {
-                filePath: 'dist/helpers/height.js',
-                filePathAlias: '.',
+                filePath: normalize('dist/helpers/height.js'),
+                filePathAlias: normalize('.'),
                 isDefaultExport: false,
                 isTypeScript: false,
                 packageName: 'ember-container-query',
@@ -81,8 +83,8 @@ test('utils | find-entities | merge-entities > base case', function () {
             [
               'width',
               {
-                filePath: 'dist/helpers/width.js',
-                filePathAlias: '.',
+                filePath: normalize('dist/helpers/width.js'),
+                filePathAlias: normalize('.'),
                 isDefaultExport: false,
                 isTypeScript: false,
                 packageName: 'ember-container-query',
@@ -93,8 +95,8 @@ test('utils | find-entities | merge-entities > base case', function () {
             [
               'container-query',
               {
-                filePath: 'dist/modifiers/container-query.js',
-                filePathAlias: '.',
+                filePath: normalize('dist/modifiers/container-query.js'),
+                filePathAlias: normalize('.'),
                 isDefaultExport: false,
                 isTypeScript: false,
                 packageName: 'ember-container-query',
@@ -116,8 +118,8 @@ test('utils | find-entities | merge-entities > base case', function () {
             [
               'format-date',
               {
-                filePath: 'addon/helpers/format-date.ts',
-                filePathAlias: '.',
+                filePath: normalize('addon/helpers/format-date.ts'),
+                filePathAlias: normalize('.'),
                 isDefaultExport: false,
                 isTypeScript: true,
                 packageName: 'ember-intl',
@@ -126,8 +128,8 @@ test('utils | find-entities | merge-entities > base case', function () {
             [
               'format-date-range',
               {
-                filePath: 'addon/helpers/format-date-range.ts',
-                filePathAlias: '.',
+                filePath: normalize('addon/helpers/format-date-range.ts'),
+                filePathAlias: normalize('.'),
                 isDefaultExport: false,
                 isTypeScript: true,
                 packageName: 'ember-intl',
@@ -136,8 +138,8 @@ test('utils | find-entities | merge-entities > base case', function () {
             [
               'format-list',
               {
-                filePath: 'addon/helpers/format-list.ts',
-                filePathAlias: '.',
+                filePath: normalize('addon/helpers/format-list.ts'),
+                filePathAlias: normalize('.'),
                 isDefaultExport: false,
                 isTypeScript: true,
                 packageName: 'ember-intl',
@@ -146,8 +148,8 @@ test('utils | find-entities | merge-entities > base case', function () {
             [
               'format-message',
               {
-                filePath: 'addon/helpers/format-message.ts',
-                filePathAlias: '.',
+                filePath: normalize('addon/helpers/format-message.ts'),
+                filePathAlias: normalize('.'),
                 isDefaultExport: false,
                 isTypeScript: true,
                 packageName: 'ember-intl',
@@ -156,8 +158,8 @@ test('utils | find-entities | merge-entities > base case', function () {
             [
               'format-number',
               {
-                filePath: 'addon/helpers/format-number.ts',
-                filePathAlias: '.',
+                filePath: normalize('addon/helpers/format-number.ts'),
+                filePathAlias: normalize('.'),
                 isDefaultExport: false,
                 isTypeScript: true,
                 packageName: 'ember-intl',
@@ -166,8 +168,8 @@ test('utils | find-entities | merge-entities > base case', function () {
             [
               'format-relative',
               {
-                filePath: 'addon/helpers/format-relative.ts',
-                filePathAlias: '.',
+                filePath: normalize('addon/helpers/format-relative.ts'),
+                filePathAlias: normalize('.'),
                 isDefaultExport: false,
                 isTypeScript: true,
                 packageName: 'ember-intl',
@@ -176,8 +178,8 @@ test('utils | find-entities | merge-entities > base case', function () {
             [
               'format-relative-time',
               {
-                filePath: 'addon/helpers/format-relative-time.ts',
-                filePathAlias: '.',
+                filePath: normalize('addon/helpers/format-relative-time.ts'),
+                filePathAlias: normalize('.'),
                 isDefaultExport: false,
                 isTypeScript: true,
                 packageName: 'ember-intl',
@@ -186,8 +188,8 @@ test('utils | find-entities | merge-entities > base case', function () {
             [
               'format-time',
               {
-                filePath: 'addon/helpers/format-time.ts',
-                filePathAlias: '.',
+                filePath: normalize('addon/helpers/format-time.ts'),
+                filePathAlias: normalize('.'),
                 isDefaultExport: false,
                 isTypeScript: true,
                 packageName: 'ember-intl',
@@ -196,8 +198,8 @@ test('utils | find-entities | merge-entities > base case', function () {
             [
               't',
               {
-                filePath: 'addon/helpers/t.ts',
-                filePathAlias: '.',
+                filePath: normalize('addon/helpers/t.ts'),
+                filePathAlias: normalize('.'),
                 isDefaultExport: false,
                 isTypeScript: true,
                 packageName: 'ember-intl',

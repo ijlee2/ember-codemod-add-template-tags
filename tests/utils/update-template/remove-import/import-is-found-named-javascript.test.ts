@@ -1,15 +1,15 @@
-import { assert, test } from '@codemod-utils/tests';
+import { assert, createFile, test } from '@codemod-utils/tests';
 
 import { removeImport } from '../../../../src/utils/update-template/index.js';
 
 test('utils | update-template | remove-import > import is found (named, javascript)', function () {
-  const oldFile = [
+  const oldFile = createFile([
     `import { click, fillIn, find, render } from '@ember/test-helpers';`,
     `import { hbs } from 'ember-cli-htmlbars';`,
     `import { setupIntl } from 'ember-intl/test-support';`,
     `import { setupRenderingTest } from 'my-app/tests/helpers';`,
     `import { module, test } from 'qunit';`,
-  ].join('\n');
+  ]);
 
   const newFile = removeImport(oldFile, {
     importKind: 'value',
@@ -21,11 +21,11 @@ test('utils | update-template | remove-import > import is found (named, javascri
 
   assert.strictEqual(
     newFile,
-    [
+    createFile([
       `import { click, fillIn, find, render } from '@ember/test-helpers';`,
       `import { setupIntl } from 'ember-intl/test-support';`,
       `import { setupRenderingTest } from 'my-app/tests/helpers';`,
       `import { module, test } from 'qunit';`,
-    ].join('\n'),
+    ]),
   );
 });

@@ -1,9 +1,9 @@
-import { assert, test } from '@codemod-utils/tests';
+import { assert, createFile, test } from '@codemod-utils/tests';
 
 import { updateInvocations } from '../../../../src/utils/update-template/index.js';
 
 test('utils | update-template | update-invocations > entities is empty', function () {
-  const oldFile = [
+  const oldFile = createFile([
     `<template>`,
     `  {{#let (unique-id) as |formId|}}`,
     `    <form`,
@@ -77,7 +77,7 @@ test('utils | update-template | update-invocations > entities is empty', functio
     `  {{/let}}`,
     `</template>`,
     ``,
-  ].join('\n');
+  ]);
 
   const newFile = updateInvocations(oldFile, {
     componentsDoubleColonized: new Map(),

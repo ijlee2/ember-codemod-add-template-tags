@@ -1,3 +1,7 @@
+import { normalize } from 'node:path';
+
+import { createFile } from '@codemod-utils/tests';
+
 import type {
   CodemodOptions,
   Options,
@@ -8,7 +12,7 @@ const codemodOptions: CodemodOptions = {
   componentStructure: 'flat',
   convert: new Set(['components', 'routes', 'tests']),
   folder: '',
-  projectRoot: 'tmp/my-v1-addon',
+  projectRoot: normalize('tmp/my-v1-addon'),
 };
 
 const inputProject = {
@@ -16,14 +20,14 @@ const inputProject = {
     components: {
       'navigation-menu.d.ts': '',
       'navigation-menu.hbs': '',
-      'navigation-menu.js': [
+      'navigation-menu.js': createFile([
         `import templateOnlyComponent from '@ember/component/template-only';`,
         ``,
         `const NavigationMenu = templateOnlyComponent();`,
         ``,
         `export default NavigationMenu;`,
         ``,
-      ].join('\n'),
+      ]),
     },
   },
   tests: {
@@ -31,15 +35,15 @@ const inputProject = {
       app: {
         components: {
           'select-locale.hbs': '',
-          'select-locale.js': [
+          'select-locale.js': createFile([
             `import Component from '@glimmer/component';`,
             ``,
             `export default class SelectLocale extends Component {}`,
             ``,
-          ].join('\n'),
+          ]),
         },
         templates: {
-          'application.hbs': [
+          'application.hbs': createFile([
             `<header>`,
             `  <NavigationMenu />`,
             `</header>`,
@@ -47,7 +51,7 @@ const inputProject = {
             `<main>`,
             `  {{outlet}}`,
             `</main>`,
-          ].join('\n'),
+          ]),
           'index.hbs': `<SelectLocale />`,
         },
       },
@@ -80,7 +84,7 @@ const options: Options = {
     tests: true,
   },
   folder: '',
-  projectRoot: 'tmp/my-v1-addon',
+  projectRoot: normalize('tmp/my-v1-addon'),
 };
 
 const packages: Packages = new Map([
@@ -88,7 +92,7 @@ const packages: Packages = new Map([
     'my-v1-addon',
     {
       filesWithHBS: {
-        components: ['addon/components/navigation-menu.hbs'],
+        components: ['addon/components/navigation-menu.hbs'].map(normalize),
         routes: [],
         tests: [],
       },

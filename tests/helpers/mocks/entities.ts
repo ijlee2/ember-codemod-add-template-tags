@@ -1,3 +1,5 @@
+import { normalize } from 'node:path';
+
 import type { AllEntities } from '../../../src/types/index.js';
 
 /**
@@ -9,8 +11,8 @@ export const entities: AllEntities = {
     [
       'container-query',
       {
-        filePath: 'dist/components/container-query.js',
-        filePathAlias: '.',
+        filePath: normalize('dist/components/container-query.js'),
+        filePathAlias: normalize('.'),
         isDefaultExport: false,
         isTypeScript: false,
         packageName: 'ember-container-query',
@@ -19,8 +21,8 @@ export const entities: AllEntities = {
     [
       'input',
       {
-        filePath: '.',
-        filePathAlias: '.',
+        filePath: normalize('.'),
+        filePathAlias: normalize('.'),
         isDefaultExport: false,
         isTypeScript: true,
         packageName: '@ember/component',
@@ -29,8 +31,8 @@ export const entities: AllEntities = {
     [
       'link-to',
       {
-        filePath: '.',
-        filePathAlias: '.',
+        filePath: normalize('.'),
+        filePathAlias: normalize('.'),
         isDefaultExport: false,
         isTypeScript: true,
         packageName: '@ember/routing',
@@ -39,8 +41,8 @@ export const entities: AllEntities = {
     [
       'navigation-menu',
       {
-        filePath: 'src/components/navigation-menu.ts',
-        filePathAlias: '.',
+        filePath: normalize('src/components/navigation-menu.ts'),
+        filePathAlias: normalize('.'),
         isDefaultExport: false,
         isTypeScript: true,
         packageName: 'my-addon',
@@ -49,8 +51,8 @@ export const entities: AllEntities = {
     [
       'products/product/card',
       {
-        filePath: 'app/components/products/product/card.ts',
-        filePathAlias: 'components/products/product/card',
+        filePath: normalize('app/components/products/product/card.ts'),
+        filePathAlias: normalize('components/products/product/card'),
         isDefaultExport: true,
         isTypeScript: true,
         packageName: 'my-app',
@@ -59,8 +61,8 @@ export const entities: AllEntities = {
     [
       'products/product/details',
       {
-        filePath: 'app/components/products/product/details.js',
-        filePathAlias: 'components/products/product/details',
+        filePath: normalize('app/components/products/product/details.js'),
+        filePathAlias: normalize('components/products/product/details'),
         isDefaultExport: true,
         isTypeScript: false,
         packageName: 'my-app',
@@ -69,8 +71,8 @@ export const entities: AllEntities = {
     [
       'products/product/image',
       {
-        filePath: 'app/components/products/product/image.gts',
-        filePathAlias: 'components/products/product/image',
+        filePath: normalize('app/components/products/product/image.gts'),
+        filePathAlias: normalize('components/products/product/image'),
         isDefaultExport: true,
         isTypeScript: true,
         packageName: 'my-app',
@@ -79,8 +81,8 @@ export const entities: AllEntities = {
     [
       'textarea',
       {
-        filePath: '.',
-        filePathAlias: '.',
+        filePath: normalize('.'),
+        filePathAlias: normalize('.'),
         isDefaultExport: false,
         isTypeScript: true,
         packageName: '@ember/component',
@@ -89,8 +91,8 @@ export const entities: AllEntities = {
     [
       'ui/form',
       {
-        filePath: 'src/components/ui/form.ts',
-        filePathAlias: '.',
+        filePath: normalize('src/components/ui/form.ts'),
+        filePathAlias: normalize('.'),
         isDefaultExport: false,
         isTypeScript: true,
         packageName: 'my-addon',
@@ -99,8 +101,8 @@ export const entities: AllEntities = {
     [
       'ui/form/checkbox',
       {
-        filePath: 'src/components/ui/form/checkbox.ts',
-        filePathAlias: '.',
+        filePath: normalize('src/components/ui/form/checkbox.ts'),
+        filePathAlias: normalize('.'),
         isDefaultExport: false,
         isTypeScript: true,
         packageName: 'my-addon',
@@ -109,8 +111,8 @@ export const entities: AllEntities = {
     [
       'ui/form/field',
       {
-        filePath: 'src/components/ui/form/field.ts',
-        filePathAlias: '.',
+        filePath: normalize('src/components/ui/form/field.ts'),
+        filePathAlias: normalize('.'),
         isDefaultExport: false,
         isTypeScript: true,
         packageName: 'my-addon',
@@ -119,8 +121,8 @@ export const entities: AllEntities = {
     [
       'ui/form/information',
       {
-        filePath: 'src/components/ui/form/information.ts',
-        filePathAlias: '.',
+        filePath: normalize('src/components/ui/form/information.ts'),
+        filePathAlias: normalize('.'),
         isDefaultExport: false,
         isTypeScript: true,
         packageName: 'my-addon',
@@ -129,8 +131,8 @@ export const entities: AllEntities = {
     [
       'ui/form/input',
       {
-        filePath: 'src/components/ui/form/input.js',
-        filePathAlias: '.',
+        filePath: normalize('src/components/ui/form/input.js'),
+        filePathAlias: normalize('.'),
         isDefaultExport: false,
         isTypeScript: false,
         packageName: 'my-addon',
@@ -139,8 +141,8 @@ export const entities: AllEntities = {
     [
       'ui/form/number',
       {
-        filePath: 'src/components/ui/form/number.gts',
-        filePathAlias: '.',
+        filePath: normalize('src/components/ui/form/number.gts'),
+        filePathAlias: normalize('.'),
         isDefaultExport: false,
         isTypeScript: true,
         packageName: 'my-addon',
@@ -149,8 +151,8 @@ export const entities: AllEntities = {
     [
       'ui/form/select',
       {
-        filePath: 'src/components/ui/form/select.ts',
-        filePathAlias: '.',
+        filePath: normalize('src/components/ui/form/select.ts'),
+        filePathAlias: normalize('.'),
         isDefaultExport: false,
         isTypeScript: true,
         packageName: 'my-addon',
@@ -159,8 +161,8 @@ export const entities: AllEntities = {
     [
       'ui/form/textarea',
       {
-        filePath: 'src/components/ui/form/textarea.gjs',
-        filePathAlias: '.',
+        filePath: normalize('src/components/ui/form/textarea.gjs'),
+        filePathAlias: normalize('.'),
         isDefaultExport: false,
         isTypeScript: false,
         packageName: 'my-addon',
@@ -169,8 +171,8 @@ export const entities: AllEntities = {
     [
       'ui/page',
       {
-        filePath: 'src/components/ui/page.js',
-        filePathAlias: '.',
+        filePath: normalize('src/components/ui/page.js'),
+        filePathAlias: normalize('.'),
         isDefaultExport: false,
         isTypeScript: false,
         packageName: 'my-addon',
@@ -181,8 +183,8 @@ export const entities: AllEntities = {
     [
       'array',
       {
-        filePath: '.',
-        filePathAlias: '.',
+        filePath: normalize('.'),
+        filePathAlias: normalize('.'),
         isDefaultExport: false,
         isTypeScript: true,
         packageName: '@ember/helper',
@@ -191,8 +193,8 @@ export const entities: AllEntities = {
     [
       'aspect-ratio',
       {
-        filePath: 'dist/helpers/aspect-ratio.js',
-        filePathAlias: '.',
+        filePath: normalize('dist/helpers/aspect-ratio.js'),
+        filePathAlias: normalize('.'),
         isDefaultExport: false,
         isTypeScript: false,
         packageName: 'ember-container-query',
@@ -201,8 +203,8 @@ export const entities: AllEntities = {
     [
       'concat',
       {
-        filePath: '.',
-        filePathAlias: '.',
+        filePath: normalize('.'),
+        filePathAlias: normalize('.'),
         isDefaultExport: false,
         isTypeScript: true,
         packageName: '@ember/helper',
@@ -211,8 +213,8 @@ export const entities: AllEntities = {
     [
       'ensure-safe-component',
       {
-        filePath: '.',
-        filePathAlias: '.',
+        filePath: normalize('.'),
+        filePathAlias: normalize('.'),
         isDefaultExport: false,
         isTypeScript: false,
         packageName: '@embroider/util',
@@ -221,8 +223,8 @@ export const entities: AllEntities = {
     [
       'experiment',
       {
-        filePath: 'app/helpers/experiment.ts',
-        filePathAlias: 'helpers/experiment',
+        filePath: normalize('app/helpers/experiment.ts'),
+        filePathAlias: normalize('helpers/experiment'),
         isDefaultExport: true,
         isTypeScript: true,
         packageName: 'my-app',
@@ -231,8 +233,8 @@ export const entities: AllEntities = {
     [
       'fn',
       {
-        filePath: '.',
-        filePathAlias: '.',
+        filePath: normalize('.'),
+        filePathAlias: normalize('.'),
         isDefaultExport: false,
         isTypeScript: true,
         packageName: '@ember/helper',
@@ -241,8 +243,8 @@ export const entities: AllEntities = {
     [
       'format-date',
       {
-        filePath: 'addon/helpers/format-date.ts',
-        filePathAlias: '.',
+        filePath: normalize('addon/helpers/format-date.ts'),
+        filePathAlias: normalize('.'),
         isDefaultExport: false,
         isTypeScript: true,
         packageName: 'ember-intl',
@@ -251,8 +253,8 @@ export const entities: AllEntities = {
     [
       'format-date-range',
       {
-        filePath: 'addon/helpers/format-date-range.ts',
-        filePathAlias: '.',
+        filePath: normalize('addon/helpers/format-date-range.ts'),
+        filePathAlias: normalize('.'),
         isDefaultExport: false,
         isTypeScript: true,
         packageName: 'ember-intl',
@@ -261,8 +263,8 @@ export const entities: AllEntities = {
     [
       'format-list',
       {
-        filePath: 'addon/helpers/format-list.ts',
-        filePathAlias: '.',
+        filePath: normalize('addon/helpers/format-list.ts'),
+        filePathAlias: normalize('.'),
         isDefaultExport: false,
         isTypeScript: true,
         packageName: 'ember-intl',
@@ -271,8 +273,8 @@ export const entities: AllEntities = {
     [
       'format-message',
       {
-        filePath: 'addon/helpers/format-message.ts',
-        filePathAlias: '.',
+        filePath: normalize('addon/helpers/format-message.ts'),
+        filePathAlias: normalize('.'),
         isDefaultExport: false,
         isTypeScript: true,
         packageName: 'ember-intl',
@@ -281,8 +283,8 @@ export const entities: AllEntities = {
     [
       'format-number',
       {
-        filePath: 'addon/helpers/format-number.ts',
-        filePathAlias: '.',
+        filePath: normalize('addon/helpers/format-number.ts'),
+        filePathAlias: normalize('.'),
         isDefaultExport: false,
         isTypeScript: true,
         packageName: 'ember-intl',
@@ -291,8 +293,8 @@ export const entities: AllEntities = {
     [
       'format-price',
       {
-        filePath: 'app/helpers/format-price.js',
-        filePathAlias: 'helpers/format-price',
+        filePath: normalize('app/helpers/format-price.js'),
+        filePathAlias: normalize('helpers/format-price'),
         isDefaultExport: true,
         isTypeScript: false,
         packageName: 'my-app',
@@ -301,8 +303,8 @@ export const entities: AllEntities = {
     [
       'format-relative',
       {
-        filePath: 'addon/helpers/format-relative.ts',
-        filePathAlias: '.',
+        filePath: normalize('addon/helpers/format-relative.ts'),
+        filePathAlias: normalize('.'),
         isDefaultExport: false,
         isTypeScript: true,
         packageName: 'ember-intl',
@@ -311,8 +313,8 @@ export const entities: AllEntities = {
     [
       'format-relative-time',
       {
-        filePath: 'addon/helpers/format-relative-time.ts',
-        filePathAlias: '.',
+        filePath: normalize('addon/helpers/format-relative-time.ts'),
+        filePathAlias: normalize('.'),
         isDefaultExport: false,
         isTypeScript: true,
         packageName: 'ember-intl',
@@ -321,8 +323,8 @@ export const entities: AllEntities = {
     [
       'format-time',
       {
-        filePath: 'addon/helpers/format-time.ts',
-        filePathAlias: '.',
+        filePath: normalize('addon/helpers/format-time.ts'),
+        filePathAlias: normalize('.'),
         isDefaultExport: false,
         isTypeScript: true,
         packageName: 'ember-intl',
@@ -331,8 +333,8 @@ export const entities: AllEntities = {
     [
       'get',
       {
-        filePath: '.',
-        filePathAlias: '.',
+        filePath: normalize('.'),
+        filePathAlias: normalize('.'),
         isDefaultExport: false,
         isTypeScript: true,
         packageName: '@ember/helper',
@@ -341,8 +343,8 @@ export const entities: AllEntities = {
     [
       'hash',
       {
-        filePath: '.',
-        filePathAlias: '.',
+        filePath: normalize('.'),
+        filePathAlias: normalize('.'),
         isDefaultExport: false,
         isTypeScript: true,
         packageName: '@ember/helper',
@@ -351,8 +353,8 @@ export const entities: AllEntities = {
     [
       'height',
       {
-        filePath: 'dist/helpers/height.js',
-        filePathAlias: '.',
+        filePath: normalize('dist/helpers/height.js'),
+        filePathAlias: normalize('.'),
         isDefaultExport: false,
         isTypeScript: false,
         packageName: 'ember-container-query',
@@ -361,8 +363,8 @@ export const entities: AllEntities = {
     [
       'htmlSafe',
       {
-        filePath: '.',
-        filePathAlias: '.',
+        filePath: normalize('.'),
+        filePathAlias: normalize('.'),
         isDefaultExport: false,
         isTypeScript: true,
         packageName: '@ember/template',
@@ -371,8 +373,8 @@ export const entities: AllEntities = {
     [
       't',
       {
-        filePath: 'addon/helpers/t.ts',
-        filePathAlias: '.',
+        filePath: normalize('addon/helpers/t.ts'),
+        filePathAlias: normalize('.'),
         isDefaultExport: false,
         isTypeScript: true,
         packageName: 'ember-intl',
@@ -381,8 +383,8 @@ export const entities: AllEntities = {
     [
       'unique-id',
       {
-        filePath: '.',
-        filePathAlias: '.',
+        filePath: normalize('.'),
+        filePathAlias: normalize('.'),
         isDefaultExport: false,
         isTypeScript: true,
         packageName: '@ember/helper',
@@ -391,8 +393,8 @@ export const entities: AllEntities = {
     [
       'width',
       {
-        filePath: 'dist/helpers/width.js',
-        filePathAlias: '.',
+        filePath: normalize('dist/helpers/width.js'),
+        filePathAlias: normalize('.'),
         isDefaultExport: false,
         isTypeScript: false,
         packageName: 'ember-container-query',
@@ -403,8 +405,8 @@ export const entities: AllEntities = {
     [
       'autofocus',
       {
-        filePath: 'src/modifiers/autofocus.ts',
-        filePathAlias: '.',
+        filePath: normalize('src/modifiers/autofocus.ts'),
+        filePathAlias: normalize('.'),
         isDefaultExport: false,
         isTypeScript: true,
         packageName: 'my-addon',
@@ -413,8 +415,8 @@ export const entities: AllEntities = {
     [
       'container-query',
       {
-        filePath: 'dist/modifiers/container-query.js',
-        filePathAlias: '.',
+        filePath: normalize('dist/modifiers/container-query.js'),
+        filePathAlias: normalize('.'),
         isDefaultExport: false,
         isTypeScript: false,
         packageName: 'ember-container-query',
@@ -423,8 +425,8 @@ export const entities: AllEntities = {
     [
       'on',
       {
-        filePath: '.',
-        filePathAlias: '.',
+        filePath: normalize('.'),
+        filePathAlias: normalize('.'),
         isDefaultExport: false,
         isTypeScript: true,
         packageName: '@ember/modifier',

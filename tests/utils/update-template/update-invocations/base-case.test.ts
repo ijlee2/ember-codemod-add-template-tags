@@ -1,4 +1,4 @@
-import { assert, test } from '@codemod-utils/tests';
+import { assert, createFile, test } from '@codemod-utils/tests';
 
 import { updateInvocations } from '../../../../src/utils/update-template/index.js';
 import {
@@ -7,7 +7,7 @@ import {
 } from '../../../helpers/mocks/index.js';
 
 test('utils | update-template | update-invocations > base case', function () {
-  const oldFile = [
+  const oldFile = createFile([
     `<template>`,
     `  {{#let (unique-id) as |formId|}}`,
     `    <form`,
@@ -81,7 +81,7 @@ test('utils | update-template | update-invocations > base case', function () {
     `  {{/let}}`,
     `</template>`,
     ``,
-  ].join('\n');
+  ]);
 
   const newFile = updateInvocations(oldFile, {
     componentsDoubleColonized,
@@ -90,7 +90,7 @@ test('utils | update-template | update-invocations > base case', function () {
 
   assert.strictEqual(
     newFile,
-    [
+    createFile([
       `import { concat, hash, uniqueId } from '@ember/helper';`,
       `import { on } from '@ember/modifier';`,
       `import { ContainerQuery, width } from 'ember-container-query';`,
@@ -170,6 +170,6 @@ test('utils | update-template | update-invocations > base case', function () {
       `  {{/let}}`,
       `</template>`,
       ``,
-    ].join('\n'),
+    ]),
   );
 });

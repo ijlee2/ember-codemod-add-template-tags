@@ -1,4 +1,9 @@
-import { assertFixture, loadFixture, test } from '@codemod-utils/tests';
+import {
+  assertFixture,
+  createFile,
+  loadFixture,
+  test,
+} from '@codemod-utils/tests';
 
 import { findEntities, updateRoutes } from '../../../src/steps/index.js';
 import {
@@ -13,14 +18,14 @@ test('steps | update-routes > v1-addon', function () {
       components: {
         'navigation-menu.d.ts': '',
         'navigation-menu.hbs': '',
-        'navigation-menu.js': [
+        'navigation-menu.js': createFile([
           `import templateOnlyComponent from '@ember/component/template-only';`,
           ``,
           `const NavigationMenu = templateOnlyComponent();`,
           ``,
           `export default NavigationMenu;`,
           ``,
-        ].join('\n'),
+        ]),
       },
     },
     tests: {
@@ -28,15 +33,15 @@ test('steps | update-routes > v1-addon', function () {
         app: {
           components: {
             'select-locale.hbs': '',
-            'select-locale.js': [
+            'select-locale.js': createFile([
               `import Component from '@glimmer/component';`,
               ``,
               `export default class SelectLocale extends Component {}`,
               ``,
-            ].join('\n'),
+            ]),
           },
           templates: {
-            'application.hbs': [
+            'application.hbs': createFile([
               `<header>`,
               `  <NavigationMenu />`,
               `</header>`,
@@ -44,7 +49,7 @@ test('steps | update-routes > v1-addon', function () {
               `<main>`,
               `  {{outlet}}`,
               `</main>`,
-            ].join('\n'),
+            ]),
             'index.hbs': `<SelectLocale />`,
           },
         },

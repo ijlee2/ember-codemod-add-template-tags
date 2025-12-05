@@ -1,4 +1,9 @@
-import { assertFixture, loadFixture, test } from '@codemod-utils/tests';
+import {
+  assertFixture,
+  createFile,
+  loadFixture,
+  test,
+} from '@codemod-utils/tests';
 
 import { findEntities, updateTests } from '../../../src/steps/index.js';
 import {
@@ -14,7 +19,7 @@ test('steps | update-tests > v1-app', function () {
         ui: {
           form: {
             'checkbox.hbs': ``,
-            'checkbox.ts': [
+            'checkbox.ts': createFile([
               `import Component from '@glimmer/component';`,
               ``,
               `interface UiFormCheckboxSignature {}`,
@@ -28,18 +33,18 @@ test('steps | update-tests > v1-app', function () {
               `  }`,
               `}`,
               ``,
-            ].join('\n'),
+            ]),
             'field.hbs': ``,
-            'field.ts': [
+            'field.ts': createFile([
               `import Component from '@glimmer/component';`,
               ``,
               `interface UiFormFieldSignature {}`,
               ``,
               `export default class UiFormField extends Component<UiFormFieldSignature> {}`,
               ``,
-            ].join('\n'),
+            ]),
             'information.hbs': ``,
-            'information.ts': [
+            'information.ts': createFile([
               `import templateOnlyComponent from '@ember/component/template-only';`,
               ``,
               `interface UiFormInformationSignature {}`,
@@ -55,56 +60,56 @@ test('steps | update-tests > v1-app', function () {
               `  }`,
               `}`,
               ``,
-            ].join('\n'),
+            ]),
             'input.hbs': ``,
-            'input.js': [
+            'input.js': createFile([
               `import Component from '@glimmer/component';`,
               ``,
               `export default class UiFormInput extends Component {}`,
               ``,
-            ].join('\n'),
+            ]),
             'number.gts': ``,
             'select.hbs': ``,
-            'select.ts': [
+            'select.ts': createFile([
               `import Component from '@glimmer/component';`,
               ``,
               `interface UiFormSelectSignature {}`,
               ``,
               `export default class UiFormSelect extends Component<UiFormSelectSignature> {}`,
               ``,
-            ].join('\n'),
+            ]),
             'textarea.gjs': ``,
           },
           'form.hbs': ``,
-          'form.ts': [
+          'form.ts': createFile([
             `import Component from '@glimmer/component';`,
             ``,
             `interface UiFormSignature {}`,
             ``,
             `export default class UiForm extends Component<UiFormSignature> {}`,
             ``,
-          ].join('\n'),
+          ]),
           'page.hbs': ``,
-          'page.js': [
+          'page.js': createFile([
             `import templateOnlyComponent from '@ember/component/template-only';`,
             ``,
             `const UiPage = templateOnlyComponent();`,
             ``,
             `export default UiPage;`,
             ``,
-          ].join('\n'),
+          ]),
         },
         'navigation-menu.hbs': '',
         'select-locale.hbs': '',
-        'select-locale.js': [
+        'select-locale.js': createFile([
           `import Component from '@glimmer/component';`,
           ``,
           `export default class SelectLocale extends Component {}`,
           ``,
-        ].join('\n'),
+        ]),
       },
       templates: {
-        'application.hbs': [
+        'application.hbs': createFile([
           `<header>`,
           `  <NavigationMenu />`,
           `</header>`,
@@ -112,7 +117,7 @@ test('steps | update-tests > v1-app', function () {
           `<main>`,
           `  {{outlet}}`,
           `</main>`,
-        ].join('\n'),
+        ]),
         'index.hbs': `<SelectLocale />`,
       },
     },
@@ -121,7 +126,7 @@ test('steps | update-tests > v1-app', function () {
         components: {
           ui: {
             form: {
-              'checkbox-test.gts': [
+              'checkbox-test.gts': createFile([
                 `import UiFormCheckbox from 'my-v1-app/components/ui/form/checkbox';`,
                 ``,
                 `import {`,
@@ -162,13 +167,13 @@ test('steps | update-tests > v1-app', function () {
                 `  });`,
                 `});`,
                 ``,
-              ].join('\n'),
+              ]),
               'field-test.gts': '',
               'information-test.gts': '',
               'input-test.gjs': '',
               'number-test.gts': '',
               'select-test.gts': '',
-              'textarea-test.gjs': [
+              'textarea-test.gjs': createFile([
                 `import UiFormTextarea from 'my-v1-app/components/ui/form/textarea';`,
                 ``,
                 `import { render } from '@ember/test-helpers';`,
@@ -210,7 +215,7 @@ test('steps | update-tests > v1-app', function () {
                 `  });`,
                 `});`,
                 ``,
-              ].join('\n'),
+              ]),
             },
             'form-test.gts': '',
             'page-test.gjs': '',

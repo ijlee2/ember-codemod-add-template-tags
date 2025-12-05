@@ -1,4 +1,9 @@
-import { assertFixture, loadFixture, test } from '@codemod-utils/tests';
+import {
+  assertFixture,
+  createFile,
+  loadFixture,
+  test,
+} from '@codemod-utils/tests';
 
 import { findEntities, updateTests } from '../../../src/steps/index.js';
 import {
@@ -15,7 +20,7 @@ test('steps | update-tests > v1-app-nested', function () {
           form: {
             checkbox: {
               'index.hbs': ``,
-              'index.ts': [
+              'index.ts': createFile([
                 `import Component from '@glimmer/component';`,
                 ``,
                 `interface UiFormCheckboxSignature {}`,
@@ -29,22 +34,22 @@ test('steps | update-tests > v1-app-nested', function () {
                 `  }`,
                 `}`,
                 ``,
-              ].join('\n'),
+              ]),
             },
             field: {
               'index.hbs': ``,
-              'index.ts': [
+              'index.ts': createFile([
                 `import Component from '@glimmer/component';`,
                 ``,
                 `interface UiFormFieldSignature {}`,
                 ``,
                 `export default class UiFormField extends Component<UiFormFieldSignature> {}`,
                 ``,
-              ].join('\n'),
+              ]),
             },
             information: {
               'index.hbs': ``,
-              'index.ts': [
+              'index.ts': createFile([
                 `import templateOnlyComponent from '@ember/component/template-only';`,
                 ``,
                 `interface UiFormInformationSignature {}`,
@@ -60,54 +65,54 @@ test('steps | update-tests > v1-app-nested', function () {
                 `  }`,
                 `}`,
                 ``,
-              ].join('\n'),
+              ]),
             },
             input: {
               'index.hbs': ``,
-              'index.js': [
+              'index.js': createFile([
                 `import Component from '@glimmer/component';`,
                 ``,
                 `export default class UiFormInput extends Component {}`,
                 ``,
-              ].join('\n'),
+              ]),
             },
             number: {
               'index.gts': ``,
             },
             select: {
               'index.hbs': ``,
-              'index.ts': [
+              'index.ts': createFile([
                 `import Component from '@glimmer/component';`,
                 ``,
                 `interface UiFormSelectSignature {}`,
                 ``,
                 `export default class UiFormSelect extends Component<UiFormSelectSignature> {}`,
                 ``,
-              ].join('\n'),
+              ]),
             },
             textarea: {
               'index.gjs': ``,
             },
             'index.hbs': ``,
-            'index.ts': [
+            'index.ts': createFile([
               `import Component from '@glimmer/component';`,
               ``,
               `interface UiFormSignature {}`,
               ``,
               `export default class UiForm extends Component<UiFormSignature> {}`,
               ``,
-            ].join('\n'),
+            ]),
           },
           page: {
             'index.hbs': ``,
-            'index.js': [
+            'index.js': createFile([
               `import templateOnlyComponent from '@ember/component/template-only';`,
               ``,
               `const UiPage = templateOnlyComponent();`,
               ``,
               `export default UiPage;`,
               ``,
-            ].join('\n'),
+            ]),
           },
         },
         'navigation-menu': {
@@ -115,16 +120,16 @@ test('steps | update-tests > v1-app-nested', function () {
         },
         'select-locale': {
           'index.hbs': '',
-          'index.js': [
+          'index.js': createFile([
             `import Component from '@glimmer/component';`,
             ``,
             `export default class SelectLocale extends Component {}`,
             ``,
-          ].join('\n'),
+          ]),
         },
       },
       templates: {
-        'application.hbs': [
+        'application.hbs': createFile([
           `<header>`,
           `  <NavigationMenu />`,
           `</header>`,
@@ -132,7 +137,7 @@ test('steps | update-tests > v1-app-nested', function () {
           `<main>`,
           `  {{outlet}}`,
           `</main>`,
-        ].join('\n'),
+        ]),
         'index.hbs': `<SelectLocale />`,
       },
     },

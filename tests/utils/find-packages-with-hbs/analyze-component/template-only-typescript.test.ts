@@ -1,9 +1,9 @@
-import { assert, test } from '@codemod-utils/tests';
+import { assert, createFile, test } from '@codemod-utils/tests';
 
 import { analyzeComponent } from '../../../../src/utils/find-packages-with-hbs/index.js';
 
 test('utils | find-packages-with-hbs | analyze-component > template-only (TypeScript)', function () {
-  const file = [
+  const file = createFile([
     `import templateOnlyComponent from '@ember/component/template-only';`,
     ``,
     `interface HelloWorldSignature {`,
@@ -14,7 +14,7 @@ test('utils | find-packages-with-hbs | analyze-component > template-only (TypeSc
     ``,
     `export default HelloWorld;`,
     ``,
-  ].join('\n');
+  ]);
 
   assert.deepStrictEqual(analyzeComponent(file), {
     baseComponentName: 'templateOnlyComponent',

@@ -1,3 +1,5 @@
+import { normalize } from 'node:path';
+
 import { assert, loadFixture, test } from '@codemod-utils/tests';
 
 import { analyzeInternalDependencies } from '../../../../src/utils/find-entities/index.js';
@@ -131,8 +133,8 @@ test('utils | find-entities | analyze-internal-dependencies > base case', functi
               [
                 'format-date',
                 {
-                  filePath: 'addon/helpers/format-date.ts',
-                  filePathAlias: 'helpers/format-date',
+                  filePath: normalize('addon/helpers/format-date.ts'),
+                  filePathAlias: normalize('helpers/format-date'),
                   isDefaultExport: true,
                   isTypeScript: true,
                   packageName: 'ember-intl',
@@ -141,8 +143,8 @@ test('utils | find-entities | analyze-internal-dependencies > base case', functi
               [
                 'format-date-range',
                 {
-                  filePath: 'addon/helpers/format-date-range.ts',
-                  filePathAlias: 'helpers/format-date-range',
+                  filePath: normalize('addon/helpers/format-date-range.ts'),
+                  filePathAlias: normalize('helpers/format-date-range'),
                   isDefaultExport: true,
                   isTypeScript: true,
                   packageName: 'ember-intl',
@@ -151,8 +153,8 @@ test('utils | find-entities | analyze-internal-dependencies > base case', functi
               [
                 'format-list',
                 {
-                  filePath: 'addon/helpers/format-list.ts',
-                  filePathAlias: 'helpers/format-list',
+                  filePath: normalize('addon/helpers/format-list.ts'),
+                  filePathAlias: normalize('helpers/format-list'),
                   isDefaultExport: true,
                   isTypeScript: true,
                   packageName: 'ember-intl',
@@ -161,8 +163,8 @@ test('utils | find-entities | analyze-internal-dependencies > base case', functi
               [
                 'format-message',
                 {
-                  filePath: 'addon/helpers/format-message.ts',
-                  filePathAlias: 'helpers/format-message',
+                  filePath: normalize('addon/helpers/format-message.ts'),
+                  filePathAlias: normalize('helpers/format-message'),
                   isDefaultExport: true,
                   isTypeScript: true,
                   packageName: 'ember-intl',
@@ -171,8 +173,8 @@ test('utils | find-entities | analyze-internal-dependencies > base case', functi
               [
                 'format-number',
                 {
-                  filePath: 'addon/helpers/format-number.ts',
-                  filePathAlias: 'helpers/format-number',
+                  filePath: normalize('addon/helpers/format-number.ts'),
+                  filePathAlias: normalize('helpers/format-number'),
                   isDefaultExport: true,
                   isTypeScript: true,
                   packageName: 'ember-intl',
@@ -181,8 +183,8 @@ test('utils | find-entities | analyze-internal-dependencies > base case', functi
               [
                 'format-relative',
                 {
-                  filePath: 'addon/helpers/format-relative.ts',
-                  filePathAlias: 'helpers/format-relative',
+                  filePath: normalize('addon/helpers/format-relative.ts'),
+                  filePathAlias: normalize('helpers/format-relative'),
                   isDefaultExport: true,
                   isTypeScript: true,
                   packageName: 'ember-intl',
@@ -191,8 +193,8 @@ test('utils | find-entities | analyze-internal-dependencies > base case', functi
               [
                 'format-relative-time',
                 {
-                  filePath: 'addon/helpers/format-relative-time.ts',
-                  filePathAlias: 'helpers/format-relative-time',
+                  filePath: normalize('addon/helpers/format-relative-time.ts'),
+                  filePathAlias: normalize('helpers/format-relative-time'),
                   isDefaultExport: true,
                   isTypeScript: true,
                   packageName: 'ember-intl',
@@ -201,8 +203,8 @@ test('utils | find-entities | analyze-internal-dependencies > base case', functi
               [
                 'format-time',
                 {
-                  filePath: 'addon/helpers/format-time.ts',
-                  filePathAlias: 'helpers/format-time',
+                  filePath: normalize('addon/helpers/format-time.ts'),
+                  filePathAlias: normalize('helpers/format-time'),
                   isDefaultExport: true,
                   isTypeScript: true,
                   packageName: 'ember-intl',
@@ -211,8 +213,8 @@ test('utils | find-entities | analyze-internal-dependencies > base case', functi
               [
                 't',
                 {
-                  filePath: 'addon/helpers/t.ts',
-                  filePathAlias: 'helpers/t',
+                  filePath: normalize('addon/helpers/t.ts'),
+                  filePathAlias: normalize('helpers/t'),
                   isDefaultExport: true,
                   isTypeScript: true,
                   packageName: 'ember-intl',
@@ -221,7 +223,7 @@ test('utils | find-entities | analyze-internal-dependencies > base case', functi
             ]),
             modifiers: new Map(),
           },
-          packageRoot: 'tmp/my-monorepo/packages/ember-intl',
+          packageRoot: normalize('tmp/my-monorepo/packages/ember-intl'),
           packageType: 'v1-addon',
         },
       ],
@@ -233,8 +235,12 @@ test('utils | find-entities | analyze-internal-dependencies > base case', functi
               [
                 'component-from-v2-addon',
                 {
-                  filePath: 'src/components/component-from-v2-addon.ts',
-                  filePathAlias: 'components/component-from-v2-addon',
+                  filePath: normalize(
+                    'src/components/component-from-v2-addon.ts',
+                  ),
+                  filePathAlias: normalize(
+                    'components/component-from-v2-addon',
+                  ),
                   isDefaultExport: true,
                   isTypeScript: true,
                   packageName: 'my-v2-addon',
@@ -243,8 +249,8 @@ test('utils | find-entities | analyze-internal-dependencies > base case', functi
               [
                 'select-locale',
                 {
-                  filePath: 'src/components/select-locale.ts',
-                  filePathAlias: 'components/select-locale',
+                  filePath: normalize('src/components/select-locale.ts'),
+                  filePathAlias: normalize('components/select-locale'),
                   isDefaultExport: true,
                   isTypeScript: true,
                   packageName: 'my-v2-addon',
@@ -254,7 +260,7 @@ test('utils | find-entities | analyze-internal-dependencies > base case', functi
             helpers: new Map(),
             modifiers: new Map(),
           },
-          packageRoot: 'tmp/my-monorepo/docs/my-v2-addon',
+          packageRoot: normalize('tmp/my-monorepo/docs/my-v2-addon'),
           packageType: 'v2-addon',
         },
       ],
@@ -266,8 +272,8 @@ test('utils | find-entities | analyze-internal-dependencies > base case', functi
               [
                 'component-from-app',
                 {
-                  filePath: 'app/components/component-from-app.gts',
-                  filePathAlias: 'components/component-from-app',
+                  filePath: normalize('app/components/component-from-app.gts'),
+                  filePathAlias: normalize('components/component-from-app'),
                   isDefaultExport: true,
                   isTypeScript: true,
                   packageName: 'my-v2-app',
@@ -276,8 +282,12 @@ test('utils | find-entities | analyze-internal-dependencies > base case', functi
               [
                 'translation-with-arguments',
                 {
-                  filePath: 'app/components/translation-with-arguments.gts',
-                  filePathAlias: 'components/translation-with-arguments',
+                  filePath: normalize(
+                    'app/components/translation-with-arguments.gts',
+                  ),
+                  filePathAlias: normalize(
+                    'components/translation-with-arguments',
+                  ),
                   isDefaultExport: true,
                   isTypeScript: true,
                   packageName: 'my-v2-app',
@@ -287,7 +297,7 @@ test('utils | find-entities | analyze-internal-dependencies > base case', functi
             helpers: new Map(),
             modifiers: new Map(),
           },
-          packageRoot: 'tmp/my-monorepo/docs/my-v2-app',
+          packageRoot: normalize('tmp/my-monorepo/docs/my-v2-app'),
           packageType: 'v2-app',
         },
       ],
@@ -299,8 +309,8 @@ test('utils | find-entities | analyze-internal-dependencies > base case', functi
               [
                 'lazy-hello',
                 {
-                  filePath: 'app/components/lazy-hello.ts',
-                  filePathAlias: 'components/lazy-hello',
+                  filePath: normalize('app/components/lazy-hello.ts'),
+                  filePathAlias: normalize('components/lazy-hello'),
                   isDefaultExport: true,
                   isTypeScript: true,
                   packageName: 'test-app-for-ember-intl',
@@ -310,7 +320,7 @@ test('utils | find-entities | analyze-internal-dependencies > base case', functi
             helpers: new Map(),
             modifiers: new Map(),
           },
-          packageRoot: 'tmp/my-monorepo/tests/ember-intl',
+          packageRoot: normalize('tmp/my-monorepo/tests/ember-intl'),
           packageType: 'v1-app',
         },
       ],

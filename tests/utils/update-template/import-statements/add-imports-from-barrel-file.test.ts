@@ -1,3 +1,5 @@
+import { normalize } from 'node:path';
+
 import { assert, test } from '@codemod-utils/tests';
 
 import { ImportStatements } from '../../../../src/utils/update-template/index.js';
@@ -6,8 +8,8 @@ test('utils | update-template | import-statements > add (imports from barrel fil
   const importStatements = new ImportStatements();
 
   importStatements.add('ContainerQuery', {
-    filePath: 'dist/components/container-query.js',
-    filePathAlias: '.',
+    filePath: normalize('dist/components/container-query.js'),
+    filePathAlias: normalize('.'),
     isDefaultExport: false,
     isTypeScript: false,
     packageName: 'ember-container-query',
@@ -21,8 +23,8 @@ test('utils | update-template | import-statements > add (imports from barrel fil
   );
 
   importStatements.add('containerQuery', {
-    filePath: 'dist/modifiers/container-query.js',
-    filePathAlias: '.',
+    filePath: normalize('dist/modifiers/container-query.js'),
+    filePathAlias: normalize('.'),
     isDefaultExport: false,
     isTypeScript: false,
     packageName: 'ember-container-query',
@@ -36,8 +38,8 @@ test('utils | update-template | import-statements > add (imports from barrel fil
   );
 
   importStatements.add('width', {
-    filePath: 'dist/helpers/width.js',
-    filePathAlias: '.',
+    filePath: normalize('dist/helpers/width.js'),
+    filePathAlias: normalize('.'),
     isDefaultExport: false,
     isTypeScript: false,
     packageName: 'ember-container-query',
@@ -51,8 +53,8 @@ test('utils | update-template | import-statements > add (imports from barrel fil
   );
 
   importStatements.add('aspectRatio', {
-    filePath: 'dist/helpers/aspect-ratio.js',
-    filePathAlias: '.',
+    filePath: normalize('dist/helpers/aspect-ratio.js'),
+    filePathAlias: normalize('.'),
     isDefaultExport: false,
     isTypeScript: false,
     packageName: 'ember-container-query',

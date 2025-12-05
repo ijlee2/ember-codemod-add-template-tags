@@ -1,13 +1,13 @@
-import { assert, test } from '@codemod-utils/tests';
+import { assert, createFile, test } from '@codemod-utils/tests';
 
 import { removeImport } from '../../../../src/utils/update-template/index.js';
 
 test('utils | update-template | remove-import > import is found (default, javascript)', function () {
-  const oldFile = [
+  const oldFile = createFile([
     `import templateOnlyComponent from '@ember/component/template-only';`,
     ``,
     `import { Product } from '../../../utils/routes/products';`,
-  ].join('\n');
+  ]);
 
   const newFile = removeImport(oldFile, {
     importKind: 'value',

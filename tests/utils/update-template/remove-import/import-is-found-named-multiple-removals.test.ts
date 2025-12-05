@@ -1,9 +1,9 @@
-import { assert, test } from '@codemod-utils/tests';
+import { assert, createFile, test } from '@codemod-utils/tests';
 
 import { removeImport } from '../../../../src/utils/update-template/index.js';
 
 test('utils | update-template | remove-import > import is found (named, multiple removals)', function () {
-  const oldFile = [
+  const oldFile = createFile([
     `import {`,
     `  click,`,
     `  fillIn,`,
@@ -15,7 +15,7 @@ test('utils | update-template | remove-import > import is found (named, multiple
     `import { setupIntl } from 'ember-intl/test-support';`,
     `import { setupRenderingTest } from 'my-app/tests/helpers';`,
     `import { module, test } from 'qunit';`,
-  ].join('\n');
+  ]);
 
   let newFile = removeImport(oldFile, {
     importKind: 'value',
@@ -27,13 +27,13 @@ test('utils | update-template | remove-import > import is found (named, multiple
 
   assert.strictEqual(
     newFile,
-    [
+    createFile([
       `import { click, fillIn, render, type TestContext as BaseTestContext } from '@ember/test-helpers';`,
       `import { hbs } from 'ember-cli-htmlbars';`,
       `import { setupIntl } from 'ember-intl/test-support';`,
       `import { setupRenderingTest } from 'my-app/tests/helpers';`,
       `import { module, test } from 'qunit';`,
-    ].join('\n'),
+    ]),
   );
 
   newFile = removeImport(newFile, {
@@ -46,12 +46,12 @@ test('utils | update-template | remove-import > import is found (named, multiple
 
   assert.strictEqual(
     newFile,
-    [
+    createFile([
       `import { click, fillIn, render } from '@ember/test-helpers';`,
       `import { hbs } from 'ember-cli-htmlbars';`,
       `import { setupIntl } from 'ember-intl/test-support';`,
       `import { setupRenderingTest } from 'my-app/tests/helpers';`,
       `import { module, test } from 'qunit';`,
-    ].join('\n'),
+    ]),
   );
 });
