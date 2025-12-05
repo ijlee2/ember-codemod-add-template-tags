@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { readFileSync } from 'node:fs';
-import { join, relative } from 'node:path';
+import { join, relative, sep } from 'node:path';
 
 import { AST } from '@codemod-utils/ast-javascript';
 import { findFiles, parseFilePath } from '@codemod-utils/files';
@@ -51,7 +51,11 @@ function analyze(file: string, data: Data): EntitiesExported | undefined {
         }
 
         const { dir, name } = parseFilePath(exportPath);
-        const entityName = relative(`./${entityFolder}/`, join(dir, name));
+
+        const entityName = relative(
+          `./${entityFolder}/`,
+          join(dir, name),
+        ).replaceAll(sep, '/');
 
         entitiesExported[entityType as EntityType].add(entityName);
       }

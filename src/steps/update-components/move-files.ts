@@ -1,4 +1,5 @@
 import { readFileSync, writeFileSync } from 'node:fs';
+import { EOL } from 'node:os';
 import { join } from 'node:path';
 
 import {
@@ -51,7 +52,7 @@ export function moveFiles(packages: Packages): void {
           ``,
           `export default templateOnlyComponent();`,
           ``,
-        ].join('\n');
+        ].join(EOL);
       }
 
       const isTypeScript = classFilePath.endsWith('.ts');
@@ -72,7 +73,7 @@ export function moveFiles(packages: Packages): void {
       );
 
       classFile = replaceTemplateTag(classFile, {
-        code: `<template>\n${templateFile}\n</template>`,
+        code: [`<template>`, templateFile, `</template>`].join(EOL),
         range: templateTags[0].range,
       });
 

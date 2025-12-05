@@ -1,4 +1,5 @@
 import { readFileSync, writeFileSync } from 'node:fs';
+import { EOL } from 'node:os';
 import { join } from 'node:path';
 
 import { removeFiles } from '@codemod-utils/files';
@@ -22,17 +23,17 @@ export function moveFiles(packages: Packages): void {
         'utf8',
       );
 
-      let classFile = `<template>\n${templateFile}\n</template>`;
+      let classFile = [`<template>`, templateFile, `</template>`].join(EOL);
 
       if (hasEmberRouteTemplate) {
         classFile = [
           `import RouteTemplate from 'ember-route-template';`,
           ``,
           `export default RouteTemplate(${classFile});`,
-        ].join('\n');
+        ].join(EOL);
       }
 
-      classFile += '\n';
+      classFile += EOL;
 
       writeFileSync(join(packageRoot, classFilePath), classFile, 'utf8');
 

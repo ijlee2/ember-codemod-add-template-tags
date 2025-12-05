@@ -1,4 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access */
+import { EOL } from 'node:os';
+
 import { AST as ASTJavaScript } from '@codemod-utils/ast-javascript';
 import { AST as ASTTemplate } from '@codemod-utils/ast-template';
 
@@ -16,7 +18,7 @@ function indentToLeft(code: string, indent: number): string {
 
       return line;
     })
-    .join('\n');
+    .join(EOL);
 }
 
 function renameThis(template: string): {
@@ -53,7 +55,7 @@ function updateBody(body: unknown[], index: number): unknown[] {
     ),
   ]);
 
-  return [...body.slice(0, index), newNode, '\n', ...body.slice(index)];
+  return [...body.slice(0, index), newNode, EOL, ...body.slice(index)];
 }
 
 type Data = {
@@ -140,7 +142,12 @@ export function insertTemplateTag(file: string, data: Data): string {
 
       const indent = node.value.loc.indent as number;
 
-      node.value.arguments[0] = `<template>\n  ${indentToLeft(template.trim(), indent)}\n</template>`;
+      node.value.arguments[0] = [
+        `<template>`,
+        `  ${indentToLeft(template.trim(), indent)}`,
+        `</template>`,
+      ].join(EOL);
+
       node.value.typeParameters = null;
 
       return false;
