@@ -1,6 +1,6 @@
 import { normalize } from 'node:path';
 
-import { assert, createFile, loadFixture, test } from '@codemod-utils/tests';
+import { assert, loadFixture, normalizeFile, test } from '@codemod-utils/tests';
 
 import { analyzeExternalDependencies } from '../../../../src/utils/find-entities/index.js';
 import {
@@ -27,7 +27,7 @@ test('utils | find-entities | analyze-external-dependencies > package has barrel
                 modifiers: {
                   'container-query.d.ts': '',
                 },
-                'index.d.ts': createFile([
+                'index.d.ts': normalizeFile([
                   `export { default as ContainerQuery } from './components/container-query';`,
                   `export { default as aspectRatio } from './helpers/aspect-ratio.ts';`,
                   `export { default as height } from './helpers/height.ts';`,
@@ -50,7 +50,7 @@ test('utils | find-entities | analyze-external-dependencies > package has barrel
                 modifiers: {
                   'container-query.js': '',
                 },
-                'index.js': createFile([
+                'index.js': normalizeFile([
                   `export { default as ContainerQuery } from './components/container-query.js';`,
                   `export { default as aspectRatio } from './helpers/aspect-ratio.js';`,
                   `export { default as height } from './helpers/height.js';`,
@@ -101,7 +101,7 @@ test('utils | find-entities | analyze-external-dependencies > package has barrel
                 services: {
                   'intl.ts': '',
                 },
-                'index.ts': createFile([
+                'index.ts': normalizeFile([
                   `export { default as formatDate } from './helpers/format-date';`,
                   `export { default as formatDateRange } from './helpers/format-date-range';`,
                   `export { default as formatList } from './helpers/format-list';`,

@@ -1,7 +1,7 @@
 import {
   assertFixture,
-  createFile,
   loadFixture,
+  normalizeFile,
   test,
 } from '@codemod-utils/tests';
 
@@ -16,7 +16,7 @@ test('steps | update-components > v2-addon', function () {
   const outputProject = {
     src: {
       components: {
-        'navigation-menu.gts': createFile([
+        'navigation-menu.gts': normalizeFile([
           `import type { TOC } from '@ember/component/template-only';`,
           ``,
           `interface NavigationMenuSignature {}`,
@@ -28,7 +28,7 @@ test('steps | update-components > v2-addon', function () {
           `export default NavigationMenu;`,
           ``,
         ]),
-        'select-locale.gts': createFile([
+        'select-locale.gts': normalizeFile([
           `import Component from '@glimmer/component';`,
           ``,
           `interface SelectLocaleSignature {}`,

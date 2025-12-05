@@ -1,4 +1,4 @@
-import { assert, createFile, loadFixture, test } from '@codemod-utils/tests';
+import { assert, loadFixture, normalizeFile, test } from '@codemod-utils/tests';
 
 import { findPackagesWithHBS } from '../../../src/steps/index.js';
 import { options } from '../../helpers/shared-test-setups/my-v1-app.js';
@@ -13,7 +13,7 @@ test('steps | find-packages-with-hbs > ignores packages without name', function 
           'select-locale.js': `import Component from '@glimmer/component';`,
         },
         templates: {
-          'application.hbs': createFile([
+          'application.hbs': normalizeFile([
             `<header>`,
             `  <NavigationMenu />`,
             `</header>`,

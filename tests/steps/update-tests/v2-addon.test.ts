@@ -1,7 +1,7 @@
 import {
   assertFixture,
-  createFile,
   loadFixture,
+  normalizeFile,
   test,
 } from '@codemod-utils/tests';
 
@@ -17,7 +17,7 @@ test('steps | update-tests > v2-addon', function () {
     src: {
       components: {
         'navigation-menu.hbs': '',
-        'navigation-menu.ts': createFile([
+        'navigation-menu.ts': normalizeFile([
           `import templateOnlyComponent from '@ember/component/template-only';`,
           ``,
           `interface NavigationMenuSignature {}`,
@@ -28,7 +28,7 @@ test('steps | update-tests > v2-addon', function () {
           ``,
         ]),
         'select-locale.hbs': '',
-        'select-locale.ts': createFile([
+        'select-locale.ts': normalizeFile([
           `import Component from '@glimmer/component';`,
           ``,
           `interface SelectLocaleSignature {}`,

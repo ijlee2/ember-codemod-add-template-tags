@@ -1,9 +1,9 @@
-import { assert, createFile, test } from '@codemod-utils/tests';
+import { assert, normalizeFile, test } from '@codemod-utils/tests';
 
 import { insertTemplateTag } from '../../../../src/utils/update-tests/index.js';
 
 test('utils | update-tests | insert-template-tag > edge case (hbs is outside of render)', function () {
-  const oldFile = createFile([
+  const oldFile = normalizeFile([
     `import { findAll, render } from '@ember/test-helpers';`,
     `import { a11yAudit } from 'ember-a11y-testing/test-support';`,
     `import { hbs } from 'ember-cli-htmlbars';`,
@@ -65,7 +65,7 @@ test('utils | update-tests | insert-template-tag > edge case (hbs is outside of 
 
   assert.strictEqual(
     newFile,
-    createFile([
+    normalizeFile([
       `import { findAll, render } from '@ember/test-helpers';`,
       `import { a11yAudit } from 'ember-a11y-testing/test-support';`,
       `import { hbs } from 'ember-cli-htmlbars';`,

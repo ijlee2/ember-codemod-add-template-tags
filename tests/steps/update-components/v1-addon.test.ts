@@ -1,7 +1,7 @@
 import {
   assertFixture,
-  createFile,
   loadFixture,
+  normalizeFile,
   test,
 } from '@codemod-utils/tests';
 
@@ -17,7 +17,7 @@ test('steps | update-components > v1-addon', function () {
     addon: {
       components: {
         'navigation-menu.d.ts': '',
-        'navigation-menu.gjs': createFile([
+        'navigation-menu.gjs': normalizeFile([
           `const NavigationMenu = <template>`,
           ``,
           `</template>;`,
@@ -32,7 +32,7 @@ test('steps | update-components > v1-addon', function () {
         app: {
           components: {
             'select-locale.hbs': '',
-            'select-locale.js': createFile([
+            'select-locale.js': normalizeFile([
               `import Component from '@glimmer/component';`,
               ``,
               `export default class SelectLocale extends Component {}`,
@@ -40,7 +40,7 @@ test('steps | update-components > v1-addon', function () {
             ]),
           },
           templates: {
-            'application.hbs': createFile([
+            'application.hbs': normalizeFile([
               `<header>`,
               `  <NavigationMenu />`,
               `</header>`,

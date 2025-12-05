@@ -1,9 +1,9 @@
-import { assert, createFile, test } from '@codemod-utils/tests';
+import { assert, normalizeFile, test } from '@codemod-utils/tests';
 
 import { insertTemplateTag } from '../../../../src/utils/update-tests/index.js';
 
 test('utils | update-tests | insert-template-tag > TypeScript', function () {
-  const oldFile = createFile([
+  const oldFile = normalizeFile([
     `import {`,
     `  click,`,
     `  fillIn,`,
@@ -189,7 +189,7 @@ test('utils | update-tests | insert-template-tag > TypeScript', function () {
 
   assert.strictEqual(
     newFile,
-    createFile([
+    normalizeFile([
       `import {`,
       `  click,`,
       `  fillIn,`,

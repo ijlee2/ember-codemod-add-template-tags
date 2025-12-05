@@ -1,9 +1,9 @@
-import { assert, createFile, test } from '@codemod-utils/tests';
+import { assert, normalizeFile, test } from '@codemod-utils/tests';
 
 import { insertTemplateTag } from '../../../../src/utils/update-components/index.js';
 
 test('utils | update-components | insert-template-tag > edge case (Glimmer component) (3)', function () {
-  const oldFile = createFile([
+  const oldFile = normalizeFile([
     `import Foo from '@glimmer/component';`,
     ``,
     `export default class UiForm extends Foo<UiFormSignature> {}`,
@@ -16,7 +16,7 @@ test('utils | update-components | insert-template-tag > edge case (Glimmer compo
 
   assert.strictEqual(
     newFile,
-    createFile([
+    normalizeFile([
       `import Foo from '@glimmer/component';`,
       ``,
       `export default class UiForm extends Foo<UiFormSignature> {`,

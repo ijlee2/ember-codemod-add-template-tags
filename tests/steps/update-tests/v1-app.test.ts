@@ -1,7 +1,7 @@
 import {
   assertFixture,
-  createFile,
   loadFixture,
+  normalizeFile,
   test,
 } from '@codemod-utils/tests';
 
@@ -19,7 +19,7 @@ test('steps | update-tests > v1-app', function () {
         ui: {
           form: {
             'checkbox.hbs': ``,
-            'checkbox.ts': createFile([
+            'checkbox.ts': normalizeFile([
               `import Component from '@glimmer/component';`,
               ``,
               `interface UiFormCheckboxSignature {}`,
@@ -35,7 +35,7 @@ test('steps | update-tests > v1-app', function () {
               ``,
             ]),
             'field.hbs': ``,
-            'field.ts': createFile([
+            'field.ts': normalizeFile([
               `import Component from '@glimmer/component';`,
               ``,
               `interface UiFormFieldSignature {}`,
@@ -44,7 +44,7 @@ test('steps | update-tests > v1-app', function () {
               ``,
             ]),
             'information.hbs': ``,
-            'information.ts': createFile([
+            'information.ts': normalizeFile([
               `import templateOnlyComponent from '@ember/component/template-only';`,
               ``,
               `interface UiFormInformationSignature {}`,
@@ -62,7 +62,7 @@ test('steps | update-tests > v1-app', function () {
               ``,
             ]),
             'input.hbs': ``,
-            'input.js': createFile([
+            'input.js': normalizeFile([
               `import Component from '@glimmer/component';`,
               ``,
               `export default class UiFormInput extends Component {}`,
@@ -70,7 +70,7 @@ test('steps | update-tests > v1-app', function () {
             ]),
             'number.gts': ``,
             'select.hbs': ``,
-            'select.ts': createFile([
+            'select.ts': normalizeFile([
               `import Component from '@glimmer/component';`,
               ``,
               `interface UiFormSelectSignature {}`,
@@ -81,7 +81,7 @@ test('steps | update-tests > v1-app', function () {
             'textarea.gjs': ``,
           },
           'form.hbs': ``,
-          'form.ts': createFile([
+          'form.ts': normalizeFile([
             `import Component from '@glimmer/component';`,
             ``,
             `interface UiFormSignature {}`,
@@ -90,7 +90,7 @@ test('steps | update-tests > v1-app', function () {
             ``,
           ]),
           'page.hbs': ``,
-          'page.js': createFile([
+          'page.js': normalizeFile([
             `import templateOnlyComponent from '@ember/component/template-only';`,
             ``,
             `const UiPage = templateOnlyComponent();`,
@@ -101,7 +101,7 @@ test('steps | update-tests > v1-app', function () {
         },
         'navigation-menu.hbs': '',
         'select-locale.hbs': '',
-        'select-locale.js': createFile([
+        'select-locale.js': normalizeFile([
           `import Component from '@glimmer/component';`,
           ``,
           `export default class SelectLocale extends Component {}`,
@@ -109,7 +109,7 @@ test('steps | update-tests > v1-app', function () {
         ]),
       },
       templates: {
-        'application.hbs': createFile([
+        'application.hbs': normalizeFile([
           `<header>`,
           `  <NavigationMenu />`,
           `</header>`,
@@ -126,7 +126,7 @@ test('steps | update-tests > v1-app', function () {
         components: {
           ui: {
             form: {
-              'checkbox-test.gts': createFile([
+              'checkbox-test.gts': normalizeFile([
                 `import UiFormCheckbox from 'my-v1-app/components/ui/form/checkbox';`,
                 ``,
                 `import {`,
@@ -173,7 +173,7 @@ test('steps | update-tests > v1-app', function () {
               'input-test.gjs': '',
               'number-test.gts': '',
               'select-test.gts': '',
-              'textarea-test.gjs': createFile([
+              'textarea-test.gjs': normalizeFile([
                 `import UiFormTextarea from 'my-v1-app/components/ui/form/textarea';`,
                 ``,
                 `import { render } from '@ember/test-helpers';`,

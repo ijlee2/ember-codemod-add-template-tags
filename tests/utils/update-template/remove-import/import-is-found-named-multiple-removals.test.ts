@@ -1,9 +1,9 @@
-import { assert, createFile, test } from '@codemod-utils/tests';
+import { assert, normalizeFile, test } from '@codemod-utils/tests';
 
 import { removeImport } from '../../../../src/utils/update-template/index.js';
 
 test('utils | update-template | remove-import > import is found (named, multiple removals)', function () {
-  const oldFile = createFile([
+  const oldFile = normalizeFile([
     `import {`,
     `  click,`,
     `  fillIn,`,
@@ -27,7 +27,7 @@ test('utils | update-template | remove-import > import is found (named, multiple
 
   assert.strictEqual(
     newFile,
-    createFile([
+    normalizeFile([
       `import { click, fillIn, render, type TestContext as BaseTestContext } from '@ember/test-helpers';`,
       `import { hbs } from 'ember-cli-htmlbars';`,
       `import { setupIntl } from 'ember-intl/test-support';`,
@@ -46,7 +46,7 @@ test('utils | update-template | remove-import > import is found (named, multiple
 
   assert.strictEqual(
     newFile,
-    createFile([
+    normalizeFile([
       `import { click, fillIn, render } from '@ember/test-helpers';`,
       `import { hbs } from 'ember-cli-htmlbars';`,
       `import { setupIntl } from 'ember-intl/test-support';`,

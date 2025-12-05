@@ -1,6 +1,6 @@
 import { normalize } from 'node:path';
 
-import { createFile } from '@codemod-utils/tests';
+import { normalizeFile } from '@codemod-utils/tests';
 
 import type {
   CodemodOptions,
@@ -21,7 +21,7 @@ const inputProject = {
       ui: {
         form: {
           'checkbox.hbs': ``,
-          'checkbox.ts': createFile([
+          'checkbox.ts': normalizeFile([
             `import Component from '@glimmer/component';`,
             ``,
             `interface UiFormCheckboxSignature {}`,
@@ -37,7 +37,7 @@ const inputProject = {
             ``,
           ]),
           'field.hbs': ``,
-          'field.ts': createFile([
+          'field.ts': normalizeFile([
             `import Component from '@glimmer/component';`,
             ``,
             `interface UiFormFieldSignature {}`,
@@ -46,7 +46,7 @@ const inputProject = {
             ``,
           ]),
           'information.hbs': ``,
-          'information.ts': createFile([
+          'information.ts': normalizeFile([
             `import templateOnlyComponent from '@ember/component/template-only';`,
             ``,
             `interface UiFormInformationSignature {}`,
@@ -64,7 +64,7 @@ const inputProject = {
             ``,
           ]),
           'input.hbs': ``,
-          'input.js': createFile([
+          'input.js': normalizeFile([
             `import Component from '@glimmer/component';`,
             ``,
             `export default class UiFormInput extends Component {}`,
@@ -72,7 +72,7 @@ const inputProject = {
           ]),
           'number.gts': ``,
           'select.hbs': ``,
-          'select.ts': createFile([
+          'select.ts': normalizeFile([
             `import Component from '@glimmer/component';`,
             ``,
             `interface UiFormSelectSignature {}`,
@@ -83,7 +83,7 @@ const inputProject = {
           'textarea.gjs': ``,
         },
         'form.hbs': ``,
-        'form.ts': createFile([
+        'form.ts': normalizeFile([
           `import Component from '@glimmer/component';`,
           ``,
           `interface UiFormSignature {}`,
@@ -92,7 +92,7 @@ const inputProject = {
           ``,
         ]),
         'page.hbs': ``,
-        'page.js': createFile([
+        'page.js': normalizeFile([
           `import templateOnlyComponent from '@ember/component/template-only';`,
           ``,
           `const UiPage = templateOnlyComponent();`,
@@ -103,7 +103,7 @@ const inputProject = {
       },
       'navigation-menu.hbs': '',
       'select-locale.hbs': '',
-      'select-locale.js': createFile([
+      'select-locale.js': normalizeFile([
         `import Component from '@glimmer/component';`,
         ``,
         `export default class SelectLocale extends Component {}`,
@@ -111,7 +111,7 @@ const inputProject = {
       ]),
     },
     templates: {
-      'application.hbs': createFile([
+      'application.hbs': normalizeFile([
         `<header>`,
         `  <NavigationMenu />`,
         `</header>`,
@@ -128,7 +128,7 @@ const inputProject = {
       components: {
         ui: {
           form: {
-            'checkbox-test.ts': createFile([
+            'checkbox-test.ts': normalizeFile([
               `import {`,
               `  render,`,
               `  type TestContext as BaseTestContext,`,
@@ -171,7 +171,7 @@ const inputProject = {
             'input-test.gjs': '',
             'number-test.gts': '',
             'select-test.gts': '',
-            'textarea-test.js': createFile([
+            'textarea-test.js': normalizeFile([
               `import { render } from '@ember/test-helpers';`,
               `import { hbs } from 'ember-cli-htmlbars';`,
               `import { setupRenderingTest } from 'my-v2-app/tests/helpers';`,

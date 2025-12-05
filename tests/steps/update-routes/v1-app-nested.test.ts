@@ -1,7 +1,7 @@
 import {
   assertFixture,
-  createFile,
   loadFixture,
+  normalizeFile,
   test,
 } from '@codemod-utils/tests';
 
@@ -20,7 +20,7 @@ test('steps | update-routes > v1-app-nested', function () {
           form: {
             checkbox: {
               'index.hbs': ``,
-              'index.ts': createFile([
+              'index.ts': normalizeFile([
                 `import Component from '@glimmer/component';`,
                 ``,
                 `interface UiFormCheckboxSignature {}`,
@@ -38,7 +38,7 @@ test('steps | update-routes > v1-app-nested', function () {
             },
             field: {
               'index.hbs': ``,
-              'index.ts': createFile([
+              'index.ts': normalizeFile([
                 `import Component from '@glimmer/component';`,
                 ``,
                 `interface UiFormFieldSignature {}`,
@@ -49,7 +49,7 @@ test('steps | update-routes > v1-app-nested', function () {
             },
             information: {
               'index.hbs': ``,
-              'index.ts': createFile([
+              'index.ts': normalizeFile([
                 `import templateOnlyComponent from '@ember/component/template-only';`,
                 ``,
                 `interface UiFormInformationSignature {}`,
@@ -69,7 +69,7 @@ test('steps | update-routes > v1-app-nested', function () {
             },
             input: {
               'index.hbs': ``,
-              'index.js': createFile([
+              'index.js': normalizeFile([
                 `import Component from '@glimmer/component';`,
                 ``,
                 `export default class UiFormInput extends Component {}`,
@@ -81,7 +81,7 @@ test('steps | update-routes > v1-app-nested', function () {
             },
             select: {
               'index.hbs': ``,
-              'index.ts': createFile([
+              'index.ts': normalizeFile([
                 `import Component from '@glimmer/component';`,
                 ``,
                 `interface UiFormSelectSignature {}`,
@@ -94,7 +94,7 @@ test('steps | update-routes > v1-app-nested', function () {
               'index.gjs': ``,
             },
             'index.hbs': ``,
-            'index.ts': createFile([
+            'index.ts': normalizeFile([
               `import Component from '@glimmer/component';`,
               ``,
               `interface UiFormSignature {}`,
@@ -105,7 +105,7 @@ test('steps | update-routes > v1-app-nested', function () {
           },
           page: {
             'index.hbs': ``,
-            'index.js': createFile([
+            'index.js': normalizeFile([
               `import templateOnlyComponent from '@ember/component/template-only';`,
               ``,
               `const UiPage = templateOnlyComponent();`,
@@ -120,7 +120,7 @@ test('steps | update-routes > v1-app-nested', function () {
         },
         'select-locale': {
           'index.hbs': '',
-          'index.js': createFile([
+          'index.js': normalizeFile([
             `import Component from '@glimmer/component';`,
             ``,
             `export default class SelectLocale extends Component {}`,
@@ -129,7 +129,7 @@ test('steps | update-routes > v1-app-nested', function () {
         },
       },
       templates: {
-        'application.gjs': createFile([
+        'application.gjs': normalizeFile([
           `import NavigationMenu from 'my-v1-app-nested/components/navigation-menu/index';`,
           ``,
           `<template>`,
@@ -143,7 +143,7 @@ test('steps | update-routes > v1-app-nested', function () {
           `</template>`,
           ``,
         ]),
-        'index.gjs': createFile([
+        'index.gjs': normalizeFile([
           `import SelectLocale from 'my-v1-app-nested/components/select-locale/index';`,
           ``,
           `<template>`,

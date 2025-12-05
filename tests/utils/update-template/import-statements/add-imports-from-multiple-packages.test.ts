@@ -1,6 +1,6 @@
 import { normalize } from 'node:path';
 
-import { assert, createFile, test } from '@codemod-utils/tests';
+import { assert, normalizeFile, test } from '@codemod-utils/tests';
 
 import { ImportStatements } from '../../../../src/utils/update-template/index.js';
 
@@ -67,7 +67,7 @@ test('utils | update-template | import-statements > add (imports from multiple p
 
   assert.strictEqual(
     importStatements.print(),
-    createFile([
+    normalizeFile([
       `import { array, fn, hash } from '@ember/helper';`,
       `import { on } from '@ember/modifier';`,
       `import { ensureSafeComponent } from '@embroider/util';`,
