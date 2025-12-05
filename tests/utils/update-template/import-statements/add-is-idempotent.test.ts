@@ -1,6 +1,6 @@
 import { normalize } from 'node:path';
 
-import { assert, createFile, test } from '@codemod-utils/tests';
+import { assert, normalizeFile, test } from '@codemod-utils/tests';
 
 import { ImportStatements } from '../../../../src/utils/update-template/index.js';
 
@@ -43,7 +43,7 @@ test('utils | update-template | import-statements > add is idempotent', function
 
   assert.strictEqual(
     importStatements.print(),
-    createFile([
+    normalizeFile([
       `import { ContainerQuery } from 'ember-container-query';`,
       `import ContainerQuery from 'ember-container-query/components/container-query';`,
     ]),

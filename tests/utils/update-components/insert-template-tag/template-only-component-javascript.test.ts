@@ -1,9 +1,9 @@
-import { assert, createFile, test } from '@codemod-utils/tests';
+import { assert, normalizeFile, test } from '@codemod-utils/tests';
 
 import { insertTemplateTag } from '../../../../src/utils/update-components/index.js';
 
 test('utils | update-components | insert-template-tag > template-only component (JavaScript)', function () {
-  const oldFile = createFile([
+  const oldFile = normalizeFile([
     `import templateOnlyComponent from '@ember/component/template-only';`,
     ``,
     `const UiForm = templateOnlyComponent();`,
@@ -18,7 +18,7 @@ test('utils | update-components | insert-template-tag > template-only component 
 
   assert.strictEqual(
     newFile,
-    createFile([
+    normalizeFile([
       `import templateOnlyComponent from '@ember/component/template-only';`,
       ``,
       `const UiForm = <template></template>;`,

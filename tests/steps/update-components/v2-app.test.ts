@@ -1,7 +1,7 @@
 import {
   assertFixture,
-  createFile,
   loadFixture,
+  normalizeFile,
   test,
 } from '@codemod-utils/tests';
 
@@ -18,7 +18,7 @@ test('steps | update-components > v2-app', function () {
       components: {
         ui: {
           form: {
-            'checkbox.gts': createFile([
+            'checkbox.gts': normalizeFile([
               `import Component from '@glimmer/component';`,
               ``,
               `interface UiFormCheckboxSignature {}`,
@@ -37,7 +37,7 @@ test('steps | update-components > v2-app', function () {
               `}`,
               ``,
             ]),
-            'field.gts': createFile([
+            'field.gts': normalizeFile([
               `import Component from '@glimmer/component';`,
               ``,
               `interface UiFormFieldSignature {}`,
@@ -49,7 +49,7 @@ test('steps | update-components > v2-app', function () {
               `}`,
               ``,
             ]),
-            'information.gts': createFile([
+            'information.gts': normalizeFile([
               `import type { TOC } from '@ember/component/template-only';`,
               ``,
               `interface UiFormInformationSignature {}`,
@@ -68,7 +68,7 @@ test('steps | update-components > v2-app', function () {
               `}`,
               ``,
             ]),
-            'input.gjs': createFile([
+            'input.gjs': normalizeFile([
               `import Component from '@glimmer/component';`,
               ``,
               `export default class UiFormInput extends Component {`,
@@ -79,7 +79,7 @@ test('steps | update-components > v2-app', function () {
               ``,
             ]),
             'number.gts': ``,
-            'select.gts': createFile([
+            'select.gts': normalizeFile([
               `import Component from '@glimmer/component';`,
               ``,
               `interface UiFormSelectSignature {}`,
@@ -93,7 +93,7 @@ test('steps | update-components > v2-app', function () {
             ]),
             'textarea.gjs': ``,
           },
-          'form.gts': createFile([
+          'form.gts': normalizeFile([
             `import Component from '@glimmer/component';`,
             ``,
             `interface UiFormSignature {}`,
@@ -105,7 +105,7 @@ test('steps | update-components > v2-app', function () {
             `}`,
             ``,
           ]),
-          'page.gjs': createFile([
+          'page.gjs': normalizeFile([
             `const UiPage = <template>`,
             ``,
             `</template>;`,
@@ -114,13 +114,13 @@ test('steps | update-components > v2-app', function () {
             ``,
           ]),
         },
-        'navigation-menu.gjs': createFile([
+        'navigation-menu.gjs': normalizeFile([
           `<template>`,
           ``,
           `</template>`,
           ``,
         ]),
-        'select-locale.gjs': createFile([
+        'select-locale.gjs': normalizeFile([
           `import Component from '@glimmer/component';`,
           ``,
           `export default class SelectLocale extends Component {`,
@@ -132,7 +132,7 @@ test('steps | update-components > v2-app', function () {
         ]),
       },
       templates: {
-        'application.hbs': createFile([
+        'application.hbs': normalizeFile([
           `<header>`,
           `  <NavigationMenu />`,
           `</header>`,
@@ -149,7 +149,7 @@ test('steps | update-components > v2-app', function () {
         components: {
           ui: {
             form: {
-              'checkbox-test.ts': createFile([
+              'checkbox-test.ts': normalizeFile([
                 `import {`,
                 `  render,`,
                 `  type TestContext as BaseTestContext,`,
@@ -192,7 +192,7 @@ test('steps | update-components > v2-app', function () {
               'input-test.gjs': '',
               'number-test.gts': '',
               'select-test.gts': '',
-              'textarea-test.js': createFile([
+              'textarea-test.js': normalizeFile([
                 `import { render } from '@ember/test-helpers';`,
                 `import { hbs } from 'ember-cli-htmlbars';`,
                 `import { setupRenderingTest } from 'my-v2-app/tests/helpers';`,

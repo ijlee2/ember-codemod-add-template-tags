@@ -1,6 +1,6 @@
 import { normalize } from 'node:path';
 
-import { assert, createFile, loadFixture, test } from '@codemod-utils/tests';
+import { assert, loadFixture, normalizeFile, test } from '@codemod-utils/tests';
 
 import { analyzeInternalDependencies } from '../../../../src/utils/find-entities/index.js';
 import {
@@ -19,7 +19,7 @@ test('utils | find-entities | analyze-internal-dependencies > package has barrel
             'select-locale.hbs': '',
             'select-locale.ts': '',
           },
-          'index.ts': createFile([
+          'index.ts': normalizeFile([
             `export { default as cfva } from './components/component-from-v2-addon.ts';`,
             `export { default as sl } from './components/select-locale.ts';`,
             ``,
@@ -81,7 +81,7 @@ test('utils | find-entities | analyze-internal-dependencies > package has barrel
           services: {
             'intl.ts': '',
           },
-          'index.ts': createFile([
+          'index.ts': normalizeFile([
             `export { default as fdate } from './helpers/format-date';`,
             `export { default as fdaterange } from './helpers/format-date-range';`,
             `export { default as flist } from './helpers/format-list';`,

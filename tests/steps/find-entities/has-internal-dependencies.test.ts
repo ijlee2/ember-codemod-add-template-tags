@@ -1,6 +1,6 @@
 import { normalize } from 'node:path';
 
-import { assert, createFile, loadFixture, test } from '@codemod-utils/tests';
+import { assert, loadFixture, normalizeFile, test } from '@codemod-utils/tests';
 
 import { findEntities } from '../../../src/steps/index.js';
 import { options } from '../../helpers/shared-test-setups/my-monorepo.js';
@@ -16,7 +16,7 @@ test('steps | find-entities > has internal dependencies', function () {
             'select-locale.hbs': '',
             'select-locale.ts': '',
           },
-          'index.ts': createFile([
+          'index.ts': normalizeFile([
             `export { default as ComponentFromV2Addon } from './components/component-from-v2-addon.ts';`,
             `export { default as SelectLocale } from './components/select-locale.ts';`,
             ``,
@@ -78,7 +78,7 @@ test('steps | find-entities > has internal dependencies', function () {
           services: {
             'intl.ts': '',
           },
-          'index.ts': createFile([
+          'index.ts': normalizeFile([
             `export { default as formatDate } from './helpers/format-date';`,
             `export { default as formatDateRange } from './helpers/format-date-range';`,
             `export { default as formatList } from './helpers/format-list';`,

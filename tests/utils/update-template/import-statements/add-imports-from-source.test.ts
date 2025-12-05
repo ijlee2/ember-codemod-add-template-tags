@@ -1,6 +1,6 @@
 import { normalize } from 'node:path';
 
-import { assert, createFile, test } from '@codemod-utils/tests';
+import { assert, normalizeFile, test } from '@codemod-utils/tests';
 
 import { ImportStatements } from '../../../../src/utils/update-template/index.js';
 
@@ -34,7 +34,7 @@ test('utils | update-template | import-statements > add (imports from source)', 
 
   assert.strictEqual(
     importStatements.print(),
-    createFile([
+    normalizeFile([
       `import ContainerQuery from 'ember-container-query/components/container-query';`,
       `import containerQuery from 'ember-container-query/modifiers/container-query';`,
     ]),
@@ -52,7 +52,7 @@ test('utils | update-template | import-statements > add (imports from source)', 
 
   assert.strictEqual(
     importStatements.print(),
-    createFile([
+    normalizeFile([
       `import ContainerQuery from 'ember-container-query/components/container-query';`,
       `import width from 'ember-container-query/helpers/width';`,
       `import containerQuery from 'ember-container-query/modifiers/container-query';`,
@@ -71,7 +71,7 @@ test('utils | update-template | import-statements > add (imports from source)', 
 
   assert.strictEqual(
     importStatements.print(),
-    createFile([
+    normalizeFile([
       `import ContainerQuery from 'ember-container-query/components/container-query';`,
       `import aspectRatio from 'ember-container-query/helpers/aspect-ratio';`,
       `import width from 'ember-container-query/helpers/width';`,

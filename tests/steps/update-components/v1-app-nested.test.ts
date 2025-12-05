@@ -1,7 +1,7 @@
 import {
   assertFixture,
-  createFile,
   loadFixture,
+  normalizeFile,
   test,
 } from '@codemod-utils/tests';
 
@@ -19,7 +19,7 @@ test('steps | update-components > v1-app (nested)', function () {
         ui: {
           form: {
             checkbox: {
-              'index.gts': createFile([
+              'index.gts': normalizeFile([
                 `import Component from '@glimmer/component';`,
                 ``,
                 `interface UiFormCheckboxSignature {}`,
@@ -40,7 +40,7 @@ test('steps | update-components > v1-app (nested)', function () {
               ]),
             },
             field: {
-              'index.gts': createFile([
+              'index.gts': normalizeFile([
                 `import Component from '@glimmer/component';`,
                 ``,
                 `interface UiFormFieldSignature {}`,
@@ -54,7 +54,7 @@ test('steps | update-components > v1-app (nested)', function () {
               ]),
             },
             information: {
-              'index.gts': createFile([
+              'index.gts': normalizeFile([
                 `import type { TOC } from '@ember/component/template-only';`,
                 ``,
                 `interface UiFormInformationSignature {}`,
@@ -75,7 +75,7 @@ test('steps | update-components > v1-app (nested)', function () {
               ]),
             },
             input: {
-              'index.gjs': createFile([
+              'index.gjs': normalizeFile([
                 `import Component from '@glimmer/component';`,
                 ``,
                 `export default class UiFormInput extends Component {`,
@@ -90,7 +90,7 @@ test('steps | update-components > v1-app (nested)', function () {
               'index.gts': ``,
             },
             select: {
-              'index.gts': createFile([
+              'index.gts': normalizeFile([
                 `import Component from '@glimmer/component';`,
                 ``,
                 `interface UiFormSelectSignature {}`,
@@ -106,7 +106,7 @@ test('steps | update-components > v1-app (nested)', function () {
             textarea: {
               'index.gjs': ``,
             },
-            'index.gts': createFile([
+            'index.gts': normalizeFile([
               `import Component from '@glimmer/component';`,
               ``,
               `interface UiFormSignature {}`,
@@ -120,7 +120,7 @@ test('steps | update-components > v1-app (nested)', function () {
             ]),
           },
           page: {
-            'index.gjs': createFile([
+            'index.gjs': normalizeFile([
               `const UiPage = <template>`,
               ``,
               `</template>;`,
@@ -131,10 +131,10 @@ test('steps | update-components > v1-app (nested)', function () {
           },
         },
         'navigation-menu': {
-          'index.gjs': createFile([`<template>`, ``, `</template>`, ``]),
+          'index.gjs': normalizeFile([`<template>`, ``, `</template>`, ``]),
         },
         'select-locale': {
-          'index.gjs': createFile([
+          'index.gjs': normalizeFile([
             `import Component from '@glimmer/component';`,
             ``,
             `export default class SelectLocale extends Component {`,
@@ -147,7 +147,7 @@ test('steps | update-components > v1-app (nested)', function () {
         },
       },
       templates: {
-        'application.hbs': createFile([
+        'application.hbs': normalizeFile([
           `<header>`,
           `  <NavigationMenu />`,
           `</header>`,

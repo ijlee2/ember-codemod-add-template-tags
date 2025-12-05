@@ -1,4 +1,4 @@
-import { assert, createFile, test } from '@codemod-utils/tests';
+import { assert, normalizeFile, test } from '@codemod-utils/tests';
 
 import { updateInvocations } from '../../../../src/utils/update-template/index.js';
 import {
@@ -7,7 +7,7 @@ import {
 } from '../../../helpers/mocks/index.js';
 
 test('utils | update-template | update-invocations > base case', function () {
-  const oldFile = createFile([
+  const oldFile = normalizeFile([
     `<template>`,
     `  {{#let (unique-id) as |formId|}}`,
     `    <form`,
@@ -90,7 +90,7 @@ test('utils | update-template | update-invocations > base case', function () {
 
   assert.strictEqual(
     newFile,
-    createFile([
+    normalizeFile([
       `import { concat, hash, uniqueId } from '@ember/helper';`,
       `import { on } from '@ember/modifier';`,
       `import { ContainerQuery, width } from 'ember-container-query';`,

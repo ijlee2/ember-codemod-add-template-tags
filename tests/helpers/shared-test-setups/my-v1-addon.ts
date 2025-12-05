@@ -1,6 +1,6 @@
 import { normalize } from 'node:path';
 
-import { createFile } from '@codemod-utils/tests';
+import { normalizeFile } from '@codemod-utils/tests';
 
 import type {
   CodemodOptions,
@@ -20,7 +20,7 @@ const inputProject = {
     components: {
       'navigation-menu.d.ts': '',
       'navigation-menu.hbs': '',
-      'navigation-menu.js': createFile([
+      'navigation-menu.js': normalizeFile([
         `import templateOnlyComponent from '@ember/component/template-only';`,
         ``,
         `const NavigationMenu = templateOnlyComponent();`,
@@ -35,7 +35,7 @@ const inputProject = {
       app: {
         components: {
           'select-locale.hbs': '',
-          'select-locale.js': createFile([
+          'select-locale.js': normalizeFile([
             `import Component from '@glimmer/component';`,
             ``,
             `export default class SelectLocale extends Component {}`,
@@ -43,7 +43,7 @@ const inputProject = {
           ]),
         },
         templates: {
-          'application.hbs': createFile([
+          'application.hbs': normalizeFile([
             `<header>`,
             `  <NavigationMenu />`,
             `</header>`,

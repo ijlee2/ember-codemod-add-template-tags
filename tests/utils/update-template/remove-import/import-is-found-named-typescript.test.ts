@@ -1,9 +1,9 @@
-import { assert, createFile, test } from '@codemod-utils/tests';
+import { assert, normalizeFile, test } from '@codemod-utils/tests';
 
 import { removeImport } from '../../../../src/utils/update-template/index.js';
 
 test('utils | update-template | remove-import > import is found (named, typescript)', function () {
-  const oldFile = createFile([
+  const oldFile = normalizeFile([
     `import {`,
     `  click,`,
     `  fillIn,`,
@@ -27,7 +27,7 @@ test('utils | update-template | remove-import > import is found (named, typescri
 
   assert.strictEqual(
     newFile,
-    createFile([
+    normalizeFile([
       `import {`,
       `  click,`,
       `  fillIn,`,
