@@ -14,7 +14,7 @@ test('steps | find-packages-with-hbs > has folder option (2)', function () {
       routes: true,
       tests: true,
     },
-    folder: normalize('ui/form'),
+    folder: 'ui/form',
     projectRoot: normalize('tmp/my-v1-app'),
   };
 
