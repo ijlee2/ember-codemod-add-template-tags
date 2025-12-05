@@ -12,7 +12,7 @@ const codemodOptions: CodemodOptions = {
   componentStructure: 'nested',
   convert: new Set(['components', 'routes', 'tests']),
   folder: '',
-  projectRoot: normalize('tmp/my-v1-app-nested'),
+  projectRoot: 'tmp/my-v1-app-nested',
 };
 
 const inputProject = {
@@ -182,7 +182,7 @@ const options: Options = {
     tests: true,
   },
   folder: '',
-  projectRoot: normalize('tmp/my-v1-app-nested'),
+  projectRoot: 'tmp/my-v1-app-nested',
 };
 
 const packages: Packages = new Map([

@@ -35,7 +35,7 @@ test('utils | find-packages-with-hbs | filter-components > v2-addon', function (
     componentStructure: 'flat',
     convert: new Set(['components', 'routes', 'tests']),
     folder: '',
-    projectRoot: normalize('tmp/my-v2-addon'),
+    projectRoot: 'tmp/my-v2-addon',
   };
 
   loadFixture(inputProject, codemodOptions);

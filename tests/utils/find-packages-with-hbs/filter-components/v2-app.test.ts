@@ -35,7 +35,7 @@ test('utils | find-packages-with-hbs | filter-components > v2-app', function () 
     componentStructure: 'flat',
     convert: new Set(['components', 'routes', 'tests']),
     folder: '',
-    projectRoot: normalize('tmp/my-v2-app'),
+    projectRoot: 'tmp/my-v2-app',
   };
 
   loadFixture(inputProject, codemodOptions);

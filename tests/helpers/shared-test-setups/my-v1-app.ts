@@ -12,7 +12,7 @@ const codemodOptions: CodemodOptions = {
   componentStructure: 'flat',
   convert: new Set(['components', 'routes', 'tests']),
   folder: '',
-  projectRoot: normalize('tmp/my-v1-app'),
+  projectRoot: 'tmp/my-v1-app',
 };
 
 const inputProject = {
@@ -237,7 +237,7 @@ const options: Options = {
     tests: true,
   },
   folder: '',
-  projectRoot: normalize('tmp/my-v1-app'),
+  projectRoot: 'tmp/my-v1-app',
 };
 
 const packages: Packages = new Map([

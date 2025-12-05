@@ -15,7 +15,7 @@ test('steps | find-packages-with-hbs > has folder option (1)', function () {
       tests: true,
     },
     folder: 'ui',
-    projectRoot: normalize('tmp/my-v1-app'),
+    projectRoot: 'tmp/my-v1-app',
   };
 
   loadFixture(inputProject, options);
