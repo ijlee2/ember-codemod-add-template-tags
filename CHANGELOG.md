@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.1.0
+
+### Minor Changes
+
+- [#75](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/75) Supported Windows ([@ijlee2](https://github.com/ijlee2))
+
+### Patch Changes
+
+- [#76](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/76) Updated dependencies ([@ijlee2](https://github.com/ijlee2))
+- [#74](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/74) Downstreamed fixtures from embroider-css-modules#201 ([@ijlee2](https://github.com/ijlee2))
+
 ## 1.0.1
 
 ### Patch Changes
