@@ -1,9 +1,9 @@
-import { assert, test } from '@codemod-utils/tests';
+import { assert, createFile, test } from '@codemod-utils/tests';
 
 import { insertTemplateTag } from '../../../../src/utils/update-tests/index.js';
 
 test('utils | update-tests | insert-template-tag > JavaScript', function () {
-  const oldFile = [
+  const oldFile = createFile([
     `import { click, fillIn, find, render } from '@ember/test-helpers';`,
     `import { a11yAudit } from 'ember-a11y-testing/test-support';`,
     `import { hbs } from 'ember-cli-htmlbars';`,
@@ -167,7 +167,7 @@ test('utils | update-tests | insert-template-tag > JavaScript', function () {
     `  });`,
     `});`,
     ``,
-  ].join('\n');
+  ]);
 
   const newFile = insertTemplateTag(oldFile, {
     isTypeScript: false,
@@ -176,7 +176,7 @@ test('utils | update-tests | insert-template-tag > JavaScript', function () {
 
   assert.strictEqual(
     newFile,
-    [
+    createFile([
       `import { click, fillIn, find, render } from '@ember/test-helpers';`,
       `import { a11yAudit } from 'ember-a11y-testing/test-support';`,
       `import { hbs } from 'ember-cli-htmlbars';`,
@@ -336,6 +336,6 @@ test('utils | update-tests | insert-template-tag > JavaScript', function () {
       `  });`,
       `});`,
       ``,
-    ].join('\n'),
+    ]),
   );
 });

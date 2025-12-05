@@ -1,3 +1,5 @@
+import { EOL } from 'node:os';
+
 import { updateTemplates } from '@codemod-utils/ast-template-tag';
 
 import type { AllEntities, Entities } from '../../types/index.js';
@@ -17,7 +19,7 @@ export function updateInvocations(file: string, data: Data): string {
   });
 
   if (importStatements.exist()) {
-    file = `${importStatements.print()}\n\n${file}`;
+    file = [`${importStatements.print()}${EOL}`, file].join(EOL);
   }
 
   return file;

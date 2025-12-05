@@ -1,9 +1,9 @@
-import { assert, test } from '@codemod-utils/tests';
+import { assert, createFile, test } from '@codemod-utils/tests';
 
 import { removeImport } from '../../../../src/utils/update-template/index.js';
 
 test('utils | update-template | remove-import > import is found (named, typescript)', function () {
-  const oldFile = [
+  const oldFile = createFile([
     `import {`,
     `  click,`,
     `  fillIn,`,
@@ -15,7 +15,7 @@ test('utils | update-template | remove-import > import is found (named, typescri
     `import { setupIntl } from 'ember-intl/test-support';`,
     `import { setupRenderingTest } from 'my-app/tests/helpers';`,
     `import { module, test } from 'qunit';`,
-  ].join('\n');
+  ]);
 
   const newFile = removeImport(oldFile, {
     importKind: 'value',
@@ -27,7 +27,7 @@ test('utils | update-template | remove-import > import is found (named, typescri
 
   assert.strictEqual(
     newFile,
-    [
+    createFile([
       `import {`,
       `  click,`,
       `  fillIn,`,
@@ -38,6 +38,6 @@ test('utils | update-template | remove-import > import is found (named, typescri
       `import { setupIntl } from 'ember-intl/test-support';`,
       `import { setupRenderingTest } from 'my-app/tests/helpers';`,
       `import { module, test } from 'qunit';`,
-    ].join('\n'),
+    ]),
   );
 });

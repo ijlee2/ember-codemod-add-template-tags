@@ -1,3 +1,5 @@
+import { normalize } from 'node:path';
+
 import { assert, loadFixture, test } from '@codemod-utils/tests';
 
 import { findPackagesWithHBS } from '../../../src/steps/index.js';
@@ -21,7 +23,7 @@ test('steps | find-packages-with-hbs > v2-addon', function () {
             components: [
               'src/components/navigation-menu.hbs',
               'src/components/select-locale.hbs',
-            ],
+            ].map(normalize),
             routes: [],
             tests: [],
           },
@@ -31,7 +33,7 @@ test('steps | find-packages-with-hbs > v2-addon', function () {
             tests: [],
           },
           hasEmberRouteTemplate: false,
-          packageRoot: 'tmp/my-v2-addon',
+          packageRoot: normalize('tmp/my-v2-addon'),
           packageType: 'v2-addon',
         },
       ],

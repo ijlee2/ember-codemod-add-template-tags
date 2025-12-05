@@ -1,3 +1,5 @@
+import { normalize } from 'node:path';
+
 import { assert, loadFixture, test } from '@codemod-utils/tests';
 
 import { findPackagesWithHBS } from '../../../src/steps/index.js';
@@ -28,11 +30,11 @@ test('steps | find-packages-with-hbs > v1-app', function () {
               'app/components/ui/form/input.hbs',
               'app/components/ui/form/select.hbs',
               'app/components/ui/page.hbs',
-            ],
+            ].map(normalize),
             routes: [
               'app/templates/application.hbs',
               'app/templates/index.hbs',
-            ],
+            ].map(normalize),
             tests: [
               'tests/integration/components/navigation-menu-test.js',
               'tests/integration/components/select-locale-test.js',
@@ -41,7 +43,7 @@ test('steps | find-packages-with-hbs > v1-app', function () {
               'tests/integration/components/ui/form/field-test.ts',
               'tests/integration/components/ui/form/information-test.ts',
               'tests/integration/components/ui/form/textarea-test.js',
-            ],
+            ].map(normalize),
           },
           filesWithTemplateTag: {
             components: [],
@@ -49,7 +51,7 @@ test('steps | find-packages-with-hbs > v1-app', function () {
             tests: [],
           },
           hasEmberRouteTemplate: false,
-          packageRoot: 'tmp/my-v1-app',
+          packageRoot: normalize('tmp/my-v1-app'),
           packageType: 'v1-app',
         },
       ],

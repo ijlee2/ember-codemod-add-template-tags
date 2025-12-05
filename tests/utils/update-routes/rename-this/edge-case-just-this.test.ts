@@ -1,9 +1,9 @@
-import { assert, test } from '@codemod-utils/tests';
+import { assert, createFile, test } from '@codemod-utils/tests';
 
 import { renameThis } from '../../../../src/utils/update-routes/index.js';
 
 test('utils | update-routes | rename-this > edge case (just this)', function () {
-  const oldFile = [
+  const oldFile = createFile([
     `<input`,
     `  type="text"`,
     `  {{on "input" (setField this "name" "target.value")}}`,
@@ -23,13 +23,13 @@ test('utils | update-routes | rename-this > edge case (just this)', function () 
     `  type="text"`,
     `  {{on "input" (setField this.thisuser "name" "target.value")}}`,
     `/>`,
-  ].join('\n');
+  ]);
 
   const newFile = renameThis(oldFile);
 
   assert.strictEqual(
     newFile,
-    [
+    createFile([
       `<input`,
       `  type="text"`,
       `  {{on "input" (setField @controller "name" "target.value")}}`,
@@ -49,6 +49,6 @@ test('utils | update-routes | rename-this > edge case (just this)', function () 
       `  type="text"`,
       `  {{on "input" (setField @controller.thisuser "name" "target.value")}}`,
       `/>`,
-    ].join('\n'),
+    ]),
   );
 });

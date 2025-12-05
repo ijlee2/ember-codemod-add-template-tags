@@ -1,16 +1,16 @@
-import { assert, test } from '@codemod-utils/tests';
+import { assert, createFile, test } from '@codemod-utils/tests';
 
 import { insertTemplateTag } from '../../../../src/utils/update-components/index.js';
 
 test('utils | update-components | insert-template-tag > edge case (Glimmer component) (2)', function () {
-  const oldFile = [
+  const oldFile = createFile([
     `import Component from '@glimmer/component';`,
     ``,
     `interface UiFormSignature { /* ... */ }`,
     ``,
     `export default class extends Component<UiFormSignature> {}`,
     ``,
-  ].join('\n');
+  ]);
 
   const newFile = insertTemplateTag(oldFile, {
     isTypeScript: true,
@@ -18,7 +18,7 @@ test('utils | update-components | insert-template-tag > edge case (Glimmer compo
 
   assert.strictEqual(
     newFile,
-    [
+    createFile([
       `import Component from '@glimmer/component';`,
       ``,
       `interface UiFormSignature { /* ... */ }`,
@@ -28,6 +28,6 @@ test('utils | update-components | insert-template-tag > edge case (Glimmer compo
       `  <template></template>`,
       `}`,
       ``,
-    ].join('\n'),
+    ]),
   );
 });

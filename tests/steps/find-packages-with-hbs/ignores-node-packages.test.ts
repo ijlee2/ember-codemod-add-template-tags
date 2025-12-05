@@ -1,4 +1,4 @@
-import { assert, loadFixture, test } from '@codemod-utils/tests';
+import { assert, createFile, loadFixture, test } from '@codemod-utils/tests';
 
 import { findPackagesWithHBS } from '../../../src/steps/index.js';
 import { options } from '../../helpers/shared-test-setups/my-monorepo.js';
@@ -13,7 +13,7 @@ test('steps | find-packages-with-hbs > ignores node packages', function () {
           'select-locale.js': `import Component from '@glimmer/component';`,
         },
         templates: {
-          'application.hbs': [
+          'application.hbs': createFile([
             `<header>`,
             `  <NavigationMenu />`,
             `</header>`,
@@ -21,7 +21,7 @@ test('steps | find-packages-with-hbs > ignores node packages', function () {
             `<main>`,
             `  {{outlet}}`,
             `</main>`,
-          ].join('\n'),
+          ]),
           'index.hbs': `<SelectLocale />`,
         },
       },

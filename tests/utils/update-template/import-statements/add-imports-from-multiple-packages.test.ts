@@ -1,4 +1,6 @@
-import { assert, test } from '@codemod-utils/tests';
+import { normalize } from 'node:path';
+
+import { assert, createFile, test } from '@codemod-utils/tests';
 
 import { ImportStatements } from '../../../../src/utils/update-template/index.js';
 
@@ -6,56 +8,56 @@ test('utils | update-template | import-statements > add (imports from multiple p
   const importStatements = new ImportStatements();
 
   importStatements.add('ContainerQuery', {
-    filePath: 'dist/components/container-query.js',
-    filePathAlias: 'components/container-query',
+    filePath: normalize('dist/components/container-query.js'),
+    filePathAlias: normalize('components/container-query'),
     isDefaultExport: true,
     isTypeScript: false,
     packageName: 'ember-container-query',
   });
 
   importStatements.add('on', {
-    filePath: '.',
-    filePathAlias: '.',
+    filePath: normalize('.'),
+    filePathAlias: normalize('.'),
     isDefaultExport: false,
     isTypeScript: true,
     packageName: '@ember/modifier',
   });
 
   importStatements.add('fn', {
-    filePath: '.',
-    filePathAlias: '.',
+    filePath: normalize('.'),
+    filePathAlias: normalize('.'),
     isDefaultExport: false,
     isTypeScript: true,
     packageName: '@ember/helper',
   });
 
   importStatements.add('hash', {
-    filePath: '.',
-    filePathAlias: '.',
+    filePath: normalize('.'),
+    filePathAlias: normalize('.'),
     isDefaultExport: false,
     isTypeScript: true,
     packageName: '@ember/helper',
   });
 
   importStatements.add('ensureSafeComponent', {
-    filePath: '.',
-    filePathAlias: '.',
+    filePath: normalize('.'),
+    filePathAlias: normalize('.'),
     isDefaultExport: false,
     isTypeScript: false,
     packageName: '@embroider/util',
   });
 
   importStatements.add('array', {
-    filePath: '.',
-    filePathAlias: '.',
+    filePath: normalize('.'),
+    filePathAlias: normalize('.'),
     isDefaultExport: false,
     isTypeScript: true,
     packageName: '@ember/helper',
   });
 
   importStatements.add('t', {
-    filePath: 'addon/helpers/t.ts',
-    filePathAlias: '.',
+    filePath: normalize('addon/helpers/t.ts'),
+    filePathAlias: normalize('.'),
     isDefaultExport: false,
     isTypeScript: true,
     packageName: 'ember-intl',
@@ -65,12 +67,12 @@ test('utils | update-template | import-statements > add (imports from multiple p
 
   assert.strictEqual(
     importStatements.print(),
-    [
+    createFile([
       `import { array, fn, hash } from '@ember/helper';`,
       `import { on } from '@ember/modifier';`,
       `import { ensureSafeComponent } from '@embroider/util';`,
       `import ContainerQuery from 'ember-container-query/components/container-query';`,
       `import { t } from 'ember-intl';`,
-    ].join('\n'),
+    ]),
   );
 });

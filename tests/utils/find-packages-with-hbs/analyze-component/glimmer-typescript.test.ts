@@ -1,9 +1,9 @@
-import { assert, test } from '@codemod-utils/tests';
+import { assert, createFile, test } from '@codemod-utils/tests';
 
 import { analyzeComponent } from '../../../../src/utils/find-packages-with-hbs/index.js';
 
 test('utils | find-packages-with-hbs | analyze-component > Glimmer (TypeScript)', function () {
-  const file = [
+  const file = createFile([
     `import Component from '@glimmer/component';`,
     ``,
     `interface HelloWorldSignature {`,
@@ -12,7 +12,7 @@ test('utils | find-packages-with-hbs | analyze-component > Glimmer (TypeScript)'
     ``,
     `export default class HelloWorld extends Component<HelloWorldSignature> {}`,
     ``,
-  ].join('\n');
+  ]);
 
   assert.deepStrictEqual(analyzeComponent(file), {
     baseComponentName: 'Component',

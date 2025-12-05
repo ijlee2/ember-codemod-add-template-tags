@@ -1,3 +1,7 @@
+import { normalize } from 'node:path';
+
+import { createFile } from '@codemod-utils/tests';
+
 import type {
   CodemodOptions,
   Options,
@@ -15,7 +19,7 @@ const inputProject = {
   src: {
     components: {
       'navigation-menu.hbs': '',
-      'navigation-menu.ts': [
+      'navigation-menu.ts': createFile([
         `import templateOnlyComponent from '@ember/component/template-only';`,
         ``,
         `interface NavigationMenuSignature {}`,
@@ -24,16 +28,16 @@ const inputProject = {
         ``,
         `export default NavigationMenu;`,
         ``,
-      ].join('\n'),
+      ]),
       'select-locale.hbs': '',
-      'select-locale.ts': [
+      'select-locale.ts': createFile([
         `import Component from '@glimmer/component';`,
         ``,
         `interface SelectLocaleSignature {}`,
         ``,
         `export default class SelectLocale extends Component<SelectLocaleSignature> {}`,
         ``,
-      ].join('\n'),
+      ]),
     },
   },
   'package.json': JSON.stringify({
@@ -68,7 +72,7 @@ const packages: Packages = new Map([
         components: [
           'src/components/navigation-menu.hbs',
           'src/components/select-locale.hbs',
-        ],
+        ].map(normalize),
         routes: [],
         tests: [],
       },

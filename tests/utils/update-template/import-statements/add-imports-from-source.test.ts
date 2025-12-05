@@ -1,4 +1,6 @@
-import { assert, test } from '@codemod-utils/tests';
+import { normalize } from 'node:path';
+
+import { assert, createFile, test } from '@codemod-utils/tests';
 
 import { ImportStatements } from '../../../../src/utils/update-template/index.js';
 
@@ -6,8 +8,8 @@ test('utils | update-template | import-statements > add (imports from source)', 
   const importStatements = new ImportStatements();
 
   importStatements.add('ContainerQuery', {
-    filePath: 'dist/components/container-query.js',
-    filePathAlias: 'components/container-query',
+    filePath: normalize('dist/components/container-query.js'),
+    filePathAlias: normalize('components/container-query'),
     isDefaultExport: true,
     isTypeScript: false,
     packageName: 'ember-container-query',
@@ -21,8 +23,8 @@ test('utils | update-template | import-statements > add (imports from source)', 
   );
 
   importStatements.add('containerQuery', {
-    filePath: 'dist/modifiers/container-query.js',
-    filePathAlias: 'modifiers/container-query',
+    filePath: normalize('dist/modifiers/container-query.js'),
+    filePathAlias: normalize('modifiers/container-query'),
     isDefaultExport: true,
     isTypeScript: false,
     packageName: 'ember-container-query',
@@ -32,15 +34,15 @@ test('utils | update-template | import-statements > add (imports from source)', 
 
   assert.strictEqual(
     importStatements.print(),
-    [
+    createFile([
       `import ContainerQuery from 'ember-container-query/components/container-query';`,
       `import containerQuery from 'ember-container-query/modifiers/container-query';`,
-    ].join('\n'),
+    ]),
   );
 
   importStatements.add('width', {
-    filePath: 'dist/helpers/width.js',
-    filePathAlias: 'helpers/width',
+    filePath: normalize('dist/helpers/width.js'),
+    filePathAlias: normalize('helpers/width'),
     isDefaultExport: true,
     isTypeScript: false,
     packageName: 'ember-container-query',
@@ -50,16 +52,16 @@ test('utils | update-template | import-statements > add (imports from source)', 
 
   assert.strictEqual(
     importStatements.print(),
-    [
+    createFile([
       `import ContainerQuery from 'ember-container-query/components/container-query';`,
       `import width from 'ember-container-query/helpers/width';`,
       `import containerQuery from 'ember-container-query/modifiers/container-query';`,
-    ].join('\n'),
+    ]),
   );
 
   importStatements.add('aspectRatio', {
-    filePath: 'dist/helpers/aspect-ratio.js',
-    filePathAlias: 'helpers/aspect-ratio',
+    filePath: normalize('dist/helpers/aspect-ratio.js'),
+    filePathAlias: normalize('helpers/aspect-ratio'),
     isDefaultExport: true,
     isTypeScript: false,
     packageName: 'ember-container-query',
@@ -69,11 +71,11 @@ test('utils | update-template | import-statements > add (imports from source)', 
 
   assert.strictEqual(
     importStatements.print(),
-    [
+    createFile([
       `import ContainerQuery from 'ember-container-query/components/container-query';`,
       `import aspectRatio from 'ember-container-query/helpers/aspect-ratio';`,
       `import width from 'ember-container-query/helpers/width';`,
       `import containerQuery from 'ember-container-query/modifiers/container-query';`,
-    ].join('\n'),
+    ]),
   );
 });

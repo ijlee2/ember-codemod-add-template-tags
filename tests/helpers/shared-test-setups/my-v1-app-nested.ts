@@ -1,3 +1,7 @@
+import { normalize } from 'node:path';
+
+import { createFile } from '@codemod-utils/tests';
+
 import type {
   CodemodOptions,
   Options,
@@ -18,7 +22,7 @@ const inputProject = {
         form: {
           checkbox: {
             'index.hbs': ``,
-            'index.ts': [
+            'index.ts': createFile([
               `import Component from '@glimmer/component';`,
               ``,
               `interface UiFormCheckboxSignature {}`,
@@ -32,22 +36,22 @@ const inputProject = {
               `  }`,
               `}`,
               ``,
-            ].join('\n'),
+            ]),
           },
           field: {
             'index.hbs': ``,
-            'index.ts': [
+            'index.ts': createFile([
               `import Component from '@glimmer/component';`,
               ``,
               `interface UiFormFieldSignature {}`,
               ``,
               `export default class UiFormField extends Component<UiFormFieldSignature> {}`,
               ``,
-            ].join('\n'),
+            ]),
           },
           information: {
             'index.hbs': ``,
-            'index.ts': [
+            'index.ts': createFile([
               `import templateOnlyComponent from '@ember/component/template-only';`,
               ``,
               `interface UiFormInformationSignature {}`,
@@ -63,54 +67,54 @@ const inputProject = {
               `  }`,
               `}`,
               ``,
-            ].join('\n'),
+            ]),
           },
           input: {
             'index.hbs': ``,
-            'index.js': [
+            'index.js': createFile([
               `import Component from '@glimmer/component';`,
               ``,
               `export default class UiFormInput extends Component {}`,
               ``,
-            ].join('\n'),
+            ]),
           },
           number: {
             'index.gts': ``,
           },
           select: {
             'index.hbs': ``,
-            'index.ts': [
+            'index.ts': createFile([
               `import Component from '@glimmer/component';`,
               ``,
               `interface UiFormSelectSignature {}`,
               ``,
               `export default class UiFormSelect extends Component<UiFormSelectSignature> {}`,
               ``,
-            ].join('\n'),
+            ]),
           },
           textarea: {
             'index.gjs': ``,
           },
           'index.hbs': ``,
-          'index.ts': [
+          'index.ts': createFile([
             `import Component from '@glimmer/component';`,
             ``,
             `interface UiFormSignature {}`,
             ``,
             `export default class UiForm extends Component<UiFormSignature> {}`,
             ``,
-          ].join('\n'),
+          ]),
         },
         page: {
           'index.hbs': ``,
-          'index.js': [
+          'index.js': createFile([
             `import templateOnlyComponent from '@ember/component/template-only';`,
             ``,
             `const UiPage = templateOnlyComponent();`,
             ``,
             `export default UiPage;`,
             ``,
-          ].join('\n'),
+          ]),
         },
       },
       'navigation-menu': {
@@ -118,16 +122,16 @@ const inputProject = {
       },
       'select-locale': {
         'index.hbs': '',
-        'index.js': [
+        'index.js': createFile([
           `import Component from '@glimmer/component';`,
           ``,
           `export default class SelectLocale extends Component {}`,
           ``,
-        ].join('\n'),
+        ]),
       },
     },
     templates: {
-      'application.hbs': [
+      'application.hbs': createFile([
         `<header>`,
         `  <NavigationMenu />`,
         `</header>`,
@@ -135,7 +139,7 @@ const inputProject = {
         `<main>`,
         `  {{outlet}}`,
         `</main>`,
-      ].join('\n'),
+      ]),
       'index.hbs': `<SelectLocale />`,
     },
   },
@@ -196,8 +200,11 @@ const packages: Packages = new Map([
           'app/components/ui/form/input/index.hbs',
           'app/components/ui/form/select/index.hbs',
           'app/components/ui/page/index.hbs',
-        ],
-        routes: ['app/templates/application.hbs', 'app/templates/index.hbs'],
+        ].map(normalize),
+        routes: [
+          'app/templates/application.hbs',
+          'app/templates/index.hbs',
+        ].map(normalize),
         tests: [
           'tests/integration/components/navigation-menu-test.js',
           'tests/integration/components/select-locale-test.js',
@@ -206,7 +213,7 @@ const packages: Packages = new Map([
           'tests/integration/components/ui/form/field-test.ts',
           'tests/integration/components/ui/form/information-test.ts',
           'tests/integration/components/ui/form/textarea-test.js',
-        ],
+        ].map(normalize),
       },
       filesWithTemplateTag: {
         components: [],

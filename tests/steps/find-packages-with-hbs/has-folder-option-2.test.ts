@@ -1,3 +1,5 @@
+import { normalize } from 'node:path';
+
 import { assert, loadFixture, test } from '@codemod-utils/tests';
 
 import { findPackagesWithHBS } from '../../../src/steps/index.js';
@@ -33,14 +35,14 @@ test('steps | find-packages-with-hbs > has folder option (2)', function () {
               'app/components/ui/form/information.hbs',
               'app/components/ui/form/input.hbs',
               'app/components/ui/form/select.hbs',
-            ],
+            ].map(normalize),
             routes: [],
             tests: [
               'tests/integration/components/ui/form/checkbox-test.ts',
               'tests/integration/components/ui/form/field-test.ts',
               'tests/integration/components/ui/form/information-test.ts',
               'tests/integration/components/ui/form/textarea-test.js',
-            ],
+            ].map(normalize),
           },
           filesWithTemplateTag: {
             components: [],
@@ -48,7 +50,7 @@ test('steps | find-packages-with-hbs > has folder option (2)', function () {
             tests: [],
           },
           hasEmberRouteTemplate: false,
-          packageRoot: 'tmp/my-v1-app',
+          packageRoot: normalize('tmp/my-v1-app'),
           packageType: 'v1-app',
         },
       ],

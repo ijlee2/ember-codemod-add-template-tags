@@ -1,3 +1,5 @@
+import { normalize } from 'node:path';
+
 import { assert, loadFixture, test } from '@codemod-utils/tests';
 
 import type { CodemodOptions } from '../../../../src/types/index.js';
@@ -47,19 +49,22 @@ test('utils | find-packages-with-hbs | filter-components > v2-addon', function (
     'src/components/widgets/widget-2.hbs',
     'src/components/widgets/widget-2/captions.hbs',
     'src/components/widgets/widget-3.hbs',
-  ];
+  ].map(normalize);
 
   const newFilePaths = filterComponents(oldFilePaths, {
-    packageRoot: 'tmp/my-v2-addon',
+    packageRoot: normalize('tmp/my-v2-addon'),
     packageType: 'v2-addon',
   });
 
-  assert.deepStrictEqual(newFilePaths, [
-    'src/components/tracks.hbs',
-    'src/components/tracks/list.hbs',
-    'src/components/ui/form.hbs',
-    'src/components/ui/form/checkbox.hbs',
-    'src/components/widgets/widget-2.hbs',
-    'src/components/widgets/widget-2/captions.hbs',
-  ]);
+  assert.deepStrictEqual(
+    newFilePaths,
+    [
+      'src/components/tracks.hbs',
+      'src/components/tracks/list.hbs',
+      'src/components/ui/form.hbs',
+      'src/components/ui/form/checkbox.hbs',
+      'src/components/widgets/widget-2.hbs',
+      'src/components/widgets/widget-2/captions.hbs',
+    ].map(normalize),
+  );
 });

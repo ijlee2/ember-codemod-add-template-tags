@@ -1,4 +1,6 @@
-import { assert, loadFixture, test } from '@codemod-utils/tests';
+import { normalize } from 'node:path';
+
+import { assert, createFile, loadFixture, test } from '@codemod-utils/tests';
 
 import { findEntities } from '../../../src/steps/index.js';
 import { options } from '../../helpers/shared-test-setups/my-monorepo.js';
@@ -22,7 +24,7 @@ test('steps | find-entities > has external dependencies', function () {
                 modifiers: {
                   'container-query.d.ts': '',
                 },
-                'index.d.ts': [
+                'index.d.ts': createFile([
                   `export { default as ContainerQuery } from './components/container-query';`,
                   `export { default as aspectRatio } from './helpers/aspect-ratio.ts';`,
                   `export { default as height } from './helpers/height.ts';`,
@@ -30,7 +32,7 @@ test('steps | find-entities > has external dependencies', function () {
                   `export type { Dimensions, Features, IndexSignatureParameter, Metadata, QueryResults, } from './modifiers/container-query.ts';`,
                   `export { default as containerQuery } from './modifiers/container-query.ts';`,
                   ``,
-                ].join('\n'),
+                ]),
               },
               dist: {
                 components: {
@@ -45,7 +47,7 @@ test('steps | find-entities > has external dependencies', function () {
                 modifiers: {
                   'container-query.js': '',
                 },
-                'index.js': [
+                'index.js': createFile([
                   `export { default as ContainerQuery } from './components/container-query.js';`,
                   `export { default as aspectRatio } from './helpers/aspect-ratio.js';`,
                   `export { default as height } from './helpers/height.js';`,
@@ -53,7 +55,7 @@ test('steps | find-entities > has external dependencies', function () {
                   `export { default as containerQuery } from './modifiers/container-query.js';`,
                   `//# sourceMappingURL=index.js.map`,
                   ``,
-                ].join('\n'),
+                ]),
               },
               'package.json': JSON.stringify({
                 name: 'ember-container-query',
@@ -96,7 +98,7 @@ test('steps | find-entities > has external dependencies', function () {
                 services: {
                   'intl.ts': '',
                 },
-                'index.ts': [
+                'index.ts': createFile([
                   `export { default as formatDate } from './helpers/format-date';`,
                   `export { default as formatDateRange } from './helpers/format-date-range';`,
                   `export { default as formatList } from './helpers/format-list';`,
@@ -108,7 +110,7 @@ test('steps | find-entities > has external dependencies', function () {
                   `export { default as t } from './helpers/t';`,
                   `export type { Formats, default as IntlService } from './services/intl';`,
                   ``,
-                ].join('\n'),
+                ]),
               },
               'package.json': JSON.stringify({
                 name: 'ember-intl',
@@ -153,8 +155,8 @@ test('steps | find-entities > has external dependencies', function () {
       [
         'container-query',
         {
-          filePath: 'dist/components/container-query.js',
-          filePathAlias: '.',
+          filePath: normalize('dist/components/container-query.js'),
+          filePathAlias: normalize('.'),
           isDefaultExport: false,
           isTypeScript: false,
           packageName: 'ember-container-query',
@@ -163,8 +165,8 @@ test('steps | find-entities > has external dependencies', function () {
       [
         'input',
         {
-          filePath: '.',
-          filePathAlias: '.',
+          filePath: normalize('.'),
+          filePathAlias: normalize('.'),
           isDefaultExport: false,
           isTypeScript: true,
           packageName: '@ember/component',
@@ -173,8 +175,8 @@ test('steps | find-entities > has external dependencies', function () {
       [
         'link-to',
         {
-          filePath: '.',
-          filePathAlias: '.',
+          filePath: normalize('.'),
+          filePathAlias: normalize('.'),
           isDefaultExport: false,
           isTypeScript: true,
           packageName: '@ember/routing',
@@ -183,8 +185,8 @@ test('steps | find-entities > has external dependencies', function () {
       [
         'textarea',
         {
-          filePath: '.',
-          filePathAlias: '.',
+          filePath: normalize('.'),
+          filePathAlias: normalize('.'),
           isDefaultExport: false,
           isTypeScript: true,
           packageName: '@ember/component',
@@ -195,8 +197,8 @@ test('steps | find-entities > has external dependencies', function () {
       [
         'array',
         {
-          filePath: '.',
-          filePathAlias: '.',
+          filePath: normalize('.'),
+          filePathAlias: normalize('.'),
           isDefaultExport: false,
           isTypeScript: true,
           packageName: '@ember/helper',
@@ -205,8 +207,8 @@ test('steps | find-entities > has external dependencies', function () {
       [
         'aspect-ratio',
         {
-          filePath: 'dist/helpers/aspect-ratio.js',
-          filePathAlias: '.',
+          filePath: normalize('dist/helpers/aspect-ratio.js'),
+          filePathAlias: normalize('.'),
           isDefaultExport: false,
           isTypeScript: false,
           packageName: 'ember-container-query',
@@ -215,8 +217,8 @@ test('steps | find-entities > has external dependencies', function () {
       [
         'concat',
         {
-          filePath: '.',
-          filePathAlias: '.',
+          filePath: normalize('.'),
+          filePathAlias: normalize('.'),
           isDefaultExport: false,
           isTypeScript: true,
           packageName: '@ember/helper',
@@ -225,8 +227,8 @@ test('steps | find-entities > has external dependencies', function () {
       [
         'ensure-safe-component',
         {
-          filePath: '.',
-          filePathAlias: '.',
+          filePath: normalize('.'),
+          filePathAlias: normalize('.'),
           isDefaultExport: false,
           isTypeScript: false,
           packageName: '@embroider/util',
@@ -235,8 +237,8 @@ test('steps | find-entities > has external dependencies', function () {
       [
         'fn',
         {
-          filePath: '.',
-          filePathAlias: '.',
+          filePath: normalize('.'),
+          filePathAlias: normalize('.'),
           isDefaultExport: false,
           isTypeScript: true,
           packageName: '@ember/helper',
@@ -245,8 +247,8 @@ test('steps | find-entities > has external dependencies', function () {
       [
         'format-date',
         {
-          filePath: 'addon/helpers/format-date.ts',
-          filePathAlias: '.',
+          filePath: normalize('addon/helpers/format-date.ts'),
+          filePathAlias: normalize('.'),
           isDefaultExport: false,
           isTypeScript: true,
           packageName: 'ember-intl',
@@ -255,8 +257,8 @@ test('steps | find-entities > has external dependencies', function () {
       [
         'format-date-range',
         {
-          filePath: 'addon/helpers/format-date-range.ts',
-          filePathAlias: '.',
+          filePath: normalize('addon/helpers/format-date-range.ts'),
+          filePathAlias: normalize('.'),
           isDefaultExport: false,
           isTypeScript: true,
           packageName: 'ember-intl',
@@ -265,8 +267,8 @@ test('steps | find-entities > has external dependencies', function () {
       [
         'format-list',
         {
-          filePath: 'addon/helpers/format-list.ts',
-          filePathAlias: '.',
+          filePath: normalize('addon/helpers/format-list.ts'),
+          filePathAlias: normalize('.'),
           isDefaultExport: false,
           isTypeScript: true,
           packageName: 'ember-intl',
@@ -275,8 +277,8 @@ test('steps | find-entities > has external dependencies', function () {
       [
         'format-message',
         {
-          filePath: 'addon/helpers/format-message.ts',
-          filePathAlias: '.',
+          filePath: normalize('addon/helpers/format-message.ts'),
+          filePathAlias: normalize('.'),
           isDefaultExport: false,
           isTypeScript: true,
           packageName: 'ember-intl',
@@ -285,8 +287,8 @@ test('steps | find-entities > has external dependencies', function () {
       [
         'format-number',
         {
-          filePath: 'addon/helpers/format-number.ts',
-          filePathAlias: '.',
+          filePath: normalize('addon/helpers/format-number.ts'),
+          filePathAlias: normalize('.'),
           isDefaultExport: false,
           isTypeScript: true,
           packageName: 'ember-intl',
@@ -295,8 +297,8 @@ test('steps | find-entities > has external dependencies', function () {
       [
         'format-relative',
         {
-          filePath: 'addon/helpers/format-relative.ts',
-          filePathAlias: '.',
+          filePath: normalize('addon/helpers/format-relative.ts'),
+          filePathAlias: normalize('.'),
           isDefaultExport: false,
           isTypeScript: true,
           packageName: 'ember-intl',
@@ -305,8 +307,8 @@ test('steps | find-entities > has external dependencies', function () {
       [
         'format-relative-time',
         {
-          filePath: 'addon/helpers/format-relative-time.ts',
-          filePathAlias: '.',
+          filePath: normalize('addon/helpers/format-relative-time.ts'),
+          filePathAlias: normalize('.'),
           isDefaultExport: false,
           isTypeScript: true,
           packageName: 'ember-intl',
@@ -315,8 +317,8 @@ test('steps | find-entities > has external dependencies', function () {
       [
         'format-time',
         {
-          filePath: 'addon/helpers/format-time.ts',
-          filePathAlias: '.',
+          filePath: normalize('addon/helpers/format-time.ts'),
+          filePathAlias: normalize('.'),
           isDefaultExport: false,
           isTypeScript: true,
           packageName: 'ember-intl',
@@ -325,8 +327,8 @@ test('steps | find-entities > has external dependencies', function () {
       [
         'get',
         {
-          filePath: '.',
-          filePathAlias: '.',
+          filePath: normalize('.'),
+          filePathAlias: normalize('.'),
           isDefaultExport: false,
           isTypeScript: true,
           packageName: '@ember/helper',
@@ -335,8 +337,8 @@ test('steps | find-entities > has external dependencies', function () {
       [
         'hash',
         {
-          filePath: '.',
-          filePathAlias: '.',
+          filePath: normalize('.'),
+          filePathAlias: normalize('.'),
           isDefaultExport: false,
           isTypeScript: true,
           packageName: '@ember/helper',
@@ -345,8 +347,8 @@ test('steps | find-entities > has external dependencies', function () {
       [
         'height',
         {
-          filePath: 'dist/helpers/height.js',
-          filePathAlias: '.',
+          filePath: normalize('dist/helpers/height.js'),
+          filePathAlias: normalize('.'),
           isDefaultExport: false,
           isTypeScript: false,
           packageName: 'ember-container-query',
@@ -355,8 +357,8 @@ test('steps | find-entities > has external dependencies', function () {
       [
         'htmlSafe',
         {
-          filePath: '.',
-          filePathAlias: '.',
+          filePath: normalize('.'),
+          filePathAlias: normalize('.'),
           isDefaultExport: false,
           isTypeScript: true,
           packageName: '@ember/template',
@@ -365,8 +367,8 @@ test('steps | find-entities > has external dependencies', function () {
       [
         't',
         {
-          filePath: 'addon/helpers/t.ts',
-          filePathAlias: '.',
+          filePath: normalize('addon/helpers/t.ts'),
+          filePathAlias: normalize('.'),
           isDefaultExport: false,
           isTypeScript: true,
           packageName: 'ember-intl',
@@ -375,8 +377,8 @@ test('steps | find-entities > has external dependencies', function () {
       [
         'unique-id',
         {
-          filePath: '.',
-          filePathAlias: '.',
+          filePath: normalize('.'),
+          filePathAlias: normalize('.'),
           isDefaultExport: false,
           isTypeScript: true,
           packageName: '@ember/helper',
@@ -385,8 +387,8 @@ test('steps | find-entities > has external dependencies', function () {
       [
         'width',
         {
-          filePath: 'dist/helpers/width.js',
-          filePathAlias: '.',
+          filePath: normalize('dist/helpers/width.js'),
+          filePathAlias: normalize('.'),
           isDefaultExport: false,
           isTypeScript: false,
           packageName: 'ember-container-query',
@@ -397,8 +399,8 @@ test('steps | find-entities > has external dependencies', function () {
       [
         'container-query',
         {
-          filePath: 'dist/modifiers/container-query.js',
-          filePathAlias: '.',
+          filePath: normalize('dist/modifiers/container-query.js'),
+          filePathAlias: normalize('.'),
           isDefaultExport: false,
           isTypeScript: false,
           packageName: 'ember-container-query',
@@ -407,8 +409,8 @@ test('steps | find-entities > has external dependencies', function () {
       [
         'on',
         {
-          filePath: '.',
-          filePathAlias: '.',
+          filePath: normalize('.'),
+          filePathAlias: normalize('.'),
           isDefaultExport: false,
           isTypeScript: true,
           packageName: '@ember/modifier',

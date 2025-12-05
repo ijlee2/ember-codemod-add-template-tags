@@ -1,4 +1,5 @@
-import { join } from 'node:path';
+import { EOL } from 'node:os';
+import { join, sep } from 'node:path';
 
 import type { EntityData } from '../../types/index.js';
 
@@ -46,7 +47,7 @@ export class ImportStatements {
   add(importName: string, entityData: EntityData): void {
     const { filePathAlias, isDefaultExport, packageName } = entityData;
 
-    const importPath = join(packageName, filePathAlias);
+    const importPath = join(packageName, filePathAlias).replaceAll(sep, '/');
     const isDefaultImport = isDefaultExport;
 
     if (this.imports.has(importPath)) {
@@ -74,6 +75,6 @@ export class ImportStatements {
       lines.push(`import ${importName} from '${importPath}';`);
     }
 
-    return lines.join('\n');
+    return lines.join(EOL);
   }
 }

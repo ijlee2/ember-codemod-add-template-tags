@@ -1,4 +1,9 @@
-import { assertFixture, loadFixture, test } from '@codemod-utils/tests';
+import {
+  assertFixture,
+  createFile,
+  loadFixture,
+  test,
+} from '@codemod-utils/tests';
 
 import { findEntities, updateComponents } from '../../../src/steps/index.js';
 import {
@@ -11,7 +16,7 @@ test('steps | update-components > v2-addon', function () {
   const outputProject = {
     src: {
       components: {
-        'navigation-menu.gts': [
+        'navigation-menu.gts': createFile([
           `import type { TOC } from '@ember/component/template-only';`,
           ``,
           `interface NavigationMenuSignature {}`,
@@ -22,8 +27,8 @@ test('steps | update-components > v2-addon', function () {
           ``,
           `export default NavigationMenu;`,
           ``,
-        ].join('\n'),
-        'select-locale.gts': [
+        ]),
+        'select-locale.gts': createFile([
           `import Component from '@glimmer/component';`,
           ``,
           `interface SelectLocaleSignature {}`,
@@ -34,7 +39,7 @@ test('steps | update-components > v2-addon', function () {
           `    </template>`,
           `}`,
           ``,
-        ].join('\n'),
+        ]),
       },
     },
     'package.json': JSON.stringify({

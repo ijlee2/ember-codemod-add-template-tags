@@ -1,4 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
+import { EOL } from 'node:os';
+
 import { AST } from '@codemod-utils/ast-javascript';
 
 import { analyzeComponent } from '../find-packages-with-hbs/index.js';
@@ -21,7 +23,7 @@ function insertToGlimmerComponent(file: string, data: Data): string {
       }
 
       // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-      node.value.body.body.push('\n<template></template>');
+      node.value.body.body.push(`${EOL}<template></template>`);
 
       return false;
     },
@@ -35,7 +37,10 @@ function insertToTemplateOnlyComponent(file: string, data: Data): string {
   let template = '<template></template>';
 
   if (data.isTypeScript) {
-    file = `import type { TOC } from '@ember/component/template-only';\n${file}`;
+    file = [
+      `import type { TOC } from '@ember/component/template-only';`,
+      file,
+    ].join(EOL);
 
     traverse(file, {
       visitVariableDeclaration(node) {

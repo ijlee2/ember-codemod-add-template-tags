@@ -1,4 +1,4 @@
-import { join, relative } from 'node:path';
+import { join, relative, sep } from 'node:path';
 
 import { findFiles, parseFilePath } from '@codemod-utils/files';
 
@@ -60,7 +60,10 @@ export function analyzeEmberPackage({
 
       const isTypeScript = ext === '.gts' || ext === '.ts';
 
-      let entityName = relative(join(source, entityFolder), join(dir, name));
+      let entityName = relative(
+        join(source, entityFolder),
+        join(dir, name),
+      ).replaceAll(sep, '/');
 
       if (entityType === 'components') {
         if (componentStructure === 'nested') {

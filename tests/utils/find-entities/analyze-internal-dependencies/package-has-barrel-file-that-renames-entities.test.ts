@@ -1,4 +1,6 @@
-import { assert, loadFixture, test } from '@codemod-utils/tests';
+import { normalize } from 'node:path';
+
+import { assert, createFile, loadFixture, test } from '@codemod-utils/tests';
 
 import { analyzeInternalDependencies } from '../../../../src/utils/find-entities/index.js';
 import {
@@ -17,11 +19,11 @@ test('utils | find-entities | analyze-internal-dependencies > package has barrel
             'select-locale.hbs': '',
             'select-locale.ts': '',
           },
-          'index.ts': [
+          'index.ts': createFile([
             `export { default as cfva } from './components/component-from-v2-addon.ts';`,
             `export { default as sl } from './components/select-locale.ts';`,
             ``,
-          ].join('\n'),
+          ]),
         },
         'package.json': JSON.stringify({
           name: 'my-v2-addon',
@@ -79,7 +81,7 @@ test('utils | find-entities | analyze-internal-dependencies > package has barrel
           services: {
             'intl.ts': '',
           },
-          'index.ts': [
+          'index.ts': createFile([
             `export { default as fdate } from './helpers/format-date';`,
             `export { default as fdaterange } from './helpers/format-date-range';`,
             `export { default as flist } from './helpers/format-list';`,
@@ -91,7 +93,7 @@ test('utils | find-entities | analyze-internal-dependencies > package has barrel
             `export { default as t } from './helpers/t';`,
             `export type { Formats, default as IntlService } from './services/intl';`,
             ``,
-          ].join('\n'),
+          ]),
         },
         'package.json': JSON.stringify({
           name: 'ember-intl',
@@ -149,8 +151,8 @@ test('utils | find-entities | analyze-internal-dependencies > package has barrel
               [
                 'format-date',
                 {
-                  filePath: 'addon/helpers/format-date.ts',
-                  filePathAlias: '.',
+                  filePath: normalize('addon/helpers/format-date.ts'),
+                  filePathAlias: normalize('.'),
                   isDefaultExport: false,
                   isTypeScript: true,
                   packageName: 'ember-intl',
@@ -159,8 +161,8 @@ test('utils | find-entities | analyze-internal-dependencies > package has barrel
               [
                 'format-date-range',
                 {
-                  filePath: 'addon/helpers/format-date-range.ts',
-                  filePathAlias: '.',
+                  filePath: normalize('addon/helpers/format-date-range.ts'),
+                  filePathAlias: normalize('.'),
                   isDefaultExport: false,
                   isTypeScript: true,
                   packageName: 'ember-intl',
@@ -169,8 +171,8 @@ test('utils | find-entities | analyze-internal-dependencies > package has barrel
               [
                 'format-list',
                 {
-                  filePath: 'addon/helpers/format-list.ts',
-                  filePathAlias: '.',
+                  filePath: normalize('addon/helpers/format-list.ts'),
+                  filePathAlias: normalize('.'),
                   isDefaultExport: false,
                   isTypeScript: true,
                   packageName: 'ember-intl',
@@ -179,8 +181,8 @@ test('utils | find-entities | analyze-internal-dependencies > package has barrel
               [
                 'format-message',
                 {
-                  filePath: 'addon/helpers/format-message.ts',
-                  filePathAlias: '.',
+                  filePath: normalize('addon/helpers/format-message.ts'),
+                  filePathAlias: normalize('.'),
                   isDefaultExport: false,
                   isTypeScript: true,
                   packageName: 'ember-intl',
@@ -189,8 +191,8 @@ test('utils | find-entities | analyze-internal-dependencies > package has barrel
               [
                 'format-number',
                 {
-                  filePath: 'addon/helpers/format-number.ts',
-                  filePathAlias: '.',
+                  filePath: normalize('addon/helpers/format-number.ts'),
+                  filePathAlias: normalize('.'),
                   isDefaultExport: false,
                   isTypeScript: true,
                   packageName: 'ember-intl',
@@ -199,8 +201,8 @@ test('utils | find-entities | analyze-internal-dependencies > package has barrel
               [
                 'format-relative',
                 {
-                  filePath: 'addon/helpers/format-relative.ts',
-                  filePathAlias: '.',
+                  filePath: normalize('addon/helpers/format-relative.ts'),
+                  filePathAlias: normalize('.'),
                   isDefaultExport: false,
                   isTypeScript: true,
                   packageName: 'ember-intl',
@@ -209,8 +211,8 @@ test('utils | find-entities | analyze-internal-dependencies > package has barrel
               [
                 'format-relative-time',
                 {
-                  filePath: 'addon/helpers/format-relative-time.ts',
-                  filePathAlias: '.',
+                  filePath: normalize('addon/helpers/format-relative-time.ts'),
+                  filePathAlias: normalize('.'),
                   isDefaultExport: false,
                   isTypeScript: true,
                   packageName: 'ember-intl',
@@ -219,8 +221,8 @@ test('utils | find-entities | analyze-internal-dependencies > package has barrel
               [
                 'format-time',
                 {
-                  filePath: 'addon/helpers/format-time.ts',
-                  filePathAlias: '.',
+                  filePath: normalize('addon/helpers/format-time.ts'),
+                  filePathAlias: normalize('.'),
                   isDefaultExport: false,
                   isTypeScript: true,
                   packageName: 'ember-intl',
@@ -229,8 +231,8 @@ test('utils | find-entities | analyze-internal-dependencies > package has barrel
               [
                 't',
                 {
-                  filePath: 'addon/helpers/t.ts',
-                  filePathAlias: '.',
+                  filePath: normalize('addon/helpers/t.ts'),
+                  filePathAlias: normalize('.'),
                   isDefaultExport: false,
                   isTypeScript: true,
                   packageName: 'ember-intl',
@@ -239,7 +241,7 @@ test('utils | find-entities | analyze-internal-dependencies > package has barrel
             ]),
             modifiers: new Map(),
           },
-          packageRoot: 'tmp/my-monorepo/packages/ember-intl',
+          packageRoot: normalize('tmp/my-monorepo/packages/ember-intl'),
           packageType: 'v1-addon',
         },
       ],
@@ -251,8 +253,12 @@ test('utils | find-entities | analyze-internal-dependencies > package has barrel
               [
                 'component-from-v2-addon',
                 {
-                  filePath: 'src/components/component-from-v2-addon.ts',
-                  filePathAlias: 'components/component-from-v2-addon',
+                  filePath: normalize(
+                    'src/components/component-from-v2-addon.ts',
+                  ),
+                  filePathAlias: normalize(
+                    'components/component-from-v2-addon',
+                  ),
                   isDefaultExport: true,
                   isTypeScript: true,
                   packageName: 'my-v2-addon',
@@ -261,8 +267,8 @@ test('utils | find-entities | analyze-internal-dependencies > package has barrel
               [
                 'select-locale',
                 {
-                  filePath: 'src/components/select-locale.ts',
-                  filePathAlias: 'components/select-locale',
+                  filePath: normalize('src/components/select-locale.ts'),
+                  filePathAlias: normalize('components/select-locale'),
                   isDefaultExport: true,
                   isTypeScript: true,
                   packageName: 'my-v2-addon',
@@ -272,7 +278,7 @@ test('utils | find-entities | analyze-internal-dependencies > package has barrel
             helpers: new Map(),
             modifiers: new Map(),
           },
-          packageRoot: 'tmp/my-monorepo/docs/my-v2-addon',
+          packageRoot: normalize('tmp/my-monorepo/docs/my-v2-addon'),
           packageType: 'v2-addon',
         },
       ],
@@ -284,8 +290,8 @@ test('utils | find-entities | analyze-internal-dependencies > package has barrel
               [
                 'component-from-app',
                 {
-                  filePath: 'app/components/component-from-app.gts',
-                  filePathAlias: 'components/component-from-app',
+                  filePath: normalize('app/components/component-from-app.gts'),
+                  filePathAlias: normalize('components/component-from-app'),
                   isDefaultExport: true,
                   isTypeScript: true,
                   packageName: 'my-v2-app',
@@ -294,8 +300,12 @@ test('utils | find-entities | analyze-internal-dependencies > package has barrel
               [
                 'translation-with-arguments',
                 {
-                  filePath: 'app/components/translation-with-arguments.gts',
-                  filePathAlias: 'components/translation-with-arguments',
+                  filePath: normalize(
+                    'app/components/translation-with-arguments.gts',
+                  ),
+                  filePathAlias: normalize(
+                    'components/translation-with-arguments',
+                  ),
                   isDefaultExport: true,
                   isTypeScript: true,
                   packageName: 'my-v2-app',
@@ -305,7 +315,7 @@ test('utils | find-entities | analyze-internal-dependencies > package has barrel
             helpers: new Map(),
             modifiers: new Map(),
           },
-          packageRoot: 'tmp/my-monorepo/docs/my-v2-app',
+          packageRoot: normalize('tmp/my-monorepo/docs/my-v2-app'),
           packageType: 'v2-app',
         },
       ],
@@ -317,8 +327,8 @@ test('utils | find-entities | analyze-internal-dependencies > package has barrel
               [
                 'lazy-hello',
                 {
-                  filePath: 'app/components/lazy-hello.ts',
-                  filePathAlias: 'components/lazy-hello',
+                  filePath: normalize('app/components/lazy-hello.ts'),
+                  filePathAlias: normalize('components/lazy-hello'),
                   isDefaultExport: true,
                   isTypeScript: true,
                   packageName: 'test-app-for-ember-intl',
@@ -328,7 +338,7 @@ test('utils | find-entities | analyze-internal-dependencies > package has barrel
             helpers: new Map(),
             modifiers: new Map(),
           },
-          packageRoot: 'tmp/my-monorepo/tests/ember-intl',
+          packageRoot: normalize('tmp/my-monorepo/tests/ember-intl'),
           packageType: 'v1-app',
         },
       ],
