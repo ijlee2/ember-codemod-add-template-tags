@@ -8,7 +8,7 @@ const NEW_THIS = 'self';
 
 function indentToLeft(code: string, indent: number): string {
   return code
-    .split('\n')
+    .split(/\r?\n/)
     .map((line) => {
       const numSpaces = line.length - line.trimStart().length;
 
