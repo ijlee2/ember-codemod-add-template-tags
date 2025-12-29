@@ -15,16 +15,14 @@ export default class WidgetsWidget2StackedChart extends Component<WidgetsWidget2
   styles = styles;
 
 
-  <template>
-  <div
+  <template><div
   class={{this.styles.svg-container}}
   {{! @glint-expect-error: The given value does not appear to be usable as a component, modifier or helper. }}
   {{drawStackedChart data=@data}}
   >
   <svg class={{this.styles.svg}}>
   </svg>
-  </div>
-  </template>
+  </div></template>
 }
 
 declare module '@glint/environment-ember-loose/registry' {

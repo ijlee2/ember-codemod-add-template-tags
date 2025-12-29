@@ -19,8 +19,7 @@ export default class ProductsProductCard extends Component<ProductsProductCardSi
   styles = styles;
 
 
-  <template>
-  <ContainerQuery
+  <template><ContainerQuery
   @features={{hash wide=(width min=320)}}
   @tagName="article"
   class={{this.styles.container}}
@@ -56,8 +55,7 @@ export default class ProductsProductCard extends Component<ProductsProductCardSi
     Learn more
   </LinkTo>
   </div>
-  </ContainerQuery>
-  </template>
+  </ContainerQuery></template>
 }
 
 declare module '@glint/environment-ember-loose/registry' {

@@ -11,8 +11,7 @@ interface TracksSignature {
   };
 }
 
-const Tracks = <template>
-<ContainerQuery
+const Tracks = <template><ContainerQuery
   @features={{hash
     small=(width max=480)
     medium=(width min=480 max=640)
@@ -33,8 +32,7 @@ const Tracks = <template>
       @tracks={{@tracks}}
     />
   {{/if}}
-</ContainerQuery>
-</template> satisfies TOC<TracksSignature>;
+</ContainerQuery></template> satisfies TOC<TracksSignature>;
 
 export default Tracks;
 

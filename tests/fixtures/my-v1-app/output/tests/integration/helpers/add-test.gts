@@ -8,9 +8,7 @@ module('Integration | Helper | add', function (hooks) {
   setupRenderingTest(hooks);
 
   test('it renders', async function (assert) {
-    await render(<template>
-    {{add 1 2 3}}
-    </template>);
+    await render(<template>{{add 1 2 3}}</template>);
 
     assert.dom().hasText('6');
   });

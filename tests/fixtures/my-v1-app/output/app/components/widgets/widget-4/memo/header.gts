@@ -13,8 +13,7 @@ export default class WidgetsWidget4MemoHeader extends Component<WidgetsWidget4Me
   styles = styles;
 
 
-  <template>
-  {{#let
+  <template>{{#let
   (and @cqFeatures.large @cqFeatures.short)
   (or @cqFeatures.small @cqFeatures.short)
   as |showHorizontalLayout showMinimalLayout|
@@ -48,8 +47,7 @@ export default class WidgetsWidget4MemoHeader extends Component<WidgetsWidget4Me
     · 38m
   </div>
   </div>
-  {{/let}}
-  </template>
+  {{/let}}</template>
 }
 
 declare module '@glint/environment-ember-loose/registry' {

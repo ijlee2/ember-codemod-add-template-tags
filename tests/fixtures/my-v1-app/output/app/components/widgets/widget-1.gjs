@@ -9,8 +9,7 @@ export default class WidgetsWidget1 extends Component {
   styles = styles;
 
 
-  <template>
-  <ContainerQuery
+  <template><ContainerQuery
   @features={{hash
   tall=(aspect-ratio max=0.8)
   square=(aspect-ratio min=0.8 max=1.25)
@@ -36,6 +35,5 @@ export default class WidgetsWidget1 extends Component {
     <WidgetsWidget1Item @title="Item 3" />
   </div>
   </div>
-  </ContainerQuery>
-  </template>
+  </ContainerQuery></template>
 }

@@ -36,14 +36,12 @@ module('Integration | Component | ui/form/input', function (hooks) {
 
 
 
-    await render(<template>
-    <UiFormInput
+    await render(<template><UiFormInput
     @data={{self.data}}
     @key="name"
     @label="Name"
     @onUpdate={{self.updateData}}
-    />
-    </template>);
+    /></template>);
 
     assert.dom('[data-test-label]').hasText('Name');
 
@@ -65,15 +63,13 @@ module('Integration | Component | ui/form/input', function (hooks) {
 
 
 
-    await render(<template>
-    <UiFormInput
+    await render(<template><UiFormInput
     @data={{self.data}}
     @isDisabled={{true}}
     @key="name"
     @label="Name"
     @onUpdate={{self.updateData}}
-    />
-    </template>);
+    /></template>);
 
     assert.dom('[data-test-field]').isDisabled();
   });
@@ -84,15 +80,13 @@ module('Integration | Component | ui/form/input', function (hooks) {
 
 
 
-    await render(<template>
-    <UiFormInput
+    await render(<template><UiFormInput
     @data={{self.data}}
     @isReadOnly={{true}}
     @key="name"
     @label="Name"
     @onUpdate={{self.updateData}}
-    />
-    </template>);
+    /></template>);
 
     assert
       .dom('[data-test-field]')
@@ -106,15 +100,13 @@ module('Integration | Component | ui/form/input', function (hooks) {
 
 
 
-    await render(<template>
-    <UiFormInput
+    await render(<template><UiFormInput
     @data={{self.data}}
     @isRequired={{true}}
     @key="name"
     @label="Name"
     @onUpdate={{self.updateData}}
-    />
-    </template>);
+    /></template>);
 
     assert.dom('[data-test-label]').hasText('Name *');
 
@@ -137,15 +129,13 @@ module('Integration | Component | ui/form/input', function (hooks) {
 
 
 
-    await render(<template>
-    <UiFormInput
+    await render(<template><UiFormInput
     @data={{self.data}}
     @isRequired={{true}}
     @key="name"
     @label="Name"
     @onUpdate={{self.updateData}}
-    />
-    </template>);
+    /></template>);
 
     // Update the value
     await fillIn('[data-test-field]', '');
@@ -172,15 +162,13 @@ module('Integration | Component | ui/form/input', function (hooks) {
 
 
 
-    await render(<template>
-    <UiFormInput
+    await render(<template><UiFormInput
     @data={{self.data}}
     @key="email"
     @label="Email"
     @onUpdate={{self.updateData}}
     @type="email"
-    />
-    </template>);
+    /></template>);
 
     assert.dom('[data-test-label]').hasText('Email');
 

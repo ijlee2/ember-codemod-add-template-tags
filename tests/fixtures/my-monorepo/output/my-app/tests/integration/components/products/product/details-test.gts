@@ -40,9 +40,9 @@ module('Integration | Component | products/product/details', function (hooks) {
 
 
 
-    await render(<template>
-    <ProductsProductDetails @product={{self.product}} />
-    </template>);
+    await render(
+      <template><ProductsProductDetails @product={{self.product}} /></template>
+    );
 
     assert.dom('[data-test-field="Name"]').hasText('Vanilla Ice Cream Cake');
 
@@ -73,9 +73,9 @@ module('Integration | Component | products/product/details', function (hooks) {
 
 
 
-    await render(<template>
-    <ProductsProductDetails @product={{self.product}} />
-    </template>);
+    await render(
+      <template><ProductsProductDetails @product={{self.product}} /></template>
+    );
 
     assert.true(log.notCalled);
 

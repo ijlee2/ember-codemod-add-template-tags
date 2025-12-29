@@ -26,14 +26,12 @@ module('Integration | Component | ui/form/checkbox', function (hooks) {
 
 
 
-    await render(<template>
-    <UiFormCheckbox
+    await render(<template><UiFormCheckbox
     @data={{self.parent.data}}
     @key="subscribe"
     @label="Subscribe to The Ember Times?"
     @onUpdate={{self.parent.updateData}}
-    />
-    </template>);
+    /></template>);
 
     assert.dom('[data-test-label]').hasText('Subscribe to The Ember Times?');
 
@@ -56,15 +54,13 @@ module('Integration | Component | ui/form/checkbox', function (hooks) {
 
 
 
-    await render(<template>
-    <UiFormCheckbox
+    await render(<template><UiFormCheckbox
     @data={{self.parent.data}}
     @isDisabled={{true}}
     @key="subscribe"
     @label="Subscribe to The Ember Times?"
     @onUpdate={{self.parent.updateData}}
-    />
-    </template>);
+    /></template>);
 
     assert
       .dom('[data-test-field]')
@@ -78,15 +74,13 @@ module('Integration | Component | ui/form/checkbox', function (hooks) {
 
 
 
-    await render(<template>
-    <UiFormCheckbox
+    await render(<template><UiFormCheckbox
     @data={{self.parent.data}}
     @isReadOnly={{true}}
     @key="subscribe"
     @label="Subscribe to The Ember Times?"
     @onUpdate={{self.parent.updateData}}
-    />
-    </template>);
+    /></template>);
 
     assert
       .dom('[data-test-field]')
@@ -101,15 +95,13 @@ module('Integration | Component | ui/form/checkbox', function (hooks) {
 
 
 
-    await render(<template>
-    <UiFormCheckbox
+    await render(<template><UiFormCheckbox
     @data={{self.parent.data}}
     @isRequired={{true}}
     @key="subscribe"
     @label="Subscribe to The Ember Times?"
     @onUpdate={{self.parent.updateData}}
-    />
-    </template>);
+    /></template>);
 
     assert.dom('[data-test-label]').hasText('Subscribe to The Ember Times? *');
 
@@ -122,15 +114,13 @@ module('Integration | Component | ui/form/checkbox', function (hooks) {
 
 
 
-    await render(<template>
-    <UiFormCheckbox
+    await render(<template><UiFormCheckbox
     @data={{self.parent.data}}
     @isRequired={{true}}
     @key="subscribe"
     @label="Subscribe to The Ember Times?"
     @onUpdate={{self.parent.updateData}}
-    />
-    </template>);
+    /></template>);
 
     // Click the checkbox
     await click('[data-test-field]');
@@ -159,15 +149,13 @@ module('Integration | Component | ui/form/checkbox', function (hooks) {
 
 
 
-    await render(<template>
-    <UiFormCheckbox
+    await render(<template><UiFormCheckbox
     @data={{self.parent.data}}
     @isRequired={{true}}
     @key="subscribe"
     @label="Subscribe to The Ember Times?"
     @onUpdate={{self.parent.updateData}}
-    />
-    </template>);
+    /></template>);
 
     // Press the Space key
     await triggerKeyEvent('[data-test-field]', 'keypress', 'Space');

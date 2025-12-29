@@ -37,8 +37,7 @@ export default class WidgetsWidget2 extends Component<WidgetsWidget2Signature> {
   }
 
 
-  <template>
-  <ContainerQuery
+  <template><ContainerQuery
   @features={{hash
   short=(height max=240)
   tall=(height min=240 max=480)
@@ -66,8 +65,7 @@ export default class WidgetsWidget2 extends Component<WidgetsWidget2Signature> {
     @summaries={{this.summaries}}
   />
   </div>
-  </ContainerQuery>
-  </template>
+  </ContainerQuery></template>
 }
 
 declare module '@glint/environment-ember-loose/registry' {

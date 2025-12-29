@@ -1,7 +1,5 @@
-<template>
-<div class="widgets-widget-1-item-container">
+<template><div class="widgets-widget-1-item-container">
   <p data-test-title>
     {{@title}}
   </p>
-</div>
-</template>
+</div></template>
