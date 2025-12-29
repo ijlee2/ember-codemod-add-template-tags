@@ -61,8 +61,7 @@ export default class UiFormInput extends Component<UiFormInputSignature> {
   }
 
 
-  <template>
-  <UiFormField
+  <template><UiFormField
   @errorMessage={{this.errorMessage}}
   @isWide={{@isWide}}
   >
@@ -96,8 +95,7 @@ export default class UiFormInput extends Component<UiFormInputSignature> {
     {{on "input" this.updateValue}}
   />
   </:field>
-  </UiFormField>
-  </template>
+  </UiFormField></template>
 }
 
 declare module '@glint/environment-ember-loose/registry' {

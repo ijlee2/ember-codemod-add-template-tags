@@ -14,13 +14,11 @@ export default class ProductsProductImage extends Component<ProductsProductImage
   styles = styles;
 
 
-  <template>
-  {{#if this.isTestEnvironment}}
+  <template>{{#if this.isTestEnvironment}}
   <div class={{this.styles.placeholder-image}}></div>
   {{else}}
   <img alt="" class={{this.styles.image}} src={{@src}} />
-  {{/if}}
-  </template>
+  {{/if}}</template>
 }
 
 declare module '@glint/environment-ember-loose/registry' {

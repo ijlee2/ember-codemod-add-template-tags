@@ -9,13 +9,11 @@ module('Integration | Component | ui/page', function (hooks) {
   setupRenderingTest(hooks);
 
   test('it renders', async function (assert) {
-    await render(<template>
-    <UiPage @title="Form">
+    await render(<template><UiPage @title="Form">
     <div data-test-content>
-      Content goes here.
+    Content goes here.
     </div>
-    </UiPage>
-    </template>);
+    </UiPage></template>);
 
     assert.dom('[data-test-page-title]').hasTagName('h1').hasText('Form');
 

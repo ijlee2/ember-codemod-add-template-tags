@@ -10,8 +10,7 @@ interface UiFormInformationSignature {
   };
 }
 
-const UiFormInformation = <template>
-{{#if (or @title @instructions)}}
+const UiFormInformation = <template>{{#if (or @title @instructions)}}
   <div class="ui-form-information-container">
     {{#if @title}}
       <div
@@ -33,7 +32,6 @@ const UiFormInformation = <template>
       </p>
     {{/if}}
   </div>
-{{/if}}
-</template> satisfies TOC<UiFormInformationSignature>;
+{{/if}}</template> satisfies TOC<UiFormInformationSignature>;
 
 export default UiFormInformation;

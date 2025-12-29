@@ -36,14 +36,12 @@ module('Integration | Component | ui/form/textarea', function (hooks) {
 
 
 
-    await render(<template>
-    <UiFormTextarea
+    await render(<template><UiFormTextarea
     @data={{self.data}}
     @key="message"
     @label="Message"
     @onUpdate={{self.updateData}}
-    />
-    </template>);
+    /></template>);
 
     assert.dom('[data-test-label]').hasText('Message');
 
@@ -64,15 +62,13 @@ module('Integration | Component | ui/form/textarea', function (hooks) {
 
 
 
-    await render(<template>
-    <UiFormTextarea
+    await render(<template><UiFormTextarea
     @data={{self.data}}
     @isDisabled={{true}}
     @key="message"
     @label="Message"
     @onUpdate={{self.updateData}}
-    />
-    </template>);
+    /></template>);
 
     assert.dom('[data-test-field]').isDisabled();
   });
@@ -83,15 +79,13 @@ module('Integration | Component | ui/form/textarea', function (hooks) {
 
 
 
-    await render(<template>
-    <UiFormTextarea
+    await render(<template><UiFormTextarea
     @data={{self.data}}
     @isReadOnly={{true}}
     @key="message"
     @label="Message"
     @onUpdate={{self.updateData}}
-    />
-    </template>);
+    /></template>);
 
     assert
       .dom('[data-test-field]')
@@ -105,15 +99,13 @@ module('Integration | Component | ui/form/textarea', function (hooks) {
 
 
 
-    await render(<template>
-    <UiFormTextarea
+    await render(<template><UiFormTextarea
     @data={{self.data}}
     @isRequired={{true}}
     @key="message"
     @label="Message"
     @onUpdate={{self.updateData}}
-    />
-    </template>);
+    /></template>);
 
     assert.dom('[data-test-label]').hasText('Message *');
 
@@ -136,15 +128,13 @@ module('Integration | Component | ui/form/textarea', function (hooks) {
 
 
 
-    await render(<template>
-    <UiFormTextarea
+    await render(<template><UiFormTextarea
     @data={{self.data}}
     @isRequired={{true}}
     @key="message"
     @label="Message"
     @onUpdate={{self.updateData}}
-    />
-    </template>);
+    /></template>);
 
     // Update the value
     await fillIn('[data-test-field="Message"]', '');

@@ -33,8 +33,7 @@ export default class TracksList extends Component<TracksListSignature> {
   }
 
 
-  <template>
-  <ul
+  <template><ul
   class={{this.styles.list}}
   data-test-list="Tracks"
   data-css-grid="{{this.numRows}} x {{this.numColumns}}"
@@ -64,8 +63,7 @@ export default class TracksList extends Component<TracksListSignature> {
     {{/if}}
   </li>
   {{/each}}
-  </ul>
-  </template>
+  </ul></template>
 }
 
 declare module '@glint/environment-ember-loose/registry' {

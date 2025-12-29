@@ -57,8 +57,7 @@ export default class WidgetsWidget2Captions extends Component<WidgetsWidget2Capt
   }
 
 
-  <template>
-  <ContainerQuery
+  <template><ContainerQuery
   @features={{hash large=(width min=320) tall=(height min=80)}}
   as |CQ|
   >
@@ -173,8 +172,7 @@ export default class WidgetsWidget2Captions extends Component<WidgetsWidget2Capt
     {{/if}}
   {{/if}}
   </div>
-  </ContainerQuery>
-  </template>
+  </ContainerQuery></template>
 }
 
 declare module '@glint/environment-ember-loose/registry' {

@@ -36,12 +36,10 @@ module('Integration | Component | products/product/card', function (hooks) {
 
 
 
-    await render(<template>
-    <ProductsProductCard
+    await render(<template><ProductsProductCard
     @product={{self.product}}
     @redirectTo="products.product"
-    />
-    </template>);
+    /></template>);
 
     assert.dom('[data-test-field="Name"]').hasText('Vanilla Ice Cream Cake');
 

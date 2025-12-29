@@ -56,9 +56,7 @@ module('Integration | Component | tracks/table', function (hooks) {
 
 
 
-      await render(<template>
-      <TracksTable @tracks={{self.tracks}} />
-      </template>);
+      await render(<template><TracksTable @tracks={{self.tracks}} /></template>);
 
       assert.dom('[data-test-row]').doesNotExist();
     });
@@ -73,9 +71,7 @@ module('Integration | Component | tracks/table', function (hooks) {
 
 
 
-      await render(<template>
-      <TracksTable @tracks={{self.tracks}} />
-      </template>);
+      await render(<template><TracksTable @tracks={{self.tracks}} /></template>);
 
       const tracks = findAll('[data-test-row]');
 

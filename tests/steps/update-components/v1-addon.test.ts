@@ -18,9 +18,7 @@ test('steps | update-components > v1-addon', function () {
       components: {
         'navigation-menu.d.ts': '',
         'navigation-menu.gjs': normalizeFile([
-          `const NavigationMenu = <template>`,
-          ``,
-          `</template>;`,
+          `const NavigationMenu = <template></template>;`,
           ``,
           `export default NavigationMenu;`,
           ``,

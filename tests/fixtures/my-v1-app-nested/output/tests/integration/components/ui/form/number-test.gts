@@ -25,16 +25,14 @@ module('Integration | Component | ui/form/number', function (hooks) {
 
 
 
-    await render(<template>
-    <UiFormNumber
+    await render(<template><UiFormNumber
     @data={{self.parent.data}}
     @key="donation"
     @label="Donation amount (\$)"
     @minValue={{0}}
     @onUpdate={{self.parent.updateData}}
     @placeholder="100"
-    />
-    </template>);
+    /></template>);
 
     assert.dom('[data-test-label]').hasText('Donation amount ($)');
 
@@ -56,8 +54,7 @@ module('Integration | Component | ui/form/number', function (hooks) {
 
 
 
-    await render(<template>
-    <UiFormNumber
+    await render(<template><UiFormNumber
     @data={{self.parent.data}}
     @isDisabled={{true}}
     @key="donation"
@@ -65,8 +62,7 @@ module('Integration | Component | ui/form/number', function (hooks) {
     @minValue={{0}}
     @onUpdate={{self.parent.updateData}}
     @placeholder="100"
-    />
-    </template>);
+    /></template>);
 
     assert.dom('[data-test-field]').isDisabled();
   });
@@ -77,8 +73,7 @@ module('Integration | Component | ui/form/number', function (hooks) {
 
 
 
-    await render(<template>
-    <UiFormNumber
+    await render(<template><UiFormNumber
     @data={{self.parent.data}}
     @isReadOnly={{true}}
     @key="donation"
@@ -86,8 +81,7 @@ module('Integration | Component | ui/form/number', function (hooks) {
     @minValue={{0}}
     @onUpdate={{self.parent.updateData}}
     @placeholder="100"
-    />
-    </template>);
+    /></template>);
 
     assert
       .dom('[data-test-field]')
@@ -101,8 +95,7 @@ module('Integration | Component | ui/form/number', function (hooks) {
 
 
 
-    await render(<template>
-    <UiFormNumber
+    await render(<template><UiFormNumber
     @data={{self.parent.data}}
     @isRequired={{true}}
     @key="donation"
@@ -110,8 +103,7 @@ module('Integration | Component | ui/form/number', function (hooks) {
     @minValue={{0}}
     @onUpdate={{self.parent.updateData}}
     @placeholder="100"
-    />
-    </template>);
+    /></template>);
 
     assert.dom('[data-test-label]').hasText('Donation amount ($) *');
 
@@ -124,8 +116,7 @@ module('Integration | Component | ui/form/number', function (hooks) {
 
 
 
-    await render(<template>
-    <UiFormNumber
+    await render(<template><UiFormNumber
     @data={{self.parent.data}}
     @isRequired={{true}}
     @key="donation"
@@ -135,8 +126,7 @@ module('Integration | Component | ui/form/number', function (hooks) {
     @onUpdate={{self.parent.updateData}}
     @placeholder="100"
     @step={{10}}
-    />
-    </template>);
+    /></template>);
 
     await fillIn('[data-test-field]', '0');
 
@@ -169,8 +159,7 @@ module('Integration | Component | ui/form/number', function (hooks) {
 
 
 
-    await render(<template>
-    <UiFormNumber
+    await render(<template><UiFormNumber
     @data={{self.parent.data}}
     @isRequired={{true}}
     @key="donation"
@@ -178,8 +167,7 @@ module('Integration | Component | ui/form/number', function (hooks) {
     @minValue={{0}}
     @onUpdate={{self.parent.updateData}}
     @placeholder="100"
-    />
-    </template>);
+    /></template>);
 
     // Update the value
     await fillIn('[data-test-field="Donation amount ($)"]', '');

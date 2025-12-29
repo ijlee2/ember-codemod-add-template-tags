@@ -9,8 +9,7 @@ export default class WidgetsWidget3TourSchedule extends Component {
   styles = styles;
 
 
-  <template>
-  <ContainerQuery
+  <template><ContainerQuery
   @features={{hash small=(width max=400)}}
   @dataAttributePrefix="cq"
   class={{this.styles.container}}
@@ -40,6 +39,5 @@ export default class WidgetsWidget3TourSchedule extends Component {
     </a>
   </div>
   </div>
-  </ContainerQuery>
-  </template>
+  </ContainerQuery></template>
 }

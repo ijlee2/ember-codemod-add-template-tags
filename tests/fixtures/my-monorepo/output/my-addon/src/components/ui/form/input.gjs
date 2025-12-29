@@ -46,8 +46,7 @@ export default class UiFormInput extends Component {
   }
 
 
-  <template>
-  <UiFormField
+  <template><UiFormField
   @errorMessage={{this.errorMessage}}
   @isWide={{@isWide}}
   >
@@ -81,6 +80,5 @@ export default class UiFormInput extends Component {
     {{on "input" this.updateValue}}
   />
   </:field>
-  </UiFormField>
-  </template>
+  </UiFormField></template>
 }

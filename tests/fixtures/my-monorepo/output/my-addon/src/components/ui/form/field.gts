@@ -28,8 +28,7 @@ export default class UiFormField extends Component<UiFormFieldSignature> {
   styles = styles;
 
 
-  <template>
-  {{#let (uniqueId) as |inputId|}}
+  <template>{{#let (uniqueId) as |inputId|}}
   <div
   class={{local
     this.styles
@@ -57,6 +56,5 @@ export default class UiFormField extends Component<UiFormFieldSignature> {
     </div>
   {{/if}}
   </div>
-  {{/let}}
-  </template>
+  {{/let}}</template>
 }

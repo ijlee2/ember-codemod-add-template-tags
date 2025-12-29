@@ -67,8 +67,7 @@ export default class UiForm extends Component<UiFormSignature> {
   }
 
 
-  <template>
-  {{#let (uniqueId) as |formId|}}
+  <template>{{#let (uniqueId) as |formId|}}
   <form
   aria-describedby={{if
     @instructions
@@ -130,8 +129,7 @@ export default class UiForm extends Component<UiFormSignature> {
     </button>
   </div>
   </form>
-  {{/let}}
-  </template>
+  {{/let}}</template>
 }
 
 declare module '@glint/environment-ember-loose/registry' {

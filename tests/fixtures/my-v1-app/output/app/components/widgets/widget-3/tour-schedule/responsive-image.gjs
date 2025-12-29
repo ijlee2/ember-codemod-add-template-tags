@@ -17,8 +17,7 @@ export default class WidgetsWidget3TourScheduleResponsiveImage extends Component
   }
 
 
-  <template>
-  <div
+  <template><div
   class={{this.styles.image-container}}
   {{container-query debounce=300 onQuery=this.setImageSource}}
   >
@@ -30,6 +29,5 @@ export default class WidgetsWidget3TourScheduleResponsiveImage extends Component
     src={{this.imageSource}}
   />
   {{/if}}
-  </div>
-  </template>
+  </div></template>
 }

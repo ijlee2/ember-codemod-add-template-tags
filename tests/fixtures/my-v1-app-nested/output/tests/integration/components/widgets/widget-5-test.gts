@@ -8,9 +8,7 @@ module('Integration | Component | widgets/widget-5', function (hooks) {
   setupRenderingTest(hooks);
 
   test('The component renders', async function (assert) {
-    await render(<template>
-    <WidgetsWidget5 />
-    </template>);
+    await render(<template><WidgetsWidget5 /></template>);
 
     assert
       .dom('[data-test-call-to-action]')

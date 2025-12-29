@@ -8,11 +8,9 @@ module('Integration | Modifier | draw-stacked-chart', function (hooks) {
   setupRenderingTest(hooks);
 
   test('it renders', async function (assert) {
-    await render(<template>
-    <div {{drawStackedChart}}>
+    await render(<template><div {{drawStackedChart}}>
     <svg></svg>
-    </div>
-    </template>);
+    </div></template>);
 
     assert.ok(true);
   });

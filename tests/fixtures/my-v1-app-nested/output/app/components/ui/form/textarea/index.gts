@@ -48,8 +48,7 @@ export default class UiFormTextarea extends Component<UiFormTextareaSignature> {
   }
 
 
-  <template>
-  <UiFormField
+  <template><UiFormField
   @errorMessage={{this.errorMessage}}
   @isWide={{@isWide}}
   >
@@ -83,8 +82,7 @@ export default class UiFormTextarea extends Component<UiFormTextareaSignature> {
     {{on "input" this.updateValue}}
   ></textarea>
   </:field>
-  </UiFormField>
-  </template>
+  </UiFormField></template>
 }
 
 declare module '@glint/environment-ember-loose/registry' {

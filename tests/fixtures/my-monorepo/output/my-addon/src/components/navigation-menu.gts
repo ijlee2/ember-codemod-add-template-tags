@@ -14,8 +14,7 @@ interface NavigationMenuSignature {
   };
 }
 
-<template>
-<nav aria-label={{@name}} data-test-nav={{@name}}>
+<template><nav aria-label={{@name}} data-test-nav={{@name}}>
   <ul class="navigation-menu-list">
     {{#each @menuItems as |menuItem|}}
       <li>
@@ -29,5 +28,4 @@ interface NavigationMenuSignature {
       </li>
     {{/each}}
   </ul>
-</nav>
-</template>
+</nav></template>

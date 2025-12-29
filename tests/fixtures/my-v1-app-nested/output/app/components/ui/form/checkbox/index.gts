@@ -60,8 +60,7 @@ export default class UiFormCheckbox extends Component<UiFormCheckboxSignature> {
   }
 
 
-  <template>
-  <UiFormField
+  <template><UiFormField
   @errorMessage={{this.errorMessage}}
   @isInline={{@isInline}}
   @isWide={{@isWide}}
@@ -107,8 +106,7 @@ export default class UiFormCheckbox extends Component<UiFormCheckboxSignature> {
     {{/if}}
   </span>
   </:field>
-  </UiFormField>
-  </template>
+  </UiFormField></template>
 }
 
 declare module '@glint/environment-ember-loose/registry' {

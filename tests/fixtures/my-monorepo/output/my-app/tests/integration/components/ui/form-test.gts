@@ -40,55 +40,53 @@ module('Integration | Component | ui/form', function (hooks) {
 
 
 
-    await render(<template>
-    <UiForm
-      @data={{self.data}}
-      @instructions="Still have questions about ember-container-query? Try sending me a message."
-      @onSubmit={{self.submitForm}}
-      @title="Contact me"
-      as |F|
+    await render(<template><UiForm
+    @data={{self.data}}
+    @instructions="Still have questions about ember-container-query? Try sending me a message."
+    @onSubmit={{self.submitForm}}
+    @title="Contact me"
+    as |F|
     >
-      <div>
-        <F.Input
-          @isRequired={{true}}
-          @key="name"
-          @label="Name"
-          @placeholder="Zoey"
-        />
-      </div>
+    <div>
+    <F.Input
+    @isRequired={{true}}
+    @key="name"
+    @label="Name"
+    @placeholder="Zoey"
+    />
+    </div>
 
-      <div>
-        <F.Input
-          @isRequired={{true}}
-          @key="email"
-          @label="Email"
-          @placeholder="zoey@emberjs.com"
-          @type="email"
-        />
+    <div>
+    <F.Input
+    @isRequired={{true}}
+    @key="email"
+    @label="Email"
+    @placeholder="zoey@emberjs.com"
+    @type="email"
+    />
 
-        <div>
-          <F.Textarea @key="message" @label="Message" />
-        </div>
+    <div>
+    <F.Textarea @key="message" @label="Message" />
+    </div>
 
-        <div>
-          <F.Checkbox
-            @key="subscribe"
-            @label="Subscribe to The Ember Times?"
-          />
-        </div>
+    <div>
+    <F.Checkbox
+      @key="subscribe"
+      @label="Subscribe to The Ember Times?"
+    />
+    </div>
 
-        <div>
-          <F.Number
-            @key="donation"
-            @label="Donation amount (\$)"
-            @minValue={{0}}
-            @placeholder="100"
-            @step={{10}}
-          />
-        </div>
-      </div>
-    </UiForm>
-    </template>);
+    <div>
+    <F.Number
+      @key="donation"
+      @label="Donation amount (\$)"
+      @minValue={{0}}
+      @placeholder="100"
+      @step={{10}}
+    />
+    </div>
+    </div>
+    </UiForm></template>);
 
     const titleId = find('[data-test-title]')!.getAttribute('id')!;
     const instructionsId = find('[data-test-instructions]')!.getAttribute(
@@ -117,49 +115,49 @@ module('Integration | Component | ui/form', function (hooks) {
 
 
 
-    await render(<template>
-    <UiForm @data={{self.data}} @onSubmit={{self.submitForm}} as |F|>
+    await render(
+      <template><UiForm @data={{self.data}} @onSubmit={{self.submitForm}} as |F|>
       <div>
-        <F.Input
-          @isRequired={{true}}
-          @key="name"
-          @label="Name"
-          @placeholder="Zoey"
-        />
+      <F.Input
+      @isRequired={{true}}
+      @key="name"
+      @label="Name"
+      @placeholder="Zoey"
+      />
       </div>
 
       <div>
-        <F.Input
-          @isRequired={{true}}
-          @key="email"
-          @label="Email"
-          @placeholder="zoey@emberjs.com"
-          @type="email"
-        />
+      <F.Input
+      @isRequired={{true}}
+      @key="email"
+      @label="Email"
+      @placeholder="zoey@emberjs.com"
+      @type="email"
+      />
       </div>
 
       <div>
-        <F.Textarea @key="message" @label="Message" />
+      <F.Textarea @key="message" @label="Message" />
       </div>
 
       <div>
-        <F.Checkbox
-          @key="subscribe"
-          @label="Subscribe to The Ember Times?"
-        />
+      <F.Checkbox
+      @key="subscribe"
+      @label="Subscribe to The Ember Times?"
+      />
       </div>
 
       <div>
-        <F.Number
-          @key="donation"
-          @label="Donation amount (\$)"
-          @minValue={{0}}
-          @placeholder="100"
-          @step={{10}}
-        />
+      <F.Number
+      @key="donation"
+      @label="Donation amount (\$)"
+      @minValue={{0}}
+      @placeholder="100"
+      @step={{10}}
+      />
       </div>
-    </UiForm>
-    </template>);
+      </UiForm></template>
+    );
 
     await fillIn('[data-test-field="Name"]', 'Zoey');
     await fillIn('[data-test-field="Email"]', 'zoey@emberjs.com');

@@ -1,5 +1,4 @@
-const UiPage = <template>
-<div class="ui-page-container">
+const UiPage = <template><div class="ui-page-container">
   <h1 class="ui-page-title">
     {{@title}}
   </h1>
@@ -7,7 +6,6 @@ const UiPage = <template>
   <div class="ui-page-content" id="main-content" tabindex="-1">
     {{yield}}
   </div>
-</div>
-</template>;
+</div></template>;
 
 export default UiPage;

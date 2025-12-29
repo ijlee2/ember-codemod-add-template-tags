@@ -1,7 +1,6 @@
 import WidgetsWidget4Memo from 'docs-app/components/widgets/widget-4/memo/index';
 
-const WidgetsWidget4 = <template>
-<section class="widgets-widget-4-container">
+const WidgetsWidget4 = <template><section class="widgets-widget-4-container">
   <header class="widgets-widget-4-header">
     <h2>Widget 4</h2>
   </header>
@@ -15,7 +14,6 @@ const WidgetsWidget4 = <template>
       All memos
     </a>
   </div>
-</section>
-</template>;
+</section></template>;
 
 export default WidgetsWidget4;

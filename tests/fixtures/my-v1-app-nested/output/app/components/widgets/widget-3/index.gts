@@ -27,8 +27,7 @@ export default class WidgetsWidget3 extends Component<WidgetsWidget3Signature> {
   }
 
 
-  <template>
-  <section class={{this.styles.container}}>
+  <template><section class={{this.styles.container}}>
   <header class={{this.styles.header}}>
   <h2>Widget 3</h2>
 
@@ -47,8 +46,7 @@ export default class WidgetsWidget3 extends Component<WidgetsWidget3Signature> {
     @concert={{this.concertData}}
   />
   </div>
-  </section>
-  </template>
+  </section></template>
 }
 
 declare module '@glint/environment-ember-loose/registry' {

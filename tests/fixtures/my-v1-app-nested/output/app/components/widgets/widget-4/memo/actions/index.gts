@@ -13,8 +13,7 @@ export default class WidgetsWidget4MemoActions extends Component<WidgetsWidget4M
   styles = styles;
 
 
-  <template>
-  <div
+  <template><div
   class={{local
   this.styles
   "actions"
@@ -76,8 +75,7 @@ export default class WidgetsWidget4MemoActions extends Component<WidgetsWidget4M
     role="img"
   }}
   </button>
-  </div>
-  </template>
+  </div></template>
 }
 
 declare module '@glint/environment-ember-loose/registry' {

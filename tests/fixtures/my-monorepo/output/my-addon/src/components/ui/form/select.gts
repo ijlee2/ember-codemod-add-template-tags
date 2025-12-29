@@ -63,8 +63,7 @@ export default class UiFormSelect extends Component<UiFormSelectSignature> {
   }
 
 
-  <template>
-  <UiFormField
+  <template><UiFormField
   @errorMessage={{this.errorMessage}}
   @isWide={{@isWide}}
   >
@@ -140,6 +139,5 @@ export default class UiFormSelect extends Component<UiFormSelectSignature> {
     </button>
   </div>
   </:field>
-  </UiFormField>
-  </template>
+  </UiFormField></template>
 }

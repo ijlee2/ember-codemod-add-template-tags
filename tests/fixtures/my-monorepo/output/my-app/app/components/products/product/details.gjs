@@ -15,8 +15,7 @@ export default class ProductsProductDetails extends Component {
   }
 
 
-  <template>
-  <article class={{this.styles.container}} data-test-product-details>
+  <template><article class={{this.styles.container}} data-test-product-details>
   <header class={{this.styles.header}}>
   <h2 class={{this.styles.name}} data-test-field="Name">
     {{@product.name}}
@@ -79,6 +78,5 @@ export default class ProductsProductDetails extends Component {
     {{t "components.products.product.details.add-to-cart"}}
   </button>
   </div>
-  </article>
-  </template>
+  </article></template>
 }

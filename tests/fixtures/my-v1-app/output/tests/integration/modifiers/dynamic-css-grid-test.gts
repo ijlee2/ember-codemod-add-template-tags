@@ -8,10 +8,10 @@ module('Integration | Modifier | dynamic-css-grid', function (hooks) {
   setupRenderingTest(hooks);
 
   test('it renders', async function (assert) {
-    await render(<template>
-    <div data-test-list="Tracks" {{dynamicCssGrid numColumns=3 numRows=4}}>
-    </div>
-    </template>);
+    await render(
+        <template><div data-test-list="Tracks" {{dynamicCssGrid numColumns=3 numRows=4}}>
+        </div></template>
+    );
 
     assert.ok(true);
   });

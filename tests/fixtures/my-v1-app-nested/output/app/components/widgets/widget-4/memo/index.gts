@@ -5,8 +5,7 @@ import WidgetsWidget4MemoHeader from 'docs-app/components/widgets/widget-4/memo/
 
 import type { TOC } from '@ember/component/template-only';
 
-const WidgetsWidget4Memo = <template>
-<ContainerQuery
+const WidgetsWidget4Memo = <template><ContainerQuery
   @features={{hash
     small=(width max=200)
     large=(width min=200)
@@ -33,8 +32,7 @@ const WidgetsWidget4Memo = <template>
       @cqFeatures={{CQ.features}}
     />
   </div>
-</ContainerQuery>
-</template>;
+</ContainerQuery></template>;
 
 export default WidgetsWidget4Memo;
 

@@ -20,8 +20,7 @@ export default class NavigationMenu extends Component<NavigationMenuSignature> {
   styles = styles;
 
 
-  <template>
-  <nav aria-label={{@name}} data-test-nav={{@name}}>
+  <template><nav aria-label={{@name}} data-test-nav={{@name}}>
   <ul class={{this.styles.list}}>
   {{#each @menuItems as |menuItem|}}
     <li>
@@ -35,8 +34,7 @@ export default class NavigationMenu extends Component<NavigationMenuSignature> {
     </li>
   {{/each}}
   </ul>
-  </nav>
-  </template>
+  </nav></template>
 }
 
 declare module '@glint/environment-ember-loose/registry' {
