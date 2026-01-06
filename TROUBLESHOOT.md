@@ -139,3 +139,11 @@ module('Integration | Component | hello', function (hooks) {
 ```
 
 </details>
+
+<details>
+
+<summary>Codemod missed some imports</summary>
+
+Make sure that the package for which the `import` statements are missing is listed in `package.json` (dev)Dependencies.
+
+</details>
