@@ -41,6 +41,19 @@ For simplicity, the codemod doesn't cover these cases:
 
 <details>
 
+<summary>Codemod missed some imports</summary>
+
+If the thing to be imported comes from Ember, then the codemod has a bug. Please report the issue.
+
+If it comes from an addon, here are some possible reasons. The codemod won't handle these cases.
+
+- The addon didn't appear in `node_modules` because it hadn't been listed as a dependency in `package.json`.
+- The addon published files in a way that doesn't follow Ember conventions.
+
+</details>
+
+<details>
+
 <summary>Running <code>prettier</code> resulted in <code>Scope.checkBlockScopedCollisions</code></summary>
 
 `prettier` throws the error
@@ -137,13 +150,5 @@ module('Integration | Component | hello', function (hooks) {
   });
 });
 ```
-
-</details>
-
-<details>
-
-<summary>Codemod missed some imports</summary>
-
-Make sure that the package for which the `import` statements are missing is listed in `package.json` (dev)Dependencies.
 
 </details>
