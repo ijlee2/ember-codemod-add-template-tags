@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.2.1
+
+### Patch Changes
+
+- [#81](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/81) Updated dependencies ([@ijlee2](https://github.com/ijlee2))
+- [#80](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/80) Documented why the codemod may not add import statements ([@MichalBryxi](https://github.com/MichalBryxi))
+
 ## 1.2.0
 
 ### Minor Changes
