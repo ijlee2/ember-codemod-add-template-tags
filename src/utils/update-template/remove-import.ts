@@ -85,7 +85,7 @@ function keepNamedImport(specifier: SpecifierNamed, data: Data): boolean {
   return imported.name !== data.importName;
 }
 
-export function removeImport(file: string, data: Data) {
+export function removeImport(file: string, data: Data): string {
   const traverse = AST.traverse(data.isTypeScript);
 
   const ast = traverse(file, {
