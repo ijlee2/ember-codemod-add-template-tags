@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.2.0
+
+### Minor Changes
+
+- [#86](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/86) Allowed limiting search by entity ([@ijlee2](https://github.com/ijlee2))
+
 ## 2.1.0
 
 ### Minor Changes
