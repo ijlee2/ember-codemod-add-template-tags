@@ -8,7 +8,7 @@ import {
 } from './find-packages-with-hbs/index.js';
 
 export function findPackagesWithHBS(options: Options): Packages {
-  const { folder, projectRoot } = options;
+  const { projectRoot } = options;
 
   const packageRoots = getPackageRoots({ projectRoot });
   const packages: Packages = new Map();
@@ -27,7 +27,10 @@ export function findPackagesWithHBS(options: Options): Packages {
       return;
     }
 
-    const filesWithHBS = findFilesWithHBS({ folder, packageRoot, packageType });
+    const filesWithHBS = findFilesWithHBS(
+      { packageRoot, packageType },
+      options,
+    );
 
     if (ignorePackage(filesWithHBS, options)) {
       return;

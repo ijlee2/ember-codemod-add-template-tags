@@ -6,7 +6,7 @@ import { findPackagesWithHBS } from '../../../src/steps/index.js';
 import type { Options } from '../../../src/types/index.js';
 import { inputProject } from '../../helpers/shared-test-setups/my-v1-app.js';
 
-test('steps | find-packages-with-hbs > has folder option (1)', function () {
+test('steps | find-packages-with-hbs > has entity option (1)', function () {
   const options: Options = {
     componentStructure: 'flat',
     convert: {
@@ -14,7 +14,7 @@ test('steps | find-packages-with-hbs > has folder option (1)', function () {
       routes: true,
       tests: true,
     },
-    folder: 'ui',
+    entity: 'ui',
     projectRoot: 'tmp/my-v1-app',
   };
 

@@ -1,7 +1,7 @@
 import type { CodemodOptions, Options } from '../types/index.js';
 
 export function createOptions(codemodOptions: CodemodOptions): Options {
-  const { componentStructure, convert, folder, projectRoot } = codemodOptions;
+  const { componentStructure, convert, entity, projectRoot } = codemodOptions;
 
   return {
     componentStructure,
@@ -10,7 +10,7 @@ export function createOptions(codemodOptions: CodemodOptions): Options {
       routes: convert.has('routes'),
       tests: convert.has('tests'),
     },
-    folder,
+    entity,
     projectRoot,
   };
 }

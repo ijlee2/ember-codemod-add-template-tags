@@ -71,7 +71,7 @@ test('utils | find-packages-with-hbs | filter-components > v2-app', function () 
   const codemodOptions: CodemodOptions = {
     componentStructure: 'flat',
     convert: new Set(['components', 'routes', 'tests']),
-    folder: '',
+    entity: undefined,
     projectRoot: 'tmp/my-v2-app',
   };
 

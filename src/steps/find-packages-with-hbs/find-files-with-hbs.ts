@@ -1,51 +1,37 @@
-import { join, sep } from 'node:path';
-
 import { findFiles } from '@codemod-utils/files';
 
-import type { FilesToConvert, PackageType } from '../../types/index.js';
-import { SOURCE_FOR_INTERNAL_PACKAGES } from '../../utils/ember.js';
-import { filterComponents } from '../../utils/find-packages-with-hbs/index.js';
+import type {
+  FilesToConvert,
+  Options,
+  PackageType,
+} from '../../types/index.js';
+import {
+  filterComponents,
+  getPatternForComponents,
+  getPatternForRoutes,
+  getPatternForTests,
+} from '../../utils/find-packages-with-hbs/index.js';
 
-function normalizedJoin(...folders: string[]): string {
-  return join(...folders).replaceAll(sep, '/');
-}
-
-export function findFilesWithHBS({
-  folder,
-  packageRoot,
-  packageType,
-}: {
-  folder: string;
+type Data = {
   packageRoot: string;
   packageType: PackageType;
-}): FilesToConvert {
-  const source = SOURCE_FOR_INTERNAL_PACKAGES[packageType];
+};
 
-  const components = findFiles(
-    normalizedJoin(source, 'components', folder, '**/*.hbs'),
-    {
-      projectRoot: packageRoot,
-    },
-  );
+export function findFilesWithHBS(data: Data, options: Options): FilesToConvert {
+  const { packageRoot, packageType } = data;
 
-  const routes = findFiles(
-    normalizedJoin(source, 'templates', folder, '**/*.hbs'),
-    {
-      projectRoot: packageRoot,
-    },
-  );
+  const components = findFiles(getPatternForComponents(packageType, options), {
+    projectRoot: packageRoot,
+  });
 
-  const tests = findFiles(
-    normalizedJoin(
-      'tests/integration/{components,helpers,modifiers}',
-      folder,
-      '**/*-test.{js,ts}',
-    ),
-    {
-      ignoreList: ['**/*.d.ts'],
-      projectRoot: packageRoot,
-    },
-  );
+  const routes = findFiles(getPatternForRoutes(packageType, options), {
+    projectRoot: packageRoot,
+  });
+
+  const tests = findFiles(getPatternForTests(options), {
+    ignoreList: ['**/*.d.ts'],
+    projectRoot: packageRoot,
+  });
 
   return {
     components: filterComponents(components, {
