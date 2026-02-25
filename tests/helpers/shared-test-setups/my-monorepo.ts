@@ -3,7 +3,7 @@ import type { CodemodOptions, Options } from '../../../src/types/index.js';
 const codemodOptions: CodemodOptions = {
   componentStructure: 'flat',
   convert: new Set(['components', 'routes', 'tests']),
-  folder: '',
+  entity: undefined,
   projectRoot: 'tmp/my-monorepo',
 };
 
@@ -14,7 +14,7 @@ const options: Options = {
     routes: true,
     tests: true,
   },
-  folder: '',
+  entity: undefined,
   projectRoot: 'tmp/my-monorepo',
 };
 

@@ -11,7 +11,7 @@ import type {
 const codemodOptions: CodemodOptions = {
   componentStructure: 'nested',
   convert: new Set(['components', 'routes', 'tests']),
-  folder: '',
+  entity: undefined,
   projectRoot: 'tmp/my-v1-app-nested',
 };
 
@@ -181,7 +181,7 @@ const options: Options = {
     routes: true,
     tests: true,
   },
-  folder: '',
+  entity: undefined,
   projectRoot: 'tmp/my-v1-app-nested',
 };
 

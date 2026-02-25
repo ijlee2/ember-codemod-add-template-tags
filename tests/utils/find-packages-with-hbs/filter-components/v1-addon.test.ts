@@ -71,7 +71,7 @@ test('utils | find-packages-with-hbs | filter-components > v1-addon', function (
   const codemodOptions: CodemodOptions = {
     componentStructure: 'flat',
     convert: new Set(['components', 'routes', 'tests']),
-    folder: '',
+    entity: undefined,
     projectRoot: 'tmp/my-v1-addon',
   };
 

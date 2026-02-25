@@ -5,7 +5,7 @@ import type { ENTITY_TYPES } from '../utils/ember.js';
 type CodemodOptions = {
   componentStructure: 'flat' | 'nested';
   convert: Set<'components' | 'routes' | 'tests'>;
-  folder: string;
+  entity: string | undefined;
   projectRoot: string;
 };
 
@@ -16,7 +16,7 @@ type Options = {
     routes: boolean;
     tests: boolean;
   };
-  folder: string;
+  entity: string | undefined;
   projectRoot: string;
 };
 

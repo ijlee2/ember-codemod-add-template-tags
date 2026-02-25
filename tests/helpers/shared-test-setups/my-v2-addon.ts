@@ -11,7 +11,7 @@ import type {
 const codemodOptions: CodemodOptions = {
   componentStructure: 'flat',
   convert: new Set(['components', 'routes', 'tests']),
-  folder: '',
+  entity: undefined,
   projectRoot: 'tmp/my-v2-addon',
 };
 
@@ -60,7 +60,7 @@ const options: Options = {
     routes: true,
     tests: true,
   },
-  folder: '',
+  entity: undefined,
   projectRoot: 'tmp/my-v2-addon',
 };
 
