@@ -17,15 +17,28 @@ type Component = {
   componentType: ComponentType | undefined;
 };
 
+type ImportSpecifier = {
+  [key: string]: unknown;
+  importKind: 'type' | 'value';
+  local: {
+    name: string;
+    type: 'Identifier';
+  };
+  type: 'ImportDefaultSpecifier' | 'ImportSpecifier';
+};
+
 export function analyzeComponent(file: string): Component {
   const traverse = AST.traverse(true);
 
   let baseComponentName: string | undefined;
   let componentName: string | undefined;
   let componentType: ComponentType | undefined;
+  let hasDefaultExport = false;
 
   traverse(file, {
     visitExportDefaultDeclaration(node) {
+      hasDefaultExport = true;
+
       switch (node.value.declaration.type) {
         case 'AssignmentExpression': {
           componentName = node.value.declaration.left.name as string;
@@ -45,23 +58,41 @@ export function analyzeComponent(file: string): Component {
 
       return false;
     },
+  });
 
-    visitImportDeclaration(path) {
-      const importPath = path.node.source.value as string;
+  if (!hasDefaultExport) {
+    return {
+      baseComponentName,
+      componentName,
+      componentType,
+    };
+  }
+
+  traverse(file, {
+    visitImportDeclaration(node) {
+      if (node.value.importKind !== 'value') {
+        return false;
+      }
+
+      const importPath = node.value.source.value as string;
+      const importSpecifiers = (node.value.specifiers ??
+        []) as ImportSpecifier[];
 
       switch (importPath) {
         case '@ember/component':
         case '@ember/component/template-only':
         case '@glimmer/component': {
-          const defaultImport = path.node.specifiers!.find(({ type }) => {
-            return type === 'ImportDefaultSpecifier';
-          });
+          const importSpecifierForComponent = importSpecifiers.find(
+            (specifier) => {
+              return specifier.type === 'ImportDefaultSpecifier';
+            },
+          );
 
-          if (!defaultImport) {
+          if (!importSpecifierForComponent) {
             return false;
           }
 
-          baseComponentName = defaultImport.local!.name as string;
+          baseComponentName = importSpecifierForComponent.local.name;
           componentType = componentMap[importPath];
 
           return false;
