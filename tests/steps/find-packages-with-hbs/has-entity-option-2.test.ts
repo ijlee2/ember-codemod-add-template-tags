@@ -30,6 +30,7 @@ test('steps | find-packages-with-hbs > has entity option (2)', function () {
         {
           filesWithHBS: {
             components: [
+              'app/components/ui/form.hbs',
               'app/components/ui/form/checkbox.hbs',
               'app/components/ui/form/field.hbs',
               'app/components/ui/form/information.hbs',
@@ -38,6 +39,7 @@ test('steps | find-packages-with-hbs > has entity option (2)', function () {
             ].map(normalize),
             routes: [],
             tests: [
+              'tests/integration/components/ui/form-test.ts',
               'tests/integration/components/ui/form/checkbox-test.ts',
               'tests/integration/components/ui/form/field-test.ts',
               'tests/integration/components/ui/form/information-test.ts',
