@@ -17,6 +17,16 @@ type Component = {
   componentType: ComponentType | undefined;
 };
 
+type ImportSpecifier = {
+  [key: string]: unknown;
+  importKind: 'type' | 'value';
+  local: {
+    name: string;
+    type: 'Identifier';
+  };
+  type: 'ImportDefaultSpecifier' | 'ImportSpecifier';
+};
+
 export function analyzeComponent(file: string): Component {
   const traverse = AST.traverse(true);
 
@@ -48,22 +58,24 @@ export function analyzeComponent(file: string): Component {
 
     visitImportDeclaration(node) {
       const importPath = node.value.source.value as string;
+      const importSpecifiers = (node.value.specifiers ??
+        []) as ImportSpecifier[];
 
       switch (importPath) {
         case '@ember/component':
         case '@ember/component/template-only':
         case '@glimmer/component': {
-          const defaultImport = node.value.specifiers!.find(
-            (specifier: { [key: string]: unknown; type: string }) => {
+          const importSpecifierForComponent = importSpecifiers.find(
+            (specifier) => {
               return specifier.type === 'ImportDefaultSpecifier';
             },
           );
 
-          if (!defaultImport) {
+          if (!importSpecifierForComponent) {
             return false;
           }
 
-          baseComponentName = defaultImport.local!.name as string;
+          baseComponentName = importSpecifierForComponent.local.name;
           componentType = componentMap[importPath];
 
           return false;
