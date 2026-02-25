@@ -122,7 +122,8 @@ export function insertTemplateTag(
     analyzeComponent(file);
 
   switch (componentType) {
-    case 'glimmer': {
+    case 'glimmer':
+    case 'inherited': {
       return insertToGlimmerComponent(file, {
         baseComponentName,
         componentName,

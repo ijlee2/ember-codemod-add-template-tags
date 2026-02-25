@@ -32,7 +32,6 @@ You can uninstall the addon in these cases:
 For simplicity, the codemod doesn't cover these cases:
 
 - Classic components (`@ember/component`)
-- Components that extend another component (class inheritance)
 - Rendering tests that don't use the `hbs` tag inside `render()`
 - `dummy` app in v1 addons
 - In-repo addons
