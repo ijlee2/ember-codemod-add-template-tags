@@ -44,6 +44,10 @@ export function filterComponents(
 
     const { componentType } = analyzeComponent(classFile);
 
-    return componentType === 'glimmer' || componentType === 'template-only';
+    return (
+      componentType === 'glimmer' ||
+      componentType === 'inherited' ||
+      componentType === 'template-only'
+    );
   });
 }

@@ -7,9 +7,7 @@ const componentMap = {
   '@glimmer/component': 'glimmer',
 } as const;
 
-type ComponentImportPath = keyof typeof componentMap;
-
-type ComponentType = (typeof componentMap)[ComponentImportPath];
+type ComponentType = 'classic' | 'glimmer' | 'inherited' | 'template-only';
 
 type Component = {
   baseComponentName: string | undefined;
@@ -17,15 +15,24 @@ type Component = {
   componentType: ComponentType | undefined;
 };
 
-type ImportSpecifier = {
-  [key: string]: unknown;
-  importKind: 'type' | 'value';
-  local: {
-    name: string;
-    type: 'Identifier';
-  };
-  type: 'ImportDefaultSpecifier' | 'ImportSpecifier';
-};
+type ImportSpecifier =
+  | {
+      [key: string]: unknown;
+      local: {
+        name: string;
+        type: 'Identifier';
+      };
+      type: 'ImportDefaultSpecifier';
+    }
+  | {
+      [key: string]: unknown;
+      importKind: 'type' | 'value';
+      local: {
+        name: string;
+        type: 'Identifier';
+      };
+      type: 'ImportSpecifier';
+    };
 
 export function analyzeComponent(file: string): Component {
   const traverse = AST.traverse(true);
@@ -69,6 +76,22 @@ export function analyzeComponent(file: string): Component {
   }
 
   traverse(file, {
+    visitClassDeclaration(node) {
+      if ((node.value.id?.name as string | undefined) !== componentName) {
+        return false;
+      }
+
+      if (node.value.superClass?.type !== 'Identifier') {
+        return false;
+      }
+
+      baseComponentName = node.value.superClass.name as string;
+
+      return false;
+    },
+  });
+
+  traverse(file, {
     visitImportDeclaration(node) {
       if (node.value.importKind !== 'value') {
         return false;
@@ -89,13 +112,38 @@ export function analyzeComponent(file: string): Component {
           );
 
           if (!importSpecifierForComponent) {
-            return false;
+            break;
           }
 
           baseComponentName = importSpecifierForComponent.local.name;
           componentType = componentMap[importPath];
 
-          return false;
+          break;
+        }
+
+        default: {
+          const importSpecifierForComponent = importSpecifiers.find(
+            (specifier) => {
+              if (
+                specifier.type === 'ImportSpecifier' &&
+                specifier.importKind !== 'value'
+              ) {
+                return false;
+              }
+
+              if (specifier.local.type !== 'Identifier') {
+                return false;
+              }
+
+              return specifier.local.name === baseComponentName;
+            },
+          );
+
+          if (!importSpecifierForComponent) {
+            break;
+          }
+
+          componentType = 'inherited';
         }
       }
 
