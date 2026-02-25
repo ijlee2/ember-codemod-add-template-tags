@@ -1,6 +1,6 @@
 import { normalize } from 'node:path';
 
-import { assert, loadFixture, test } from '@codemod-utils/tests';
+import { assert, loadFixture, normalizeFile, test } from '@codemod-utils/tests';
 
 import type { CodemodOptions } from '../../../../src/types/index.js';
 import { filterComponents } from '../../../../src/utils/find-packages-with-hbs/index.js';
@@ -10,22 +10,59 @@ test('utils | find-packages-with-hbs | filter-components > v2-addon', function (
     src: {
       components: {
         tracks: {
-          'list.ts': `import templateOnlyComponent from '@ember/component/template-only';`,
+          'list.ts': normalizeFile([
+            `import templateOnlyComponent from '@ember/component/template-only';`,
+            ``,
+            `const TracksList = templateOnlyComponent<TracksListSignature>();`,
+            ``,
+            `export default TracksList;`,
+          ]),
         },
         ui: {
           form: {
-            'checkbox.js': `import Component from '@glimmer/component';`,
-            'input.gts': `import Component from '@glimmer/component';`,
-            'textarea.ts': `import Input from './input';`,
+            'checkbox.js': normalizeFile([
+              `import Component from '@glimmer/component';`,
+              ``,
+              `export default class UiFormCheckbox extends Component {}`,
+            ]),
+            'input.gts': normalizeFile([
+              `import Component from '@glimmer/component';`,
+              ``,
+              `export default class UiFormInput extends Component<UiFormInputSignature> {`,
+              `  <template></template>`,
+              `}`,
+            ]),
+            'textarea.ts': normalizeFile([
+              `import UiFormInput from './input';`,
+              ``,
+              `export default class UiFormTextarea extends UiFormInput<UiFormTextareaSignature> {}`,
+            ]),
           },
-          'form.js': `import Component from '@glimmer/component';`,
+          'form.ts': normalizeFile([
+            `import { BaseForm } from 'some-addon';`,
+            ``,
+            `export default class UiForm extends BaseForm<UiFormSignature> {}`,
+          ]),
         },
         widgets: {
-          'widget-2': {
-            'captions.js': `import templateOnlyComponent from '@ember/component/template-only';`,
-          },
-          'widget-2.ts': `import Component from '@glimmer/component';`,
-          'widget-3.ts': `import Component from '@ember/component';`,
+          'widget-1.gjs': normalizeFile([`<template></template>`]),
+          'widget-2.ts': normalizeFile([
+            `import Component from '@glimmer/component';`,
+            ``,
+            `export default class WidgetsWidget2 extends Component<WidgetsWidget2Signature> {}`,
+          ]),
+          'widget-3.js': normalizeFile([
+            `import Component from '@ember/component';`,
+            ``,
+            `export default Component.extend({});`,
+          ]),
+          'widget-4.js': normalizeFile([
+            `import templateOnlyComponent from '@ember/component/template-only';`,
+            ``,
+            `const WidgetsWidget4 = templateOnlyComponent();`,
+            ``,
+            `export default WidgetsWidget4;`,
+          ]),
         },
       },
     },
@@ -47,8 +84,8 @@ test('utils | find-packages-with-hbs | filter-components > v2-addon', function (
     'src/components/ui/form/checkbox.hbs',
     'src/components/ui/form/textarea.hbs',
     'src/components/widgets/widget-2.hbs',
-    'src/components/widgets/widget-2/captions.hbs',
     'src/components/widgets/widget-3.hbs',
+    'src/components/widgets/widget-4.hbs',
   ].map(normalize);
 
   const newFilePaths = filterComponents(oldFilePaths, {
@@ -61,10 +98,9 @@ test('utils | find-packages-with-hbs | filter-components > v2-addon', function (
     [
       'src/components/tracks.hbs',
       'src/components/tracks/list.hbs',
-      'src/components/ui/form.hbs',
       'src/components/ui/form/checkbox.hbs',
       'src/components/widgets/widget-2.hbs',
-      'src/components/widgets/widget-2/captions.hbs',
+      'src/components/widgets/widget-4.hbs',
     ].map(normalize),
   );
 });
