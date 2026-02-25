@@ -1,5 +1,15 @@
 # Changelog
 
+## 2.1.0
+
+### Minor Changes
+
+- [#85](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/85) Supported components with class inheritance ([@ijlee2](https://github.com/ijlee2))
+
+### Patch Changes
+
+- [#84](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/84) Ignored type imports when analyzing component files ([@ijlee2](https://github.com/ijlee2))
+
 ## 2.0.0
 
 ### Major Changes
