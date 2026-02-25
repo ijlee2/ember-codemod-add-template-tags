@@ -14,5 +14,16 @@ test('utils | update-components | insert-template-tag > edge case (class inherit
     isTypeScript: false,
   });
 
-  assert.strictEqual(newFile, undefined);
+  assert.strictEqual(
+    newFile,
+    normalizeFile([
+      `import Parent from '../parent';`,
+      ``,
+      `export default class Child extends Parent {`,
+      ``,
+      `  <template></template>`,
+      `}`,
+      ``,
+    ]),
+  );
 });

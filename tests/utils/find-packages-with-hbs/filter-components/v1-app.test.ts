@@ -98,7 +98,9 @@ test('utils | find-packages-with-hbs | filter-components > v1-app', function () 
     [
       'app/components/tracks.hbs',
       'app/components/tracks/list.hbs',
+      'app/components/ui/form.hbs',
       'app/components/ui/form/checkbox.hbs',
+      'app/components/ui/form/textarea.hbs',
       'app/components/widgets/widget-2.hbs',
       'app/components/widgets/widget-4.hbs',
     ].map(normalize),
