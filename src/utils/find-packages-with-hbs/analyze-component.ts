@@ -46,16 +46,18 @@ export function analyzeComponent(file: string): Component {
       return false;
     },
 
-    visitImportDeclaration(path) {
-      const importPath = path.node.source.value as string;
+    visitImportDeclaration(node) {
+      const importPath = node.value.source.value as string;
 
       switch (importPath) {
         case '@ember/component':
         case '@ember/component/template-only':
         case '@glimmer/component': {
-          const defaultImport = path.node.specifiers!.find(({ type }) => {
-            return type === 'ImportDefaultSpecifier';
-          });
+          const defaultImport = node.value.specifiers!.find(
+            (specifier: { [key: string]: unknown; type: string }) => {
+              return specifier.type === 'ImportDefaultSpecifier';
+            },
+          );
 
           if (!defaultImport) {
             return false;
