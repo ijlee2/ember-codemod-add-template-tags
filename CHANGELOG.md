@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.4.0
+
+### Minor Changes
+
+- [#89](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/89) Parallelized code ([@ijlee2](https://github.com/ijlee2))
+
 ## 2.3.0
 
 ### Minor Changes
