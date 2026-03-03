@@ -46,6 +46,12 @@ function updateTemplate(
 
     ElementNode(node) {
       const componentName = node.tag;
+
+      // Don't convert native <input> and <textarea> tags
+      if (componentName === 'input' || componentName === 'textarea') {
+        return;
+      }
+
       const entityData = componentsDoubleColonized.get(componentName);
 
       if (!entityData) {
