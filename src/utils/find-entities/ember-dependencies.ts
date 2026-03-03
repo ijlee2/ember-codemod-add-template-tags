@@ -122,6 +122,16 @@ export const emberDependencies: Dependencies = new Map([
             },
           ],
           [
+            'trustHTML',
+            {
+              filePath: '.',
+              filePathAlias: '.',
+              isDefaultExport: false,
+              isTypeScript: true,
+              packageName: '@ember/template',
+            },
+          ],
+          [
             'unique-id',
             {
               filePath: '.',

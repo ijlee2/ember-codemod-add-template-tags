@@ -37,6 +37,7 @@ test('utils | find-entities | merge-entities > base case', function () {
     'get',
     'hash',
     'htmlSafe',
+    'trustHTML',
     'unique-id',
   ]);
 
@@ -238,6 +239,7 @@ test('utils | find-entities | merge-entities > base case', function () {
     'get',
     'hash',
     'htmlSafe',
+    'trustHTML',
     'unique-id',
     'aspect-ratio',
     'height',

@@ -18,6 +18,7 @@ test('utils | find-entities | ember-dependencies > ember-source', function () {
     'get',
     'hash',
     'htmlSafe',
+    'trustHTML',
     'unique-id',
   ]);
 
