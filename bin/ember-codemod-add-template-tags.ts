@@ -41,4 +41,4 @@ const codemodOptions: CodemodOptions = {
   projectRoot: argv['root'] ?? process.cwd(),
 };
 
-runCodemod(codemodOptions);
+void runCodemod(codemodOptions);

@@ -12,7 +12,7 @@ import {
   packages,
 } from '../../helpers/shared-test-setups/my-v2-addon.js';
 
-test('steps | update-routes > v2-addon', function () {
+test('steps | update-routes > v2-addon', async function () {
   const outputProject = {
     src: {
       components: {
@@ -53,9 +53,9 @@ test('steps | update-routes > v2-addon', function () {
 
   loadFixture(inputProject, options);
 
-  const entities = findEntities(options);
+  const entities = await findEntities(options);
 
-  updateRoutes(packages, entities);
+  await updateRoutes(packages, entities);
 
   assertFixture(outputProject, options);
 });

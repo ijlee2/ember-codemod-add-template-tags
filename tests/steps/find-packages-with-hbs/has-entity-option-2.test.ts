@@ -6,7 +6,7 @@ import { findPackagesWithHbs } from '../../../src/steps/index.js';
 import type { Options } from '../../../src/types/index.js';
 import { inputProject } from '../../helpers/shared-test-setups/my-v1-app.js';
 
-test('steps | find-packages-with-hbs > has entity option (2)', function () {
+test('steps | find-packages-with-hbs > has entity option (2)', async function () {
   const options: Options = {
     componentStructure: 'flat',
     convert: {
@@ -20,7 +20,7 @@ test('steps | find-packages-with-hbs > has entity option (2)', function () {
 
   loadFixture(inputProject, options);
 
-  const packages = findPackagesWithHbs(options);
+  const packages = await findPackagesWithHbs(options);
 
   assert.deepStrictEqual(
     packages,

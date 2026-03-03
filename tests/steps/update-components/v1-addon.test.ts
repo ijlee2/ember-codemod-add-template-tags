@@ -12,7 +12,7 @@ import {
   packages,
 } from '../../helpers/shared-test-setups/my-v1-addon.js';
 
-test('steps | update-components > v1-addon', function () {
+test('steps | update-components > v1-addon', async function () {
   const outputProject = {
     addon: {
       components: {
@@ -73,9 +73,9 @@ test('steps | update-components > v1-addon', function () {
 
   loadFixture(inputProject, options);
 
-  const entities = findEntities(options);
+  const entities = await findEntities(options);
 
-  updateComponents(packages, entities);
+  await updateComponents(packages, entities);
 
   assertFixture(outputProject, options);
 });

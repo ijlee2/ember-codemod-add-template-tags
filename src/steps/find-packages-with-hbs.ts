@@ -7,7 +7,8 @@ import {
   ignorePackage,
 } from './find-packages-with-hbs/index.js';
 
-export function findPackagesWithHbs(options: Options): Packages {
+// eslint-disable-next-line @typescript-eslint/require-await
+export async function findPackagesWithHbs(options: Options): Promise<Packages> {
   const packageRoots = getPackageRoots(options);
   const packages: Packages = new Map();
 

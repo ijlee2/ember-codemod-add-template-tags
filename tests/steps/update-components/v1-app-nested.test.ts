@@ -12,7 +12,7 @@ import {
   packages,
 } from '../../helpers/shared-test-setups/my-v1-app-nested.js';
 
-test('steps | update-components > v1-app (nested)', function () {
+test('steps | update-components > v1-app (nested)', async function () {
   const outputProject = {
     app: {
       components: {
@@ -176,9 +176,9 @@ test('steps | update-components > v1-app (nested)', function () {
 
   loadFixture(inputProject, options);
 
-  const entities = findEntities(options);
+  const entities = await findEntities(options);
 
-  updateComponents(packages, entities);
+  await updateComponents(packages, entities);
 
   assertFixture(outputProject, options);
 });

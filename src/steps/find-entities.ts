@@ -7,7 +7,8 @@ import {
   sortEntities,
 } from '../utils/find-entities/index.js';
 
-export function findEntities(options: Options): AllEntities {
+// eslint-disable-next-line @typescript-eslint/require-await
+export async function findEntities(options: Options): Promise<AllEntities> {
   const entities: AllEntities = {
     components: new Map(),
     helpers: new Map(),

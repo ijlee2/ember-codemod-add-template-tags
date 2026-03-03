@@ -5,7 +5,7 @@ import { assert, loadFixture, normalizeFile, test } from '@codemod-utils/tests';
 import { findEntities } from '../../../src/steps/index.js';
 import { options } from '../../helpers/shared-test-setups/my-monorepo.js';
 
-test('steps | find-entities > has internal dependencies', function () {
+test('steps | find-entities > has internal dependencies', async function () {
   const inputProject = {
     docs: {
       'my-v2-addon': {
@@ -134,7 +134,7 @@ test('steps | find-entities > has internal dependencies', function () {
 
   loadFixture(inputProject, options);
 
-  const entities = findEntities(options);
+  const entities = await findEntities(options);
 
   assert.deepStrictEqual(entities, {
     components: new Map([

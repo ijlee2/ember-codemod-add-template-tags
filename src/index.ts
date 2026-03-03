@@ -8,9 +8,11 @@ import {
 } from './steps/index.js';
 import type { CodemodOptions } from './types/index.js';
 
-export function runCodemod(codemodOptions: CodemodOptions): void {
+export async function runCodemod(
+  codemodOptions: CodemodOptions,
+): Promise<void> {
   const options = createOptions(codemodOptions);
-  const packages = findPackagesWithHbs(options);
+  const packages = await findPackagesWithHbs(options);
 
   if (packages.size === 0) {
     console.log('✅ Found no packages with hbs');
@@ -21,21 +23,21 @@ export function runCodemod(codemodOptions: CodemodOptions): void {
 
   console.log(`✅ Found ${packages.size} package(s) with hbs`);
 
-  const entities = findEntities(options);
+  const entities = await findEntities(options);
   console.log('✅ Found entities');
 
   if (options.convert.components) {
-    updateComponents(packages, entities);
+    await updateComponents(packages, entities);
     console.log('✅ Updated components');
   }
 
   if (options.convert.routes) {
-    updateRoutes(packages, entities);
+    await updateRoutes(packages, entities);
     console.log('✅ Updated routes');
   }
 
   if (options.convert.tests) {
-    updateTests(packages, entities);
+    await updateTests(packages, entities);
     console.log('✅ Updated tests');
   }
 
