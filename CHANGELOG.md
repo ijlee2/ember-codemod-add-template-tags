@@ -1,5 +1,15 @@
 # Changelog
 
+## 2.3.0
+
+### Minor Changes
+
+- [#88](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/88) Added trustHTML to emberDependencies ([@ijlee2](https://github.com/ijlee2))
+
+### Patch Changes
+
+- [#87](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/87) Simplified API for enterStrictMode ([@ijlee2](https://github.com/ijlee2))
+
 ## 2.2.0
 
 ### Minor Changes
