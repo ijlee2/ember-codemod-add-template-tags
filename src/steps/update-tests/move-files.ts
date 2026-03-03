@@ -1,35 +1,21 @@
-import { readFileSync, writeFileSync } from 'node:fs';
-import { join } from 'node:path';
-
-import { removeFiles } from '@codemod-utils/files';
+import { parallelize } from '@codemod-utils/threads';
 
 import type { Packages } from '../../types/index.js';
-import { insertTemplateTag } from '../../utils/update-tests/index.js';
+import { task } from './move-files/task.js';
 
-export function moveFiles(packages: Packages): void {
+export async function moveFiles(packages: Packages): Promise<void> {
+  const datasets: Parameters<typeof task>[] = [];
+
   for (const [, packageData] of packages) {
-    const { filesWithHbs, filesWithTemplateTag, packageRoot } = packageData;
+    const { filesWithHbs } = packageData;
 
     filesWithHbs.tests.forEach((testFilePath) => {
-      let testFile = readFileSync(join(packageRoot, testFilePath), 'utf8');
-      const isTypeScript = testFilePath.endsWith('.ts');
-
-      testFile = insertTemplateTag(testFile, {
-        isTypeScript,
-        useLexicalThis: false,
-      });
-
-      testFilePath = isTypeScript
-        ? testFilePath.replace(/\.ts$/, '.gts')
-        : testFilePath.replace(/\.js$/, '.gjs');
-
-      writeFileSync(join(packageRoot, testFilePath), testFile, 'utf8');
-
-      filesWithTemplateTag.tests.push(testFilePath);
-    });
-
-    removeFiles(filesWithHbs.tests, {
-      projectRoot: packageRoot,
+      datasets.push([testFilePath, packageData]);
     });
   }
+
+  await parallelize(task, datasets, {
+    importMetaUrl: import.meta.url,
+    workerFilePath: './move-files/worker.js',
+  });
 }

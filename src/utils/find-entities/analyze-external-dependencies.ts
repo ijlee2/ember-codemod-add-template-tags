@@ -1,13 +1,10 @@
 import { join } from 'node:path';
 
 import { findFiles, parseFilePath } from '@codemod-utils/files';
-import { getPackageType, readPackageJson } from '@codemod-utils/package-json';
+import { parallelize } from '@codemod-utils/threads';
 
 import type { Dependencies, Options } from '../../types/index.js';
-import {
-  analyzeEmberPackage,
-  isEntitiesEmpty,
-} from './analyze-dependencies/index.js';
+import { task } from './analyze-external-dependencies/task.js';
 
 function getExternalPackageRoots(options: Options): string[] {
   const { projectRoot } = options;
@@ -25,48 +22,23 @@ function getExternalPackageRoots(options: Options): string[] {
   return packageRoots;
 }
 
-export function analyzeExternalDependencies(options: Options): Dependencies {
+export async function analyzeExternalDependencies(
+  options: Options,
+): Promise<Dependencies> {
   const packageRoots = getExternalPackageRoots(options);
-  const dependencies: Dependencies = new Map();
+
+  const datasets: Parameters<typeof task>[] = [];
 
   packageRoots.forEach((packageRoot) => {
-    try {
-      const packageJson = readPackageJson({ projectRoot: packageRoot });
-      const packageName = packageJson['name'];
-
-      if (!packageName || dependencies.has(packageName)) {
-        return;
-      }
-
-      const packageType = getPackageType(packageJson);
-
-      if (packageType !== 'v1-addon' && packageType !== 'v2-addon') {
-        return;
-      }
-
-      const entities = analyzeEmberPackage({
-        componentStructure: 'flat' as const,
-        isExternal: true,
-        packageName,
-        packageRoot,
-        packageType,
-      });
-
-      if (isEntitiesEmpty(entities)) {
-        return;
-      }
-
-      dependencies.set(packageName, {
-        entities,
-        packageRoot,
-        packageType,
-      });
-    } catch (error) {
-      console.warn(
-        `Could not read package.json in ${packageRoot}. (${(error as Error).message})`,
-      );
-    }
+    datasets.push([packageRoot]);
   });
 
-  return new Map([...dependencies].sort());
+  const entries = await parallelize(task, datasets, {
+    importMetaUrl: import.meta.url,
+    workerFilePath: './analyze-external-dependencies/worker.js',
+  });
+
+  return new Map(
+    entries.filter((entry) => entry !== undefined).sort(),
+  ) as Dependencies;
 }

@@ -6,7 +6,7 @@ import {
   options,
 } from '../../../helpers/shared-test-setups/my-monorepo.js';
 
-test('utils | find-entities | analyze-internal-dependencies > entities is empty', function () {
+test('utils | find-entities | analyze-internal-dependencies > entities is empty', async function () {
   const inputProject = {
     docs: {
       'my-v2-addon': {
@@ -84,7 +84,7 @@ test('utils | find-entities | analyze-internal-dependencies > entities is empty'
 
   loadFixture(inputProject, codemodOptions);
 
-  const internalDependencies = analyzeInternalDependencies(options);
+  const internalDependencies = await analyzeInternalDependencies(options);
 
   assert.deepStrictEqual(internalDependencies, new Map());
 });

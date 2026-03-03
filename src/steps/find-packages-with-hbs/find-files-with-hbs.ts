@@ -17,7 +17,10 @@ type Data = {
   packageType: PackageType;
 };
 
-export function findFilesWithHbs(data: Data, options: Options): FilesToConvert {
+export async function findFilesWithHbs(
+  data: Data,
+  options: Options,
+): Promise<FilesToConvert> {
   const { packageRoot, packageType } = data;
 
   const components = findFiles(getPatternForComponents(packageType, options), {
@@ -34,7 +37,7 @@ export function findFilesWithHbs(data: Data, options: Options): FilesToConvert {
   });
 
   return {
-    components: filterComponents(components, {
+    components: await filterComponents(components, {
       packageRoot,
       packageType,
     }),

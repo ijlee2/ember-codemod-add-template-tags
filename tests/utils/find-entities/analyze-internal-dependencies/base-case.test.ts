@@ -8,7 +8,7 @@ import {
   options,
 } from '../../../helpers/shared-test-setups/my-monorepo.js';
 
-test('utils | find-entities | analyze-internal-dependencies > base case', function () {
+test('utils | find-entities | analyze-internal-dependencies > base case', async function () {
   const inputProject = {
     docs: {
       'my-v2-addon': {
@@ -119,7 +119,7 @@ test('utils | find-entities | analyze-internal-dependencies > base case', functi
 
   loadFixture(inputProject, codemodOptions);
 
-  const internalDependencies = analyzeInternalDependencies(options);
+  const internalDependencies = await analyzeInternalDependencies(options);
 
   assert.deepStrictEqual(
     internalDependencies,

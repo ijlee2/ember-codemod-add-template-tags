@@ -3,7 +3,7 @@ import { assert, loadFixture, normalizeFile, test } from '@codemod-utils/tests';
 import { findPackagesWithHbs } from '../../../src/steps/index.js';
 import { options } from '../../helpers/shared-test-setups/my-monorepo.js';
 
-test('steps | find-packages-with-hbs > ignores node packages', function () {
+test('steps | find-packages-with-hbs > ignores node packages', async function () {
   const inputProject = {
     'my-node-package': {
       app: {
@@ -42,7 +42,7 @@ test('steps | find-packages-with-hbs > ignores node packages', function () {
 
   loadFixture(inputProject, options);
 
-  const packages = findPackagesWithHbs(options);
+  const packages = await findPackagesWithHbs(options);
 
   assert.deepStrictEqual(packages, new Map());
 });

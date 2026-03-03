@@ -12,7 +12,7 @@ import {
   packages,
 } from '../../helpers/shared-test-setups/my-v2-app.js';
 
-test('steps | update-components > v2-app', function () {
+test('steps | update-components > v2-app', async function () {
   const outputProject = {
     app: {
       components: {
@@ -231,9 +231,9 @@ test('steps | update-components > v2-app', function () {
 
   loadFixture(inputProject, options);
 
-  const entities = findEntities(options);
+  const entities = await findEntities(options);
 
-  updateComponents(packages, entities);
+  await updateComponents(packages, entities);
 
   assertFixture(outputProject, options);
 });

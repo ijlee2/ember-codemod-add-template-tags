@@ -8,10 +8,10 @@ import {
   options,
 } from '../../helpers/shared-test-setups/my-v2-addon.js';
 
-test('steps | find-packages-with-hbs > v2-addon', function () {
+test('steps | find-packages-with-hbs > v2-addon', async function () {
   loadFixture(inputProject, options);
 
-  const packages = findPackagesWithHbs(options);
+  const packages = await findPackagesWithHbs(options);
 
   assert.deepStrictEqual(
     packages,

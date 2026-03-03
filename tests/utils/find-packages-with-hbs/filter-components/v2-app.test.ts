@@ -5,7 +5,7 @@ import { assert, loadFixture, normalizeFile, test } from '@codemod-utils/tests';
 import type { CodemodOptions } from '../../../../src/types/index.js';
 import { filterComponents } from '../../../../src/utils/find-packages-with-hbs/index.js';
 
-test('utils | find-packages-with-hbs | filter-components > v2-app', function () {
+test('utils | find-packages-with-hbs | filter-components > v2-app', async function () {
   const inputProject = {
     app: {
       components: {
@@ -88,7 +88,7 @@ test('utils | find-packages-with-hbs | filter-components > v2-app', function () 
     'app/components/widgets/widget-4.hbs',
   ].map(normalize);
 
-  const newFilePaths = filterComponents(oldFilePaths, {
+  const newFilePaths = await filterComponents(oldFilePaths, {
     packageRoot: normalize('tmp/my-v2-app'),
     packageType: 'v2-app',
   });

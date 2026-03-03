@@ -1,13 +1,11 @@
-import { readFileSync } from 'node:fs';
-import { join } from 'node:path';
-
 import { findFiles } from '@codemod-utils/files';
+import { parallelize } from '@codemod-utils/threads';
 
 import type { PackageType } from '../../types/index.js';
 import { SOURCE_FOR_INTERNAL_PACKAGES } from '../ember.js';
-import { analyzeComponent } from './analyze-component.js';
+import { task } from './filter-components/task.js';
 
-export function filterComponents(
+export async function filterComponents(
   templateFilePaths: string[],
   {
     packageRoot,
@@ -16,7 +14,7 @@ export function filterComponents(
     packageRoot: string;
     packageType: PackageType;
   },
-): string[] {
+): Promise<string[]> {
   const source = SOURCE_FOR_INTERNAL_PACKAGES[packageType];
 
   const classFilePaths = findFiles(`${source}/components/**/*.{js,ts}`, {
@@ -24,30 +22,30 @@ export function filterComponents(
     projectRoot: packageRoot,
   });
 
-  const classFilePathSet = new Set(classFilePaths);
+  const classFilePathsSet = new Set(classFilePaths);
 
-  return templateFilePaths.filter((templateFilePath) => {
-    const classFilePathJs = templateFilePath.replace(/\.hbs$/, '.js');
-    const classFilePathTs = templateFilePath.replace(/\.hbs$/, '.ts');
-    let classFile: string | undefined;
+  const datasets: Parameters<typeof task>[] = templateFilePaths.map(
+    (templateFilePath) => {
+      const classFilePathJs = templateFilePath.replace(/\.hbs$/, '.js');
+      const classFilePathTs = templateFilePath.replace(/\.hbs$/, '.ts');
+      let classFilePath: string | undefined;
 
-    if (classFilePathSet.has(classFilePathJs)) {
-      classFile = readFileSync(join(packageRoot, classFilePathJs), 'utf8');
-    } else if (classFilePathSet.has(classFilePathTs)) {
-      classFile = readFileSync(join(packageRoot, classFilePathTs), 'utf8');
-    }
+      if (classFilePathsSet.has(classFilePathJs)) {
+        classFilePath = classFilePathJs;
+      } else if (classFilePathsSet.has(classFilePathTs)) {
+        classFilePath = classFilePathTs;
+      }
 
-    // Allow template-only components without a backing class
-    if (!classFile) {
-      return true;
-    }
+      return [templateFilePath, classFilePath, packageRoot];
+    },
+  );
 
-    const { componentType } = analyzeComponent(classFile);
-
-    return (
-      componentType === 'glimmer' ||
-      componentType === 'inherited' ||
-      componentType === 'template-only'
-    );
+  const newTemplateFilePaths = await parallelize(task, datasets, {
+    importMetaUrl: import.meta.url,
+    workerFilePath: './filter-components/worker.js',
   });
+
+  return newTemplateFilePaths.filter(
+    (templateFilePath) => templateFilePath !== undefined,
+  );
 }

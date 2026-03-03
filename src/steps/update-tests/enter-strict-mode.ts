@@ -1,40 +1,24 @@
-import { readFileSync, writeFileSync } from 'node:fs';
-import { join } from 'node:path';
-
-import { updateJavaScript } from '@codemod-utils/ast-template-tag';
+import { parallelize } from '@codemod-utils/threads';
 
 import type { AllEntities, Packages } from '../../types/index.js';
-import {
-  removeImport,
-  updateInvocations,
-} from '../../utils/update-template/index.js';
+import { task } from './enter-strict-mode/task.js';
 
-export function enterStrictMode(
+export async function enterStrictMode(
   packages: Packages,
   entities: AllEntities,
-): void {
+): Promise<void> {
+  const datasets: Parameters<typeof task>[] = [];
+
   for (const [, packageData] of packages) {
     const { filesWithTemplateTag, packageRoot } = packageData;
 
     filesWithTemplateTag.tests.forEach((filePath) => {
-      const oldFile = readFileSync(join(packageRoot, filePath), 'utf8');
-      const isTypeScript = filePath.endsWith('.gts');
-
-      let newFile = updateJavaScript(oldFile, (code) => {
-        return removeImport(code, {
-          importKind: 'value',
-          importName: 'hbs',
-          importPath: 'ember-cli-htmlbars',
-          isDefaultImport: false,
-          isTypeScript,
-        });
-      });
-
-      newFile = updateInvocations(newFile, {
-        entities,
-      });
-
-      writeFileSync(join(packageRoot, filePath), newFile, 'utf8');
+      datasets.push([filePath, packageRoot, entities]);
     });
   }
+
+  await parallelize(task, datasets, {
+    importMetaUrl: import.meta.url,
+    workerFilePath: './enter-strict-mode/worker.js',
+  });
 }

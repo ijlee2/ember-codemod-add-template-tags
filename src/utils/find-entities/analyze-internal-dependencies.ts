@@ -1,48 +1,26 @@
 import { getPackageRoots } from '@codemod-utils/files';
-import { getPackageType, readPackageJson } from '@codemod-utils/package-json';
+import { parallelize } from '@codemod-utils/threads';
 
 import type { Dependencies, Options } from '../../types/index.js';
-import {
-  analyzeEmberPackage,
-  isEntitiesEmpty,
-} from './analyze-dependencies/index.js';
+import { task } from './analyze-internal-dependencies/task.js';
 
-export function analyzeInternalDependencies(options: Options): Dependencies {
+export async function analyzeInternalDependencies(
+  options: Options,
+): Promise<Dependencies> {
   const packageRoots = getPackageRoots(options);
-  const dependencies: Dependencies = new Map();
+
+  const datasets: Parameters<typeof task>[] = [];
 
   packageRoots.forEach((packageRoot) => {
-    const packageJson = readPackageJson({ projectRoot: packageRoot });
-    const packageName = packageJson['name'];
-
-    if (!packageName || dependencies.has(packageName)) {
-      return;
-    }
-
-    const packageType = getPackageType(packageJson);
-
-    if (packageType === 'node') {
-      return;
-    }
-
-    const entities = analyzeEmberPackage({
-      componentStructure: options.componentStructure,
-      isExternal: false,
-      packageName,
-      packageRoot,
-      packageType,
-    });
-
-    if (isEntitiesEmpty(entities)) {
-      return;
-    }
-
-    dependencies.set(packageName, {
-      entities,
-      packageRoot,
-      packageType,
-    });
+    datasets.push([packageRoot, options]);
   });
 
-  return new Map([...dependencies].sort());
+  const entries = await parallelize(task, datasets, {
+    importMetaUrl: import.meta.url,
+    workerFilePath: './analyze-internal-dependencies/worker.js',
+  });
+
+  return new Map(
+    entries.filter((entry) => entry !== undefined).sort(),
+  ) as Dependencies;
 }

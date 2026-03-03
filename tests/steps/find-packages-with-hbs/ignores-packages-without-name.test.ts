@@ -3,7 +3,7 @@ import { assert, loadFixture, normalizeFile, test } from '@codemod-utils/tests';
 import { findPackagesWithHbs } from '../../../src/steps/index.js';
 import { options } from '../../helpers/shared-test-setups/my-v1-app.js';
 
-test('steps | find-packages-with-hbs > ignores packages without name', function () {
+test('steps | find-packages-with-hbs > ignores packages without name', async function () {
   const inputProject = {
     'my-v1-app': {
       app: {
@@ -46,7 +46,7 @@ test('steps | find-packages-with-hbs > ignores packages without name', function 
 
   loadFixture(inputProject, options);
 
-  const packages = findPackagesWithHbs(options);
+  const packages = await findPackagesWithHbs(options);
 
   assert.deepStrictEqual(packages, new Map());
 });
