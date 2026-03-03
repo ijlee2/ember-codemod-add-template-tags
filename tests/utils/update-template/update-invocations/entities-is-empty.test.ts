@@ -80,7 +80,6 @@ test('utils | update-template | update-invocations > entities is empty', functio
   ]);
 
   const newFile = updateInvocations(oldFile, {
-    componentsDoubleColonized: new Map(),
     entities: {
       components: new Map(),
       helpers: new Map(),

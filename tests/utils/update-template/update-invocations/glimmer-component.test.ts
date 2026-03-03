@@ -1,10 +1,7 @@
 import { assert, normalizeFile, test } from '@codemod-utils/tests';
 
 import { updateInvocations } from '../../../../src/utils/update-template/index.js';
-import {
-  componentsDoubleColonized,
-  entities,
-} from '../../../helpers/mocks/index.js';
+import { entities } from '../../../helpers/mocks/index.js';
 
 test('utils | update-template | update-invocations > Glimmer component', function () {
   const oldFile = normalizeFile([
@@ -147,7 +144,6 @@ test('utils | update-template | update-invocations > Glimmer component', functio
   ]);
 
   const newFile = updateInvocations(oldFile, {
-    componentsDoubleColonized,
     entities,
   });
 

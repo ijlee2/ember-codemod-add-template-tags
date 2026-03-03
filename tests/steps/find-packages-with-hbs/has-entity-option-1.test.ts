@@ -2,7 +2,7 @@ import { normalize } from 'node:path';
 
 import { assert, loadFixture, test } from '@codemod-utils/tests';
 
-import { findPackagesWithHBS } from '../../../src/steps/index.js';
+import { findPackagesWithHbs } from '../../../src/steps/index.js';
 import type { Options } from '../../../src/types/index.js';
 import { inputProject } from '../../helpers/shared-test-setups/my-v1-app.js';
 
@@ -20,7 +20,7 @@ test('steps | find-packages-with-hbs > has entity option (1)', function () {
 
   loadFixture(inputProject, options);
 
-  const packages = findPackagesWithHBS(options);
+  const packages = findPackagesWithHbs(options);
 
   assert.deepStrictEqual(
     packages,
@@ -28,7 +28,7 @@ test('steps | find-packages-with-hbs > has entity option (1)', function () {
       [
         'my-v1-app',
         {
-          filesWithHBS: {
+          filesWithHbs: {
             components: [
               'app/components/ui/form.hbs',
               'app/components/ui/form/checkbox.hbs',

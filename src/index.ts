@@ -1,7 +1,7 @@
 import {
   createOptions,
   findEntities,
-  findPackagesWithHBS,
+  findPackagesWithHbs,
   updateComponents,
   updateRoutes,
   updateTests,
@@ -10,7 +10,7 @@ import type { CodemodOptions } from './types/index.js';
 
 export function runCodemod(codemodOptions: CodemodOptions): void {
   const options = createOptions(codemodOptions);
-  const packages = findPackagesWithHBS(options);
+  const packages = findPackagesWithHbs(options);
 
   if (packages.size === 0) {
     console.log('✅ Found no packages with hbs');

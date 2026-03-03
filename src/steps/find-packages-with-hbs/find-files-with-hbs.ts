@@ -17,7 +17,7 @@ type Data = {
   packageType: PackageType;
 };
 
-export function findFilesWithHBS(data: Data, options: Options): FilesToConvert {
+export function findFilesWithHbs(data: Data, options: Options): FilesToConvert {
   const { packageRoot, packageType } = data;
 
   const components = findFiles(getPatternForComponents(packageType, options), {

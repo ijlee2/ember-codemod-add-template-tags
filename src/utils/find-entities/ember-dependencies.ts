@@ -5,7 +5,7 @@ export const emberDependencies: Dependencies = new Map([
     '@embroider/util',
     {
       entities: {
-        components: new Map([]),
+        components: new Map(),
         helpers: new Map([
           [
             'ensure-safe-component',
@@ -18,7 +18,7 @@ export const emberDependencies: Dependencies = new Map([
             },
           ],
         ]),
-        modifiers: new Map([]),
+        modifiers: new Map(),
       },
       packageRoot: '',
       packageType: 'v1-addon',
