@@ -375,6 +375,16 @@ test('steps | find-entities > has external dependencies', function () {
         },
       ],
       [
+        'trustHTML',
+        {
+          filePath: normalize('.'),
+          filePathAlias: normalize('.'),
+          isDefaultExport: false,
+          isTypeScript: true,
+          packageName: '@ember/template',
+        },
+      ],
+      [
         'unique-id',
         {
           filePath: normalize('.'),

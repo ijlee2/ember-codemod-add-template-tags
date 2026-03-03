@@ -117,6 +117,16 @@ test('steps | find-entities > base case', function () {
         },
       ],
       [
+        'trustHTML',
+        {
+          filePath: normalize('.'),
+          filePathAlias: normalize('.'),
+          isDefaultExport: false,
+          isTypeScript: true,
+          packageName: '@ember/template',
+        },
+      ],
+      [
         'unique-id',
         {
           filePath: normalize('.'),
