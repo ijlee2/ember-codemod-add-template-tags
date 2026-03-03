@@ -69,7 +69,6 @@ export type {
   AllEntities,
   CodemodOptions,
   Dependencies,
-  Entities,
   EntityData,
   EntityName,
   EntityType,

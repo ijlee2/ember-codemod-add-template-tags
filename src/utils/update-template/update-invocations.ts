@@ -2,26 +2,25 @@ import { EOL } from 'node:os';
 
 import { AST } from '@codemod-utils/ast-template';
 import { updateTemplates } from '@codemod-utils/ast-template-tag';
-import { camelize, pascalize } from '@codemod-utils/ember';
+import {
+  camelize,
+  invertDoubleColonize,
+  pascalize,
+} from '@codemod-utils/ember';
 
-import type { AllEntities, Entities } from '../../types/index.js';
+import type { AllEntities } from '../../types/index.js';
 import { ImportStatements } from './import-statements.js';
 
 type Data = {
-  componentsDoubleColonized: Entities;
   entities: AllEntities;
 };
-
-function removeDoubleColons(name: string): string {
-  return name.replaceAll('::', '').replaceAll('-', '');
-}
 
 function updateTemplate(
   file: string,
   importStatements: ImportStatements,
   data: Data,
 ): string {
-  const { componentsDoubleColonized, entities } = data;
+  const { entities } = data;
 
   const traverse = AST.traverse();
 
@@ -52,13 +51,14 @@ function updateTemplate(
         return;
       }
 
-      const entityData = componentsDoubleColonized.get(componentName);
+      const entityName = invertDoubleColonize(componentName);
+      const entityData = entities.components.get(entityName);
 
       if (!entityData) {
         return;
       }
 
-      const newName = removeDoubleColons(componentName);
+      const newName = pascalize(entityName);
 
       node.tag = newName;
       importStatements.add(newName, entityData);
