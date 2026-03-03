@@ -51,20 +51,19 @@ type FilesToConvert = {
   tests: string[];
 };
 
+type PackageData = {
+  filesWithHBS: FilesToConvert;
+  filesWithTemplateTag: FilesToConvert;
+  hasEmberRouteTemplate: boolean;
+  packageRoot: string;
+  packageType: PackageType;
+};
+
 type PackageName = string;
 
 type PackageType = Exclude<_PackageType, 'node'>;
 
-type Packages = Map<
-  PackageName,
-  {
-    filesWithHBS: FilesToConvert;
-    filesWithTemplateTag: FilesToConvert;
-    hasEmberRouteTemplate: boolean;
-    packageRoot: string;
-    packageType: PackageType;
-  }
->;
+type Packages = Map<PackageName, PackageData>;
 
 export type {
   AllEntities,
@@ -76,7 +75,7 @@ export type {
   EntityType,
   FilesToConvert,
   Options,
-  PackageName,
+  PackageData,
   Packages,
   PackageType,
 };
