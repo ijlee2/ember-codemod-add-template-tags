@@ -8,9 +8,7 @@ import {
 } from './find-packages-with-hbs/index.js';
 
 export function findPackagesWithHbs(options: Options): Packages {
-  const { projectRoot } = options;
-
-  const packageRoots = getPackageRoots({ projectRoot });
+  const packageRoots = getPackageRoots(options);
   const packages: Packages = new Map();
 
   packageRoots.forEach((packageRoot) => {
