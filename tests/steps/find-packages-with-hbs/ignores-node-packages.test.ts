@@ -1,6 +1,6 @@
 import { assert, loadFixture, normalizeFile, test } from '@codemod-utils/tests';
 
-import { findPackagesWithHBS } from '../../../src/steps/index.js';
+import { findPackagesWithHbs } from '../../../src/steps/index.js';
 import { options } from '../../helpers/shared-test-setups/my-monorepo.js';
 
 test('steps | find-packages-with-hbs > ignores node packages', function () {
@@ -42,7 +42,7 @@ test('steps | find-packages-with-hbs > ignores node packages', function () {
 
   loadFixture(inputProject, options);
 
-  const packages = findPackagesWithHBS(options);
+  const packages = findPackagesWithHbs(options);
 
   assert.deepStrictEqual(packages, new Map());
 });

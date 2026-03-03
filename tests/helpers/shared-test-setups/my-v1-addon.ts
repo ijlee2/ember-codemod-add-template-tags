@@ -91,7 +91,7 @@ const packages: Packages = new Map([
   [
     'my-v1-addon',
     {
-      filesWithHBS: {
+      filesWithHbs: {
         components: ['addon/components/navigation-menu.hbs'].map(normalize),
         routes: [],
         tests: [],

@@ -9,13 +9,13 @@ import type { Packages } from '../../types/index.js';
 export function moveFiles(packages: Packages): void {
   for (const [, packageData] of packages) {
     const {
-      filesWithHBS,
+      filesWithHbs,
       filesWithTemplateTag,
       hasEmberRouteTemplate,
       packageRoot,
     } = packageData;
 
-    filesWithHBS.routes.forEach((templateFilePath) => {
+    filesWithHbs.routes.forEach((templateFilePath) => {
       const classFilePath = templateFilePath.replace(/\.hbs$/, '.gjs');
 
       const templateFile = readFileSync(
@@ -40,7 +40,7 @@ export function moveFiles(packages: Packages): void {
       filesWithTemplateTag.routes.push(classFilePath);
     });
 
-    removeFiles(filesWithHBS.routes, {
+    removeFiles(filesWithHbs.routes, {
       projectRoot: packageRoot,
     });
   }

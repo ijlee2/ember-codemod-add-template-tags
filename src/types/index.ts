@@ -52,7 +52,7 @@ type FilesToConvert = {
 };
 
 type PackageData = {
-  filesWithHBS: FilesToConvert;
+  filesWithHbs: FilesToConvert;
   filesWithTemplateTag: FilesToConvert;
   hasEmberRouteTemplate: boolean;
   packageRoot: string;

@@ -244,7 +244,7 @@ const packages: Packages = new Map([
   [
     'my-v1-app',
     {
-      filesWithHBS: {
+      filesWithHbs: {
         components: [
           'app/components/navigation-menu.hbs',
           'app/components/select-locale.hbs',

@@ -189,7 +189,7 @@ const packages: Packages = new Map([
   [
     'my-v1-app-nested',
     {
-      filesWithHBS: {
+      filesWithHbs: {
         components: [
           'app/components/navigation-menu/index.hbs',
           'app/components/select-locale/index.hbs',

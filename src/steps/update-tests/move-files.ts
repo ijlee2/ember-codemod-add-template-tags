@@ -8,9 +8,9 @@ import { insertTemplateTag } from '../../utils/update-tests/index.js';
 
 export function moveFiles(packages: Packages): void {
   for (const [, packageData] of packages) {
-    const { filesWithHBS, filesWithTemplateTag, packageRoot } = packageData;
+    const { filesWithHbs, filesWithTemplateTag, packageRoot } = packageData;
 
-    filesWithHBS.tests.forEach((testFilePath) => {
+    filesWithHbs.tests.forEach((testFilePath) => {
       let testFile = readFileSync(join(packageRoot, testFilePath), 'utf8');
       const isTypeScript = testFilePath.endsWith('.ts');
 
@@ -28,7 +28,7 @@ export function moveFiles(packages: Packages): void {
       filesWithTemplateTag.tests.push(testFilePath);
     });
 
-    removeFiles(filesWithHBS.tests, {
+    removeFiles(filesWithHbs.tests, {
       projectRoot: packageRoot,
     });
   }

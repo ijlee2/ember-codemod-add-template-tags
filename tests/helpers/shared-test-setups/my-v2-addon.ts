@@ -68,7 +68,7 @@ const packages: Packages = new Map([
   [
     'my-v2-addon',
     {
-      filesWithHBS: {
+      filesWithHbs: {
         components: [
           'src/components/navigation-menu.hbs',
           'src/components/select-locale.hbs',

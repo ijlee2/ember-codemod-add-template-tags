@@ -2,7 +2,7 @@ import { normalize } from 'node:path';
 
 import { assert, loadFixture, test } from '@codemod-utils/tests';
 
-import { findPackagesWithHBS } from '../../../src/steps/index.js';
+import { findPackagesWithHbs } from '../../../src/steps/index.js';
 import {
   inputProject,
   options,
@@ -11,7 +11,7 @@ import {
 test('steps | find-packages-with-hbs > v1-app (nested)', function () {
   loadFixture(inputProject, options);
 
-  const packages = findPackagesWithHBS(options);
+  const packages = findPackagesWithHbs(options);
 
   assert.deepStrictEqual(
     packages,
@@ -19,7 +19,7 @@ test('steps | find-packages-with-hbs > v1-app (nested)', function () {
       [
         'my-v1-app-nested',
         {
-          filesWithHBS: {
+          filesWithHbs: {
             components: [
               'app/components/navigation-menu/index.hbs',
               'app/components/select-locale/index.hbs',

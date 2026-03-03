@@ -15,7 +15,7 @@ import { insertTemplateTag } from '../../utils/update-components/index.js';
 
 export function moveFiles(packages: Packages): void {
   for (const [, packageData] of packages) {
-    const { filesWithHBS, filesWithTemplateTag, packageRoot, packageType } =
+    const { filesWithHbs, filesWithTemplateTag, packageRoot, packageType } =
       packageData;
 
     const source = SOURCE_FOR_INTERNAL_PACKAGES[packageType];
@@ -29,7 +29,7 @@ export function moveFiles(packages: Packages): void {
 
     const classFilePathsToRemove: string[] = [];
 
-    filesWithHBS.components.forEach((templateFilePath) => {
+    filesWithHbs.components.forEach((templateFilePath) => {
       const classFilePathJs = templateFilePath.replace(/\.hbs$/, '.js');
       const classFilePathTs = templateFilePath.replace(/\.hbs$/, '.ts');
 
@@ -82,7 +82,7 @@ export function moveFiles(packages: Packages): void {
       filesWithTemplateTag.components.push(classFilePath);
     });
 
-    removeFiles(filesWithHBS.components, {
+    removeFiles(filesWithHbs.components, {
       projectRoot: packageRoot,
     });
 
