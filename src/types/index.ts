@@ -75,6 +75,7 @@ export type {
   FilesToConvert,
   Options,
   PackageData,
+  PackageName,
   Packages,
   PackageType,
 };

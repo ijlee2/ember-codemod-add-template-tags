@@ -1,60 +1,24 @@
 import { getPackageRoots } from '@codemod-utils/files';
-import { getPackageType, readPackageJson } from '@codemod-utils/package-json';
+import { parallelize } from '@codemod-utils/threads';
 
 import type { Options, Packages } from '../types/index.js';
-import {
-  findFilesWithHbs,
-  ignorePackage,
-} from './find-packages-with-hbs/index.js';
+import { task } from './find-packages-with-hbs/task.js';
 
-// eslint-disable-next-line @typescript-eslint/require-await
 export async function findPackagesWithHbs(options: Options): Promise<Packages> {
   const packageRoots = getPackageRoots(options);
-  const packages: Packages = new Map();
+
+  const datasets: Parameters<typeof task>[] = [];
 
   packageRoots.forEach((packageRoot) => {
-    const packageJson = readPackageJson({ projectRoot: packageRoot });
-    const packageName = packageJson['name'];
-
-    if (!packageName) {
-      return;
-    }
-
-    const packageType = getPackageType(packageJson);
-
-    if (packageType === 'node') {
-      return;
-    }
-
-    const filesWithHbs = findFilesWithHbs(
-      { packageRoot, packageType },
-      options,
-    );
-
-    if (ignorePackage(filesWithHbs, options)) {
-      return;
-    }
-
-    const dependencies = Object.assign(
-      {},
-      packageJson['dependencies'],
-      packageJson['devDependencies'],
-    );
-
-    const hasEmberRouteTemplate = Boolean(dependencies['ember-route-template']);
-
-    packages.set(packageName, {
-      filesWithHbs,
-      filesWithTemplateTag: {
-        components: [],
-        routes: [],
-        tests: [],
-      },
-      hasEmberRouteTemplate,
-      packageRoot,
-      packageType,
-    });
+    datasets.push([packageRoot, options]);
   });
 
-  return new Map([...packages].sort());
+  const entries = await parallelize(task, datasets, {
+    importMetaUrl: import.meta.url,
+    workerFilePath: './find-packages-with-hbs/worker.js',
+  });
+
+  return new Map(
+    entries.filter((entry) => entry !== undefined).sort(),
+  ) as Packages;
 }
