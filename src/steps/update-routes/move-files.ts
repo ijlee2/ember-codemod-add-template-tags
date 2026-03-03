@@ -1,47 +1,23 @@
-import { readFileSync, writeFileSync } from 'node:fs';
-import { EOL } from 'node:os';
-import { join } from 'node:path';
-
-import { removeFiles } from '@codemod-utils/files';
+import { parallelize } from '@codemod-utils/threads';
 
 import type { Packages } from '../../types/index.js';
+import { task } from './move-files/task.js';
 
-export function moveFiles(packages: Packages): void {
+export async function moveFiles(packages: Packages): Promise<void> {
+  const datasets: Parameters<typeof task>[] = [];
+
   for (const [, packageData] of packages) {
-    const {
-      filesWithHbs,
-      filesWithTemplateTag,
-      hasEmberRouteTemplate,
-      packageRoot,
-    } = packageData;
+    const { filesWithHbs } = packageData;
 
     filesWithHbs.routes.forEach((templateFilePath) => {
       const classFilePath = templateFilePath.replace(/\.hbs$/, '.gjs');
 
-      const templateFile = readFileSync(
-        join(packageRoot, templateFilePath),
-        'utf8',
-      );
-
-      let classFile = [`<template>`, templateFile, `</template>`].join(EOL);
-
-      if (hasEmberRouteTemplate) {
-        classFile = [
-          `import RouteTemplate from 'ember-route-template';`,
-          ``,
-          `export default RouteTemplate(${classFile});`,
-        ].join(EOL);
-      }
-
-      classFile += EOL;
-
-      writeFileSync(join(packageRoot, classFilePath), classFile, 'utf8');
-
-      filesWithTemplateTag.routes.push(classFilePath);
-    });
-
-    removeFiles(filesWithHbs.routes, {
-      projectRoot: packageRoot,
+      datasets.push([templateFilePath, classFilePath, packageData]);
     });
   }
+
+  await parallelize(task, datasets, {
+    importMetaUrl: import.meta.url,
+    workerFilePath: './move-files/worker.js',
+  });
 }
