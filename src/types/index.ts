@@ -22,14 +22,13 @@ type Options = {
 
 type AllEntities = Record<EntityType, Entities>;
 
-type Dependencies = Map<
-  PackageName,
-  {
-    entities: AllEntities;
-    packageRoot: string;
-    packageType: PackageType;
-  }
->;
+type Dependencies = Map<PackageName, DependencyData>;
+
+type DependencyData = {
+  entities: AllEntities;
+  packageRoot: string;
+  packageType: PackageType;
+};
 
 type Entities = Map<EntityName, EntityData>;
 
@@ -69,6 +68,7 @@ export type {
   AllEntities,
   CodemodOptions,
   Dependencies,
+  DependencyData,
   EntityData,
   EntityName,
   EntityType,

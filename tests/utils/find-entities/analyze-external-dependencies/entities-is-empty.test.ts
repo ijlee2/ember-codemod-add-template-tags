@@ -6,7 +6,7 @@ import {
   options,
 } from '../../../helpers/shared-test-setups/my-monorepo.js';
 
-test('utils | find-entities | analyze-external-dependencies > entities is empty', function () {
+test('utils | find-entities | analyze-external-dependencies > entities is empty', async function () {
   const inputProject = {
     node_modules: {
       '.pnpm': {
@@ -73,7 +73,7 @@ test('utils | find-entities | analyze-external-dependencies > entities is empty'
 
   loadFixture(inputProject, codemodOptions);
 
-  const externalDependencies = analyzeExternalDependencies(options);
+  const externalDependencies = await analyzeExternalDependencies(options);
 
   assert.deepStrictEqual(externalDependencies, new Map());
 });

@@ -7,7 +7,6 @@ import {
   sortEntities,
 } from '../utils/find-entities/index.js';
 
-// eslint-disable-next-line @typescript-eslint/require-await
 export async function findEntities(options: Options): Promise<AllEntities> {
   const entities: AllEntities = {
     components: new Map(),
@@ -15,8 +14,8 @@ export async function findEntities(options: Options): Promise<AllEntities> {
     modifiers: new Map(),
   };
 
-  const externalDependencies = analyzeExternalDependencies(options);
-  const internalDependencies = analyzeInternalDependencies(options);
+  const externalDependencies = await analyzeExternalDependencies(options);
+  const internalDependencies = await analyzeInternalDependencies(options);
 
   mergeEntities(entities, emberDependencies, true);
   mergeEntities(entities, externalDependencies, true);

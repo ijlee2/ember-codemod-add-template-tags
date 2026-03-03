@@ -8,7 +8,7 @@ import {
   options,
 } from '../../../helpers/shared-test-setups/my-monorepo.js';
 
-test('utils | find-entities | analyze-external-dependencies > package has barrel file', function () {
+test('utils | find-entities | analyze-external-dependencies > package has barrel file', async function () {
   const inputProject = {
     node_modules: {
       '.pnpm': {
@@ -151,7 +151,7 @@ test('utils | find-entities | analyze-external-dependencies > package has barrel
 
   loadFixture(inputProject, codemodOptions);
 
-  const externalDependencies = analyzeExternalDependencies(options);
+  const externalDependencies = await analyzeExternalDependencies(options);
 
   assert.deepStrictEqual(
     externalDependencies,
