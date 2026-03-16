@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.4.3
+
+### Patch Changes
+
+- [#92](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/92) Updated @codemod-utils/threads to 0.4.0 ([@ijlee2](https://github.com/ijlee2))
+
 ## 2.4.2
 
 ### Patch Changes
