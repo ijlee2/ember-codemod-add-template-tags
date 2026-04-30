@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { EOL } from 'node:os';
 
 import { AST } from '@codemod-utils/ast-javascript';
@@ -15,15 +14,15 @@ function insertToGlimmerComponent(file: string, data: Data): string {
   const traverse = AST.traverse(true);
 
   const ast = traverse(file, {
-    visitClassDeclaration(node) {
-      const className = node.value.id?.name as string | undefined;
+    visitClassDeclaration(path) {
+      const className = path.node.id?.name as string | undefined;
 
       if (className !== data.componentName) {
         return false;
       }
 
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-      node.value.body.body.push(`${EOL}<template></template>`);
+      // @ts-expect-error: Incorrect type
+      path.node.body.body.push(`${EOL}<template></template>`);
 
       return false;
     },
@@ -43,13 +42,16 @@ function insertToTemplateOnlyComponent(file: string, data: Data): string {
     ].join(EOL);
 
     traverse(file, {
-      visitVariableDeclaration(node) {
-        if (node.value.declarations.length !== 1) {
+      visitVariableDeclaration(path) {
+        if (path.node.declarations.length !== 1) {
           return;
         }
 
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-        const declaration = node.value.declarations[0];
+        const declaration = path.node.declarations[0]!;
+
+        if (declaration.type !== 'VariableDeclarator') {
+          return false;
+        }
 
         if (
           declaration.id.type !== 'Identifier' ||
@@ -58,20 +60,27 @@ function insertToTemplateOnlyComponent(file: string, data: Data): string {
           return false;
         }
 
+        if (declaration.init?.type !== 'CallExpression') {
+          return false;
+        }
+
+        // @ts-expect-error: Incorrect type
+        const { typeParameters } = declaration.init;
+
         if (
-          declaration.init.typeParameters === undefined ||
-          declaration.init.typeParameters.type !==
-            'TSTypeParameterInstantiation' ||
-          declaration.init.typeParameters.params[0].type !==
-            'TSTypeReference' ||
-          declaration.init.typeParameters.params[0].typeName.type !==
-            'Identifier'
+          typeParameters === undefined ||
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+          typeParameters.type !== 'TSTypeParameterInstantiation' ||
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+          typeParameters.params[0].type !== 'TSTypeReference' ||
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+          typeParameters.params[0].typeName.type !== 'Identifier'
         ) {
           return false;
         }
 
-        const signatureName = declaration.init.typeParameters.params[0].typeName
-          .name as string;
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+        const signatureName = typeParameters.params[0].typeName.name as string;
 
         template += ` satisfies TOC<${signatureName}>`;
 
@@ -81,27 +90,34 @@ function insertToTemplateOnlyComponent(file: string, data: Data): string {
   }
 
   const ast = traverse(file, {
-    visitCallExpression(node) {
-      if (node.value.callee.name !== data.baseComponentName) {
+    visitCallExpression(path) {
+      // @ts-expect-error: Incorrect type
+      if (path.node.callee.name !== data.baseComponentName) {
         return false;
       }
 
-      switch (node.parentPath.value.type) {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+      switch (path.parent.node.type) {
         case 'AssignmentExpression': {
-          node.parentPath.value.right = template;
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+          path.parent.node.right = template;
           break;
         }
 
         case 'ExportDefaultDeclaration': {
-          if (node.parentPath.value.id === undefined) {
-            node.parentPath.value.declaration = template;
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+          if (path.parent.node.id === undefined) {
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+            path.parent.node.declaration = template;
           }
           break;
         }
 
         case 'VariableDeclarator': {
-          if (node.parentPath.value.id.name === data.componentName) {
-            node.parentPath.value.init = template;
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+          if (path.parent.node.id.name === data.componentName) {
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+            path.parent.node.init = template;
           }
           break;
         }

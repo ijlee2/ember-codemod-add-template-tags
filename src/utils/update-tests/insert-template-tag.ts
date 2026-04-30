@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access */
 import { EOL } from 'node:os';
 
 import { AST as ASTJavaScript } from '@codemod-utils/ast-javascript';
@@ -67,23 +66,23 @@ export function insertTemplateTag(file: string, data: Data): string {
   const traverse = ASTJavaScript.traverse(data.isTypeScript);
 
   const ast = traverse(file, {
-    visitCallExpression(node) {
+    visitCallExpression(path) {
       if (
-        node.value.callee.type !== 'Identifier' ||
-        node.value.callee.name !== 'render'
+        path.node.callee.type !== 'Identifier' ||
+        path.node.callee.name !== 'render'
       ) {
-        this.traverse(node);
+        this.traverse(path);
         return false;
       }
 
       if (
-        node.value.arguments.length !== 1 &&
-        node.value.arguments.length !== 2
+        path.node.arguments.length !== 1 &&
+        path.node.arguments.length !== 2
       ) {
         return false;
       }
 
-      const nodeValue = node.value.arguments[0]!;
+      const nodeValue = path.node.arguments[0]!;
 
       if (
         nodeValue?.type !== 'TaggedTemplateExpression' ||
@@ -95,12 +94,12 @@ export function insertTemplateTag(file: string, data: Data): string {
 
       if (
         nodeValue.quasi.type !== 'TemplateLiteral' ||
-        nodeValue.quasi.quasis[0].type !== 'TemplateElement'
+        nodeValue.quasi.quasis[0]?.type !== 'TemplateElement'
       ) {
         return false;
       }
 
-      let template = nodeValue.quasi.quasis[0].value.raw as string;
+      let template = nodeValue.quasi.quasis[0].value.raw;
 
       if (!data.useLexicalThis) {
         const { code, renamedThis } = renameThis(template);
@@ -108,31 +107,37 @@ export function insertTemplateTag(file: string, data: Data): string {
         if (renamedThis) {
           template = code;
 
-          switch (node.parent.parent.parent.value.type) {
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+          const testFunctionPath = path.parent.parent.parent;
+
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+          switch (testFunctionPath.value.type) {
             case 'BlockStatement': {
-              const body = node.parent.parent.parent.value.body as unknown[];
+              // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+              const body = testFunctionPath.value.body as unknown[];
 
               const index = body.findIndex((element) => {
-                return element === node.parent.parent.value;
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+                return element === path.parent.parent.value;
               });
 
-              node.parent.parent.parent.value.body = updateBody(body, index);
+              // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+              testFunctionPath.value.body = updateBody(body, index);
 
               break;
             }
 
             case 'FunctionExpression': {
-              const body = node.parent.parent.parent.value.body
-                .body as unknown[];
+              // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+              const body = testFunctionPath.value.body.body as unknown[];
 
               const index = body.findIndex((element) => {
-                return element === node.parent.value;
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+                return element === path.parent.value;
               });
 
-              node.parent.parent.parent.value.body.body = updateBody(
-                body,
-                index,
-              );
+              // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+              testFunctionPath.value.body.body = updateBody(body, index);
 
               break;
             }
@@ -140,15 +145,18 @@ export function insertTemplateTag(file: string, data: Data): string {
         }
       }
 
-      const indent = node.value.loc.indent as number;
+      // @ts-expect-error: Incorrect type
+      const indent = path.node.loc!.indent as number;
 
-      node.value.arguments[0] = [
+      // @ts-expect-error: Incorrect type
+      path.node.arguments[0] = [
         `<template>`,
         `  ${indentToLeft(template.trim(), indent)}`,
         `</template>`,
       ].join(EOL);
 
-      node.value.typeParameters = null;
+      // @ts-expect-error: Incorrect type
+      path.node.typeParameters = null;
 
       return false;
     },

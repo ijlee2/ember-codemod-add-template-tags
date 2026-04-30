@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { AST } from '@codemod-utils/ast-javascript';
 
 const componentMap = {
@@ -43,22 +42,23 @@ export function analyzeComponent(file: string): Component {
   let hasDefaultExport = false;
 
   traverse(file, {
-    visitExportDefaultDeclaration(node) {
+    visitExportDefaultDeclaration(path) {
       hasDefaultExport = true;
 
-      switch (node.value.declaration.type) {
+      switch (path.node.declaration.type) {
         case 'AssignmentExpression': {
-          componentName = node.value.declaration.left.name as string;
+          // @ts-expect-error: Incorrect type
+          componentName = path.node.declaration.left.name as string;
           break;
         }
 
         case 'ClassDeclaration': {
-          componentName = node.value.declaration.id?.name as string | undefined;
+          componentName = path.node.declaration.id?.name as string | undefined;
           break;
         }
 
         case 'Identifier': {
-          componentName = node.value.declaration.name as string;
+          componentName = path.node.declaration.name;
           break;
         }
       }
@@ -76,29 +76,30 @@ export function analyzeComponent(file: string): Component {
   }
 
   traverse(file, {
-    visitClassDeclaration(node) {
-      if ((node.value.id?.name as string | undefined) !== componentName) {
+    visitClassDeclaration(path) {
+      if ((path.node.id?.name as string | undefined) !== componentName) {
         return false;
       }
 
-      if (node.value.superClass?.type !== 'Identifier') {
+      if (path.node.superClass?.type !== 'Identifier') {
         return false;
       }
 
-      baseComponentName = node.value.superClass.name as string;
+      baseComponentName = path.node.superClass.name;
 
       return false;
     },
   });
 
   traverse(file, {
-    visitImportDeclaration(node) {
-      if (node.value.importKind !== 'value') {
+    visitImportDeclaration(path) {
+      if (path.node.importKind !== 'value') {
         return false;
       }
 
-      const importPath = node.value.source.value as string;
-      const importSpecifiers = (node.value.specifiers ??
+      const importPath = path.node.source.value as string;
+
+      const importSpecifiers = (path.node.specifiers ??
         []) as ImportSpecifier[];
 
       switch (importPath) {
