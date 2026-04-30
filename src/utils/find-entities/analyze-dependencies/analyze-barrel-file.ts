@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { readFileSync } from 'node:fs';
 import { join, relative, sep } from 'node:path';
 
@@ -33,16 +32,19 @@ function analyze(file: string, data: Data): EntitiesExported | undefined {
 
   traverse(file, {
     visitExportNamedDeclaration(node) {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       if (data.isTypeScript && node.value.exportKind !== 'value') {
         return false;
       }
 
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       const sourceType = node.value.source?.type as string | undefined;
 
       if (sourceType !== 'Literal' && sourceType !== 'StringLiteral') {
         return false;
       }
 
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       const exportPath = node.value.source.value as string;
 
       for (const [entityType, entityFolder] of Object.entries(ENTITY_FOLDERS)) {

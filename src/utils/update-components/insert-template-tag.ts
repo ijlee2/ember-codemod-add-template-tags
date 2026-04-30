@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { EOL } from 'node:os';
 
 import { AST } from '@codemod-utils/ast-javascript';
@@ -16,13 +15,14 @@ function insertToGlimmerComponent(file: string, data: Data): string {
 
   const ast = traverse(file, {
     visitClassDeclaration(node) {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       const className = node.value.id?.name as string | undefined;
 
       if (className !== data.componentName) {
         return false;
       }
 
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
       node.value.body.body.push(`${EOL}<template></template>`);
 
       return false;
@@ -44,32 +44,40 @@ function insertToTemplateOnlyComponent(file: string, data: Data): string {
 
     traverse(file, {
       visitVariableDeclaration(node) {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         if (node.value.declarations.length !== 1) {
           return;
         }
 
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
         const declaration = node.value.declarations[0];
 
         if (
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
           declaration.id.type !== 'Identifier' ||
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
           declaration.id.name !== data.componentName
         ) {
           return false;
         }
 
         if (
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
           declaration.init.typeParameters === undefined ||
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
           declaration.init.typeParameters.type !==
             'TSTypeParameterInstantiation' ||
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
           declaration.init.typeParameters.params[0].type !==
             'TSTypeReference' ||
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
           declaration.init.typeParameters.params[0].typeName.type !==
             'Identifier'
         ) {
           return false;
         }
 
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         const signatureName = declaration.init.typeParameters.params[0].typeName
           .name as string;
 
@@ -82,25 +90,32 @@ function insertToTemplateOnlyComponent(file: string, data: Data): string {
 
   const ast = traverse(file, {
     visitCallExpression(node) {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       if (node.value.callee.name !== data.baseComponentName) {
         return false;
       }
 
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       switch (node.parentPath.value.type) {
         case 'AssignmentExpression': {
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
           node.parentPath.value.right = template;
           break;
         }
 
         case 'ExportDefaultDeclaration': {
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
           if (node.parentPath.value.id === undefined) {
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
             node.parentPath.value.declaration = template;
           }
           break;
         }
 
         case 'VariableDeclarator': {
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
           if (node.parentPath.value.id.name === data.componentName) {
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
             node.parentPath.value.init = template;
           }
           break;

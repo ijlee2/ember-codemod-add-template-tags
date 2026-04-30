@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access */
 import { EOL } from 'node:os';
 
 import { AST as ASTJavaScript } from '@codemod-utils/ast-javascript';
@@ -69,7 +68,9 @@ export function insertTemplateTag(file: string, data: Data): string {
   const ast = traverse(file, {
     visitCallExpression(node) {
       if (
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         node.value.callee.type !== 'Identifier' ||
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         node.value.callee.name !== 'render'
       ) {
         this.traverse(node);
@@ -77,29 +78,38 @@ export function insertTemplateTag(file: string, data: Data): string {
       }
 
       if (
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         node.value.arguments.length !== 1 &&
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         node.value.arguments.length !== 2
       ) {
         return false;
       }
 
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
       const nodeValue = node.value.arguments[0]!;
 
       if (
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         nodeValue?.type !== 'TaggedTemplateExpression' ||
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         nodeValue.tag.type !== 'Identifier' ||
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         nodeValue.tag.name !== 'hbs'
       ) {
         return false;
       }
 
       if (
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         nodeValue.quasi.type !== 'TemplateLiteral' ||
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         nodeValue.quasi.quasis[0].type !== 'TemplateElement'
       ) {
         return false;
       }
 
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       let template = nodeValue.quasi.quasis[0].value.raw as string;
 
       if (!data.useLexicalThis) {
@@ -108,27 +118,34 @@ export function insertTemplateTag(file: string, data: Data): string {
         if (renamedThis) {
           template = code;
 
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
           switch (node.parent.parent.parent.value.type) {
             case 'BlockStatement': {
+              // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
               const body = node.parent.parent.parent.value.body as unknown[];
 
               const index = body.findIndex((element) => {
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
                 return element === node.parent.parent.value;
               });
 
+              // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
               node.parent.parent.parent.value.body = updateBody(body, index);
 
               break;
             }
 
             case 'FunctionExpression': {
+              // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
               const body = node.parent.parent.parent.value.body
                 .body as unknown[];
 
               const index = body.findIndex((element) => {
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
                 return element === node.parent.value;
               });
 
+              // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
               node.parent.parent.parent.value.body.body = updateBody(
                 body,
                 index,
@@ -140,14 +157,17 @@ export function insertTemplateTag(file: string, data: Data): string {
         }
       }
 
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       const indent = node.value.loc.indent as number;
 
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       node.value.arguments[0] = [
         `<template>`,
         `  ${indentToLeft(template.trim(), indent)}`,
         `</template>`,
       ].join(EOL);
 
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       node.value.typeParameters = null;
 
       return false;

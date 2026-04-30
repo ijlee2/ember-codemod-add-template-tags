@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { AST } from '@codemod-utils/ast-javascript';
 
 type Data = {
@@ -90,22 +89,26 @@ export function removeImport(file: string, data: Data): string {
 
   const ast = traverse(file, {
     visitImportDeclaration(node) {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       if (data.importKind === 'value' && node.value.importKind === 'type') {
         return false;
       }
 
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       const sourceType = node.value.source?.type as string | undefined;
 
       if (sourceType !== 'Literal' && sourceType !== 'StringLiteral') {
         return false;
       }
 
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       const importPath = node.value.source.value as string;
 
       if (importPath !== data.importPath) {
         return false;
       }
 
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       node.value.specifiers = (node.value.specifiers as Specifier[]).filter(
         (specifier) => {
           if (data.isDefaultImport) {
@@ -115,6 +118,7 @@ export function removeImport(file: string, data: Data): string {
           let importKind = specifier.importKind;
 
           if (
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
             node.value.importKind === 'type' ||
             specifier.importKind === 'type'
           ) {
@@ -130,6 +134,7 @@ export function removeImport(file: string, data: Data): string {
         },
       );
 
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       if (node.value.specifiers.length === 0) {
         return null;
       }

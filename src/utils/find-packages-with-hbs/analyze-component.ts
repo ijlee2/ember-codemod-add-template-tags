@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { AST } from '@codemod-utils/ast-javascript';
 
 const componentMap = {
@@ -46,18 +45,22 @@ export function analyzeComponent(file: string): Component {
     visitExportDefaultDeclaration(node) {
       hasDefaultExport = true;
 
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       switch (node.value.declaration.type) {
         case 'AssignmentExpression': {
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
           componentName = node.value.declaration.left.name as string;
           break;
         }
 
         case 'ClassDeclaration': {
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
           componentName = node.value.declaration.id?.name as string | undefined;
           break;
         }
 
         case 'Identifier': {
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
           componentName = node.value.declaration.name as string;
           break;
         }
@@ -77,14 +80,17 @@ export function analyzeComponent(file: string): Component {
 
   traverse(file, {
     visitClassDeclaration(node) {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       if ((node.value.id?.name as string | undefined) !== componentName) {
         return false;
       }
 
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       if (node.value.superClass?.type !== 'Identifier') {
         return false;
       }
 
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       baseComponentName = node.value.superClass.name as string;
 
       return false;
@@ -93,11 +99,14 @@ export function analyzeComponent(file: string): Component {
 
   traverse(file, {
     visitImportDeclaration(node) {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       if (node.value.importKind !== 'value') {
         return false;
       }
 
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       const importPath = node.value.source.value as string;
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       const importSpecifiers = (node.value.specifiers ??
         []) as ImportSpecifier[];
 
