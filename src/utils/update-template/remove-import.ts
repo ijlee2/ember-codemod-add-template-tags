@@ -58,8 +58,6 @@ type SpecifierNamedTypeScript = {
 
 type SpecifierNamed = SpecifierNamedJavaScript | SpecifierNamedTypeScript;
 
-type Specifier = SpecifierDefault | SpecifierNamed;
-
 function keepDefaultImport(specifier: SpecifierDefault): boolean {
   const { local, type } = specifier;
 
@@ -88,38 +86,36 @@ export function removeImport(file: string, data: Data): string {
   const traverse = AST.traverse(data.isTypeScript);
 
   const ast = traverse(file, {
-    visitImportDeclaration(node) {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-      if (data.importKind === 'value' && node.value.importKind === 'type') {
+    visitImportDeclaration(path) {
+      if (data.importKind === 'value' && path.node.importKind === 'type') {
         return false;
       }
 
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-      const sourceType = node.value.source?.type as string | undefined;
+      const sourceType = path.node.source?.type as string | undefined;
 
       if (sourceType !== 'Literal' && sourceType !== 'StringLiteral') {
         return false;
       }
 
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-      const importPath = node.value.source.value as string;
+      const importPath = path.node.source.value as string;
 
       if (importPath !== data.importPath) {
         return false;
       }
 
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-      node.value.specifiers = (node.value.specifiers as Specifier[]).filter(
+      path.node.specifiers = (path.node.specifiers ?? []).filter(
         (specifier) => {
           if (data.isDefaultImport) {
             return keepDefaultImport(specifier as SpecifierDefault);
           }
 
+          // @ts-expect-error: Incorrect type
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
           let importKind = specifier.importKind;
 
           if (
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-            node.value.importKind === 'type' ||
+            path.node.importKind === 'type' ||
+            // @ts-expect-error: Incorrect type
             specifier.importKind === 'type'
           ) {
             importKind = 'type';
@@ -127,6 +123,7 @@ export function removeImport(file: string, data: Data): string {
 
           const specifierModified: SpecifierNamed = {
             ...(specifier as SpecifierNamed),
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
             importKind,
           };
 
@@ -134,8 +131,7 @@ export function removeImport(file: string, data: Data): string {
         },
       );
 
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-      if (node.value.specifiers.length === 0) {
+      if (path.node.specifiers.length === 0) {
         return null;
       }
 

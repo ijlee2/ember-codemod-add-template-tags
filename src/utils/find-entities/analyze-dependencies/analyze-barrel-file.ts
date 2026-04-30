@@ -31,21 +31,22 @@ function analyze(file: string, data: Data): EntitiesExported | undefined {
   };
 
   traverse(file, {
-    visitExportNamedDeclaration(node) {
+    visitExportNamedDeclaration(path) {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-      if (data.isTypeScript && node.value.exportKind !== 'value') {
+      if (data.isTypeScript && path.value.exportKind !== 'value') {
         return false;
       }
 
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-      const sourceType = node.value.source?.type as string | undefined;
+      const { source } = path.node;
 
-      if (sourceType !== 'Literal' && sourceType !== 'StringLiteral') {
+      if (
+        source?.type === undefined ||
+        (source.type !== 'Literal' && source.type !== 'StringLiteral')
+      ) {
         return false;
       }
 
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-      const exportPath = node.value.source.value as string;
+      const exportPath = source.value as string;
 
       for (const [entityType, entityFolder] of Object.entries(ENTITY_FOLDERS)) {
         if (!exportPath.startsWith(`./${entityFolder}/`)) {

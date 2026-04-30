@@ -66,51 +66,40 @@ export function insertTemplateTag(file: string, data: Data): string {
   const traverse = ASTJavaScript.traverse(data.isTypeScript);
 
   const ast = traverse(file, {
-    visitCallExpression(node) {
+    visitCallExpression(path) {
       if (
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-        node.value.callee.type !== 'Identifier' ||
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-        node.value.callee.name !== 'render'
+        path.node.callee.type !== 'Identifier' ||
+        path.node.callee.name !== 'render'
       ) {
-        this.traverse(node);
+        this.traverse(path);
         return false;
       }
 
       if (
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-        node.value.arguments.length !== 1 &&
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-        node.value.arguments.length !== 2
+        path.node.arguments.length !== 1 &&
+        path.node.arguments.length !== 2
       ) {
         return false;
       }
 
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
-      const nodeValue = node.value.arguments[0]!;
+      const nodeValue = path.node.arguments[0]!;
 
       if (
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         nodeValue?.type !== 'TaggedTemplateExpression' ||
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         nodeValue.tag.type !== 'Identifier' ||
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         nodeValue.tag.name !== 'hbs'
       ) {
         return false;
       }
 
       if (
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         nodeValue.quasi.type !== 'TemplateLiteral' ||
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-        nodeValue.quasi.quasis[0].type !== 'TemplateElement'
+        nodeValue.quasi.quasis[0]?.type !== 'TemplateElement'
       ) {
         return false;
       }
 
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-      let template = nodeValue.quasi.quasis[0].value.raw as string;
+      let template = nodeValue.quasi.quasis[0].value.raw;
 
       if (!data.useLexicalThis) {
         const { code, renamedThis } = renameThis(template);
@@ -118,38 +107,37 @@ export function insertTemplateTag(file: string, data: Data): string {
         if (renamedThis) {
           template = code;
 
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+          const testFunctionPath = path.parent.parent.parent;
+
           // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-          switch (node.parent.parent.parent.value.type) {
+          switch (testFunctionPath.value.type) {
             case 'BlockStatement': {
               // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-              const body = node.parent.parent.parent.value.body as unknown[];
+              const body = testFunctionPath.value.body as unknown[];
 
               const index = body.findIndex((element) => {
                 // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-                return element === node.parent.parent.value;
+                return element === path.parent.parent.value;
               });
 
               // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-              node.parent.parent.parent.value.body = updateBody(body, index);
+              testFunctionPath.value.body = updateBody(body, index);
 
               break;
             }
 
             case 'FunctionExpression': {
               // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-              const body = node.parent.parent.parent.value.body
-                .body as unknown[];
+              const body = testFunctionPath.value.body.body as unknown[];
 
               const index = body.findIndex((element) => {
                 // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-                return element === node.parent.value;
+                return element === path.parent.value;
               });
 
               // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-              node.parent.parent.parent.value.body.body = updateBody(
-                body,
-                index,
-              );
+              testFunctionPath.value.body.body = updateBody(body, index);
 
               break;
             }
@@ -157,18 +145,18 @@ export function insertTemplateTag(file: string, data: Data): string {
         }
       }
 
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-      const indent = node.value.loc.indent as number;
+      // @ts-expect-error: Incorrect type
+      const indent = path.node.loc!.indent as number;
 
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-      node.value.arguments[0] = [
+      // @ts-expect-error: Incorrect type
+      path.node.arguments[0] = [
         `<template>`,
         `  ${indentToLeft(template.trim(), indent)}`,
         `</template>`,
       ].join(EOL);
 
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-      node.value.typeParameters = null;
+      // @ts-expect-error: Incorrect type
+      path.node.typeParameters = null;
 
       return false;
     },

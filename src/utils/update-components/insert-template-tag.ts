@@ -14,16 +14,15 @@ function insertToGlimmerComponent(file: string, data: Data): string {
   const traverse = AST.traverse(true);
 
   const ast = traverse(file, {
-    visitClassDeclaration(node) {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-      const className = node.value.id?.name as string | undefined;
+    visitClassDeclaration(path) {
+      const className = path.node.id?.name as string | undefined;
 
       if (className !== data.componentName) {
         return false;
       }
 
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
-      node.value.body.body.push(`${EOL}<template></template>`);
+      // @ts-expect-error: Incorrect type
+      path.node.body.body.push(`${EOL}<template></template>`);
 
       return false;
     },
@@ -43,43 +42,45 @@ function insertToTemplateOnlyComponent(file: string, data: Data): string {
     ].join(EOL);
 
     traverse(file, {
-      visitVariableDeclaration(node) {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-        if (node.value.declarations.length !== 1) {
+      visitVariableDeclaration(path) {
+        if (path.node.declarations.length !== 1) {
           return;
         }
 
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
-        const declaration = node.value.declarations[0];
+        const declaration = path.node.declarations[0]!;
+
+        if (declaration.type !== 'VariableDeclarator') {
+          return false;
+        }
 
         if (
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
           declaration.id.type !== 'Identifier' ||
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
           declaration.id.name !== data.componentName
         ) {
           return false;
         }
 
+        if (declaration.init?.type !== 'CallExpression') {
+          return false;
+        }
+
+        // @ts-expect-error: Incorrect type
+        const { typeParameters } = declaration.init;
+
         if (
+          typeParameters === undefined ||
           // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-          declaration.init.typeParameters === undefined ||
+          typeParameters.type !== 'TSTypeParameterInstantiation' ||
           // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-          declaration.init.typeParameters.type !==
-            'TSTypeParameterInstantiation' ||
+          typeParameters.params[0].type !== 'TSTypeReference' ||
           // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-          declaration.init.typeParameters.params[0].type !==
-            'TSTypeReference' ||
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-          declaration.init.typeParameters.params[0].typeName.type !==
-            'Identifier'
+          typeParameters.params[0].typeName.type !== 'Identifier'
         ) {
           return false;
         }
 
         // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-        const signatureName = declaration.init.typeParameters.params[0].typeName
-          .name as string;
+        const signatureName = typeParameters.params[0].typeName.name as string;
 
         template += ` satisfies TOC<${signatureName}>`;
 
@@ -89,34 +90,34 @@ function insertToTemplateOnlyComponent(file: string, data: Data): string {
   }
 
   const ast = traverse(file, {
-    visitCallExpression(node) {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-      if (node.value.callee.name !== data.baseComponentName) {
+    visitCallExpression(path) {
+      // @ts-expect-error: Incorrect type
+      if (path.node.callee.name !== data.baseComponentName) {
         return false;
       }
 
       // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-      switch (node.parentPath.value.type) {
+      switch (path.parent.node.type) {
         case 'AssignmentExpression': {
           // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-          node.parentPath.value.right = template;
+          path.parent.node.right = template;
           break;
         }
 
         case 'ExportDefaultDeclaration': {
           // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-          if (node.parentPath.value.id === undefined) {
+          if (path.parent.node.id === undefined) {
             // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-            node.parentPath.value.declaration = template;
+            path.parent.node.declaration = template;
           }
           break;
         }
 
         case 'VariableDeclarator': {
           // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-          if (node.parentPath.value.id.name === data.componentName) {
+          if (path.parent.node.id.name === data.componentName) {
             // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-            node.parentPath.value.init = template;
+            path.parent.node.init = template;
           }
           break;
         }
