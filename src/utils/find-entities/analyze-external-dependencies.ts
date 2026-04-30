@@ -38,7 +38,5 @@ export async function analyzeExternalDependencies(
     workerFilePath: './analyze-external-dependencies/worker.js',
   });
 
-  return new Map(
-    entries.filter((entry) => entry !== undefined).sort(),
-  ) as Dependencies;
+  return new Map(entries.filter((entry) => entry !== undefined).sort());
 }

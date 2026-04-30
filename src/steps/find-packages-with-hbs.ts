@@ -18,7 +18,5 @@ export async function findPackagesWithHbs(options: Options): Promise<Packages> {
     workerFilePath: './find-packages-with-hbs/worker.js',
   });
 
-  return new Map(
-    entries.filter((entry) => entry !== undefined).sort(),
-  ) as Packages;
+  return new Map(entries.filter((entry) => entry !== undefined).sort());
 }
