@@ -1,3 +1,5 @@
+import logName from 'docs-app/modifiers/log-name';
+
 import type { TOC } from '@ember/component/template-only';
 
 interface MyButtonSignature {
@@ -6,6 +8,6 @@ interface MyButtonSignature {
   };
 }
 
-<template><button type="button" {{(if @name (modifier "log-name" @name))}}>
+<template><button type="button" {{(if @name (modifier logName @name))}}>
   Some label
 </button></template>
