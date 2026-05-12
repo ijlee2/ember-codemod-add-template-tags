@@ -1,5 +1,15 @@
 # Changelog
 
+## 2.6.0
+
+### Minor Changes
+
+- [#99](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/99) Supported conditional modifiers ([@ijlee2](https://github.com/ijlee2))
+
+### Patch Changes
+
+- [#98](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/98) Updated description in README ([@ijlee2](https://github.com/ijlee2))
+
 ## 2.5.2
 
 ### Patch Changes
