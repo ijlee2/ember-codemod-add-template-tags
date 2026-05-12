@@ -155,8 +155,10 @@ export function insertTemplateTag(file: string, data: Data): string {
         `</template>`,
       ].join(EOL);
 
-      // @ts-expect-error: Incorrect type
-      path.node.typeParameters = null;
+      if (data.isTypeScript && !data.useLexicalThis) {
+        // @ts-expect-error: Incorrect type
+        path.node.typeParameters = null;
+      }
 
       return false;
     },

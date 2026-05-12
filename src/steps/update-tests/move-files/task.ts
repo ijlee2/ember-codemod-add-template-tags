@@ -7,7 +7,7 @@ import type { PackageData } from '../../../types/index.js';
 import { insertTemplateTag } from '../../../utils/update-tests/index.js';
 
 export function task(testFilePath: string, packageData: PackageData): void {
-  const { filesWithTemplateTag, packageRoot } = packageData;
+  const { filesWithTemplateTag, packageRoot, useLexicalThis } = packageData;
 
   const filePathsToRemove: string[] = [testFilePath];
 
@@ -16,7 +16,7 @@ export function task(testFilePath: string, packageData: PackageData): void {
 
   testFile = insertTemplateTag(testFile, {
     isTypeScript,
-    useLexicalThis: false,
+    useLexicalThis,
   });
 
   testFilePath = isTypeScript
