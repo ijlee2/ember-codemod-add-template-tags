@@ -71,39 +71,43 @@ function updateTemplate(
 
       const helperName = node.path.original;
 
-      if (helperName === 'component') {
-        if (
-          node.params.length !== 1 ||
-          node.params[0]!.type !== 'StringLiteral'
-        ) {
-          return;
+      switch (helperName) {
+        case 'component': {
+          if (
+            node.params.length !== 1 ||
+            node.params[0]!.type !== 'StringLiteral'
+          ) {
+            break;
+          }
+
+          const componentName = node.params[0]!.original;
+          const entityData = entities.components.get(componentName);
+
+          if (!entityData) {
+            break;
+          }
+
+          const newName = pascalize(componentName);
+
+          node.params[0] = AST.builders.path(newName);
+          importStatements.add(newName, entityData);
+
+          break;
         }
 
-        const componentName = node.params[0]!.original;
-        const entityData = entities.components.get(componentName);
+        default: {
+          const entityData = entities.helpers.get(helperName);
 
-        if (!entityData) {
-          return;
+          if (!entityData) {
+            break;
+          }
+
+          const newName = camelize(helperName);
+
+          node.path.original = newName;
+          importStatements.add(newName, entityData);
         }
-
-        const newName = pascalize(componentName);
-
-        node.params[0] = AST.builders.path(newName);
-        importStatements.add(newName, entityData);
-
-        return;
       }
-
-      const entityData = entities.helpers.get(helperName);
-
-      if (!entityData) {
-        return;
-      }
-
-      const newName = camelize(helperName);
-
-      node.path.original = newName;
-      importStatements.add(newName, entityData);
     },
 
     SubExpression(node) {
@@ -113,39 +117,66 @@ function updateTemplate(
 
       const helperName = node.path.original;
 
-      if (helperName === 'component') {
-        if (
-          node.params.length !== 1 ||
-          node.params[0]!.type !== 'StringLiteral'
-        ) {
-          return;
+      switch (helperName) {
+        case 'component': {
+          if (
+            node.params.length !== 1 ||
+            node.params[0]!.type !== 'StringLiteral'
+          ) {
+            break;
+          }
+
+          const componentName = node.params[0]!.original;
+          const entityData = entities.components.get(componentName);
+
+          if (!entityData) {
+            break;
+          }
+
+          const newName = pascalize(componentName);
+
+          node.params[0] = AST.builders.path(newName);
+          importStatements.add(newName, entityData);
+
+          break;
         }
 
-        const componentName = node.params[0]!.original;
-        const entityData = entities.components.get(componentName);
+        case 'modifier': {
+          if (
+            node.params.length < 1 ||
+            node.params[0]!.type !== 'StringLiteral'
+          ) {
+            break;
+          }
 
-        if (!entityData) {
-          return;
+          const modifierName = node.params[0]!.original;
+          const entityData = entities.modifiers.get(modifierName);
+
+          if (!entityData) {
+            break;
+          }
+
+          const newName = camelize(modifierName);
+
+          node.params[0] = AST.builders.path(newName);
+          importStatements.add(newName, entityData);
+
+          break;
         }
 
-        const newName = pascalize(componentName);
+        default: {
+          const entityData = entities.helpers.get(helperName);
 
-        node.params[0] = AST.builders.path(newName);
-        importStatements.add(newName, entityData);
+          if (!entityData) {
+            break;
+          }
 
-        return;
+          const newName = camelize(helperName);
+
+          node.path.original = newName;
+          importStatements.add(newName, entityData);
+        }
       }
-
-      const entityData = entities.helpers.get(helperName);
-
-      if (!entityData) {
-        return;
-      }
-
-      const newName = camelize(helperName);
-
-      node.path.original = newName;
-      importStatements.add(newName, entityData);
     },
   });
 
