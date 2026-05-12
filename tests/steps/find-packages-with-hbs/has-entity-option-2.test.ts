@@ -54,6 +54,7 @@ test('steps | find-packages-with-hbs > has entity option (2)', async function ()
           hasEmberRouteTemplate: false,
           packageRoot: normalize('tmp/my-v1-app'),
           packageType: 'v1-app',
+          useLexicalThis: true,
         },
       ],
     ]),

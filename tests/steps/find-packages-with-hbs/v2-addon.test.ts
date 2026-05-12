@@ -35,6 +35,7 @@ test('steps | find-packages-with-hbs > v2-addon', async function () {
           hasEmberRouteTemplate: false,
           packageRoot: normalize('tmp/my-v2-addon'),
           packageType: 'v2-addon',
+          useLexicalThis: false,
         },
       ],
     ]),

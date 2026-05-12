@@ -53,6 +53,7 @@ test('steps | find-packages-with-hbs > v1-app (nested)', async function () {
           hasEmberRouteTemplate: false,
           packageRoot: normalize('tmp/my-v1-app-nested'),
           packageType: 'v1-app',
+          useLexicalThis: true,
         },
       ],
     ]),

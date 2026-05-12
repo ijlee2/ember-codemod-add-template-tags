@@ -53,6 +53,7 @@ test('steps | find-packages-with-hbs > v2-app', async function () {
           hasEmberRouteTemplate: false,
           packageRoot: normalize('tmp/my-v2-app'),
           packageType: 'v2-app',
+          useLexicalThis: true,
         },
       ],
     ]),

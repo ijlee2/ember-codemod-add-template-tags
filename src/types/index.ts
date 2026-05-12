@@ -56,6 +56,7 @@ type PackageData = {
   hasEmberRouteTemplate: boolean;
   packageRoot: string;
   packageType: PackageType;
+  useLexicalThis: boolean;
 };
 
 type PackageName = string;

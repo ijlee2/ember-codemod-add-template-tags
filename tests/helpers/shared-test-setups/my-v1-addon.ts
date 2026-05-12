@@ -104,6 +104,7 @@ const packages: Packages = new Map([
       hasEmberRouteTemplate: true,
       packageRoot: 'tmp/my-v1-addon',
       packageType: 'v1-addon',
+      useLexicalThis: false,
     },
   ],
 ]);
