@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.7.0
+
+### Minor Changes
+
+- [#100](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/100) Supported conditional helpers ([@ijlee2](https://github.com/ijlee2))
+
 ## 2.6.0
 
 ### Minor Changes
