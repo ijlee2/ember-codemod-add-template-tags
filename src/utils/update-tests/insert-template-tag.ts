@@ -5,21 +5,6 @@ import { AST as ASTTemplate } from '@codemod-utils/ast-template';
 
 const NEW_THIS = 'self';
 
-function indentToLeft(code: string, indent: number): string {
-  return code
-    .split(/\r?\n/)
-    .map((line) => {
-      const numSpaces = line.length - line.trimStart().length;
-
-      if (numSpaces > indent) {
-        return line.substring(indent);
-      }
-
-      return line;
-    })
-    .join(EOL);
-}
-
 function renameThis(template: string): {
   code: string;
   renamedThis: boolean;
@@ -146,13 +131,10 @@ export function insertTemplateTag(file: string, data: Data): string {
       }
 
       // @ts-expect-error: Incorrect type
-      const indent = path.node.loc!.indent as number;
-
-      // @ts-expect-error: Incorrect type
       path.node.arguments[0] = [
-        `<template>`,
-        `  ${indentToLeft(template.trim(), indent)}`,
-        `</template>`,
+        '<template>',
+        template.trim(),
+        '</template>',
       ].join(EOL);
 
       if (data.isTypeScript && !data.useLexicalThis) {
