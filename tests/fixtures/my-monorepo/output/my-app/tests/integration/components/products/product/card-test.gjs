@@ -25,14 +25,9 @@ module('Integration | Component | products/product/card', function (hooks) {
   });
 
   test('it renders', async function (assert) {
-    const self = this;
-
-
-
-
     await render(<template><ProductsProductCard
-    @product={{self.product}}
-    @redirectTo="products.product"
+      @product={{this.product}}
+      @redirectTo="products.product"
     /></template>);
 
     assert.dom('[data-test-field="Name"]').hasText('Vanilla Ice Cream Cake');

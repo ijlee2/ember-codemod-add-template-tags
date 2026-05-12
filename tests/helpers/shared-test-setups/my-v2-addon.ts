@@ -84,6 +84,7 @@ const packages: Packages = new Map([
       hasEmberRouteTemplate: false,
       packageRoot: 'tmp/my-v2-addon',
       packageType: 'v2-addon',
+      useLexicalThis: false,
     },
   ],
 ]);

@@ -17,7 +17,7 @@ module('Integration | Component | ui/form/information', function (hooks) {
 
   test('We can pass @title to display the form title', async function (assert) {
     await render(
-        <template><UiFormInformation @formId="ember123" @title="Contact me" /></template>
+      <template><UiFormInformation @formId="ember123" @title="Contact me" /></template>
     );
 
     assert
@@ -30,8 +30,8 @@ module('Integration | Component | ui/form/information', function (hooks) {
 
   test('We can pass @instructions to display the form instructions', async function (assert) {
     await render(<template><UiFormInformation
-    @formId="ember123"
-    @instructions="Still have questions about ember-container-query? Try sending me a message."
+      @formId="ember123"
+      @instructions="Still have questions about ember-container-query? Try sending me a message."
     /></template>);
 
     assert.dom('[data-test-title]').doesNotExist();

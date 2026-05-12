@@ -9,20 +9,20 @@ module('Integration | Modifier | autofocus', function (hooks) {
 
   test('it focuses the first editable input', async function (assert) {
     await render(<template><form data-test-form {{autofocus}}>
-    <label>
-    Field 1
-    <input data-test-field="1" disabled />
-    </label>
+      <label>
+        Field 1
+        <input data-test-field="1" disabled />
+      </label>
 
-    <label>
-    Field 2
-    <input data-test-field="2" />
-    </label>
+      <label>
+        Field 2
+        <input data-test-field="2" />
+      </label>
 
-    <label>
-    Field 3
-    <input data-test-field="3" />
-    </label>
+      <label>
+        Field 3
+        <input data-test-field="3" />
+      </label>
     </form></template>);
 
     assert.dom('[data-test-form]').isNotFocused();

@@ -278,6 +278,7 @@ const packages: Packages = new Map([
       hasEmberRouteTemplate: false,
       packageRoot: 'tmp/my-v2-app',
       packageType: 'v2-app',
+      useLexicalThis: true,
     },
   ],
 ]);

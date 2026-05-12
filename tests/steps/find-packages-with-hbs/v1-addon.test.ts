@@ -32,6 +32,7 @@ test('steps | find-packages-with-hbs > v1-addon', async function () {
           hasEmberRouteTemplate: true,
           packageRoot: normalize('tmp/my-v1-addon'),
           packageType: 'v1-addon',
+          useLexicalThis: false,
         },
       ],
     ]),

@@ -223,6 +223,7 @@ const packages: Packages = new Map([
       hasEmberRouteTemplate: false,
       packageRoot: 'tmp/my-v1-app-nested',
       packageType: 'v1-app',
+      useLexicalThis: true,
     },
   ],
 ]);
