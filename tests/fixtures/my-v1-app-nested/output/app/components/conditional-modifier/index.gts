@@ -2,7 +2,7 @@ import logName from 'docs-app/modifiers/log-name';
 
 import type { TOC } from '@ember/component/template-only';
 
-interface MyButtonSignature {
+interface ConditionalModifierSignature {
   Args: {
     name?: string;
   };
