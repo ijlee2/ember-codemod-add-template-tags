@@ -2,7 +2,7 @@
 
 # ember-codemod-add-template-tags
 
-_Codemod to add `<template>` tags_
+_Codemod to convert `hbs` to `<template>` tags_
 
 
 ## Why use it?
