@@ -141,6 +141,29 @@ function updateTemplate(
           break;
         }
 
+        case 'helper': {
+          if (
+            node.params.length < 1 ||
+            node.params[0]!.type !== 'StringLiteral'
+          ) {
+            break;
+          }
+
+          const helperName = node.params[0]!.original;
+          const entityData = entities.helpers.get(helperName);
+
+          if (!entityData) {
+            break;
+          }
+
+          const newName = camelize(helperName);
+
+          node.params[0] = AST.builders.path(newName);
+          importStatements.add(newName, entityData);
+
+          break;
+        }
+
         case 'modifier': {
           if (
             node.params.length < 1 ||

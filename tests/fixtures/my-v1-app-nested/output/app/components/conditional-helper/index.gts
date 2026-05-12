@@ -1,3 +1,5 @@
+import hello from 'docs-app/helpers/hello';
+
 import type { TOC } from '@ember/component/template-only';
 
 interface ConditionalHelperSignature {
@@ -8,6 +10,6 @@ interface ConditionalHelperSignature {
 
 <template><div>
   {{(if
-    (not-eq @name undefined) (helper "hello" @name) "hello"
+    (not-eq @name undefined) (helper hello @name) "hello"
   )}}
 </div></template>
