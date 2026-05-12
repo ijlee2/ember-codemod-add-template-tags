@@ -31,16 +31,11 @@ module('Integration | Component | ui/form/input', function (hooks) {
   });
 
   test('it renders', async function (this: TestContext, assert) {
-    const self = this;
-
-
-
-
-    await render(<template><UiFormInput
-    @data={{self.data}}
+    await render<TestContext>(<template><UiFormInput
+    @data={{this.data}}
     @key="name"
     @label="Name"
-    @onUpdate={{self.updateData}}
+    @onUpdate={{this.updateData}}
     /></template>);
 
     assert.dom('[data-test-label]').hasText('Name');
@@ -58,34 +53,24 @@ module('Integration | Component | ui/form/input', function (hooks) {
   });
 
   test('We can pass @isDisabled to disable the input', async function (this: TestContext, assert) {
-    const self = this;
-
-
-
-
-    await render(<template><UiFormInput
-    @data={{self.data}}
+    await render<TestContext>(<template><UiFormInput
+    @data={{this.data}}
     @isDisabled={{true}}
     @key="name"
     @label="Name"
-    @onUpdate={{self.updateData}}
+    @onUpdate={{this.updateData}}
     /></template>);
 
     assert.dom('[data-test-field]').isDisabled();
   });
 
   test('We can pass @isReadOnly to display the value', async function (this: TestContext, assert) {
-    const self = this;
-
-
-
-
-    await render(<template><UiFormInput
-    @data={{self.data}}
+    await render<TestContext>(<template><UiFormInput
+    @data={{this.data}}
     @isReadOnly={{true}}
     @key="name"
     @label="Name"
-    @onUpdate={{self.updateData}}
+    @onUpdate={{this.updateData}}
     /></template>);
 
     assert
@@ -95,17 +80,12 @@ module('Integration | Component | ui/form/input', function (hooks) {
   });
 
   test('We can pass @isRequired to require a value', async function (this: TestContext, assert) {
-    const self = this;
-
-
-
-
-    await render(<template><UiFormInput
-    @data={{self.data}}
+    await render<TestContext>(<template><UiFormInput
+    @data={{this.data}}
     @isRequired={{true}}
     @key="name"
     @label="Name"
-    @onUpdate={{self.updateData}}
+    @onUpdate={{this.updateData}}
     /></template>);
 
     assert.dom('[data-test-label]').hasText('Name *');
@@ -124,17 +104,12 @@ module('Integration | Component | ui/form/input', function (hooks) {
       set(this.data, key, value);
     };
 
-    const self = this;
-
-
-
-
-    await render(<template><UiFormInput
-    @data={{self.data}}
+    await render<TestContext>(<template><UiFormInput
+    @data={{this.data}}
     @isRequired={{true}}
     @key="name"
     @label="Name"
-    @onUpdate={{self.updateData}}
+    @onUpdate={{this.updateData}}
     /></template>);
 
     // Update the value
@@ -157,16 +132,11 @@ module('Integration | Component | ui/form/input', function (hooks) {
   });
 
   test('We can pass @type to create an email input', async function (this: TestContext, assert) {
-    const self = this;
-
-
-
-
-    await render(<template><UiFormInput
-    @data={{self.data}}
+    await render<TestContext>(<template><UiFormInput
+    @data={{this.data}}
     @key="email"
     @label="Email"
-    @onUpdate={{self.updateData}}
+    @onUpdate={{this.updateData}}
     @type="email"
     /></template>);
 

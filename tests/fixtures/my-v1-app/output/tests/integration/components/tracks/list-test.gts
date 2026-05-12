@@ -49,12 +49,7 @@ module('Integration | Component | tracks/list', function (hooks) {
     test('it renders', async function (this: TestContext, assert: CustomAssert) {
       this.tracks = [];
 
-      const self = this;
-
-
-
-
-      await render(<template><TracksList @tracks={{self.tracks}} /></template>);
+      await render<TestContext>(<template><TracksList @tracks={{this.tracks}} /></template>);
 
       assert.dom('[data-test-item]').doesNotExist();
     });
@@ -64,12 +59,7 @@ module('Integration | Component | tracks/list', function (hooks) {
     test('it renders', async function (this: TestContext, assert: CustomAssert) {
       this.tracks = album.tracks;
 
-      const self = this;
-
-
-
-
-      await render(<template><TracksList @tracks={{self.tracks}} /></template>);
+      await render<TestContext>(<template><TracksList @tracks={{this.tracks}} /></template>);
 
       const tracks = findAll('[data-test-item]');
 

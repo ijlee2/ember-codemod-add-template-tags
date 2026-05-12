@@ -22,16 +22,11 @@ module('Integration | Component | ui/form/textarea', function (hooks) {
   });
 
   test('it renders', async function (assert) {
-    const self = this;
-
-
-
-
     await render(<template><UiFormTextarea
-    @data={{self.data}}
-    @key="message"
-    @label="Message"
-    @onUpdate={{self.updateData}}
+      @data={{this.data}}
+      @key="message"
+      @label="Message"
+      @onUpdate={{this.updateData}}
     /></template>);
 
     assert.dom('[data-test-label]').hasText('Message');
@@ -48,34 +43,24 @@ module('Integration | Component | ui/form/textarea', function (hooks) {
   });
 
   test('We can pass @isDisabled to disable the text area', async function (assert) {
-    const self = this;
-
-
-
-
     await render(<template><UiFormTextarea
-    @data={{self.data}}
-    @isDisabled={{true}}
-    @key="message"
-    @label="Message"
-    @onUpdate={{self.updateData}}
+      @data={{this.data}}
+      @isDisabled={{true}}
+      @key="message"
+      @label="Message"
+      @onUpdate={{this.updateData}}
     /></template>);
 
     assert.dom('[data-test-field]').isDisabled();
   });
 
   test('We can pass @isReadOnly to display the value', async function (assert) {
-    const self = this;
-
-
-
-
     await render(<template><UiFormTextarea
-    @data={{self.data}}
-    @isReadOnly={{true}}
-    @key="message"
-    @label="Message"
-    @onUpdate={{self.updateData}}
+      @data={{this.data}}
+      @isReadOnly={{true}}
+      @key="message"
+      @label="Message"
+      @onUpdate={{this.updateData}}
     /></template>);
 
     assert
@@ -85,17 +70,12 @@ module('Integration | Component | ui/form/textarea', function (hooks) {
   });
 
   test('We can pass @isRequired to require a value', async function (assert) {
-    const self = this;
-
-
-
-
     await render(<template><UiFormTextarea
-    @data={{self.data}}
-    @isRequired={{true}}
-    @key="message"
-    @label="Message"
-    @onUpdate={{self.updateData}}
+      @data={{this.data}}
+      @isRequired={{true}}
+      @key="message"
+      @label="Message"
+      @onUpdate={{this.updateData}}
     /></template>);
 
     assert.dom('[data-test-label]').hasText('Message *');
@@ -114,17 +94,12 @@ module('Integration | Component | ui/form/textarea', function (hooks) {
       set(data, key, value);
     };
 
-    const self = this;
-
-
-
-
     await render(<template><UiFormTextarea
-    @data={{self.data}}
-    @isRequired={{true}}
-    @key="message"
-    @label="Message"
-    @onUpdate={{self.updateData}}
+      @data={{this.data}}
+      @isRequired={{true}}
+      @key="message"
+      @label="Message"
+      @onUpdate={{this.updateData}}
     /></template>);
 
     // Update the value
