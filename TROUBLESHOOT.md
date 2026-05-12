@@ -95,7 +95,7 @@ To fix the error, rename or remove one of the imported objects.
 
 <summary>Test assertions failed</summary>
 
-The codemod adds an alias of `this` (called `self`) due to a bug that prevents us from using `this` inside the `<template>` tag.
+If your `ember-source` is below `6.4.0`, the codemod adds an alias of `this` (called `self`). This accounts for a bug that prevents using `this` inside the `<template>` tag.
 
 ```diff
 module('Integration | Component | hello', function (hooks) {
@@ -116,7 +116,7 @@ module('Integration | Component | hello', function (hooks) {
 });
 ```
 
-The bug isn't fully fixed as of `ember-source@6.6.0`. If you see that assertions are failing, you can rename `this` as shown above, destructure it, or remove it altogether.
+If your `ember-source` is at least `6.4.0` and see failing assertions, you can rename `this` as shown above, destructure it, or remove it altogether.
 
 ```gts
 module('Integration | Component | hello', function (hooks) {
