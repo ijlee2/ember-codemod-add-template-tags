@@ -116,7 +116,7 @@ module('Integration | Component | hello', function (hooks) {
 });
 ```
 
-If your `ember-source` is at least `6.4.0` and see failing assertions, you can rename `this` as shown above, destructure it, or remove it altogether.
+If assertions fail with `ember-source@>=6.4.0`, you can rename `this` as shown above, destructure it, or remove it altogether.
 
 ```gts
 module('Integration | Component | hello', function (hooks) {
