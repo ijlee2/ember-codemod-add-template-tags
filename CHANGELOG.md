@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.9.0
+
+### Minor Changes
+
+- [#103](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/103) Updated dependencies (`@codemod-utils/ast-javascript` and `@codemod-utils/ast-template` to v4) ([@ijlee2](https://github.com/ijlee2))
+
 ## 2.8.0
 
 ### Minor Changes
