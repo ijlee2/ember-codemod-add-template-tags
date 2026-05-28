@@ -11,9 +11,7 @@ type Data = {
 };
 
 function insertToGlimmerComponent(file: string, data: Data): string {
-  const traverse = AST.traverse(true);
-
-  const ast = traverse(file, {
+  const ast = AST.traverse(file, {
     visitClassDeclaration(path) {
       const className = path.node.id?.name as string | undefined;
 
@@ -32,7 +30,6 @@ function insertToGlimmerComponent(file: string, data: Data): string {
 }
 
 function insertToTemplateOnlyComponent(file: string, data: Data): string {
-  const traverse = AST.traverse(true);
   let template = '<template></template>';
 
   if (data.isTypeScript) {
@@ -41,7 +38,7 @@ function insertToTemplateOnlyComponent(file: string, data: Data): string {
       file,
     ].join(EOL);
 
-    traverse(file, {
+    AST.traverse(file, {
       visitVariableDeclaration(path) {
         if (path.node.declarations.length !== 1) {
           return;
@@ -89,7 +86,7 @@ function insertToTemplateOnlyComponent(file: string, data: Data): string {
     });
   }
 
-  const ast = traverse(file, {
+  const ast = AST.traverse(file, {
     visitCallExpression(path) {
       // @ts-expect-error: Incorrect type
       if (path.node.callee.name !== data.baseComponentName) {

@@ -34,14 +34,12 @@ type ImportSpecifier =
     };
 
 export function analyzeComponent(file: string): Component {
-  const traverse = AST.traverse(true);
-
   let baseComponentName: string | undefined;
   let componentName: string | undefined;
   let componentType: ComponentType | undefined;
   let hasDefaultExport = false;
 
-  traverse(file, {
+  AST.traverse(file, {
     visitExportDefaultDeclaration(path) {
       hasDefaultExport = true;
 
@@ -75,7 +73,7 @@ export function analyzeComponent(file: string): Component {
     };
   }
 
-  traverse(file, {
+  AST.traverse(file, {
     visitClassDeclaration(path) {
       if ((path.node.id?.name as string | undefined) !== componentName) {
         return false;
@@ -91,7 +89,7 @@ export function analyzeComponent(file: string): Component {
     },
   });
 
-  traverse(file, {
+  AST.traverse(file, {
     visitImportDeclaration(path) {
       if (path.node.importKind !== 'value') {
         return false;

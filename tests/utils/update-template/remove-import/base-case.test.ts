@@ -10,7 +10,6 @@ test('utils | update-template | remove-import > base case', function () {
     importName: 'hbs',
     importPath: 'ember-cli-htmlbars',
     isDefaultImport: false,
-    isTypeScript: true,
   });
 
   assert.strictEqual(newFile, '');

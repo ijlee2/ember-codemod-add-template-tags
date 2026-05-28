@@ -14,7 +14,6 @@ test('utils | update-template | remove-import > import is found (default, typesc
     importName: 'templateOnlyComponent',
     importPath: '@ember/component/template-only',
     isDefaultImport: true,
-    isTypeScript: true,
   });
 
   assert.strictEqual(
