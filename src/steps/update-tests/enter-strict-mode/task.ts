@@ -15,7 +15,6 @@ export function task(
   entities: AllEntities,
 ): void {
   const oldFile = readFileSync(join(packageRoot, filePath), 'utf8');
-  const isTypeScript = filePath.endsWith('.gts');
 
   let newFile = updateJavaScript(oldFile, (code) => {
     return removeImport(code, {
@@ -23,7 +22,6 @@ export function task(
       importName: 'hbs',
       importPath: 'ember-cli-htmlbars',
       isDefaultImport: false,
-      isTypeScript,
     });
   });
 

@@ -15,38 +15,29 @@ import {
   SOURCE_FOR_EXTERNAL_PACKAGES,
 } from '../../ember.js';
 
-type Data = {
-  isTypeScript: boolean;
-};
-
 type EntitiesExported = Record<EntityType, Set<EntityName>>;
 
-function analyze(file: string, data: Data): EntitiesExported | undefined {
-  const traverse = AST.traverse(data.isTypeScript);
-
+function analyze(file: string): EntitiesExported | undefined {
   const entitiesExported: EntitiesExported = {
     components: new Set(),
     helpers: new Set(),
     modifiers: new Set(),
   };
 
-  traverse(file, {
+  AST.traverse(file, {
     visitExportNamedDeclaration(path) {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-      if (data.isTypeScript && path.value.exportKind !== 'value') {
+      if (path.value.exportKind !== 'value') {
         return false;
       }
 
       const { source } = path.node;
 
-      if (
-        source?.type === undefined ||
-        (source.type !== 'Literal' && source.type !== 'StringLiteral')
-      ) {
+      if (source?.type === undefined || source.type !== 'StringLiteral') {
         return false;
       }
 
-      const exportPath = source.value as string;
+      const exportPath = source.value;
 
       for (const [entityType, entityFolder] of Object.entries(ENTITY_FOLDERS)) {
         if (!exportPath.startsWith(`./${entityFolder}/`)) {
@@ -103,7 +94,5 @@ export function analyzeBarrelFile({
   const barrelFilePath = barrelFilePaths[0]!;
   const barrelFile = readFileSync(join(packageRoot, barrelFilePath), 'utf8');
 
-  return analyze(barrelFile, {
-    isTypeScript: barrelFilePath.endsWith('.ts'),
-  });
+  return analyze(barrelFile);
 }

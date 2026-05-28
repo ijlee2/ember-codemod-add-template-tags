@@ -22,9 +22,7 @@ function updateTemplate(
 ): string {
   const { entities } = data;
 
-  const traverse = AST.traverse();
-
-  const ast = traverse(file, {
+  const ast = AST.traverse(file, {
     ElementModifierStatement(node) {
       if (node.path.type !== 'PathExpression') {
         return;

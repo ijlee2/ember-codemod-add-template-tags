@@ -10,7 +10,6 @@ test('utils | update-template | remove-import > importKind must match (default)'
     importName: 'templateOnlyComponent',
     importPath: '@ember/component/template-only',
     isDefaultImport: true,
-    isTypeScript: true,
   });
 
   assert.strictEqual(newFile, '');
@@ -22,7 +21,6 @@ test('utils | update-template | remove-import > importKind must match (default)'
     importName: 'templateOnlyComponent',
     importPath: '@ember/component/template-only',
     isDefaultImport: true,
-    isTypeScript: true,
   });
 
   assert.strictEqual(

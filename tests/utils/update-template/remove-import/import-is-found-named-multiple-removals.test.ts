@@ -22,7 +22,6 @@ test('utils | update-template | remove-import > import is found (named, multiple
     importName: 'find',
     importPath: '@ember/test-helpers',
     isDefaultImport: false,
-    isTypeScript: true,
   });
 
   assert.strictEqual(
@@ -41,7 +40,6 @@ test('utils | update-template | remove-import > import is found (named, multiple
     importName: 'TestContext',
     importPath: '@ember/test-helpers',
     isDefaultImport: false,
-    isTypeScript: true,
   });
 
   assert.strictEqual(

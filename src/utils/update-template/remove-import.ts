@@ -5,7 +5,6 @@ type Data = {
   importName: string;
   importPath: string;
   isDefaultImport: boolean;
-  isTypeScript: boolean;
 };
 
 type SpecifierDefaultJavaScript = {
@@ -71,7 +70,7 @@ function keepDefaultImport(specifier: SpecifierDefault): boolean {
 function keepNamedImport(specifier: SpecifierNamed, data: Data): boolean {
   const { imported, importKind, type } = specifier;
 
-  if (data.isTypeScript && importKind !== data.importKind) {
+  if (importKind !== data.importKind) {
     return true;
   }
 
@@ -83,9 +82,7 @@ function keepNamedImport(specifier: SpecifierNamed, data: Data): boolean {
 }
 
 export function removeImport(file: string, data: Data): string {
-  const traverse = AST.traverse(data.isTypeScript);
-
-  const ast = traverse(file, {
+  const ast = AST.traverse(file, {
     visitImportDeclaration(path) {
       if (data.importKind === 'value' && path.node.importKind === 'type') {
         return false;
@@ -93,7 +90,7 @@ export function removeImport(file: string, data: Data): string {
 
       const sourceType = path.node.source?.type as string | undefined;
 
-      if (sourceType !== 'Literal' && sourceType !== 'StringLiteral') {
+      if (sourceType !== 'StringLiteral') {
         return false;
       }
 

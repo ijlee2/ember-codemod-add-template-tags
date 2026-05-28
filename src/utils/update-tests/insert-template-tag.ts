@@ -9,10 +9,9 @@ function renameThis(template: string): {
   code: string;
   renamedThis: boolean;
 } {
-  const traverse = ASTTemplate.traverse();
   let renamedThis = false;
 
-  const ast = traverse(template, {
+  const ast = ASTTemplate.traverse(template, {
     PathExpression(node) {
       if (node.head.type !== 'ThisHead') {
         return;
@@ -48,9 +47,7 @@ type Data = {
 };
 
 export function insertTemplateTag(file: string, data: Data): string {
-  const traverse = ASTJavaScript.traverse(data.isTypeScript);
-
-  const ast = traverse(file, {
+  const ast = ASTJavaScript.traverse(file, {
     visitCallExpression(path) {
       if (
         path.node.callee.type !== 'Identifier' ||

@@ -16,7 +16,6 @@ test('utils | update-template | remove-import > import is found (named, javascri
     importName: 'hbs',
     importPath: 'ember-cli-htmlbars',
     isDefaultImport: false,
-    isTypeScript: false,
   });
 
   assert.strictEqual(

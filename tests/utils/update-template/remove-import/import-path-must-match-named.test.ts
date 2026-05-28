@@ -10,7 +10,6 @@ test('utils | update-template | remove-import > importPath must match (named)', 
     importName: 'hbs',
     importPath: 'ember-cli-htmlbars',
     isDefaultImport: false,
-    isTypeScript: true,
   });
 
   assert.strictEqual(newFile, `import { hbs } from 'some-import-path';`);
@@ -22,7 +21,6 @@ test('utils | update-template | remove-import > importPath must match (named)', 
     importName: 'hbs',
     importPath: 'ember-cli-htmlbars',
     isDefaultImport: false,
-    isTypeScript: true,
   });
 
   assert.strictEqual(
