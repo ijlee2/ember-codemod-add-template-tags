@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.9.2
+
+### Patch Changes
+
+- [#105](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/105) Updated dependencies (eslint@v10, typescript@v6) ([@ijlee2](https://github.com/ijlee2))
+
 ## 2.9.1
 
 ### Patch Changes
