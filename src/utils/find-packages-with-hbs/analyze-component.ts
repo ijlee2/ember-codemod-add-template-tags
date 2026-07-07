@@ -17,20 +17,20 @@ type Component = {
 type ImportSpecifier =
   | {
       [key: string]: unknown;
-      local: {
-        name: string;
-        type: 'Identifier';
-      };
-      type: 'ImportDefaultSpecifier';
-    }
-  | {
-      [key: string]: unknown;
       importKind: 'type' | 'value';
       local: {
         name: string;
         type: 'Identifier';
       };
       type: 'ImportSpecifier';
+    }
+  | {
+      [key: string]: unknown;
+      local: {
+        name: string;
+        type: 'Identifier';
+      };
+      type: 'ImportDefaultSpecifier';
     };
 
 export function analyzeComponent(file: string): Component {
