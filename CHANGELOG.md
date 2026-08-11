@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.9.3
+
+### Patch Changes
+
+- [#108](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/108) Updated dependencies ([@ijlee2](https://github.com/ijlee2))
+
 ## 2.9.2
 
 ### Patch Changes
