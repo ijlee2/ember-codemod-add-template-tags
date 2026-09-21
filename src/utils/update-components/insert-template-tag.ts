@@ -61,23 +61,22 @@ function insertToTemplateOnlyComponent(file: string, data: Data): string {
           return false;
         }
 
-        // @ts-expect-error: Incorrect type
         const { typeParameters } = declaration.init;
 
         if (
           typeParameters === undefined ||
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+          // @ts-expect-error: Incorrect type
           typeParameters.type !== 'TSTypeParameterInstantiation' ||
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+          // @ts-expect-error: Incorrect type
           typeParameters.params[0].type !== 'TSTypeReference' ||
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+          // @ts-expect-error: Incorrect type
           typeParameters.params[0].typeName.type !== 'Identifier'
         ) {
           return false;
         }
 
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-        const signatureName = typeParameters.params[0].typeName.name as string;
+        // @ts-expect-error: Incorrect type
+        const signatureName = typeParameters.params[0].typeName.name;
 
         template += ` satisfies TOC<${signatureName}>`;
 
