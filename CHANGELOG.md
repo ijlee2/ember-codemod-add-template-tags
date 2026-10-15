@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.9.6
+
+### Patch Changes
+
+- [#114](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/114) Updated dependencies (replaced eslint with oxlint) ([@ijlee2](https://github.com/ijlee2))
+
 ## 2.9.5
 
 ### Patch Changes
