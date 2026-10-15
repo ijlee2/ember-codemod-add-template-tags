@@ -89,36 +89,36 @@ export function insertTemplateTag(file: string, data: Data): string {
         if (renamedThis) {
           template = code;
 
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+          // oxlint-disable-next-line typescript/no-unsafe-assignment, typescript/no-unsafe-member-access
           const testFunctionPath = path.parent.parent.parent;
 
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+          // oxlint-disable-next-line typescript/no-unsafe-member-access
           switch (testFunctionPath.value.type) {
             case 'BlockStatement': {
-              // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+              // oxlint-disable-next-line typescript/no-unsafe-member-access
               const body = testFunctionPath.value.body as unknown[];
 
               const index = body.findIndex((element) => {
-                // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+                // oxlint-disable-next-line typescript/no-unsafe-member-access
                 return element === path.parent.parent.value;
               });
 
-              // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+              // oxlint-disable-next-line typescript/no-unsafe-member-access
               testFunctionPath.value.body = updateBody(body, index);
 
               break;
             }
 
             case 'FunctionExpression': {
-              // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+              // oxlint-disable-next-line typescript/no-unsafe-member-access
               const body = testFunctionPath.value.body.body as unknown[];
 
               const index = body.findIndex((element) => {
-                // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+                // oxlint-disable-next-line typescript/no-unsafe-member-access
                 return element === path.parent.value;
               });
 
-              // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+              // oxlint-disable-next-line typescript/no-unsafe-member-access
               testFunctionPath.value.body.body = updateBody(body, index);
 
               break;

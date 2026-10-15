@@ -92,27 +92,27 @@ function insertToTemplateOnlyComponent(file: string, data: Data): string {
         return false;
       }
 
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+      // oxlint-disable-next-line typescript/no-unsafe-member-access
       switch (path.parent.node.type) {
         case 'AssignmentExpression': {
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+          // oxlint-disable-next-line typescript/no-unsafe-member-access
           path.parent.node.right = template;
           break;
         }
 
         case 'ExportDefaultDeclaration': {
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+          // oxlint-disable-next-line typescript/no-unsafe-member-access
           if (path.parent.node.id === undefined) {
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+            // oxlint-disable-next-line typescript/no-unsafe-member-access
             path.parent.node.declaration = template;
           }
           break;
         }
 
         case 'VariableDeclarator': {
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+          // oxlint-disable-next-line typescript/no-unsafe-member-access
           if (path.parent.node.id.name === data.componentName) {
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+            // oxlint-disable-next-line typescript/no-unsafe-member-access
             path.parent.node.init = template;
           }
           break;

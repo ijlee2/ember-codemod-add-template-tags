@@ -8,8 +8,8 @@ type Data = {
 };
 
 type SpecifierDefaultJavaScript = {
-  importKind: undefined;
   imported: undefined;
+  importKind: undefined;
   local: {
     name: string;
     type: string;
@@ -18,8 +18,8 @@ type SpecifierDefaultJavaScript = {
 };
 
 type SpecifierDefaultTypeScript = {
-  importKind: undefined;
   imported: undefined;
+  importKind: undefined;
   local: {
     name: string;
     type: string;
@@ -30,11 +30,11 @@ type SpecifierDefaultTypeScript = {
 type SpecifierDefault = SpecifierDefaultJavaScript | SpecifierDefaultTypeScript;
 
 type SpecifierNamedJavaScript = {
-  importKind: undefined;
   imported: {
     name: string;
     type: string;
   };
+  importKind: undefined;
   local: {
     name: string;
     type: string;
@@ -43,11 +43,11 @@ type SpecifierNamedJavaScript = {
 };
 
 type SpecifierNamedTypeScript = {
-  importKind: 'type' | 'value';
   imported: {
     name: string;
     type: string;
   };
+  importKind: 'type' | 'value';
   local: {
     name: string;
     type: string;
@@ -107,7 +107,7 @@ export function removeImport(file: string, data: Data): string {
           }
 
           // @ts-expect-error: Incorrect type
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+          // oxlint-disable-next-line typescript/no-unsafe-assignment
           let importKind = specifier.importKind;
 
           if (
@@ -120,7 +120,7 @@ export function removeImport(file: string, data: Data): string {
 
           const specifierModified: SpecifierNamed = {
             ...(specifier as SpecifierNamed),
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+            // oxlint-disable-next-line typescript/no-unsafe-assignment
             importKind,
           };
 
