@@ -107,7 +107,7 @@ export function removeImport(file: string, data: Data): string {
           }
 
           // @ts-expect-error: Incorrect type
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+          // oxlint-disable-next-line typescript/no-unsafe-assignment
           let importKind = specifier.importKind;
 
           if (
@@ -120,7 +120,7 @@ export function removeImport(file: string, data: Data): string {
 
           const specifierModified: SpecifierNamed = {
             ...(specifier as SpecifierNamed),
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+            // oxlint-disable-next-line typescript/no-unsafe-assignment
             importKind,
           };
 

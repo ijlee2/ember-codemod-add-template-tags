@@ -26,7 +26,7 @@ function analyze(file: string): EntitiesExported | undefined {
 
   AST.traverse(file, {
     visitExportNamedDeclaration(path) {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+      // oxlint-disable-next-line typescript/no-unsafe-member-access
       if (path.value.exportKind !== 'value') {
         return false;
       }
