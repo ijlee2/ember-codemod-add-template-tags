@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.9.7
+
+### Patch Changes
+
+- [#116](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/116) Updated dependencies ([@ijlee2](https://github.com/ijlee2))
+- [#115](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/115) Introduced trusted publishing ([@ijlee2](https://github.com/ijlee2))
+
 ## 2.9.6
 
 ### Patch Changes
