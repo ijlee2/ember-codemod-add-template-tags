@@ -1,6 +1,6 @@
 {
   "name": "ember-codemod-add-template-tags",
-  "version": "2.9.7",
+  "version": "2.9.8",
   "description": "Codemod to convert hbs to <template> tags",
   "keywords": [
     "codemod",

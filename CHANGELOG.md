@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.9.8
+
+### Patch Changes
+
+- [#117](https://github.com/ijlee2/ember-codemod-add-template-tags/pull/117) Updated @codemod-utils/ast-template to 4.1.3 (@glimmer/syntax to 0.97.0) ([@ijlee2](https://github.com/ijlee2))
+
 ## 2.9.7
 
 ### Patch Changes
