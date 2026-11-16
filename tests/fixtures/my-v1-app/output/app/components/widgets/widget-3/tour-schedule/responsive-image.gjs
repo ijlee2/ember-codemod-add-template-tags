@@ -18,16 +18,16 @@ export default class WidgetsWidget3TourScheduleResponsiveImage extends Component
 
 
   <template><div
-  class={{this.styles.image-container}}
-  {{container-query debounce=300 onQuery=this.setImageSource}}
+    class={{this.styles.image-container}}
+    {{container-query debounce=300 onQuery=this.setImageSource}}
   >
-  {{#if this.imageSource}}
-  <img
-    alt=""
-    class={{this.styles.image}}
-    data-test-image="Concert"
-    src={{this.imageSource}}
-  />
-  {{/if}}
+    {{#if this.imageSource}}
+      <img
+        alt=""
+        class={{this.styles.image}}
+        data-test-image="Concert"
+        src={{this.imageSource}}
+      />
+    {{/if}}
   </div></template>
 }

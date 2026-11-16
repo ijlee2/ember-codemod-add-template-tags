@@ -34,35 +34,35 @@ export default class TracksList extends Component<TracksListSignature> {
 
 
   <template><ul
-  class={{this.styles.list}}
-  data-test-list="Tracks"
-  data-css-grid="{{this.numRows}} x {{this.numColumns}}"
-  {{dynamicCssGrid
-  numColumns=this.numColumns
-  numRows=this.numRows
-  }}
+    class={{this.styles.list}}
+    data-test-list="Tracks"
+    data-css-grid="{{this.numRows}} x {{this.numColumns}}"
+    {{dynamicCssGrid
+      numColumns=this.numColumns
+      numRows=this.numRows
+    }}
   >
-  {{#each @tracks as |track index|}}
-  <li class={{this.styles.item}} data-test-item>
-    <div>
-      {{add index 1}}.
-      <span data-test-field="Title">
-        {{track.name}}
-      </span>
-    </div>
+    {{#each @tracks as |track index|}}
+      <li class={{this.styles.item}} data-test-item>
+        <div>
+          {{add index 1}}.
+          <span data-test-field="Title">
+            {{track.name}}
+          </span>
+        </div>
 
-    {{#if track.isExplicit}}
-      <span aria-label="Explicit" data-test-field="Explicit">
-        {{svg-jar
-          "alpha-e-box"
-          class=this.styles.icon-explicit
-          desc="Letter E, which stands for explicit"
-          role="img"
-        }}
-      </span>
-    {{/if}}
-  </li>
-  {{/each}}
+        {{#if track.isExplicit}}
+          <span aria-label="Explicit" data-test-field="Explicit">
+            {{svg-jar
+              "alpha-e-box"
+              class=this.styles.icon-explicit
+              desc="Letter E, which stands for explicit"
+              role="img"
+            }}
+          </span>
+        {{/if}}
+      </li>
+    {{/each}}
   </ul></template>
 }
 

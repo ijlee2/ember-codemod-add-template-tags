@@ -68,67 +68,67 @@ export default class UiForm extends Component<UiFormSignature> {
 
 
   <template>{{#let (uniqueId) as |formId|}}
-  <form
-  aria-describedby={{if
-    @instructions
-    (concat formId "-instructions")
-  }}
-  aria-labelledby={{if @title (concat formId "-title")}}
-  class={{this.styles.form}}
-  data-test-form={{if @title @title ""}}
-  {{on "submit" this.submitForm}}
-  >
-  <UiFormInformation
-    @formId={{formId}}
-    @instructions={{@instructions}}
-    @title={{@title}}
-  />
-
-  <ContainerQuery
-    @features={{hash wide=(width min=480)}}
-    as |CQ|
-  >
-    {{yield
-      (hash
-        Checkbox=(component
-          UiFormCheckbox
-          data=this.data
-          isInline=true
-          isWide=CQ.features.wide
-          onUpdate=this.updateData
-        )
-        Input=(component
-          UiFormInput
-          data=this.data
-          isWide=CQ.features.wide
-          onUpdate=this.updateData
-        )
-        Number=(component
-          UiFormNumber
-          data=this.data
-          isWide=CQ.features.wide
-          onUpdate=this.updateData
-        )
-        Textarea=(component
-          UiFormTextarea
-          data=this.data
-          isWide=CQ.features.wide
-          onUpdate=this.updateData
-        )
-      )
-    }}
-  </ContainerQuery>
-
-  <div class={{this.styles.actions}}>
-    <button
-      class={{this.styles.submit-button}}
-      data-test-button="Submit"
-      type="submit"
+    <form
+      aria-describedby={{if
+        @instructions
+        (concat formId "-instructions")
+      }}
+      aria-labelledby={{if @title (concat formId "-title")}}
+      class={{this.styles.form}}
+      data-test-form={{if @title @title ""}}
+      {{on "submit" this.submitForm}}
     >
-      Submit
-    </button>
-  </div>
-  </form>
+      <UiFormInformation
+        @formId={{formId}}
+        @instructions={{@instructions}}
+        @title={{@title}}
+      />
+
+      <ContainerQuery
+        @features={{hash wide=(width min=480)}}
+        as |CQ|
+      >
+        {{yield
+          (hash
+            Checkbox=(component
+              UiFormCheckbox
+              data=this.data
+              isInline=true
+              isWide=CQ.features.wide
+              onUpdate=this.updateData
+            )
+            Input=(component
+              UiFormInput
+              data=this.data
+              isWide=CQ.features.wide
+              onUpdate=this.updateData
+            )
+            Number=(component
+              UiFormNumber
+              data=this.data
+              isWide=CQ.features.wide
+              onUpdate=this.updateData
+            )
+            Textarea=(component
+              UiFormTextarea
+              data=this.data
+              isWide=CQ.features.wide
+              onUpdate=this.updateData
+            )
+          )
+        }}
+      </ContainerQuery>
+
+      <div class={{this.styles.actions}}>
+        <button
+          class={{this.styles.submit-button}}
+          data-test-button="Submit"
+          type="submit"
+        >
+          Submit
+        </button>
+      </div>
+    </form>
   {{/let}}</template>
 }
 
