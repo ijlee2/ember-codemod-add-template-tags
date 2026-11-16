@@ -49,39 +49,39 @@ export default class UiFormTextarea extends Component<UiFormTextareaSignature> {
 
 
   <template><UiFormField
-  @errorMessage={{this.errorMessage}}
-  @isWide={{@isWide}}
+    @errorMessage={{this.errorMessage}}
+    @isWide={{@isWide}}
   >
-  <:label as |l|>
-  <label data-test-label for={{l.inputId}}>
-    {{@label}}
+    <:label as |l|>
+      <label data-test-label for={{l.inputId}}>
+        {{@label}}
 
-    {{#if @isRequired}}
-      <span aria-hidden="true">
-        *
-      </span>
-    {{/if}}
-  </label>
-  </:label>
+        {{#if @isRequired}}
+          <span aria-hidden="true">
+            *
+          </span>
+        {{/if}}
+      </label>
+    </:label>
 
-  <:field as |f|>
-  <textarea
-    class={{local
-      this.styles
-      "textarea"
-      (if (or @isDisabled @isReadOnly) "is-disabled")
-    }}
-    data-test-field={{@label}}
-    disabled={{@isDisabled}}
-    id={{f.inputId}}
-    placeholder={{@placeholder}}
-    readonly={{@isReadOnly}}
-    required={{@isRequired}}
-    rows="4"
-    value={{this.value}}
-    {{on "input" this.updateValue}}
-  ></textarea>
-  </:field>
+    <:field as |f|>
+      <textarea
+        class={{local
+          this.styles
+          "textarea"
+          (if (or @isDisabled @isReadOnly) "is-disabled")
+        }}
+        data-test-field={{@label}}
+        disabled={{@isDisabled}}
+        id={{f.inputId}}
+        placeholder={{@placeholder}}
+        readonly={{@isReadOnly}}
+        required={{@isRequired}}
+        rows="4"
+        value={{this.value}}
+        {{on "input" this.updateValue}}
+      ></textarea>
+    </:field>
   </UiFormField></template>
 }
 

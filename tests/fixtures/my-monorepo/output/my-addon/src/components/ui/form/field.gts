@@ -29,32 +29,32 @@ export default class UiFormField extends Component<UiFormFieldSignature> {
 
 
   <template>{{#let (uniqueId) as |inputId|}}
-  <div
-  class={{local
-    this.styles
-    "container"
-    (if @isInline "is-inline")
-    (if @isWide "is-wide")
-    (unless @errorMessage "no-feedback")
-  }}
-  >
-  <div class={{this.styles.label}}>
-    {{yield (hash inputId=inputId) to="label"}}
-  </div>
-
-  <div class={{this.styles.field}}>
-    {{yield (hash inputId=inputId) to="field"}}
-  </div>
-
-  {{#if @errorMessage}}
     <div
-      class={{local this.styles "feedback" "is-error"}}
-      data-test-error-message
-      role="alert"
+      class={{local
+        this.styles
+        "container"
+        (if @isInline "is-inline")
+        (if @isWide "is-wide")
+        (unless @errorMessage "no-feedback")
+      }}
     >
-      {{@errorMessage}}
+      <div class={{this.styles.label}}>
+        {{yield (hash inputId=inputId) to="label"}}
+      </div>
+
+      <div class={{this.styles.field}}>
+        {{yield (hash inputId=inputId) to="field"}}
+      </div>
+
+      {{#if @errorMessage}}
+        <div
+          class={{local this.styles "feedback" "is-error"}}
+          data-test-error-message
+          role="alert"
+        >
+          {{@errorMessage}}
+        </div>
+      {{/if}}
     </div>
-  {{/if}}
-  </div>
   {{/let}}</template>
 }

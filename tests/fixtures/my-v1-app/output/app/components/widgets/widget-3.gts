@@ -28,24 +28,24 @@ export default class WidgetsWidget3 extends Component<WidgetsWidget3Signature> {
 
 
   <template><section class={{this.styles.container}}>
-  <header class={{this.styles.header}}>
-  <h2>Widget 3</h2>
+    <header class={{this.styles.header}}>
+      <h2>Widget 3</h2>
 
-  <div class={{this.styles.actions}}>
-    <a data-test-link="All tours" href="#">
-      All tours
-    </a>
-  </div>
-  </header>
+      <div class={{this.styles.actions}}>
+        <a data-test-link="All tours" href="#">
+          All tours
+        </a>
+      </div>
+    </header>
 
-  <div
-  class={{this.styles.tour-schedule}}
-  data-test-tour-schedule
-  >
-  <WidgetsWidget3TourSchedule
-    @concert={{this.concertData}}
-  />
-  </div>
+    <div
+      class={{this.styles.tour-schedule}}
+      data-test-tour-schedule
+    >
+      <WidgetsWidget3TourSchedule
+        @concert={{this.concertData}}
+      />
+    </div>
   </section></template>
 }
 

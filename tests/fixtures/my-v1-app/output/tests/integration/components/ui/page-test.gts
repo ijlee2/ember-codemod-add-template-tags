@@ -10,10 +10,10 @@ module('Integration | Component | ui/page', function (hooks) {
 
   test('it renders', async function (assert) {
     await render(<template><UiPage @title="Form">
-    <div data-test-content>
-      Content goes here.
-    </div>
-    </UiPage></template>);
+            <div data-test-content>
+              Content goes here.
+            </div>
+          </UiPage></template>);
 
     assert.dom('[data-test-page-title]').hasTagName('h1').hasText('Form');
 

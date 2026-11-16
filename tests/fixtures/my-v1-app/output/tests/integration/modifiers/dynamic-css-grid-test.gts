@@ -9,8 +9,8 @@ module('Integration | Modifier | dynamic-css-grid', function (hooks) {
 
   test('it renders', async function (assert) {
     await render(
-        <template><div data-test-list="Tracks" {{dynamicCssGrid numColumns=3 numRows=4}}>
-        </div></template>
+      <template><div data-test-list="Tracks" {{dynamicCssGrid numColumns=3 numRows=4}}>
+            </div></template>
     );
 
     assert.ok(true);

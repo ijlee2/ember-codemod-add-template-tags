@@ -21,55 +21,55 @@ module('Integration | Component | ui/form', function (hooks) {
     this.submitForm = () => {};
 
     await render<TestContext>(<template><UiForm
-    @data={{hash
-      donation=undefined
-      email=undefined
-      message="I 🧡 container queries!"
-      name=undefined
-      subscribe=true
-    }}
-    @instructions="Still have questions about ember-container-query? Try sending me a message."
-    @onSubmit={{this.submitForm}}
-    @title="Contact me"
-    as |F|
-    >
-    <div>
-      <F.Input
-        @isRequired={{true}}
-        @key="name"
-        @label="Name"
-        @placeholder="Zoey"
-      />
-    </div>
+            @data={{hash
+              donation=undefined
+              email=undefined
+              message="I 🧡 container queries!"
+              name=undefined
+              subscribe=true
+            }}
+            @instructions="Still have questions about ember-container-query? Try sending me a message."
+            @onSubmit={{this.submitForm}}
+            @title="Contact me"
+            as |F|
+          >
+            <div>
+              <F.Input
+                @isRequired={{true}}
+                @key="name"
+                @label="Name"
+                @placeholder="Zoey"
+              />
+            </div>
 
-    <div>
-      <F.Input
-        @isRequired={{true}}
-        @key="email"
-        @label="Email"
-        @placeholder="zoey@emberjs.com"
-        @type="email"
-      />
-    </div>
+            <div>
+              <F.Input
+                @isRequired={{true}}
+                @key="email"
+                @label="Email"
+                @placeholder="zoey@emberjs.com"
+                @type="email"
+              />
+            </div>
 
-    <div>
-      <F.Textarea @key="message" @label="Message" />
-    </div>
+            <div>
+              <F.Textarea @key="message" @label="Message" />
+            </div>
 
-    <div>
-      <F.Checkbox @key="subscribe" @label="Subscribe to The Ember Times?" />
-    </div>
+            <div>
+              <F.Checkbox @key="subscribe" @label="Subscribe to The Ember Times?" />
+            </div>
 
-    <div>
-      <F.Number
-        @key="donation"
-        @label="Donation amount (\$)"
-        @minValue={{0}}
-        @placeholder="100"
-        @step={{10}}
-      />
-    </div>
-    </UiForm></template>);
+            <div>
+              <F.Number
+                @key="donation"
+                @label="Donation amount (\$)"
+                @minValue={{0}}
+                @placeholder="100"
+                @step={{10}}
+              />
+            </div>
+          </UiForm></template>);
 
     const titleId = find('[data-test-title]')!.getAttribute('id')!;
     const instructionsId = find('[data-test-instructions]')!.getAttribute(
